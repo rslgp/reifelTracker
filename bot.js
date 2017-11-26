@@ -82,7 +82,7 @@ function search(text,nick,site){
 	if(jsonSquad[0].value==0) //console.log("nunca ganhou squad")
 		return errorNuncaGanhouSquad;
 	else{
-		var resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[0].value+separador+"Win %: "+jsonSquad[8].value +separador+"Kills: "+jsonSquad[10].value +separador+ "K/d: "+jsonSquad[7].value + +quebraLinha+ site +quebraLinha+ creditos;
+		var resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[0].value+separador+"Win %: "+jsonSquad[8].value +separador+"Kills: "+jsonSquad[10].value +separador+ "K/d: "+jsonSquad[7].value +quebraLinha+ site +quebraLinha+ creditos;
 		//console.log(resultado);	
 		return resultado;		
 	}
