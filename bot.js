@@ -10,13 +10,25 @@ const Browser = require('zombie');
 const creditos = "--- Powered by Reifel ---", separador=" | ", quebraLinha="\r\n";
 
 //tratando casos de erro
-const errorNickNaoEncontrado="nick n䯠encontrado",
+const errorNickNaoEncontrado="nick não encontrado",
 errorNuncaGanhouSquad="nunca ganhou squad";
+
+const comandoErrado = "comando invalido";
+
+var refreshAuto = [];
+var refreshTamanho = 0;
+var refreshRealizados=0;
+var refreshRealizadosMAX = 4;
+var refreshMAXSTACK=13;
+var refreshTEMPO=4000;//30min 1800000
+
+const errorUsuarioRegistrado = "usuario ja esta registrado", errorRefreshLotado="fila atualizacao lotada", 
+sucessoRegistro=" conseguiu se registrar", chamadaFilaLIVRE=">> a fila de atualizar win % automatica esta LIVRE <<", sucessoWinRateAtualizado="win rates atualizados";
 
 client.on('message', message => {
 	if(message.author.bot) return; //ignora poupar processamento bot
 	
-	if(message.content.indexOf("!") !== 0) return;
+	if(message.content.indexOf("!") !== 0) return; //se nao for comando ignora
 	
 	//dividindo cada palavra da mensagem em um array de palavras
 	var args = message.content.slice(0).trim().split(/ +/g);
@@ -34,7 +46,7 @@ client.on('message', message => {
 	}else{		
 		nickLegivel=parametroUsado = args[1];	
 	}
-	
+		
 	switch(comando){
 		case "!tracker":
 			if(nickLegivel === undefined) {print(message, errorNickNaoEncontrado); return;}
@@ -59,7 +71,7 @@ client.on('message', message => {
 			var site = "https://fortnitetracker.com/profile/pc/"+parametroUsado;
 			Browser.visit(site, function (e, browser) {
 				var text = browser.html();			
-				var winRate = up(text,nickLegivel,site);
+				var winRate = up(text);
 			
 				if(winRate === -1) {
 					print(message, errorNickNaoEncontrado);
@@ -71,8 +83,66 @@ client.on('message', message => {
 			});	
 		break;
 		
+		case "!reg":
+		
+			for( i=0; i<refreshTamanho; i++){
+				//console.log("variavel param usado "+usuarioParametroNickTrio.parametroUsado);
+				//console.log("item: "+refreshAuto[i].member +" "+ refreshAuto[i].parametroUsado +" "+refreshAuto[i].nickLegivel);
+				
+				if(parametroUsado === refreshAuto[i].parametroUsado) {
+						print(message, errorUsuarioRegistrado); //error user existente
+						return;
+				}	
+	/* 			if(usuarioParametroNickTrio.parametroUsado !== undefined){
+					console.log("FOR "+parametroUsado+" "+usuarioParametroNickTrio.parametroUsado);
+					
+					if(parametroUsado === usuarioParametroNickTrio.parametroUsado) {
+						print(message, errorUsuarioRegistrado); //error user existente
+						return;
+					}					
+				} */
+				
+			}
+			if(refreshTamanho < refreshMAXSTACK){
+				usuarioParametroNickTrio = {};
+				console.log(message.member);
+				console.log(message.member.id);
+				usuarioParametroNickTrio["member"] = message.member.id;
+				usuarioParametroNickTrio["parametroUsado"] = parametroUsado;
+				usuarioParametroNickTrio["nickLegivel"] = nickLegivel;
+				
+				refreshAuto.push(usuarioParametroNickTrio);
+				print(message, nickLegivel+sucessoRegistro);
+				refreshTamanho++;
+				print(message, refreshAuto.length);				
+			}else{
+				print(message, errorRefreshLotado); //error stack lotado
+			}
+		break;
+		
+		case "!test":
+		var interval = setInterval (function (){
+			if(refreshTamanho==0) return;//zero stack faz nada
+			if(refreshRealizados == refreshRealizadosMAX){ //terminou refresh
+				refreshAuto = refreshAuto.splice(0,refreshTamanho); //zera o stack, 
+				refreshTamanho = 0;
+				refreshRealizados=0;
+				print(message,chamadaFilaLIVRE);
+			}else{ //atualiza stack
+				updateWinRateStack(message);
+				refreshRealizados++;
+				print(message,sucessoWinRateAtualizado);
+				
+			}
+      }, refreshTEMPO); // time between each interval in milliseconds (30 min)
+		break;
+		
+		case "!debug":
+			console.log(message);
+		break;
+		
 		default:
-			print( message, "comando invalido");
+			print( message, comandoErrado);
 		break;
 	}
 });
@@ -145,7 +215,7 @@ function search(text,nick){
 	}
 }
 
-function up(text,nick,site){
+function up(text){
 	var temp = text.substring(text.indexOf(buscas[0])+16);
 	temp = temp.substr( 0,temp.indexOf(buscas[1]) );
 	temp = temp.substring(temp.indexOf(buscas[2]));
@@ -199,4 +269,35 @@ function print(message, text){
 				description: text
 			}
 		});	
+}
+
+function updateWinRateStack(message){
+	forRecusivo(message,0);
+}
+
+function atualizarWinRateNick(message, winRate, i){
+	message.guild.members.get(refreshAuto[i].member).setNickname("=☔ "+winRate+"%= "+refreshAuto[i].nickLegivel).then( forRecusivo(message, i+1) ).catch(console.error);
+}
+
+function forRecusivo(message, i){
+	if(i<refreshTamanho){
+		console.log(i+" update "+refreshAuto[i].nickLegivel);
+		var site = "https://fortnitetracker.com/profile/pc/"+refreshAuto[i].parametroUsado;
+		
+		setWinRateNick(message, site, i);
+		
+	}
+}
+
+function setWinRateNick(message, site, i){
+	Browser.visit(site, function (e, browser) {
+		text = browser.html();			
+		winRate = up(text);		
+		
+		if(winRate === -1) refreshAuto = refreshAuto.splice(i, 1);//nick errado remove do array
+		else{
+			atualizarWinRateNick(message, winRate, i);
+		}
+		
+	});
 }
