@@ -10,7 +10,7 @@ const Browser = require('zombie');
 const creditos = "--- Powered by Reifel ---", separador=" | ", quebraLinha="\r\n";
 
 //tratando casos de erro
-const errorNickNaoEncontrado="nick não encontrado",
+const errorNickNaoEncontrado="nick n䯠encontrado",
 errorNuncaGanhouSquad="nunca ganhou squad";
 
 client.on('message', message => {
@@ -37,34 +37,38 @@ client.on('message', message => {
 	
 	switch(comando){
 		case "!tracker":
-		var site = "";	
-		//console.log("parametroUsado " + parametroUsado);
-		site = "https://fortnitetracker.com/profile/pc/"+parametroUsado;
-		//crawler
-		Browser.visit(site, function (e, browser) {
-			//console.log(browser.location.href);
-			var text = browser.html();
-			//console.log(text);
-			//console.log("nickLegivel: "+nickLegivel);
+			if(nickLegivel === undefined) {print(message, errorNickNaoEncontrado); return;}
 			
-			msgPadraoBot( message, search(text,nickLegivel), site, creditos, nickLegivel );
-			
-			/* message.channel.send({embed: {
-			  color: 3447003,
-				  description: search(text,nickLegivel,site)
-				}
-			}); */
-		});	
+			var site = "https://fortnitetracker.com/profile/pc/"+parametroUsado;
+			//crawler
+			Browser.visit(site, function (e, browser) {
+				//console.log(browser.location.href);
+				var text = browser.html();
+				//console.log(text);
+				//console.log("nickLegivel: "+nickLegivel);
+				
+				msgPadraoBot( message, search(text,nickLegivel), site, creditos, nickLegivel );
+			});	
 		break;
 		
 		case "!nick":
 			message.member.setNickname(nickLegivel).then(user => message.reply(`seu nome foi modificado com sucesso`)).catch(console.error);
 		break;
 		
-		case "!uptracker":
-			var winRate = up(text,nickLegivel,site);
-			if(winRate === -1) 
-			message.member.setNickname(nickLegivel).then(user => message.reply(`seu nome foi modificado com sucesso`)).catch(console.error);	
+		case "!up":			
+			var site = "https://fortnitetracker.com/profile/pc/"+parametroUsado;
+			Browser.visit(site, function (e, browser) {
+				var text = browser.html();			
+				var winRate = up(text,nickLegivel,site);
+			
+				if(winRate === -1) {
+					print(message, errorNickNaoEncontrado);
+				}
+				else{
+					message.member.setNickname("=☔ "+winRate+"%= "+nickLegivel).then(user => message.reply(`seu nome foi modificado com sucesso \:umbrella2:`)).catch(console.error);	
+				}				
+				
+			});	
 		break;
 		
 		default:
@@ -162,9 +166,7 @@ function up(text,nick,site){
 		var resultado;
 		var winP = 9;		
 		
-		if(jsonSquad[winP].label === 'Win %')
-		{}	
-		else{			
+		if(jsonSquad[winP].label !== 'Win %'){			
 				var n=0;
 				for( i=0; i < jsonSquad.length; i++ ){
 					//console.log(jsonSquad[i].label);
@@ -189,8 +191,7 @@ function msgPadraoBot(message, text, site, rodape, nick){
 				footer: {text:rodape}
 			}
 		});	
-} 
-
+}
 
 function print(message, text){
 		message.channel.send({embed: {
