@@ -82,8 +82,43 @@ function search(text,nick,site){
 	if(jsonSquad[0].value==0) //console.log("nunca ganhou squad")
 		return errorNuncaGanhouSquad;
 	else{
-		var resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[0].value+separador+"Win %: "+jsonSquad[8].value +separador+"Kills: "+jsonSquad[10].value +separador+ "K/d: "+jsonSquad[7].value +quebraLinha+ site +quebraLinha+ creditos;
+		var resultado;
+		var wins = 2
+		,winP = 9
+		,kd = 11
+		,kills = 8
+		;		
+		
+		if(jsonSquad[wins].label === 'Wins' && jsonSquad[winP].label === 'Win %' && jsonSquad[kd].label === 'Kills' && jsonSquad[kills].value === 'K/d')
+		{}	
+		else{			
+				var n=0;
+				for( i=0; i < jsonSquad.length; i++ ){
+					console.log(jsonSquad[i].label);
+					switch(jsonSquad[i].label){
+						case "Wins":
+							wins = n;
+						break;
+						
+						case "Win %":
+							winP = n;
+						break;
+							
+						case "Kills":
+							kills = n;
+						break;
+						
+						case "K/d":
+							kd = n;
+						break;
+						
+					}
+					n++;
+				}
+		}
+		
+		resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[wins].value+separador+"Win %: "+jsonSquad[winP].value +separador+"Kills: "+jsonSquad[kills].value +separador+ "K/d: "+jsonSquad[kd].value +quebraLinha+ site +quebraLinha+ creditos;
 		//console.log(resultado);	
-		return resultado;		
+		return resultado;
 	}
 }
