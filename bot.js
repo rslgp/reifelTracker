@@ -44,16 +44,28 @@ client.on('message', message => {
 			//console.log(text);
 			//console.log("nickLegivel: "+nickLegivel);
 			
-			message.channel.send({embed: {
+			msg( search(text,nickLegivel,site) );
+			
+			/* message.channel.send({embed: {
 			  color: 3447003,
 				  description: search(text,nickLegivel,site)
 				}
-			});
+			}); */
 		});	
 		break;
 		
 		case "!nick":
 			message.member.setNickname(nickLegivel).then(user => message.reply(`seu nome foi modificado com sucesso`)).catch(console.error);
+		break;
+		
+		case "!uptracker":
+			var winRate = up(text,nickLegivel,site);
+			if(winRate === -1) 
+			message.member.setNickname(nickLegivel).then(user => message.reply(`seu nome foi modificado com sucesso`)).catch(console.error);	
+		break;
+		
+		default:
+			msg("comando inválido");
 		break;
 	}
 });
@@ -64,6 +76,7 @@ var buscas= [
 '</script>',
 '"p9"'
 ];
+
 function search(text,nick,site){
 	var temp = text.substring(text.indexOf(buscas[0])+16);
 	temp = temp.substr( 0,temp.indexOf(buscas[1]) );
@@ -121,4 +134,51 @@ function search(text,nick,site){
 		//console.log(resultado);	
 		return resultado;
 	}
+}
+
+function up(text,nick,site){
+	var temp = text.substring(text.indexOf(buscas[0])+16);
+	temp = temp.substr( 0,temp.indexOf(buscas[1]) );
+	temp = temp.substring(temp.indexOf(buscas[2]));
+	temp = temp.substring(5,temp.indexOf("]")+1);
+	
+	var jsonSquad;
+	//temp == squad json
+	try{
+		jsonSquad = JSON.parse(temp);
+	}catch(e){
+		return -1;
+	}
+	//jsonSquad[0] wins
+	//jsonSquad[8] win porcentagem
+	if(jsonSquad[0].value==0) //console.log("nunca ganhou squad")
+		return 0.0;
+	else{
+		var resultado;
+		var winP = 9;		
+		
+		if(jsonSquad[winP].label === 'Win %')
+		{}	
+		else{			
+				var n=0;
+				for( i=0; i < jsonSquad.length; i++ ){
+					//console.log(jsonSquad[i].label);
+					switch(jsonSquad[i].label){						
+						case "Win %":
+							winP = n;
+						break;
+					}
+					n++;
+				}
+		}	
+		return jsonSquad[winP].value;
+	}
+}
+
+function msg(text,message){
+		message.channel.send({embed: {
+			  color: 3447003,
+				description: text
+			}
+		});	
 }
