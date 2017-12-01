@@ -94,7 +94,7 @@ function search(text,nick,site){
 		else{			
 				var n=0;
 				for( i=0; i < jsonSquad.length; i++ ){
-					console.log(jsonSquad[i].label);
+					//console.log(jsonSquad[i].label);
 					switch(jsonSquad[i].label){
 						case "Wins":
 							wins = n;
