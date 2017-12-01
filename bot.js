@@ -14,6 +14,9 @@ const errorNickNaoEncontrado="nick não encontrado",
 errorNuncaGanhouSquad="nunca ganhou squad";
 
 client.on('message', message => {
+	if(message.author.bot) return; //ignora poupar processamento bot
+	
+	if(message.content.indexOf("!") !== 0) return;
 	
 	//dividindo cada palavra da mensagem em um array de palavras
 	var args = message.content.slice(0).trim().split(/ +/g);
@@ -44,7 +47,7 @@ client.on('message', message => {
 			//console.log(text);
 			//console.log("nickLegivel: "+nickLegivel);
 			
-			msg( search(text,nickLegivel,site) );
+			msgPadraoBot( message, search(text,nickLegivel), site, creditos, nickLegivel );
 			
 			/* message.channel.send({embed: {
 			  color: 3447003,
@@ -65,7 +68,7 @@ client.on('message', message => {
 		break;
 		
 		default:
-			msg("comando inválido");
+			//print( message, "comando invalido");
 		break;
 	}
 });
@@ -77,7 +80,7 @@ var buscas= [
 '"p9"'
 ];
 
-function search(text,nick,site){
+function search(text,nick){
 	var temp = text.substring(text.indexOf(buscas[0])+16);
 	temp = temp.substr( 0,temp.indexOf(buscas[1]) );
 	temp = temp.substring(temp.indexOf(buscas[2]));
@@ -130,7 +133,9 @@ function search(text,nick,site){
 				}
 		}
 		
-		resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[wins].value+separador+"Win %: "+jsonSquad[winP].value +separador+"Kills: "+jsonSquad[kills].value +separador+ "K/d: "+jsonSquad[kd].value +quebraLinha+ site +quebraLinha+ creditos;
+		//resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[wins].value+separador+"Win %: "+jsonSquad[winP].value +separador+"Kills: "+jsonSquad[kills].value +separador+ "K/d: "+jsonSquad[kd].value +quebraLinha+ site +quebraLinha+ creditos;
+		resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[wins].value+separador+"Win %: "+jsonSquad[winP].value +separador+"Kills: "+jsonSquad[kills].value +separador+ "K/d: "+jsonSquad[kd].value;
+		
 		//console.log(resultado);	
 		return resultado;
 	}
@@ -175,7 +180,19 @@ function up(text,nick,site){
 	}
 }
 
-function msg(text,message){
+function msgPadraoBot(message, text, site, rodape, nick){
+		message.channel.send({embed: {
+			  color: 3447003,
+				description: text,
+				title: "stats de "+nick,
+				url:site,
+				footer: {text:rodape}
+			}
+		});	
+} 
+
+
+function print(message, text){
 		message.channel.send({embed: {
 			  color: 3447003,
 				description: text
