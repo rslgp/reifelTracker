@@ -68,7 +68,7 @@ client.on('message', message => {
 		break;
 		
 		default:
-			//print( message, "comando invalido");
+			print( message, "comando invalido");
 		break;
 	}
 });
