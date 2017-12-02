@@ -29,6 +29,7 @@ sucessoRegistro=" conseguiu se registrar", chamadaFilaLIVRE=">> a fila de atuali
 
 client.on('ready', () => {
 	client.user.username="reifelTracker";
+	client.user.setUsername("reifelTracker");
 });
 
 client.on('message', message => {
