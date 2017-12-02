@@ -20,7 +20,7 @@ var refreshTamanho = 0;
 var refreshRealizados=0;
 var refreshRealizadosMAX = 4;
 var refreshMAXSTACK=13;
-var refreshTEMPO=9000;//30min 1800000
+var refreshTEMPO=1800000;//30min 1800000
 
 var interval, refreshIsRunning=0;
 
