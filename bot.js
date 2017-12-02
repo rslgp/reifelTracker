@@ -27,6 +27,10 @@ var interval, refreshIsRunning=0;
 const errorUsuarioRegistrado = "usuario ja esta registrado", errorRefreshLotado="fila atualizacao lotada", 
 sucessoRegistro=" conseguiu se registrar", chamadaFilaLIVRE=">> a fila de atualizar win % automatica esta LIVRE <<", sucessoWinRateAtualizado="win rates atualizados";
 
+client.on('ready', () => {
+	client.user.username="reifelTracker";
+});
+
 client.on('message', message => {
 	if(message.author.bot) return; //ignora poupar processamento bot
 	
