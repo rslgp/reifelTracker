@@ -3,7 +3,6 @@ const client = new Discord.Client();
 
 //trocar o token
 client.login(process.env.BOT_TOKEN);
-//client.login("MzczNDQzMDQ5ODE4MTYxMTUz.DQJFCw.KMhhoe1JhwcbzwYe52WavCitNBM");
 
 //versao 1.0
 const message = new Discord.Message();
@@ -16,19 +15,19 @@ errorNuncaGanhouSquad="nunca ganhou squad";
 
 const comandoErrado = "comando invalido";
 
-const helpMessage = "comandos disponiveis:\r\n**!tracker nick** - (consulta nick do fortnite de alguem)\r\n**!up seuNick** - (atualizar winrate do seu nick com TAG)\r\n**!mtracker seuNick** - (atualizar winrate do seu nick sem TAG)\r\n**!auto seuNick** - (atualiza o seu winrate sozinho (caso consiga a vaga) a cada 30 min, apos 4 atualizacoes todas as 13 vagas ficam livres)";
+const helpMessage = "comandos disponiveis:\r\n**!tracker nick** - (consulta nick do fortnite de alguem)\r\n**!up seuNick** - (atualizar winrate do seu nick)\r\n**!auto seuNick** - (atualiza o seu winrate sozinho (caso consiga a vaga) a cada 30 min, apos 4 atualizacoes todas as 13 vagas ficam livres)";
 
 var refreshAuto = [];
 var refreshTamanho = 0;
 var refreshRealizados=0;
 var refreshRealizadosMAX = 4;
 var refreshMAXSTACK=13;
-var refreshTEMPO=9000;//30min 1800000
+var refreshTEMPO=1800000;//30min 1800000
 
 var interval, refreshIsRunning=0;
 
 const errorUsuarioRegistrado = "usuario ja esta registrado", errorRefreshLotado="fila atualizacao lotada", 
-sucessoRegistro=" conseguiu se registrar", chamadaFilaLIVRE=">> a fila de atualizar win % automatica esta LIVRE <<", sucessoWinRateAtualizado="win rates atualizados";
+sucessoRegistro=" conseguiu se registrar", chamadaFilaLIVRE=">> a fila de atualizar win % automatica esta LIVRE <<", sucessoWinRateAtualizado="atualizei os win % de vcs";
 
 client.on('ready', () => {
 	client.user.username="reifelTracker";
@@ -96,7 +95,7 @@ client.on('message', message => {
 		break;
 		/*
 		case "!nick":
-			message.member.setNickname(nickLegivel).then(user => message.reply(`seu nome foi modificado com sucesso`)).catch(console.error);
+			message.member.setNickname(nickLegivel).then(user => message.reply(`terminei, atualizei o winrate`)).catch(console.error);
 		break;*/
 		
 		case "!up":			
@@ -110,7 +109,7 @@ client.on('message', message => {
 				}
 				else{
 					//if(message.member.hasPermission("MANAGE_NICKNAMES"))
-					message.member.setNickname( padraoNick(winRate,nickLegivel) ).then(user => message.reply(`seu nome foi modificado com sucesso \:umbrella2:`)).catch(console.error);	
+					message.member.setNickname( padraoNick(winRate,nickLegivel) ).then(user => message.reply(`terminei, atualizei o winrate \:umbrella2:`)).catch(console.error);	
 					//else print(message, "ainda nao tenho permissao pra mudar seu nick :(");
 				}
 			});	
@@ -128,7 +127,7 @@ client.on('message', message => {
 				}
 				else{
 					//if(message.member.hasPermission("MANAGE_NICKNAMES"))
-					message.member.setNickname( padraoNick(winRate,nickLegivel) ).then(user => message.reply(`seu nome foi modificado com sucesso \:umbrella2:`)).catch(console.error);	
+					message.member.setNickname( padraoNick(winRate,nickLegivel) ).then(user => message.reply(`terminei, atualizei o winrate \:umbrella2:`)).catch(console.error);	
 					//else print(message, "ainda nao tenho permissao pra mudar seu nick :(");
 				}				
 			});	
