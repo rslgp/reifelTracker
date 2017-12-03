@@ -20,7 +20,7 @@ var refreshTamanho = 0;
 var refreshRealizados=0;
 var refreshRealizadosMAX = 4;
 var refreshMAXSTACK=13;
-var refreshTEMPO=1800000;//30min 1800000
+var refreshTEMPO=9000;//30min 1800000
 
 var interval, refreshIsRunning=0;
 
@@ -31,11 +31,25 @@ client.on('ready', () => {
 	client.user.username="reifelTracker";
 	client.user.setUsername("reifelTracker");
 });
-
+var TAG = "";
 client.on('message', message => {
 	if(message.author.bot) return; //ignora poupar processamento bot
 	
 	if(message.content.indexOf("!") !== 0) return; //se nao for comando ignora
+	
+	switch(message.guild.id){
+		case 368240657816354836: //bro
+			TAG = "BRO";
+		break;
+		
+		case 373611766737010690: //PDX
+			TAG = "PDX";
+		break;
+		
+		default:
+			TAG = "";
+		break;
+	}
 	
 	//dividindo cada palavra da mensagem em um array de palavras
 	var args = message.content.slice(0).trim().split(/ +/g);
@@ -84,7 +98,9 @@ client.on('message', message => {
 					print(message, errorNickNaoEncontrado);
 				}
 				else{
+					if(message.member.hasPermission("MANAGE_NICKNAMES"))
 					message.member.setNickname( padraoNick(winRate,nickLegivel) ).then(user => message.reply(`seu nome foi modificado com sucesso \:umbrella2:`)).catch(console.error);	
+					else print(message, "ainda nao tenho permissao pra mudar seu nick :(");
 				}				
 				
 			});	
@@ -104,15 +120,7 @@ client.on('message', message => {
 				if(parametroUsado === refreshAuto[i].parametroUsado) {
 						print(message, errorUsuarioRegistrado); //error user existente
 						return;
-				}	
-	/* 			if(usuarioParametroNickTrio.parametroUsado !== undefined){
-					console.log("FOR "+parametroUsado+" "+usuarioParametroNickTrio.parametroUsado);
-					
-					if(parametroUsado === usuarioParametroNickTrio.parametroUsado) {
-						print(message, errorUsuarioRegistrado); //error user existente
-						return;
-					}					
-				} */
+				}
 				
 			}
 			if(refreshTamanho < refreshMAXSTACK){
@@ -126,7 +134,7 @@ client.on('message', message => {
 				refreshAuto.push(usuarioParametroNickTrio);
 				print(message, nickLegivel+sucessoRegistro);
 				refreshTamanho++;
-				//print(message, refreshAuto.length);				
+				print(message, refreshAuto.length);				
 			}else{
 				print(message, errorRefreshLotado); //error stack lotado
 			}
@@ -186,7 +194,8 @@ function search(text,nick){
 	}catch(e){
 		return errorNickNaoEncontrado;
 	}
-	
+	//jsonSquad[0] wins
+	//jsonSquad[8] win porcentagem
 	var resultado;
 	var wins = 2
 	,winP = 9
@@ -222,13 +231,12 @@ function search(text,nick){
 			}
 	}
 	
-	if(jsonSquad[wins].value===0) resultado=errorNuncaGanhouSquad;
+	if(jsonSquad[wins].value===0) resultado= errorNuncaGanhouSquad;
 	//resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[wins].value+separador+"Win %: "+jsonSquad[winP].value +separador+"Kills: "+jsonSquad[kills].value +separador+ "K/d: "+jsonSquad[kd].value +quebraLinha+ site +quebraLinha+ creditos;
 	else resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[wins].value+separador+"Win %: "+jsonSquad[winP].value +separador+"Kills: "+jsonSquad[kills].value +separador+ "K/d: "+jsonSquad[kd].value;
 	
 	//console.log(resultado);	
 	return resultado;
-	
 }
 
 function up(text){
@@ -244,6 +252,7 @@ function up(text){
 	}catch(e){
 		return -1;
 	}
+	
 	var resultado;
 	var winP = 9;		
 	
@@ -339,5 +348,5 @@ function runAutoUpdateWinRate(message){
 }
 
 function padraoNick(winrate, nick){
-	return "=☂ "+winrate+"%= "+nick;
+	return "=☂ "+winrate+"%= "+TAG+" "+nick;
 }
