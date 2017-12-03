@@ -38,11 +38,19 @@ client.on('message', message => {
 	if(message.content.indexOf("!") !== 0) return; //se nao for comando ignora
 	
 	switch(message.guild.id){
-		case 368240657816354836: //bro
+		/* case 368240657816354836: //bro
+			TAG = "BRO";
+		break; */
+		
+		case "368240657816354836": //bro
 			TAG = "BRO";
 		break;
 		
-		case 373611766737010690: //PDX
+		/* case 373611766737010690: //PDX
+			TAG = "PDX";
+		break; */
+		
+		case "373611766737010690": //PDX
 			TAG = "PDX";
 		break;
 		
