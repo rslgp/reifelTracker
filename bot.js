@@ -159,9 +159,9 @@ client.on('message', message => {
 				usuarioParametroNickTrio["nickLegivel"] = nickLegivel;
 				
 				refreshAuto.push(usuarioParametroNickTrio);
-				print(message, nickLegivel+sucessoRegistro);
 				refreshTamanho++;
-				print(message, refreshAuto.length);				
+				print(message, nickLegivel+sucessoRegistro+" "+refreshTamanho+"/"+refreshMAXSTACK);
+				//print(message, refreshAuto.length);				
 			}else{
 				print(message, errorRefreshLotado); //error stack lotado
 			}
