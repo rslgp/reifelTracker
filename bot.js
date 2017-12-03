@@ -106,9 +106,9 @@ client.on('message', message => {
 					print(message, errorNickNaoEncontrado);
 				}
 				else{
-					if(message.member.hasPermission("MANAGE_NICKNAMES"))
+					//if(message.member.hasPermission("MANAGE_NICKNAMES"))
 					message.member.setNickname( padraoNick(winRate,nickLegivel) ).then(user => message.reply(`seu nome foi modificado com sucesso \:umbrella2:`)).catch(console.error);	
-					else print(message, "ainda nao tenho permissao pra mudar seu nick :(");
+					//else print(message, "ainda nao tenho permissao pra mudar seu nick :(");
 				}				
 				
 			});	
