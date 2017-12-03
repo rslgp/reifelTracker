@@ -15,7 +15,7 @@ errorNuncaGanhouSquad="nunca ganhou squad";
 
 const comandoErrado = "comando invalido";
 
-const helpMessage = "comandos disponiveis:\r\n**!tracker nick** - (consulta nick do fortnite de alguem)\r\n**!up seuNick** - (atualizar winrate do seu nick)\r\n**!reg seuNick** - (te coloca numa fila que atualiza o seu winrate sozinho a cada 30 min, apos 4 atualizacoes as 13 vagas da fila ficam livres)";
+const helpMessage = "comandos disponiveis:\r\n**!tracker nick** - (consulta nick do fortnite de alguem)\r\n**!up seuNick** - (atualizar winrate do seu nick)\r\n**!auto seuNick** - (te coloca numa fila que atualiza o seu winrate sozinho a cada 30 min, apos 4 atualizacoes as 13 vagas da fila ficam livres)";
 
 var refreshAuto = [];
 var refreshTamanho = 0;
@@ -116,7 +116,7 @@ client.on('message', message => {
 			});	
 		break;
 		
-		case "!reg":
+		case "!auto":
 			
 			if(refreshIsRunning===0){
 				refreshIsRunning=1;
