@@ -3,7 +3,9 @@ const client = new Discord.Client();
 
 //trocar o token
 client.login(process.env.BOT_TOKEN);
+//client.login("MzczNDQzMDQ5ODE4MTYxMTUz.DQJFCw.KMhhoe1JhwcbzwYe52WavCitNBM");
 
+//versao 1.0
 const message = new Discord.Message();
 const Browser = require('zombie');
 const creditos = "--- criado por Reifel ---", separador=" | ", quebraLinha="\r\n";
@@ -110,12 +112,29 @@ client.on('message', message => {
 					//if(message.member.hasPermission("MANAGE_NICKNAMES"))
 					message.member.setNickname( padraoNick(winRate,nickLegivel) ).then(user => message.reply(`seu nome foi modificado com sucesso \:umbrella2:`)).catch(console.error);	
 					//else print(message, "ainda nao tenho permissao pra mudar seu nick :(");
-				}				
-				
+				}
 			});	
 		break;
 		
-		case "!reg":
+		case "!mtracker": //atualiza sem por TAG	
+			TAG = "";
+			var site = "https://fortnitetracker.com/profile/pc/"+parametroUsado;
+			Browser.visit(site, function (e, browser) {
+				var text = browser.html();			
+				var winRate = up(text);
+			
+				if(winRate === -1) {
+					print(message, errorNickNaoEncontrado);
+				}
+				else{
+					//if(message.member.hasPermission("MANAGE_NICKNAMES"))
+					message.member.setNickname( padraoNick(winRate,nickLegivel) ).then(user => message.reply(`seu nome foi modificado com sucesso \:umbrella2:`)).catch(console.error);	
+					//else print(message, "ainda nao tenho permissao pra mudar seu nick :(");
+				}				
+			});	
+		break;
+		
+		case "!auto":
 			
 			if(refreshIsRunning===0){
 				refreshIsRunning=1;
