@@ -4,7 +4,6 @@ const client = new Discord.Client();
 //trocar o token
 client.login(process.env.BOT_TOKEN);
 
-//versao 1.0
 const message = new Discord.Message();
 const Browser = require('zombie');
 const creditos = "--- criado por Reifel ---", separador=" | ", quebraLinha="\r\n";
@@ -15,7 +14,7 @@ errorNuncaGanhouSquad="nunca ganhou squad";
 
 const comandoErrado = "comando invalido";
 
-const helpMessage = "comandos disponiveis:\r\n**!tracker nick** - (consulta nick do fortnite de alguem)\r\n**!up seuNick** - (atualizar winrate do seu nick)\r\n**!auto seuNick** - (te coloca numa fila que atualiza o seu winrate sozinho a cada 30 min, apos 4 atualizacoes as 13 vagas da fila ficam livres)";
+const helpMessage = "comandos disponiveis:\r\n**!tracker nick** - (consulta nick do fortnite de alguem)\r\n**!up seuNick** - (atualizar winrate do seu nick)\r\n**!reg seuNick** - (atualiza o seu winrate sozinho (caso consiga a vaga) a cada 30 min, apos 4 atualizacoes todas as 13 vagas ficam livres)";
 
 var refreshAuto = [];
 var refreshTamanho = 0;
@@ -116,7 +115,7 @@ client.on('message', message => {
 			});	
 		break;
 		
-		case "!auto":
+		case "!reg":
 			
 			if(refreshIsRunning===0){
 				refreshIsRunning=1;
