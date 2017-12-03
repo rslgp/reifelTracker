@@ -91,10 +91,10 @@ client.on('message', message => {
 				msgPadraoBot( message, search(text,nickLegivel), site, creditos, nickLegivel );
 			});	
 		break;
-		
+		/*
 		case "!nick":
 			message.member.setNickname(nickLegivel).then(user => message.reply(`seu nome foi modificado com sucesso`)).catch(console.error);
-		break;
+		break;*/
 		
 		case "!up":			
 			var site = "https://fortnitetracker.com/profile/pc/"+parametroUsado;
@@ -148,7 +148,7 @@ client.on('message', message => {
 			}
 		break;
 		
-		case "!test":
+		/*case "!test":
 		var interval = setInterval (function (interval){
 			if(refreshTamanho==0) return;//zero stack faz nada
 				
@@ -170,12 +170,15 @@ client.on('message', message => {
 				
 			}
       }, refreshTEMPO); // time between each interval in milliseconds (30 min)
-		break;
+		break;*/
 		
 		case "!debug":
 			console.log(message);
 		break;
 		
+		case "!help":
+			print(message, "comandos disponiveis: !tracker nick - (consulta nick do fortnite de alguem)\r\n!up seuNick - (atualizar winrate do seu nick)\r\n!reg seuNick - (te coloca numa fila de atualizacao automatica pro seu winrate a cada 30 min, apos 4 atualizacoes as 13 vagas da fila ficam livres)");
+		break;
 		default:
 			print( message, comandoErrado);
 		break;
