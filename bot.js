@@ -354,7 +354,7 @@ function runAutoUpdateWinRate(message){
 			}
       }, refreshTEMPO);
 }
-
+//"☂ "
 function padraoNick(winrate, nick){
-	return "=☂ "+winrate+"%= "+TAG+" "+nick;
+	return winrate+"% ☂ "+TAG+" "+nick;
 }
