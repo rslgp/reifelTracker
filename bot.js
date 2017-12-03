@@ -186,52 +186,49 @@ function search(text,nick){
 	}catch(e){
 		return errorNickNaoEncontrado;
 	}
-	//jsonSquad[0] wins
-	//jsonSquad[8] win porcentagem
-	if(jsonSquad[0].value==0) //console.log("nunca ganhou squad")
-		return errorNuncaGanhouSquad;
-	else{
-		var resultado;
-		var wins = 2
-		,winP = 9
-		,kd = 11
-		,kills = 8
-		;		
-		
-		if(jsonSquad[wins].label === 'Wins' && jsonSquad[winP].label === 'Win %' && jsonSquad[kd].label === 'Kills' && jsonSquad[kills].value === 'K/d')
-		{}	
-		else{			
-				var n=0;
-				for( i=0; i < jsonSquad.length; i++ ){
-					//console.log(jsonSquad[i].label);
-					switch(jsonSquad[i].label){
-						case "Wins":
-							wins = n;
-						break;
+	
+	var resultado;
+	var wins = 2
+	,winP = 9
+	,kd = 11
+	,kills = 8
+	;		
+	
+	if(jsonSquad[wins].label === 'Wins' && jsonSquad[winP].label === 'Win %' && jsonSquad[kd].label === 'Kills' && jsonSquad[kills].value === 'K/d')
+	{}	
+	else{			
+			var n=0;
+			for( i=0; i < jsonSquad.length; i++ ){
+				//console.log(jsonSquad[i].label);
+				switch(jsonSquad[i].label){
+					case "Wins":
+						wins = n;
+					break;
+					
+					case "Win %":
+						winP = n;
+					break;
 						
-						case "Win %":
-							winP = n;
-						break;
-							
-						case "Kills":
-							kills = n;
-						break;
-						
-						case "K/d":
-							kd = n;
-						break;
-						
-					}
-					n++;
+					case "Kills":
+						kills = n;
+					break;
+					
+					case "K/d":
+						kd = n;
+					break;
+					
 				}
-		}
-		
-		//resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[wins].value+separador+"Win %: "+jsonSquad[winP].value +separador+"Kills: "+jsonSquad[kills].value +separador+ "K/d: "+jsonSquad[kd].value +quebraLinha+ site +quebraLinha+ creditos;
-		resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[wins].value+separador+"Win %: "+jsonSquad[winP].value +separador+"Kills: "+jsonSquad[kills].value +separador+ "K/d: "+jsonSquad[kd].value;
-		
-		//console.log(resultado);	
-		return resultado;
+				n++;
+			}
 	}
+	
+	if(jsonSquad[wins].value===0) resultado=errorNuncaGanhouSquad;
+	//resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[wins].value+separador+"Win %: "+jsonSquad[winP].value +separador+"Kills: "+jsonSquad[kills].value +separador+ "K/d: "+jsonSquad[kd].value +quebraLinha+ site +quebraLinha+ creditos;
+	else resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[wins].value+separador+"Win %: "+jsonSquad[winP].value +separador+"Kills: "+jsonSquad[kills].value +separador+ "K/d: "+jsonSquad[kd].value;
+	
+	//console.log(resultado);	
+	return resultado;
+	
 }
 
 function up(text){
@@ -247,28 +244,23 @@ function up(text){
 	}catch(e){
 		return -1;
 	}
-	//jsonSquad[0] wins
-	//jsonSquad[8] win porcentagem
-	if(jsonSquad[0].value==0) //console.log("nunca ganhou squad")
-		return 0.0;
-	else{
-		var resultado;
-		var winP = 9;		
-		
-		if(jsonSquad[winP].label !== 'Win %'){			
-				var n=0;
-				for( i=0; i < jsonSquad.length; i++ ){
-					//console.log(jsonSquad[i].label);
-					switch(jsonSquad[i].label){						
-						case "Win %":
-							winP = n;
-						break;
-					}
-					n++;
+	var resultado;
+	var winP = 9;		
+	
+	if(jsonSquad[winP].label !== 'Win %'){			
+			var n=0;
+			for( i=0; i < jsonSquad.length; i++ ){
+				//console.log(jsonSquad[i].label);
+				switch(jsonSquad[i].label){						
+					case "Win %":
+						winP = n;
+					break;
 				}
-		}	
-		return jsonSquad[winP].value;
-	}
+				n++;
+			}
+	}	
+	return jsonSquad[winP].value;
+	
 }
 
 function msgPadraoBot(message, text, site, rodape, nick){
@@ -289,41 +281,6 @@ function print(message, text){
 			}
 		});	
 }
-/*
-function updateWinRateStack(message){
-	//var podeContinuar=0;
-	var site, text, winRate, objetoAtual;
-	console.log(refreshTamanho);
-	for(i=0; i<refreshTamanho; i++){
-		if(refreshAuto[i] === undefined) break;
-		console.log(i+" update "+refreshAuto[i].nickLegivel);
-		site = "https://fortnitetracker.com/profile/pc/"+refreshAuto[i].parametroUsado;
-		objetoAtual=refreshAuto[i];
-			Browser.visit(site, function (e, browser) {
-				text = browser.html();			
-				winRate = up(text);
-				console.log(winRate);
-			
-				if(winRate === -1) {
-					refreshAuto = refreshAuto.splice(i, 1);//nick errado remove do array
-				}
-				else{
-					mutex.synchronize(function() {
-					  return atualizarWinRateNick(message, objetoAtual, winRate);;
-					});
-						atualizarWinRateNick(message, objetoAtual, winRate);
-						console.log(objetoAtual.nickLegivel+" atualizado");
-					
-					//debug
-					//podeContinuar=1;
-				}
-			});
-			//while(podeContinuar==0);//esperar atualizar
-			//podeContinuar=0;
-
-	}
-}
-*/
 
 function updateWinRateStack(message){
 	forRecusivo(message,0);
