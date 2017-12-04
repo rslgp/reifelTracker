@@ -15,7 +15,7 @@ errorNuncaGanhouSquad="nunca ganhou squad";
 
 const comandoErrado = "comando invalido";
 
-const helpMessage = "comandos disponiveis:\r\n**!tracker nick** - (consulta nick do fortnite de alguem)\r\n**!up seuNick** - (atualizar winrate do seu nick)\r\n**!auto seuNick** - (atualiza o seu winrate sozinho (caso consiga a vaga) a cada 30 min, apos 4 atualizacoes todas as 13 vagas ficam livres)";
+const helpMessage = "comandos disponiveis:\r\n**!tracker nick** - (consulta nick do fortnite de alguem)\r\n**!up seuNick** - (atualizar winrate do seu nick com TAG)\r\n**!mtracker seuNick** - (atualizar winrate do seu nick sem TAG)\r\n**!auto seuNick** - (atualiza o seu winrate sozinho (caso consiga a vaga) a cada 30 min, apos "+refreshRealizadosMAX+" atualizacoes todas as "+refreshMAXSTACK+" vagas ficam livres)";
 
 var refreshAuto = [];
 var refreshTamanho = 0;
@@ -353,7 +353,7 @@ function setWinRateNick(message, site, i){
 }
 
 function runAutoUpdateWinRate(message){
-	console.log("fui iniciado");
+	//console.log("fui iniciado");
 	interval = setInterval (function (){
 			console.log("vivo");
 			if(refreshTamanho==0){
@@ -371,7 +371,7 @@ function runAutoUpdateWinRate(message){
 			}else{ //atualiza stack
 				updateWinRateStack(message);
 				refreshRealizados++;
-				print(message,sucessoWinRateAtualizado);
+				print(message,sucessoWinRateAtualizado+" "+refreshRealizados+"/"+refreshRealizadosMAX);
 				
 			}
       }, refreshTEMPO);
