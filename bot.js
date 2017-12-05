@@ -11,7 +11,7 @@ const creditos = "--- criado por Reifel ---", separador=" | ", quebraLinha="\r\n
 
 //tratando casos de erro
 const errorNickNaoEncontrado="nick não encontrado", errorJsonCapture="iih... foi mal, nao consegui, tenta dnvo q vai",
-errorNuncaGanhouSquad="nunca ganhou squad", errorFortnitetracker=" esta certo seu nick? acho q fortnitetracker nao esta pegando, ve ai: ";
+errorNuncaGanhouSquad="nunca ganhou squad", errorFortnitetracker=" vc escreveu certo o nick? se n foi isso, acho q fortnitetracker nao esta pegando, ve ai: ";
 
 const comandoErrado = "comando invalido";
 
