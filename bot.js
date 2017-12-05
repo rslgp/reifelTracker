@@ -11,7 +11,7 @@ const creditos = "--- criado por Reifel ---", separador=" | ", quebraLinha="\r\n
 
 //tratando casos de erro
 const errorNickNaoEncontrado="nick não encontrado", errorJsonCapture="iih... foi mal, nao consegui, tenta dnvo q vai",
-errorNuncaGanhouSquad="nunca ganhou squad";
+errorNuncaGanhouSquad="nunca ganhou squad", errorFortnitetracker=" esta certo seu nick? acho q fortnitetracker nao esta pegando, ve ai: ";
 
 const comandoErrado = "comando invalido";
 
@@ -85,27 +85,19 @@ client.on('message', message => {
 			
 			site = "https://fortnitetracker.com/profile/pc/"+parametroUsado;
 			//crawler
-			Browser.visit(site, function (e, browser) {
-				var text = browser.html();
-				
-				msgPadraoBot( message, search(message,text,nickLegivel), site, creditos, nickLegivel );
+			Browser.visit(site, function (e, browser) {				
+				try{
+					msgPadraoBot( message, search(browser.html(),nickLegivel), site, creditos, nickLegivel );
+				}catch(e){
+					print(message, nickLegivel + errorFortnitetracker + site);
+				}
 			});	
 		break;
 		
 		case "!up":			
 			site = "https://fortnitetracker.com/profile/pc/"+parametroUsado;
 			Browser.visit(site, function (e, browser) {
-				var text = browser.html();			
-				var winRate = up(message,text);
-			
-				if(winRate === -1) {
-					print(message, errorNickNaoEncontrado);
-				}
-				else{
-					//if(message.member.hasPermission("MANAGE_NICKNAMES"))
-					message.member.setNickname( padraoNick(winRate,nickLegivel) ).then(user => message.reply(`terminei, atualizei o winrate \:umbrella2:`)).catch(console.error);	
-					//else print(message, "ainda nao tenho permissao pra mudar seu nick :(");
-				}
+				padraoAtualizarNome(browser.html());
 			});	
 		break;
 		
@@ -113,17 +105,7 @@ client.on('message', message => {
 			TAG = "";
 			site = "https://fortnitetracker.com/profile/pc/"+parametroUsado;
 			Browser.visit(site, function (e, browser) {
-				var text = browser.html();			
-				var winRate = up(message,text);
-			
-				if(winRate === -1) {
-					print(message, errorNickNaoEncontrado);
-				}
-				else{
-					//if(message.member.hasPermission("MANAGE_NICKNAMES"))
-					message.member.setNickname( padraoNick(winRate,nickLegivel) ).then(user => message.reply(`terminei, atualizei o winrate \:umbrella2:`)).catch(console.error);	
-					//else print(message, "ainda nao tenho permissao pra mudar seu nick :(");
-				}				
+				padraoAtualizarNome(browser.html());	
 			});	
 		break;
 		
@@ -178,13 +160,13 @@ var buscas= [
 '"p9"'
 ];
 
-function search(message,text,nick){	
+function search(text,nick){	
+	console.log(text+"\r\n\r\n");
 	var jsonSquad;
 	try{
 		jsonSquad = getJsonSquad(text);		
 	}catch(e){
-		print(message,errorJsonCapture);return;
-		
+		throw false;
 	}
 	
 	var resultado="";
@@ -230,13 +212,12 @@ function search(message,text,nick){
 	return resultado;
 }
 
-function up(message,text){	
+function up(text){	
 	var jsonSquad;
 	try{
 		jsonSquad = getJsonSquad(text);		
 	}catch(e){
-		print(message,errorJsonCapture);return;
-		
+		throw false;		
 	}
 	
 	var winP = 9;		
@@ -297,7 +278,7 @@ function forRecusivo(message, i){
 function setWinRateNick(message, site, i){
 	Browser.visit(site, function (e, browser) {
 		text = browser.html();			
-		winRate = up(message,text);		
+		winRate = up(text);		
 		
 		if(winRate === -1) refreshAuto = refreshAuto.splice(i, 1);//nick errado remove do array
 		else{
@@ -342,6 +323,7 @@ function getJsonSquad(text){
 	temp = temp.substring(temp.indexOf(buscas[2]));
 	temp = temp.substring(5,temp.indexOf("]")+1);
 	
+	console.log(temp);
 	var jsonSquad;
 	//temp == squad json
 	try{
@@ -352,4 +334,21 @@ function getJsonSquad(text){
 	}
 	
 	return jsonSquad;
+}
+
+function padraoAtualizarNome(text){	
+	try{
+		var winRate = up(text);		
+	}catch(e){
+		print(message, nickLegivel + errorFortnitetracker + site);
+	}
+
+	if(winRate === -1) {
+		print(message, errorNickNaoEncontrado);
+	}
+	else{
+		//if(message.member.hasPermission("MANAGE_NICKNAMES"))
+		message.member.setNickname( padraoNick(winRate,nickLegivel) ).then(user => message.reply(`terminei, atualizei o winrate \:umbrella2:`)).catch(console.error);	
+		//else print(message, "ainda nao tenho permissao pra mudar seu nick :(");
+	}
 }
