@@ -88,7 +88,7 @@ client.on('message', message => {
 			Browser.visit(site, function (e, browser) {
 				var text = browser.html();
 				
-				msgPadraoBot( message, search(text,nickLegivel), site, creditos, nickLegivel );
+				msgPadraoBot( message, search(message,text,nickLegivel), site, creditos, nickLegivel );
 			});	
 		break;
 		
@@ -96,7 +96,7 @@ client.on('message', message => {
 			site = "https://fortnitetracker.com/profile/pc/"+parametroUsado;
 			Browser.visit(site, function (e, browser) {
 				var text = browser.html();			
-				var winRate = up(text);
+				var winRate = up(message,text);
 			
 				if(winRate === -1) {
 					print(message, errorNickNaoEncontrado);
@@ -114,7 +114,7 @@ client.on('message', message => {
 			site = "https://fortnitetracker.com/profile/pc/"+parametroUsado;
 			Browser.visit(site, function (e, browser) {
 				var text = browser.html();			
-				var winRate = up(text);
+				var winRate = up(message,text);
 			
 				if(winRate === -1) {
 					print(message, errorNickNaoEncontrado);
@@ -178,9 +178,14 @@ var buscas= [
 '"p9"'
 ];
 
-function search(text,nick){	
-	var jsonSquad = getJsonSquad(text);	
-	if(jsonSquad===404){print(message,errorJsonCapture);return;}
+function search(message,text,nick){	
+	var jsonSquad;
+	try{
+		jsonSquad = getJsonSquad(text);		
+	}catch(e){
+		print(message,errorJsonCapture);return;
+		
+	}
 	
 	var resultado="";
 	var wins = 2
@@ -225,9 +230,14 @@ function search(text,nick){
 	return resultado;
 }
 
-function up(text){	
-	var jsonSquad = getJsonSquad(text);
-	if(jsonSquad===404){print(message,errorJsonCapture);return;}
+function up(message,text){	
+	var jsonSquad;
+	try{
+		jsonSquad = getJsonSquad(text);		
+	}catch(e){
+		print(message,errorJsonCapture);return;
+		
+	}
 	
 	var winP = 9;		
 	
@@ -287,7 +297,7 @@ function forRecusivo(message, i){
 function setWinRateNick(message, site, i){
 	Browser.visit(site, function (e, browser) {
 		text = browser.html();			
-		winRate = up(text);		
+		winRate = up(message,text);		
 		
 		if(winRate === -1) refreshAuto = refreshAuto.splice(i, 1);//nick errado remove do array
 		else{
@@ -338,7 +348,7 @@ function getJsonSquad(text){
 		jsonSquad = JSON.parse(temp);
 	}catch(e){
 		//console.log(e.message, e.name);
-		return 404;
+		throw false;
 	}
 	
 	return jsonSquad;
