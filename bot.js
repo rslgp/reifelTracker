@@ -26,7 +26,7 @@ var refreshTEMPO=1800000;//30min 1800000
 
 var interval, refreshIsRunning=0;
 
-const helpMessage = "comandos disponiveis:\r\n**!tracker nick** - (consulta nick do fortnite de alguem)\r\n**!up seuNick** - (atualizar winrate do seu nick com TAG)\r\n**!mtracker seuNick** - (atualizar winrate do seu nick sem TAG)\r\n**!auto seuNick** - (atualiza o seu winrate sozinho a cada 30 min, apos "+refreshRealizadosMAX+" atualizacoes todas as "+refreshMAXSTACK+" vagas ficam livres)";
+const helpMessage = "comandos disponiveis:\r\n**!tracker nick** - (consulta nick do fortnite de alguem)\r\n**!up seuNick** - (atualizar winrate do seu nick com TAG)\r\n**!mtracker seuNick** - (atualizar winrate do seu nick sem TAG)\r\n**!auto seuNick** - (atualiza o seu winrate sozinho a cada 30 min, apos "+refreshRealizadosMAX+" atualizacoes todas as "+refreshMAXSTACK+" vagas ficam livres)\r\n!alt seuNick (acessa tracker em site alternativo caso o fortnitetracker esteja bug ou off)";
 
 const errorUsuarioRegistrado = "usuario ja esta registrado", errorRefreshLotado="fila atualizacao lotada", 
 sucessoRegistro=" conseguiu se registrar", chamadaFilaLIVRE=">> a fila de atualizar win % automatica esta LIVRE <<", sucessoWinRateAtualizado="atualizei os win % de vcs";
@@ -150,6 +150,36 @@ client.on('message', message => {
 			}else{
 				print(message, errorRefreshLotado); //error stack lotado
 			}
+		break;
+		
+		case "!alt":
+			var site = "https://www.stormshield.one/pvp/stats/"+parametroUsado;
+			Browser.visit(site, function (e, browser) {
+				var elem; 
+				
+				var wins,winP,kd,kills;	
+				
+				elem = browser.queryAll("body>div.container>div:nth-child(2)>div.col-12.col-md-8>div>div:nth-child(3)>div>div:nth-child(4)>div:nth-child(1)>div>a>div.stat__value");
+				kills = elem[0].innerHTML;
+				kills = kills.replace(/(\r\n|\n|\r)/gm,"");
+				
+				elem =  browser.queryAll("body>div.container>div:nth-child(2)>div.col-12.col-md-8>div>div:nth-child(3)>div>div:nth-child(3)>div:nth-child(2)>a>div.istat__value");
+				wins = elem[0].innerHTML;
+				wins = wins.replace(/(\r\n|\n|\r)/gm,"");
+				
+				elem = browser.queryAll("body>div.container>div:nth-child(2)>div.col-12.col-md-8>div>div:nth-child(3)>div>div:nth-child(4)>div:nth-child(2)>div>a>div.stat__value");
+				kd = elem[0].innerHTML;
+				kd = kd.replace(/(\r\n|\n|\r)/gm,"");
+				
+				elem = browser.queryAll("body>div.container>div:nth-child(2)>div.col-12.col-md-8>div>div:nth-child(3)>div>div:nth-child(4)>div:nth-child(6)>div>a>div.stat__value");
+				winP = elem[0].innerHTML;
+				winP = winP.replace(/(\r\n|\n|\r)/gm,"");
+				
+				console.log(wins+" "+kd+" "+winP+" "+kills);
+				
+				var resultado = ">> "+nickLegivel+" Squad <<\r\nWins: "+ wins +separador+"Win %: "+ winP +separador+"Kills: "+ kills +separador+ "K/d: "+kd;
+				msgPadraoBot(message, resultado, site, creditos, nickLegivel);
+			});			
 		break;
 		
 		case "!debug":
