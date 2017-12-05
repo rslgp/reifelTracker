@@ -97,7 +97,11 @@ client.on('message', message => {
 		case "!up":			
 			site = "https://fortnitetracker.com/profile/pc/"+parametroUsado;
 			Browser.visit(site, function (e, browser) {
-				padraoAtualizarNome(browser.html());
+				try{
+					padraoAtualizarNome(browser.html());
+				}catch(e){
+					print(message, nickLegivel + errorFortnitetracker + site);
+				}
 			});	
 		break;
 		
@@ -105,7 +109,11 @@ client.on('message', message => {
 			TAG = "";
 			site = "https://fortnitetracker.com/profile/pc/"+parametroUsado;
 			Browser.visit(site, function (e, browser) {
-				padraoAtualizarNome(browser.html());	
+				try{
+					padraoAtualizarNome(browser.html());
+				}catch(e){
+					print(message, nickLegivel + errorFortnitetracker + site);
+				}	
 			});	
 		break;
 		
@@ -336,11 +344,11 @@ function getJsonSquad(text){
 	return jsonSquad;
 }
 
-function padraoAtualizarNome(text){	
+function padraoAtualizarNome(nickLegivel,text,site){	
 	try{
 		var winRate = up(text);		
 	}catch(e){
-		print(message, nickLegivel + errorFortnitetracker + site);
+		throw false;
 	}
 
 	if(winRate === -1) {
