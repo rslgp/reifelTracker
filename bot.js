@@ -169,7 +169,7 @@ var buscas= [
 ];
 
 function search(text,nick){	
-	console.log(text+"\r\n\r\n");
+	//console.log(text+"\r\n\r\n");
 	var jsonSquad;
 	try{
 		jsonSquad = getJsonSquad(text);		
@@ -275,7 +275,7 @@ function atualizarWinRateNick(message, winRate, i){
 
 function forRecusivo(message, i){
 	if(i<refreshTamanho){
-		console.log(i+" update "+refreshAuto[i].nickLegivel);
+		//console.log(i+" update "+refreshAuto[i].nickLegivel);
 		var site = "https://fortnitetracker.com/profile/pc/"+refreshAuto[i].parametroUsado;
 		
 		setWinRateNick(message, site, i);
@@ -331,7 +331,7 @@ function getJsonSquad(text){
 	temp = temp.substring(temp.indexOf(buscas[2]));
 	temp = temp.substring(5,temp.indexOf("]")+1);
 	
-	console.log(temp);
+	//console.log(temp);
 	var jsonSquad;
 	//temp == squad json
 	try{
