@@ -68,7 +68,7 @@ client.on('message', message => {
 	var comando = args[0];
 	
 	//se tiver espaco no nick
-	var parametroUsado = "", nickLegivel="";	
+	var parametroUsado = "", nickLegivel="", site="";	
 	if(args.length>2){ 
 		for (i = 1; i < args.length; i++) { 
 			parametroUsado += args[i] + "%20";
@@ -79,28 +79,21 @@ client.on('message', message => {
 		nickLegivel=parametroUsado = args[1];	
 	}
 		
-	switch(comando){
+	switch(comando.toLowerCase()){
 		case "!tracker":
 			if(nickLegivel === undefined) {print(message, errorNickNaoEncontrado); return;}
 			
-			var site = "https://fortnitetracker.com/profile/pc/"+parametroUsado;
+			site = "https://fortnitetracker.com/profile/pc/"+parametroUsado;
 			//crawler
 			Browser.visit(site, function (e, browser) {
-				//console.log(browser.location.href);
 				var text = browser.html();
-				//console.log(text);
-				//console.log("nickLegivel: "+nickLegivel);
 				
 				msgPadraoBot( message, search(text,nickLegivel), site, creditos, nickLegivel );
 			});	
 		break;
-		/*
-		case "!nick":
-			message.member.setNickname(nickLegivel).then(user => message.reply(`terminei, atualizei o winrate`)).catch(console.error);
-		break;*/
 		
 		case "!up":			
-			var site = "https://fortnitetracker.com/profile/pc/"+parametroUsado;
+			site = "https://fortnitetracker.com/profile/pc/"+parametroUsado;
 			Browser.visit(site, function (e, browser) {
 				var text = browser.html();			
 				var winRate = up(text);
@@ -118,7 +111,7 @@ client.on('message', message => {
 		
 		case "!mtracker": //atualiza sem por TAG	
 			TAG = "";
-			var site = "https://fortnitetracker.com/profile/pc/"+parametroUsado;
+			site = "https://fortnitetracker.com/profile/pc/"+parametroUsado;
 			Browser.visit(site, function (e, browser) {
 				var text = browser.html();			
 				var winRate = up(text);
@@ -142,9 +135,6 @@ client.on('message', message => {
 			}
 			
 			for( i=0; i<refreshTamanho; i++){
-				//console.log("variavel param usado "+usuarioParametroNickTrio.parametroUsado);
-				//console.log("item: "+refreshAuto[i].member +" "+ refreshAuto[i].parametroUsado +" "+refreshAuto[i].nickLegivel);
-				
 				if(parametroUsado === refreshAuto[i].parametroUsado) {
 						print(message, errorUsuarioRegistrado); //error user existente
 						return;
@@ -168,30 +158,6 @@ client.on('message', message => {
 			}
 		break;
 		
-		/*case "!test":
-		var interval = setInterval (function (interval){
-			if(refreshTamanho==0) return;//zero stack faz nada
-				
-			if(refreshRealizados == refreshRealizadosMAX){ //terminou refresh
-				refreshAuto = refreshAuto.splice(0,refreshTamanho); //zera o stack, 
-				refreshAuto = refreshAuto.splice(0,refreshAuto.length);
-				refreshAuto.length = 0;
-				refreshTamanho = 0;
-				refreshRealizados=0;
-				
-				refreshIsRunning=0;
-				clearInterval(interval);
-				
-				print(message,chamadaFilaLIVRE);
-			}else{ //atualiza stack
-				updateWinRateStack(message);
-				refreshRealizados++;
-				print(message,sucessoWinRateAtualizado);
-				
-			}
-      }, refreshTEMPO); // time between each interval in milliseconds (30 min)
-		break;*/
-		
 		case "!debug":
 			console.log(message);
 		break;
@@ -212,22 +178,11 @@ var buscas= [
 '"p9"'
 ];
 
-function search(text,nick){
-	var temp = text.substring(text.indexOf(buscas[0])+16);
-	temp = temp.substr( 0,temp.indexOf(buscas[1]) );
-	temp = temp.substring(temp.indexOf(buscas[2]));
-	temp = temp.substring(5,temp.indexOf("]")+1);
+function search(text,nick){	
+	var jsonSquad = getJsonSquad(text);	
+	if(jsonSquad===404){print(message,errorJsonCapture);return;}
 	
-	var jsonSquad;
-	//temp == squad json
-	try{
-		jsonSquad = JSON.parse(temp);
-	}catch(e){
-		return errorJsonCapture;
-	}
-	//jsonSquad[0] wins
-	//jsonSquad[8] win porcentagem
-	var resultado;
+	var resultado="";
 	var wins = 2
 	,winP = 9
 	,kd = 11
@@ -270,21 +225,10 @@ function search(text,nick){
 	return resultado;
 }
 
-function up(text){
-	var temp = text.substring(text.indexOf(buscas[0])+16);
-	temp = temp.substr( 0,temp.indexOf(buscas[1]) );
-	temp = temp.substring(temp.indexOf(buscas[2]));
-	temp = temp.substring(5,temp.indexOf("]")+1);
+function up(text){	
+	var jsonSquad = getJsonSquad(text);
+	if(jsonSquad===404){print(message,errorJsonCapture);return;}
 	
-	var jsonSquad;
-	//temp == squad json
-	try{
-		jsonSquad = JSON.parse(temp);
-	}catch(e){
-		return -1;
-	}
-	
-	var resultado;
 	var winP = 9;		
 	
 	if(jsonSquad[winP].label !== 'Win %'){			
@@ -356,9 +300,9 @@ function setWinRateNick(message, site, i){
 function runAutoUpdateWinRate(message){
 	//console.log("fui iniciado");
 	interval = setInterval (function (){
-			console.log("vivo");
+			//console.log("vivo");
 			if(refreshTamanho==0){
-				console.log("parando autoupdate 1");
+				//console.log("parando autoupdate 1");
 				clearInterval(interval);
 				refreshIsRunning = 0;
 				return;//zero stack faz nada
@@ -380,4 +324,22 @@ function runAutoUpdateWinRate(message){
 //"☂ "
 function padraoNick(winrate, nick){
 	return winrate+"% ☂ "+TAG+" "+nick;
+}
+
+function getJsonSquad(text){	
+	var temp = text.substring(text.indexOf(buscas[0])+16);
+	temp = temp.substr( 0,temp.indexOf(buscas[1]) );
+	temp = temp.substring(temp.indexOf(buscas[2]));
+	temp = temp.substring(5,temp.indexOf("]")+1);
+	
+	var jsonSquad;
+	//temp == squad json
+	try{
+		jsonSquad = JSON.parse(temp);
+	}catch(e){
+		//console.log(e.message, e.name);
+		return 404;
+	}
+	
+	return jsonSquad;
 }
