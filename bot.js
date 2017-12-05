@@ -10,7 +10,7 @@ const Browser = require('zombie');
 const creditos = "--- criado por Reifel ---", separador=" | ", quebraLinha="\r\n";
 
 //tratando casos de erro
-const errorNickNaoEncontrado="nick não encontrado",
+const errorNickNaoEncontrado="nick não encontrado", errorJsonCapture="iih... foi mal, nao consegui, tenta dnvo q vai",
 errorNuncaGanhouSquad="nunca ganhou squad";
 
 const comandoErrado = "comando invalido";
@@ -223,7 +223,7 @@ function search(text,nick){
 	try{
 		jsonSquad = JSON.parse(temp);
 	}catch(e){
-		return errorNickNaoEncontrado;
+		return errorJsonCapture;
 	}
 	//jsonSquad[0] wins
 	//jsonSquad[8] win porcentagem
