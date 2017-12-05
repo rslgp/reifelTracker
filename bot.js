@@ -11,7 +11,8 @@ const creditos = "--- criado por Reifel ---", separador=" | ", quebraLinha="\r\n
 
 //tratando casos de erro
 const errorNickNaoEncontrado="nick não encontrado", errorJsonCapture="iih... foi mal, nao consegui, tenta dnvo q vai",
-errorNuncaGanhouSquad="nunca ganhou squad", errorFortnitetracker=" vc escreveu certo o nick? se n foi isso, acho q fortnitetracker nao esta pegando, ve ai: ";
+errorNuncaGanhouSquad="nunca ganhou squad", errorFortnitetracker=", vc escreveu certo o nick? se n foi isso, acho q fortnitetracker ta off, ve ai: "
+;
 
 const comandoErrado = "comando invalido";
 
@@ -87,7 +88,8 @@ client.on('message', message => {
 			//crawler
 			Browser.visit(site, function (e, browser) {				
 				try{
-					msgPadraoBot( message, search(browser.html(),nickLegivel), site, creditos, nickLegivel );
+					var text = browser.html();
+					msgPadraoBot( message, search(text,nickLegivel), site, creditos, nickLegivel );
 				}catch(e){
 					print(message, nickLegivel + errorFortnitetracker + site);
 				}
@@ -97,8 +99,9 @@ client.on('message', message => {
 		case "!up":			
 			site = "https://fortnitetracker.com/profile/pc/"+parametroUsado;
 			Browser.visit(site, function (e, browser) {
-				try{
-					padraoAtualizarNome(browser.html());
+				try{					
+					var text = browser.html();
+					padraoAtualizarNome(message,nickLegivel,text,site);
 				}catch(e){
 					print(message, nickLegivel + errorFortnitetracker + site);
 				}
@@ -110,7 +113,8 @@ client.on('message', message => {
 			site = "https://fortnitetracker.com/profile/pc/"+parametroUsado;
 			Browser.visit(site, function (e, browser) {
 				try{
-					padraoAtualizarNome(browser.html());
+					var text = browser.html();
+					padraoAtualizarNome(message,nickLegivel,text,site);
 				}catch(e){
 					print(message, nickLegivel + errorFortnitetracker + site);
 				}	
@@ -173,7 +177,8 @@ function search(text,nick){
 	var jsonSquad;
 	try{
 		jsonSquad = getJsonSquad(text);		
-	}catch(e){
+	}catch(e){		
+		console.log("error search");
 		throw false;
 	}
 	
@@ -223,8 +228,9 @@ function search(text,nick){
 function up(text){	
 	var jsonSquad;
 	try{
-		jsonSquad = getJsonSquad(text);		
-	}catch(e){
+		jsonSquad = getJsonSquad(text);
+	}catch(e){			
+		console.log("error up");
 		throw false;		
 	}
 	
@@ -285,14 +291,13 @@ function forRecusivo(message, i){
 
 function setWinRateNick(message, site, i){
 	Browser.visit(site, function (e, browser) {
-		text = browser.html();			
-		winRate = up(text);		
-		
-		if(winRate === -1) refreshAuto = refreshAuto.splice(i, 1);//nick errado remove do array
-		else{
+		var text = browser.html();	
+		try{
+			winRate = up(text);	
 			atualizarWinRateNick(message, winRate, i);
-		}
-		
+		}catch(e){
+			refreshAuto = refreshAuto.splice(i, 1);//nick errado remove do array
+		}		
 	});
 }
 
@@ -315,7 +320,7 @@ function runAutoUpdateWinRate(message){
 			}else{ //atualiza stack
 				updateWinRateStack(message);
 				refreshRealizados++;
-				print(message,sucessoWinRateAtualizado+" "+refreshRealizados+"/"+refreshRealizadosMAX);
+				print(message,sucessoWinRateAtualizado+" "+refreshRealizados+"ª das "+refreshRealizadosMAX);
 				
 			}
       }, refreshTEMPO);
@@ -325,7 +330,7 @@ function padraoNick(winrate, nick){
 	return winrate+"% ☂ "+TAG+" "+nick;
 }
 
-function getJsonSquad(text){	
+function getJsonSquad(text){
 	var temp = text.substring(text.indexOf(buscas[0])+16);
 	temp = temp.substr( 0,temp.indexOf(buscas[1]) );
 	temp = temp.substring(temp.indexOf(buscas[2]));
@@ -336,18 +341,19 @@ function getJsonSquad(text){
 	//temp == squad json
 	try{
 		jsonSquad = JSON.parse(temp);
-	}catch(e){
-		//console.log(e.message, e.name);
+	}catch(e){		
+		console.log("erro getJsonSquad");
 		throw false;
 	}
 	
 	return jsonSquad;
 }
 
-function padraoAtualizarNome(nickLegivel,text,site){	
+function padraoAtualizarNome(message,nickLegivel,text,site){
 	try{
-		var winRate = up(text);		
+		var winRate = up(text);
 	}catch(e){
+		console.log("erro padraoAtualizarNome");
 		throw false;
 	}
 
