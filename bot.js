@@ -11,7 +11,7 @@ const creditos = "--- criado por Reifel ---", separador=" | ", quebraLinha="\r\n
 
 //tratando casos de erro
 const errorNickNaoEncontrado="nick não encontrado", errorJsonCapture="iih... foi mal, nao consegui, tenta dnvo q vai",
-errorNuncaGanhouSquad="nunca ganhou squad", errorFortnitetracker=", vc escreveu certo o nick? se n foi isso, acho q fortnitetracker ta off, ve ai: "
+errorNuncaGanhouSquad="nunca ganhou squad", errorFortnitetracker=",!error! nick errado? ou fortnitetracker off (usa **!alt nick** se tiver off)?: "
 ;
 
 const comandoErrado = "comando invalido";
@@ -96,7 +96,8 @@ client.on('message', message => {
 			});	
 		break;
 		
-		case "!up":			
+		case "!up":		
+			if(nickLegivel === undefined) {print(message, errorNickNaoEncontrado); return;}		
 			site = "https://fortnitetracker.com/profile/pc/"+parametroUsado;
 			Browser.visit(site, function (e, browser) {
 				try{					
@@ -109,6 +110,7 @@ client.on('message', message => {
 		break;
 		
 		case "!mtracker": //atualiza sem por TAG	
+			if(nickLegivel === undefined) {print(message, errorNickNaoEncontrado); return;}	
 			TAG = "";
 			site = "https://fortnitetracker.com/profile/pc/"+parametroUsado;
 			Browser.visit(site, function (e, browser) {
@@ -288,7 +290,7 @@ function msgPadraoBot(message, text, site, rodape, nick){
 				description: text,
 				title: "stats de "+nick,
 				url:site,
-				footer: {text:rodape}
+				footer: {text:rodape+"\r\n+comandos em !help"}
 			}
 		});	
 }
@@ -386,13 +388,7 @@ function padraoAtualizarNome(message,nickLegivel,text,site){
 		console.log("erro padraoAtualizarNome");
 		throw false;
 	}
-
-	if(winRate === -1) {
-		print(message, errorNickNaoEncontrado);
-	}
-	else{
-		//if(message.member.hasPermission("MANAGE_NICKNAMES"))
-		message.member.setNickname( padraoNick(winRate,nickLegivel) ).then(user => message.reply(`terminei, atualizei o winrate \:umbrella2:`)).catch(console.error);	
-		//else print(message, "ainda nao tenho permissao pra mudar seu nick :(");
-	}
+	//if(message.member.hasPermission("MANAGE_NICKNAMES"))
+	message.member.setNickname( padraoNick(winRate,nickLegivel) ).then(user => message.reply(`atualizei winrate \:umbrella2:`)).catch(console.error);	
+	//else print(message, "ainda nao tenho permissao pra mudar seu nick :(");
 }
