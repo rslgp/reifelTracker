@@ -26,7 +26,7 @@ var refreshTEMPO=1800000;//30min 1800000
 
 var interval, refreshIsRunning=0;
 
-const helpMessage = "comandos disponiveis:\r\n**!tracker nick** - (consulta nick do fortnite de alguem)\r\n**!up seuNick** - (atualizar winrate do seu nick com TAG)\r\n**!mtracker seuNick** - (atualizar winrate do seu nick sem TAG)\r\n**!auto seuNick** - (atualiza o seu winrate sozinho a cada 30 min, apos "+refreshRealizadosMAX+" atualizacoes todas as "+refreshMAXSTACK+" vagas ficam livres)\r\n**!alt seuNick** - (acessa tracker em site alternativo caso o fortnitetracker esteja bug ou off)";
+const helpMessage = "comandos disponiveis:\r\n**!tracker nick** - (consulta nick do fortnite de alguem)\r\n**!up seuNick** - (atualizar winrate do seu nick com TAG)\r\n**!auto seuNick** - (atualiza o seu winrate sozinho a cada 30 min, apos "+refreshRealizadosMAX+" atualizacoes todas as "+refreshMAXSTACK+" vagas ficam livres)\r\n**!alt seuNick** - (acessa tracker em site alternativo caso o fortnitetracker esteja bug ou off)";
 
 const errorUsuarioRegistrado = "usuario ja esta registrado", errorRefreshLotado="fila atualizacao lotada", 
 sucessoRegistro=" conseguiu se registrar", chamadaFilaLIVRE=">> a fila de atualizar win % automatica esta LIVRE <<", sucessoWinRateAtualizado="atualizei os win % de vcs";
@@ -40,29 +40,7 @@ client.on('message', message => {
 	if(message.author.bot) return; //ignora poupar processamento bot
 	
 	if(message.content.indexOf("!") !== 0) return; //se nao for comando ignora
-	
-	switch(message.guild.id){
-		/* case 368240657816354836: //bro
-			TAG = "BRO";
-		break; */
 		
-		case "368240657816354836": //bro
-			TAG = "BRO";
-		break;
-		
-		/* case 373611766737010690: //PDX
-			TAG = "PDX";
-		break; */
-		
-		case "373611766737010690": //PDX
-			TAG = "PDX";
-		break;
-		
-		default:
-			TAG = "";
-		break;
-	}
-	
 	//dividindo cada palavra da mensagem em um array de palavras
 	var args = message.content.slice(0).trim().split(/ +/g);
 	//console.log(args);
@@ -97,7 +75,26 @@ client.on('message', message => {
 		break;
 		
 		case "!up":		
-			if(nickLegivel === undefined) {print(message, errorNickNaoEncontrado); return;}		
+			if(nickLegivel === undefined) {print(message, errorNickNaoEncontrado); return;}	
+			
+			switch(message.guild.id){		
+				case "368240657816354836": //bro
+					if(message.member.roles.find("name", "BRO Member")){
+						TAG = "BRO";						
+					}else{
+						TAG = "";
+					}
+				break;
+				
+				case "373611766737010690": //PDX
+					TAG = "PDX";
+				break;
+				
+				default:
+					TAG = "";
+				break;
+			}
+			
 			site = "https://fortnitetracker.com/profile/pc/"+parametroUsado;
 			Browser.visit(site, function (e, browser) {
 				try{					
@@ -109,6 +106,7 @@ client.on('message', message => {
 			});	
 		break;
 		
+		/*
 		case "!mtracker": //atualiza sem por TAG	
 			if(nickLegivel === undefined) {print(message, errorNickNaoEncontrado); return;}	
 			TAG = "";
@@ -122,6 +120,7 @@ client.on('message', message => {
 				}	
 			});	
 		break;
+		*/
 		
 		case "!auto":
 			
