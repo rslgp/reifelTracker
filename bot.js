@@ -250,10 +250,26 @@ function search(text,nick){
 	
 	if(jsonSquad[wins].value===0) resultado= errorNuncaGanhouSquad;
 	//resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[wins].value+separador+"Win %: "+jsonSquad[winP].value +separador+"Kills: "+jsonSquad[kills].value +separador+ "K/d: "+jsonSquad[kd].value +quebraLinha+ site +quebraLinha+ creditos;
-	else resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[wins].value+separador+"Win %: "+jsonSquad[winP].value +separador+"Kills: "+jsonSquad[kills].value +separador+ "K/d: "+jsonSquad[kd].value;
-	
-	//console.log(resultado);	
+	//else resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[wins].value+separador+"Win %: "+jsonSquad[winP].value +separador+"Kills: "+jsonSquad[kills].value +separador+ "K/d: "+jsonSquad[kd].value;
+	//else resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[wins].value+separador+"Win %: "+jsonSquad[winP].value +separador+"Kills: "+jsonSquad[kills].value +separador+ "K/d: "+jsonSquad[kd].value;
+	else resultado = formatarMsg(jsonSquad[winP].value,jsonSquad[kd].value,jsonSquad[wins].value,jsonSquad[kills].value);
+		
 	return resultado;
+}
+
+function rightJustify(str, length, char ) {
+    var fill = [];
+    while ( fill.length + str.length -2 < length ) {
+      fill[fill.length] = char;
+    }
+    return fill.join('');
+}
+
+function formatarMsg(winP, kd, wins, kills){
+	var p1 = "Win %: **"+winP+"** / K/d: **"+kd+"**";
+	var p2 = "Wins: "+wins+" / Kills: "+kills;
+	var p3 = "Wins: "+wins+rightJustify(p2,p1.length-7,' ')+" / Kills: "+kills;
+	return p1+quebraLinha+p3;
 }
 
 function up(text){	
@@ -287,7 +303,7 @@ function msgPadraoBot(message, text, site, rodape, nick){
 		message.channel.send({embed: {
 			  color: 3447003,
 				description: text,
-				title: "stats de "+nick,
+				title: "link: stats de "+nick,
 				url:site,
 				footer: {text:rodape+" +comandos em !help"}
 			}
