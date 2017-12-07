@@ -7,7 +7,7 @@ client.login(process.env.BOT_TOKEN);
 //versao 1.0
 const message = new Discord.Message();
 const Browser = require('zombie');
-const creditos = "--- criado por Reifel ---", separador=" | ", quebraLinha="\r\n";
+const creditos = "> criado por Reifel <", separador=" | ", quebraLinha="\r\n";
 
 //tratando casos de erro
 const errorNickNaoEncontrado="nick não encontrado", errorJsonCapture="iih... foi mal, nao consegui, tenta dnvo q vai",
@@ -310,9 +310,9 @@ function msgPadraoBot(message, text, site, rodape, nick){
 		message.channel.send({embed: {
 			  color: 3447003,
 				description: text,
-				title: "link: stats de "+nick,
+				title: "site: stats de "+nick,
 				url:site,
-				footer: {text:rodape+" +comandos em !help"}
+				footer: {text:rodape+" +info: !help"}
 			}
 		});	
 }
