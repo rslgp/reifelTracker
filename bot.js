@@ -159,7 +159,7 @@ client.on('message', message => {
 				var elem; 
 				
 				var wins,winP,kd,kills;	
-				
+			try{
 				elem = browser.queryAll("body>div.container>div:nth-child(2)>div.col-12.col-md-8>div>div:nth-child(3)>div>div:nth-child(4)>div:nth-child(1)>div>a>div.stat__value");
 				kills = elem[0].innerHTML;
 				kills = kills.replace(/(\r\n|\n|\r)/gm,"");
@@ -175,10 +175,16 @@ client.on('message', message => {
 				elem = browser.queryAll("body>div.container>div:nth-child(2)>div.col-12.col-md-8>div>div:nth-child(3)>div>div:nth-child(4)>div:nth-child(6)>div>a>div.stat__value");
 				winP = elem[0].innerHTML;
 				winP = winP.replace(/(\r\n|\n|\r)/gm,"");
+			}catch(e){
+				print(message,"comando alt esta instavel");
+				return;
+			}
+				
 				
 				//console.log(wins+" "+kd+" "+winP+" "+kills);
 				
-				var resultado = ">> "+nickLegivel+" Squad <<\r\nWins: "+ wins +separador+"Win %: "+ winP +separador+"Kills: "+ kills +separador+ "K/d: "+kd;
+				//var resultado = ">> "+nickLegivel+" Squad <<\r\nWins: "+ wins +separador+"Win %: "+ winP +separador+"Kills: "+ kills +separador+ "K/d: "+kd;
+				var resultado = formatarMsg(winP,kd,wins,kills);
 				msgPadraoBot(message, resultado, site, creditos, nickLegivel);
 			});			
 		break;
