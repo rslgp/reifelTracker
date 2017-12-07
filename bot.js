@@ -175,6 +175,7 @@ client.on('message', message => {
 				elem = browser.queryAll("body>div.container>div:nth-child(2)>div.col-12.col-md-8>div>div:nth-child(3)>div>div:nth-child(4)>div:nth-child(6)>div>a>div.stat__value");
 				winP = elem[0].innerHTML;
 				winP = winP.replace(/(\r\n|\n|\r)/gm,"");
+				winP = winP.slice(0, -1);//remover char porcentagem
 			}catch(e){
 				print(message,"comando alt esta instavel");
 				return;
