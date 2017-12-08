@@ -26,7 +26,7 @@ var refreshTEMPO=1800000;//30min 1800000
 
 var interval, refreshIsRunning=0;
 
-const helpMessage = "comandos disponiveis:\r\n**!tracker nick** - (consulta nick do fortnite de alguem)\r\n**!up seuNick** - (atualizar winrate do seu nick com TAG)\r\n**!auto seuNick** - (atualiza o seu winrate sozinho a cada 30 min, apos "+refreshRealizadosMAX+" atualizacoes todas as "+refreshMAXSTACK+" vagas ficam livres)\r\n**!alt seuNick** - (acessa tracker em site alternativo caso o fortnitetracker esteja bug ou off)";
+const helpMessage = "comandos disponiveis:\r\n**!tracker nick** - (ou !t nick, consulta nick do fortnite de alguem)\r\n**!up seuNick** - (atualizar winrate do seu nick com TAG)\r\n**!auto seuNick** - (atualiza o seu winrate sozinho a cada 30 min, apos "+refreshRealizadosMAX+" atualizacoes todas as "+refreshMAXSTACK+" vagas ficam livres)\r\n**!alt seuNick** - (acessa tracker em site alternativo caso o fortnitetracker esteja bug ou off)";
 
 const errorUsuarioRegistrado = "usuario ja esta registrado", errorRefreshLotado="fila atualizacao lotada", 
 sucessoRegistro=" conseguiu se registrar", chamadaFilaLIVRE=">> a fila de atualizar win % automatica esta LIVRE <<", sucessoWinRateAtualizado="atualizei os win % de vcs";
@@ -59,6 +59,8 @@ client.on('message', message => {
 	}
 		
 	switch(comando.toLowerCase()){
+		case "!t":
+			comando = "!tracker";
 		case "!tracker":
 			if(nickLegivel === undefined) {print(message, errorNickNaoEncontrado); return;}
 			
