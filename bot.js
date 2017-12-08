@@ -11,7 +11,7 @@ const creditos = "> criado por Reifel <", separador=" | ", quebraLinha="\r\n";
 
 //tratando casos de erro
 const errorNickNaoEncontrado="nick não encontrado", errorJsonCapture="iih... foi mal, nao consegui, tenta dnvo q vai",
-errorNuncaGanhouSquad="nunca ganhou squad", errorFortnitetracker=",!error! nick errado? ou fortnitetracker off (usa **!alt nick** se tiver off)?: "
+errorNuncaGanhouSquad="nunca ganhou squad", errorFortnitetracker=", nick não encontrado, tente !alt nick"
 ;
 
 const comandoErrado = "comando invalido";
@@ -69,7 +69,7 @@ client.on('message', message => {
 					var text = browser.html();
 					msgPadraoBot( message, search(text,nickLegivel), site, creditos, nickLegivel );
 				}catch(e){
-					print(message, nickLegivel + errorFortnitetracker + site);
+					print(message, nickLegivel + errorFortnitetracker);
 				}
 			});	
 		break;
@@ -101,7 +101,7 @@ client.on('message', message => {
 					var text = browser.html();
 					padraoAtualizarNome(message,nickLegivel,text,site);
 				}catch(e){
-					print(message, nickLegivel + errorFortnitetracker + site);
+					print(message, nickLegivel + errorFortnitetracker);
 				}
 			});	
 		break;
@@ -116,7 +116,7 @@ client.on('message', message => {
 					var text = browser.html();
 					padraoAtualizarNome(message,nickLegivel,text,site);
 				}catch(e){
-					print(message, nickLegivel + errorFortnitetracker + site);
+					print(message, nickLegivel + errorFortnitetracker);
 				}	
 			});	
 		break;
