@@ -25,6 +25,7 @@ var refreshMAXSTACK=13;
 var refreshTEMPO=1800000;//30min 1800000
 
 var interval, refreshIsRunning=0;
+var readySimultaneoContador;
 
 const helpMessage = "comandos disponiveis:\r\n**!tracker nick** - (ou **!t nick**, consulta nick do fortnite de alguem)\r\n**!up seuNick** - (atualizar winrate do seu nick)\r\n**!auto seuNick** - (atualiza o seu winrate sozinho a cada 30 min, apos "+refreshRealizadosMAX+" atualizacoes todas as "+refreshMAXSTACK+" vagas ficam livres)\r\n**!alt seuNick** - (acessa tracker em site alternativo caso o fortnitetracker esteja bug ou off)";
 
@@ -415,4 +416,17 @@ function padraoAtualizarNome(message,nickLegivel,text,site){
 	//if(message.member.hasPermission("MANAGE_NICKNAMES"))
 	message.member.setNickname( padraoNick(winRate,nickLegivel) ).then(user => message.reply(`atualizei winrate \:umbrella2:`)).catch(console.error);	
 	//else print(message, "ainda nao tenho permissao pra mudar seu nick :(");
+}
+
+function readySimultaneo(){
+	var qtd=3;
+	readySimultaneoContador = setInterval (function (){				
+			if(qtd == 0){ //terminou refresh
+				print(message,"ready!");
+				clearInterval(readySimultaneoContador);
+			}else{ //atualiza stack
+				qtd--;
+				print(message,qtd);				
+			}
+      }, 1400);
 }
