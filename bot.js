@@ -200,6 +200,10 @@ client.on('message', message => {
 		case "!help":
 			print(message, helpMessage);
 		break;
+				
+		case "!ready":
+			readySimultaneo();
+		break;
 		default:
 			print( message, comandoErrado);
 		break;
