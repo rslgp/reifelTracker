@@ -430,7 +430,7 @@ function readySimultaneo(message){
 				clearInterval(readySimultaneoContador);
 			}else{ //atualiza stack
 				qtd--;
-				print(message,qtd);				
+				print(message,qtd+1);				
 			}
       }, 1400);
 }
