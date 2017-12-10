@@ -83,14 +83,14 @@ client.on('message', message => {
 			switch(message.guild.id){		
 				case "368240657816354836": //bro
 					if(message.member.roles.find("name", "BRO Member")){
-						TAG = "BRO";						
+						TAG = " BRO";						
 					}else{
 						TAG = "";
 					}
 				break;
 				
 				case "373611766737010690": //PDX
-					TAG = "PDX";
+					TAG = " PDX";
 				break;
 				
 				default:
@@ -389,7 +389,7 @@ function runAutoUpdateWinRate(message){
 }
 //"☂ "
 function padraoNick(winrate, nick){
-	return winrate+"% ☂ "+TAG+" "+nick;
+	return winrate+"% ☂"+TAG+" "+nick;
 }
 
 function getJsonSquad(text){
