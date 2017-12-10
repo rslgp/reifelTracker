@@ -201,9 +201,10 @@ client.on('message', message => {
 			print(message, helpMessage);
 		break;
 				
-		case "!ready":
-			readySimultaneo(message);
-		break;
+		//case "!ready":
+		//	readySimultaneo(message);
+		//break;
+		
 		default:
 			print( message, comandoErrado);
 		break;
@@ -422,6 +423,7 @@ function padraoAtualizarNome(message,nickLegivel,text,site){
 	//else print(message, "ainda nao tenho permissao pra mudar seu nick :(");
 }
 
+/*
 function readySimultaneo(message){
 	var qtd=3;
 	readySimultaneoContador = setInterval (function (){				
@@ -437,3 +439,4 @@ function readySimultaneo(message){
 			}
       }, 1400);
 }
+*/
