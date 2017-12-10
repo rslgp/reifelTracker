@@ -427,7 +427,7 @@ function readySimultaneo(message){
 	readySimultaneoContador = setInterval (function (){				
 			if(qtd == 0){ //terminou refresh
 				//print(message,"ready!");
-				message.channel.send("go!", {
+				message.channel.send("3. ... iiii. ... 2. ... iiii. ... 1. ... iiii ... vai", {
 				 tts: true
 				});
 				clearInterval(readySimultaneoContador);
