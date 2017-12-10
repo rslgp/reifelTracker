@@ -426,7 +426,10 @@ function readySimultaneo(message){
 	var qtd=3;
 	readySimultaneoContador = setInterval (function (){				
 			if(qtd == 0){ //terminou refresh
-				print(message,"ready!");
+				//print(message,"ready!");
+				message.channel.send("go!", {
+				 tts: true
+				});
 				clearInterval(readySimultaneoContador);
 			}else{ //atualiza stack
 				qtd--;
