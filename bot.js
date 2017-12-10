@@ -202,7 +202,7 @@ client.on('message', message => {
 		break;
 				
 		case "!ready":
-			readySimultaneo();
+			readySimultaneo(message);
 		break;
 		default:
 			print( message, comandoErrado);
@@ -422,7 +422,7 @@ function padraoAtualizarNome(message,nickLegivel,text,site){
 	//else print(message, "ainda nao tenho permissao pra mudar seu nick :(");
 }
 
-function readySimultaneo(){
+function readySimultaneo(message){
 	var qtd=3;
 	readySimultaneoContador = setInterval (function (){				
 			if(qtd == 0){ //terminou refresh
