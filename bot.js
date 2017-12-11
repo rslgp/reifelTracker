@@ -104,7 +104,25 @@ client.on('message', message => {
 					var text = browser.html();
 					padraoAtualizarNome(message,nickLegivel,text,site);
 				}catch(e){
-					print(message, nickLegivel + errorFortnitetracker);
+					try{ //tentar atualizar usando outro site
+						var site = "https://www.stormshield.one/pvp/stats/"+parametroUsado;
+						Browser.visit(site, function (e, browser) {
+							var elem; 							
+							var winP;	
+							try{							
+								elem = browser.queryAll("body>div.container>div:nth-child(2)>div.col-12.col-md-8>div>div:nth-child(3)>div>div:nth-child(4)>div:nth-child(6)>div>a>div.stat__value");
+								winP = elem[0].innerHTML;
+								winP = winP.replace(/(\r\n|\n|\r)/gm,"");
+								winP = winP.slice(0, -1);//remover char porcentagem
+							}catch(e){
+								print(message,"comando alt esta instavel");
+								return;
+							}			
+							message.member.setNickname( padraoNick(winP,nickLegivel) ).then(user => message.reply(`atualizei winrate \:umbrella2:`)).catch(console.error);	
+						});
+					}catch(e){
+						print(message, nickLegivel + errorFortnitetracker);						
+					}
 				}
 			});	
 		break;
