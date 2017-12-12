@@ -334,7 +334,7 @@ function up(text){
 		if(jsonSquad[winP].value < 14){ //perdoar novatos q nao sao smurf
 			return jsonSquad[winP].value;
 		}else{
-			if(jsonSquad[wins].ValueInt > 130){
+			if(jsonSquad[wins].ValueInt > 109){
 				return jsonSquad[winP].value;
 			}else if(jsonSquad[wins].ValueInt < 60){
 				return (jsonSquad[winP].ValueDec * 0.2).toFixed(1)+"*";
