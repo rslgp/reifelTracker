@@ -331,7 +331,9 @@ function up(text){
 	}
 	try{
 		//cap new accounts
-		if(jsonSquad[wins].ValueInt < 50){
+		if(jsonSquad[wins].ValueInt > 100){
+			return jsonSquad[winP].value;
+		}else if(jsonSquad[wins].ValueInt < 50){
 			return (jsonSquad[winP].ValueDec * 0.2).toFixed(1)+"*";
 		}else if(jsonSquad[wins].ValueInt < 100){
 			return (jsonSquad[winP].ValueDec * 0.57).toFixed(1)+"*";
