@@ -331,14 +331,12 @@ function up(text){
 	}
 	try{
 		//cap new accounts
-		if(jsonSquad[wins].ValueInt > 100){
+		if(jsonSquad[wins].ValueInt > 130){
 			return jsonSquad[winP].value;
-		}else if(jsonSquad[wins].ValueInt < 50){
+		}else if(jsonSquad[wins].ValueInt < 60){
 			return (jsonSquad[winP].ValueDec * 0.2).toFixed(1)+"*";
-		}else if(jsonSquad[wins].ValueInt < 100){
-			return (jsonSquad[winP].ValueDec * 0.57).toFixed(1)+"*";
 		}else{
-			return jsonSquad[winP].value;
+			return (jsonSquad[winP].ValueDec * 0.57).toFixed(1)+"*";
 		}
 		
 	}catch(e){
