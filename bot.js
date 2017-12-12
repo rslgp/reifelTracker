@@ -337,9 +337,9 @@ function up(text){
 			if(jsonSquad[wins].ValueInt > 109){
 				return jsonSquad[winP].value;
 			}else if(jsonSquad[wins].ValueInt < 60){
-				return (jsonSquad[winP].ValueDec * 0.2).toFixed(1)+"*";
+				return (jsonSquad[winP].ValueDec * 0.2).toFixed(2)+"*";
 			}else{
-				return (jsonSquad[winP].ValueDec * 0.57).toFixed(1)+"*";
+				return (jsonSquad[winP].ValueDec * 0.57).toFixed(2)+"*";
 			}			
 		}
 		
