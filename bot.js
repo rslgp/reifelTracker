@@ -314,7 +314,8 @@ function up(text){
 		throw false;		
 	}
 	
-	var winP = 9;		
+	var winP = 9;
+	var wins = 1;	
 	
 	if(jsonSquad[winP].label !== 'Win %'){			
 			var n=0;
@@ -327,8 +328,20 @@ function up(text){
 				}
 				n++;
 			}
-	}	
-	return jsonSquad[winP].value;
+	}
+	try{
+		//cap new accounts
+		if(jsonSquad[wins].ValueInt < 50){
+			return (jsonSquad[winP].ValueDec * 0.2).toFixed(1)+"*";
+		}else if(jsonSquad[wins].ValueInt < 100){
+			return (jsonSquad[winP].ValueDec * 0.57).toFixed(1)+"*";
+		}else{
+			return jsonSquad[winP].value;
+		}
+		
+	}catch(e){
+		console.log("erro no cap");
+	}
 	
 }
 
