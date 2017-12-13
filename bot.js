@@ -317,13 +317,17 @@ function up(text){
 	var winP = 9;
 	var matches = 10;	
 	
-	if(jsonSquad[winP].label !== 'Win %'){			
+	if(jsonSquad[winP].label !== 'Win %' || jsonSquad[matches].label !== 'Matches'){			
 			var n=0;
 			for( i=0; i < jsonSquad.length; i++ ){
 				//console.log(jsonSquad[i].label);
 				switch(jsonSquad[i].label){						
 					case "Win %":
 						winP = n;
+					break;		
+					
+					case "Matches":
+						matches = n;
 					break;
 				}
 				n++;
