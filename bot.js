@@ -315,7 +315,7 @@ function up(text){
 	}
 	
 	var winP = 9;
-	var wins = 1;	
+	var matches = 10;	
 	
 	if(jsonSquad[winP].label !== 'Win %'){			
 			var n=0;
@@ -331,16 +331,10 @@ function up(text){
 	}
 	try{
 		//cap new accounts
-		if(jsonSquad[winP].value < 26){ //perdoar novatos q nao sao smurf
+		if(jsonSquad[matches].value > 250){ //perdoar novatos q nao sao smurf
 			return jsonSquad[winP].value;
-		}else{
-			if(jsonSquad[wins].ValueInt > 109){
-				return jsonSquad[winP].value;
-			}else if(jsonSquad[wins].ValueInt < 60){
-				return (jsonSquad[winP].ValueDec * 0.2).toFixed(2)+"*";
-			}else{
-				return (jsonSquad[winP].ValueDec * 0.57).toFixed(2)+"*";
-			}			
+		}else{			
+			return (jsonSquad[winP].ValueDec * 0.57).toFixed(2)+"*";		
 		}
 		
 	}catch(e){
