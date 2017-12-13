@@ -331,7 +331,7 @@ function up(text){
 	}
 	try{
 		//cap new accounts
-		if(jsonSquad[matches].value > 250){ //perdoar novatos q nao sao smurf
+		if(jsonSquad[matches].value > 250 || jsonSquad[winP].value < 26){ //perdoar novatos q nao sao smurf
 			return jsonSquad[winP].value;
 		}else{			
 			return (jsonSquad[winP].ValueDec * 0.57).toFixed(2)+"*";		
