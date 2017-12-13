@@ -331,7 +331,11 @@ function up(text){
 	}
 	try{
 		//cap new accounts
-		if(jsonSquad[matches].value > 250 || jsonSquad[winP].value < 26){ //perdoar novatos q nao sao smurf
+		if(jsonSquad[matches].value < 36){ //no data to build trusty sample
+			return (jsonSquad[winP].ValueDec * 0.2).toFixed(2)+"*";
+		}
+		//old accounts or ok winrate
+		if(jsonSquad[matches].value > 250 || jsonSquad[winP].value < 20){ //pessoas de conta antiga ou pessoas q sao novas e tem winrate aceitavel
 			return jsonSquad[winP].value;
 		}else{			
 			return (jsonSquad[winP].ValueDec * 0.57).toFixed(2)+"*";		
