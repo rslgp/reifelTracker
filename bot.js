@@ -331,7 +331,7 @@ function up(text){
 	}
 	try{
 		//cap new accounts
-		if(jsonSquad[winP].value < 23){ //perdoar novatos q nao sao smurf
+		if(jsonSquad[winP].value < 26){ //perdoar novatos q nao sao smurf
 			return jsonSquad[winP].value;
 		}else{
 			if(jsonSquad[wins].ValueInt > 109){
