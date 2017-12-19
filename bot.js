@@ -14,6 +14,10 @@ const errorNickNaoEncontrado="nick não encontrado", errorJsonCapture="iih... fo
 errorNuncaGanhouSquad="nunca ganhou squad", errorFortnitetracker=", nick não encontrado, tente !alt nick"
 ;
 
+const siteFortniteTracker = "https://fortnitetracker.com/profile/pc/", siteStormShield = "https://www.stormshield.one/pvp/stats/";
+
+const padraoStormShieldPath = "body>div.container>div:nth-child(2)>div.col-12.col-md-8>div>div:nth-child(3)>div>div:nth-child(4)";
+
 const comandoErrado = "comando invalido";
 
 
@@ -65,7 +69,7 @@ client.on('message', message => {
 		case "!tracker":
 			if(nickLegivel === undefined) {print(message, errorNickNaoEncontrado); return;}
 			
-			site = "https://fortnitetracker.com/profile/pc/"+parametroUsado;
+			site = siteFortniteTracker+parametroUsado;
 			//crawler
 			Browser.visit(site, function (e, browser) {				
 				try{
@@ -98,19 +102,19 @@ client.on('message', message => {
 				break;
 			}
 			
-			site = "https://fortnitetracker.com/profile/pc/"+parametroUsado;
+			site = siteFortniteTracker+parametroUsado;
 			Browser.visit(site, function (e, browser) {
 				try{					
 					var text = browser.html();
 					padraoAtualizarNome(message,nickLegivel,text,site);
 				}catch(e){
 					try{ //tentar atualizar usando outro site
-						var site = "https://www.stormshield.one/pvp/stats/"+parametroUsado;
+						var site = siteStormShield+parametroUsado;
 						Browser.visit(site, function (e, browser) {
 							var elem; 							
 							var winP;	
 							try{							
-								elem = browser.queryAll("body>div.container>div:nth-child(2)>div.col-12.col-md-8>div>div:nth-child(3)>div>div:nth-child(4)>div:nth-child(6)>div>a>div.stat__value");
+								elem = browser.queryAll(padraoStormShieldPath+">div:nth-child(6)>div>a>div.stat__value");
 								winP = elem[0].innerHTML;
 								winP = winP.replace(/(\r\n|\n|\r)/gm,"");
 								winP = winP.slice(0, -1);//remover char porcentagem
@@ -131,7 +135,7 @@ client.on('message', message => {
 		case "!mtracker": //atualiza sem por TAG	
 			if(nickLegivel === undefined) {print(message, errorNickNaoEncontrado); return;}	
 			TAG = "";
-			site = "https://fortnitetracker.com/profile/pc/"+parametroUsado;
+			site = siteFortniteTracker+parametroUsado;
 			Browser.visit(site, function (e, browser) {
 				try{
 					var text = browser.html();
@@ -175,13 +179,13 @@ client.on('message', message => {
 		break;
 		
 		case "!alt":
-			var site = "https://www.stormshield.one/pvp/stats/"+parametroUsado;
+			var site = siteStormShield+parametroUsado;
 			Browser.visit(site, function (e, browser) {
 				var elem; 
 				
 				var wins,winP,kd,kills;	
 			try{
-				elem = browser.queryAll("body>div.container>div:nth-child(2)>div.col-12.col-md-8>div>div:nth-child(3)>div>div:nth-child(4)>div:nth-child(1)>div>a>div.stat__value");
+				elem = browser.queryAll(padraoStormShieldPath+">div:nth-child(1)>div>a>div.stat__value");
 				kills = elem[0].innerHTML;
 				kills = kills.replace(/(\r\n|\n|\r)/gm,"");
 				
@@ -189,11 +193,11 @@ client.on('message', message => {
 				wins = elem[0].innerHTML;
 				wins = wins.replace(/(\r\n|\n|\r)/gm,"");
 				
-				elem = browser.queryAll("body>div.container>div:nth-child(2)>div.col-12.col-md-8>div>div:nth-child(3)>div>div:nth-child(4)>div:nth-child(2)>div>a>div.stat__value");
+				elem = browser.queryAll(padraoStormShieldPath+">div:nth-child(2)>div>a>div.stat__value");
 				kd = elem[0].innerHTML;
 				kd = kd.replace(/(\r\n|\n|\r)/gm,"");
 				
-				elem = browser.queryAll("body>div.container>div:nth-child(2)>div.col-12.col-md-8>div>div:nth-child(3)>div>div:nth-child(4)>div:nth-child(6)>div>a>div.stat__value");
+				elem = browser.queryAll(padraoStormShieldPath+">div:nth-child(6)>div>a>div.stat__value");
 				winP = elem[0].innerHTML;
 				winP = winP.replace(/(\r\n|\n|\r)/gm,"");
 				winP = winP.slice(0, -1);//remover char porcentagem
@@ -370,23 +374,25 @@ function print(message, text){
 		});	
 }
 
+//inicio ForRecursivo - stack update
 function updateWinRateStack(message){
 	forRecusivo(message,0);
 }
 //"=☂ "+winRate+"%= "+refreshAuto[i].nickLegivel
-function atualizarWinRateNick(message, winRate, i){
-	message.guild.members.get(refreshAuto[i].member).setNickname( padraoNick(winRate, refreshAuto[i].nickLegivel) ).then( forRecusivo(message, i+1) ).catch(console.error);
-}
-
 function forRecusivo(message, i){
 	if(i<refreshTamanho){
 		//console.log(i+" update "+refreshAuto[i].nickLegivel);
-		var site = "https://fortnitetracker.com/profile/pc/"+refreshAuto[i].parametroUsado;
+		var site = siteFortniteTracker+refreshAuto[i].parametroUsado;
 		
 		setWinRateNick(message, site, i);
 		
 	}
 }
+
+function atualizarWinRateNick(message, winRate, i){
+	message.guild.members.get(refreshAuto[i].member).setNickname( padraoNick(winRate, refreshAuto[i].nickLegivel) ).then( forRecusivo(message, i+1) ).catch(console.error);
+}
+//fim ForRecursivo - stack update
 
 function setWinRateNick(message, site, i){
 	Browser.visit(site, function (e, browser) {
