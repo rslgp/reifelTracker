@@ -16,7 +16,7 @@ errorNuncaGanhouSquad="nunca ganhou squad", errorFortnitetracker=", nick não en
 
 const siteFortniteTracker = "https://fortnitetracker.com/profile/pc/", siteStormShield = "https://www.stormshield.one/pvp/stats/";
 
-const padraoStormShieldPath = "body>div.container>div:nth-child(2)>div.col-12.col-md-8>div>div:nth-child(3)>div>div:nth-child(4)";
+const winsStormShieldPath="body>div.container>div:nth-child(2)>div.col-12.col-md-8>div>div:nth-child(3)>div>div:nth-child(3)>div:nth-child(2)>a>div.istat__value";
 
 const comandoErrado = "comando invalido";
 
@@ -114,9 +114,7 @@ client.on('message', message => {
 							var elem; 							
 							var winP;	
 							try{							
-								elem = browser.queryAll(padraoStormShieldPath+">div:nth-child(6)>div>a>div.stat__value");
-								winP = elem[0].innerHTML;
-								winP = winP.replace(/(\r\n|\n|\r)/gm,"");
+								winP = padraoAlt(browser,6);
 								winP = winP.slice(0, -1);//remover char porcentagem
 							}catch(e){
 								print(message,"comando alt esta instavel");
@@ -184,27 +182,17 @@ client.on('message', message => {
 				var elem; 
 				
 				var wins,winP,kd,kills;	
-			try{
-				elem = browser.queryAll(padraoStormShieldPath+">div:nth-child(1)>div>a>div.stat__value");
-				kills = elem[0].innerHTML;
-				kills = kills.replace(/(\r\n|\n|\r)/gm,"");
-				
-				elem =  browser.queryAll("body>div.container>div:nth-child(2)>div.col-12.col-md-8>div>div:nth-child(3)>div>div:nth-child(3)>div:nth-child(2)>a>div.istat__value");
-				wins = elem[0].innerHTML;
-				wins = wins.replace(/(\r\n|\n|\r)/gm,"");
-				
-				elem = browser.queryAll(padraoStormShieldPath+">div:nth-child(2)>div>a>div.stat__value");
-				kd = elem[0].innerHTML;
-				kd = kd.replace(/(\r\n|\n|\r)/gm,"");
-				
-				elem = browser.queryAll(padraoStormShieldPath+">div:nth-child(6)>div>a>div.stat__value");
-				winP = elem[0].innerHTML;
-				winP = winP.replace(/(\r\n|\n|\r)/gm,"");
-				winP = winP.slice(0, -1);//remover char porcentagem
-			}catch(e){
-				print(message,"comando alt esta instavel");
-				return;
-			}
+				try{				
+					kills = padraoAlt(browser,1);				
+					wins = padraoAlt(browser,0);
+					kd = padraoAlt(browser,2);
+
+					winP = padraoAlt(browser,6);
+					winP = winP.slice(0, -1);//remover char porcentagem
+				}catch(e){
+					print(message,"comando alt esta instavel");
+					return;
+				}
 				
 				
 				//console.log(wins+" "+kd+" "+winP+" "+kills);
@@ -483,3 +471,14 @@ function readySimultaneo(message){
       }, 1400);
 }
 */
+
+function padraoAlt(browser,id) {
+	var elem;
+	if(id===0){
+		elem = browser.queryAll(winsStormShieldPath);		
+	}else{
+		elem = browser.queryAll("body>div.container>div:nth-child(2)>div.col-12.col-md-8>div>div:nth-child(3)>div>div:nth-child(4)>div:nth-child("+id+")>div>a>div.stat__value");
+	}
+	var retorno = elem[0].innerHTML;
+	return retorno.replace(/(\r\n|\n|\r)/gm,"");
+}
