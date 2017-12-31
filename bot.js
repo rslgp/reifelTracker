@@ -103,7 +103,7 @@ client.on('message', message => {
 			}catch(e){
 				//caso nao tenha guarda chuva, mantem o nick como arg
 			}
-			console.log(parametroUsado+" "+nickLegivel);
+			//console.log(parametroUsado+" "+nickLegivel);
 			//if(nickLegivel === undefined) {nickLegivel=parametroUsado=getNickConhecido(message);}	
 			
 			/*
