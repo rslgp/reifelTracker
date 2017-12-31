@@ -44,15 +44,21 @@ var TAG = "";
 client.on('message', message => {
 	if(message.author.bot) return; //ignora poupar processamento bot
 	
-	if(message.content[0] !== "!") return; //se nao for comando ignora
+	if(message.content[0] === "!") {
+		//print(message,"Opaa...\r\na v2 do reifelTracker agora inicia o comando com **.** \r\nexemplos: .t .up .help"); 
+		message.content[0]="."
+	}
+	else{
+		if(message.content[0] !== ".") return; //se nao for comando ignora
+	}
 		
 	//dividindo cada palavra da mensagem em um array de palavras
-	var args = message.content.slice(0).trim().split(/ +/g);
+	var args = message.content.slice(1).trim().split(/ +/g);
 	//console.log(args);
 	var comando = args[0];
 	
 	//se tiver espaco no nick
-	var parametroUsado = "", nickLegivel="", site="";	
+	var parametroUsado = "", nickLegivel="", site="";
 	if(args.length>2){ 
 		for (i = 1; i < args.length; i++) { 
 			parametroUsado += args[i] + "%20";
@@ -62,12 +68,21 @@ client.on('message', message => {
 	}else{		
 		nickLegivel=parametroUsado = args[1];	
 	}
+
+
 		
 	switch(comando.toLowerCase()){
-		case "!t":
-			comando = "!tracker";
-		case "!tracker":
-			if(nickLegivel === undefined) {print(message, errorNickNaoEncontrado); return;}
+		case "t":
+			comando = "tracker";
+		case "tracker":
+			if(nickLegivel === undefined){
+				try{
+					nickLegivel=parametroUsado = getNickConhecido(message);
+				}catch(e){
+					print(message, errorNickNaoEncontrado); return;
+				}
+			}
+			//if(nickLegivel === undefined) {print(message, errorNickNaoEncontrado); return;}
 			
 			site = siteFortniteTracker+parametroUsado;
 			//crawler
@@ -81,9 +96,17 @@ client.on('message', message => {
 			});	
 		break;
 		
-		case "!up":		
-			if(nickLegivel === undefined) {print(message, errorNickNaoEncontrado); return;}	
+		case "up":			
+			try{
+				nickLegivel=parametroUsado = getNickConhecido(message);
+				if(args[1] !== undefined) print(message,"ei! eu sei qm é vc \:thinking:, da proxima nao escreve o nick, escreve o comando up sem dizer o nick");
+			}catch(e){
+				//caso nao tenha guarda chuva, mantem o nick como arg
+			}
+			console.log(parametroUsado+" "+nickLegivel);
+			//if(nickLegivel === undefined) {nickLegivel=parametroUsado=getNickConhecido(message);}	
 			
+			/*
 			switch(message.guild.id){		
 				case "368240657816354836": //bro
 					if(message.member.roles.find("name", "BRO Member")){
@@ -101,6 +124,7 @@ client.on('message', message => {
 					TAG = "";
 				break;
 			}
+			*/
 			
 			site = siteFortniteTracker+parametroUsado;
 			Browser.visit(site, function (e, browser) {
@@ -130,7 +154,7 @@ client.on('message', message => {
 		break;
 		
 		/*
-		case "!mtracker": //atualiza sem por TAG	
+		case ".mtracker": //atualiza sem por TAG	
 			if(nickLegivel === undefined) {print(message, errorNickNaoEncontrado); return;}	
 			TAG = "";
 			site = siteFortniteTracker+parametroUsado;
@@ -145,7 +169,7 @@ client.on('message', message => {
 		break;
 		*/
 		
-		case "!auto":
+		case "auto":
 			
 			if(refreshIsRunning===0){
 				refreshIsRunning=1;
@@ -176,7 +200,7 @@ client.on('message', message => {
 			}
 		break;
 		
-		case "!alt":
+		case "alt":
 			var site = siteStormShield+parametroUsado;
 			Browser.visit(site, function (e, browser) {
 				var elem; 
@@ -203,15 +227,17 @@ client.on('message', message => {
 			});			
 		break;
 		
-		case "!debug":
-			console.log(message);
+		case "debug":
+			//console.log(message);
+			var indice = message.member.nickname.indexOf("☂")+2;
+			console.log(message.member.nickname.substring(indice));
 		break;
 		
-		case "!help":
+		case "help":
 			print(message, helpMessage);
 		break;
 				
-		//case "!ready":
+		//case ".ready":
 		//	readySimultaneo(message);
 		//break;
 		
@@ -481,4 +507,41 @@ function padraoAlt(browser,id) {
 	}
 	var retorno = elem[0].innerHTML;
 	return retorno.replace(/(\r\n|\n|\r)/gm,"");
+}
+
+function getNickConhecido(message){
+	var posicaoGuardaChuva = -1;
+	try{
+		posicaoGuardaChuva = message.member.nickname.indexOf("☂");		
+	}catch(e){
+		
+	}
+	if(posicaoGuardaChuva !== -1){
+		posicaoGuardaChuva += 1;
+		
+		//temporario limpar tags		
+			switch(message.guild.id){		
+				case "368240657816354836": //bro
+					if(message.member.roles.find("name", "BRO Member")){
+						TAG = " BRO";						
+					}else{
+						TAG = "";
+					}
+				break;
+				
+				case "373611766737010690": //PDX
+					TAG = " PDX";
+				break;
+				
+				default:
+					TAG = "";
+				break;
+			}
+		var retorno = message.member.nickname.substring(posicaoGuardaChuva).replace(TAG,"");
+		retorno = retorno.substring(1);
+		TAG = "";
+		return retorno;
+	}else{
+		throw false;
+	}
 }
