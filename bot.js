@@ -44,7 +44,7 @@ var TAG = "";
 client.on('message', message => {
 	if(message.author.bot) return; //ignora poupar processamento bot
 	
-	if(message.content.indexOf("!") !== 0) return; //se nao for comando ignora
+	if(message.content[0] !== "!") return; //se nao for comando ignora
 		
 	//dividindo cada palavra da mensagem em um array de palavras
 	var args = message.content.slice(0).trim().split(/ +/g);
