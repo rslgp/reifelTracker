@@ -98,7 +98,7 @@ client.on('message', message => {
 					day7elem = browser.queryAll("body>div.container.content-container>div>div#profile>div.trn-profile.dtr-profile>div>div.content>div:nth-child(1)>div.dtr-stats-card.last7>div.trn-stats>div:nth-child(8)>div.value");
 					d7WinRate = day7elem[0].innerHTML;
 
-					var d7Texto="\r\n7dias>> win%: "+d7WinRate.slice(0, -1)+" kd: "+d7kd;
+					var d7Texto="\r\n7dias>> win%: **"+d7WinRate.slice(0, -1)+"** kd: **"+d7kd+"**";
 					//fim day7
 					
 					msgPadraoBot( message, search(text,nickLegivel)+d7Texto, site, creditos, nickLegivel );
