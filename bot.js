@@ -116,7 +116,7 @@ client.on('message', message => {
 					d7WinRate = j8[17].split(":")[2].replace(/(\r\n|\n|\r|\"| )/gm,"");
 					d7WinRate = d7WinRate.split(0,-1);
 					
-					d7Texto="\r\n7dias>> win%: **"+d7WinRate.slice(0, -1)+"** kd: **"+d7kd+"**";
+					d7Texto="\r\n7dias>> win%: **"+d7WinRate+"** kd: **"+d7kd+"**";
 
 					}catch(e){
 						print(message,  "dessa vez, nao consegui pegar os 7dias de "+nickLegivel+"\r\na culpa nao é minha, eh do site, so pega com");
