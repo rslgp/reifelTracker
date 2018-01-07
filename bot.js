@@ -89,7 +89,19 @@ client.on('message', message => {
 			Browser.visit(site, function (e, browser) {				
 				try{
 					var text = browser.html();
-					msgPadraoBot( message, search(text,nickLegivel), site, creditos, nickLegivel );
+									
+					//day7
+					var d7WinRate, d7kd;
+					var day7elem = browser.queryAll("body>div.container.content-container>div>div#profile>div.trn-profile.dtr-profile>div>div.content>div:nth-child(1)>div.dtr-stats-card.last7>div.trn-stats>div:nth-child(7)>div.value");
+					d7kd = day7elem[0].innerHTML;
+
+					day7elem = browser.queryAll("body>div.container.content-container>div>div#profile>div.trn-profile.dtr-profile>div>div.content>div:nth-child(1)>div.dtr-stats-card.last7>div.trn-stats>div:nth-child(8)>div.value");
+					d7WinRate = day7elem[0].innerHTML;
+
+					var d7Texto="\r\n7dias>> win%: "+d7WinRate+" kd: "+d7kd;
+					//fim day7
+					
+					msgPadraoBot( message, search(text,nickLegivel)+d7Texto, site, creditos, nickLegivel );
 				}catch(e){
 					print(message, nickLegivel + errorFortnitetracker);
 				}
@@ -305,18 +317,8 @@ function search(text,nick){
 	//else resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[wins].value+separador+"Win %: "+jsonSquad[winP].value +separador+"Kills: "+jsonSquad[kills].value +separador+ "K/d: "+jsonSquad[kd].value;
 	else resultado = formatarMsg(jsonSquad[winP].value,jsonSquad[kd].value,jsonSquad[wins].value,jsonSquad[kills].value);
 		
-	//day7
-	var d7WinRate, d7kd;
-	var day7elem = browser.queryAll("body>div.container.content-container>div>div#profile>div.trn-profile.dtr-profile>div>div.content>div:nth-child(1)>div.dtr-stats-card.last7>div.trn-stats>div:nth-child(7)>div.value");
-	d7kd = day7elem[0].innerHTML;
 	
-	day7elem = browser.queryAll("body>div.container.content-container>div>div#profile>div.trn-profile.dtr-profile>div>div.content>div:nth-child(1)>div.dtr-stats-card.last7>div.trn-stats>div:nth-child(8)>div.value");
-	d7WinRate = day7elem[0].innerHTML;
-	
-	var d7Texto="\r\n7dias>> win%: "+d7WinRate+" kd: "+d7kd;
-	//fim day7
-	
-	return resultado+d7Texto;
+	return resultado;
 }
 
 function rightJustify(str, length, char ) {
