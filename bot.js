@@ -103,7 +103,7 @@ client.on('message', message => {
 					d7Texto="\r\n7dias>> win%: **"+d7WinRate.slice(0, -1)+"** kd: **"+d7kd+"**";
 					//fim day7						
 					}catch(e){
-						print(message,  "dessa vez, nao consegui pegar os 7dias de "+nickLegivel+" mals, mas ta ae sem");
+						print(message,  "dessa vez, nao consegui pegar os 7dias de "+nickLegivel+"\r\nmals, mas ta ae sem\r\n(ps: talvez se vc entrar no site pelo browser,\r\nou clicando no link do resultado, passa a funcionar sempre)");
 					}
 					
 					msgPadraoBot( message, search(text,nickLegivel)+d7Texto, site, creditos, nickLegivel );
