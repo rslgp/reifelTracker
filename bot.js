@@ -57,6 +57,19 @@ client.on('message', message => {
 	//console.log(args);
 	var comando = args[0];
 	
+	switch(comando){ //so responder a nossos comandos, poupar cpu
+		case "t":
+		case "tracker":
+		case "alt":
+		case "up":
+		case "auto":
+		case "help":
+		break;
+		default:
+			return;
+		break;
+	}
+	
 	//se tiver espaco no nick
 	var parametroUsado = "", nickLegivel="", site="";
 	if(args.length>2){ 
