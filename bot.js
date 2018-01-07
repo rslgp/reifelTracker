@@ -94,16 +94,32 @@ client.on('message', message => {
 					try{
 					//day7
 					var d7WinRate, d7kd;
-					var day7elem = browser.queryAll("body>div.container.content-container>div>div#profile>div.trn-profile.dtr-profile>div>div.content>div:nth-child(1)>div.dtr-stats-card.last7>div.trn-stats>div:nth-child(7)>div.value");
+					var day7elem;
+					
+					/* //versao antiga, bug as vezes
+					day7elem = browser.queryAll("body>div.container.content-container>div>div#profile>div.trn-profile.dtr-profile>div>div.content>div:nth-child(1)>div.dtr-stats-card.last7>div.trn-stats>div:nth-child(7)>div.value");
 					d7kd = day7elem[0].innerHTML;
 
 					day7elem = browser.queryAll("body>div.container.content-container>div>div#profile>div.trn-profile.dtr-profile>div>div.content>div:nth-child(1)>div.dtr-stats-card.last7>div.trn-stats>div:nth-child(8)>div.value");
 					d7WinRate = day7elem[0].innerHTML;
 
 					d7Texto="\r\n7dias>> win%: **"+d7WinRate.slice(0, -1)+"** kd: **"+d7kd+"**";
-					//fim day7						
+					*/
+					//fim day7	
+					
+					//pelo array Last7
+					day7elem = browser.queryAll("body>div.container.content-container>div:nth-child(1)>script:nth-child(10)");
+					
+					var j7 = day7elem[0].textContent;
+					var j8 = j7.split("}");
+					d7kd = j8[15].split(":")[2].replace(/(\r\n|\n|\r|\"| )/gm,"");
+					d7WinRate = j8[17].split(":")[2].replace(/(\r\n|\n|\r|\"| )/gm,"");
+					d7WinRate = d7WinRate.split(0,-1);
+					
+					d7Texto="\r\n7dias>> win%: **"+d7WinRate.slice(0, -1)+"** kd: **"+d7kd+"**";
+
 					}catch(e){
-						print(message,  "dessa vez, nao consegui pegar os 7dias de "+nickLegivel+"\r\nmals, mas ta ae sem\r\n(ps: talvez se vc entrar no site pelo browser,\r\nou clicando no link do resultado, passa a funcionar sempre)");
+						print(message,  "dessa vez, nao consegui pegar os 7dias de "+nickLegivel+"\r\na culpa nao é minha, eh do site, so pega com");
 					}
 					
 					msgPadraoBot( message, search(text,nickLegivel)+d7Texto, site, creditos, nickLegivel );
