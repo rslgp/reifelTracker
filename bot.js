@@ -132,7 +132,7 @@ client.on('message', message => {
 					d7Texto="\r\n7dias>> win%: **"+d7WinRate+"** kd: **"+d7kd+"**";
 
 					}catch(e){
-						print(message,  "dessa vez, nao consegui pegar os 7dias de "+nickLegivel+"\r\na culpa nao é minha, eh do site, so pega com");
+						print(message,  "sem 7dias de "+nickLegivel+"dessa vez :(");
 					}
 					
 					msgPadraoBot( message, search(text,nickLegivel)+d7Texto, site, creditos, nickLegivel );
@@ -187,7 +187,7 @@ client.on('message', message => {
 								winP = padraoAlt(browser,6);
 								winP = winP.slice(0, -1);//remover char porcentagem
 							}catch(e){
-								print(message,"comando alt esta instavel");
+								print(message,errorNickNaoEncontrado);
 								return;
 							}			
 							message.member.setNickname( padraoNick(winP,nickLegivel) ).then(user => message.reply(`atualizei winrate \:umbrella2:`)).catch(console.error);	
@@ -565,7 +565,7 @@ function getNickConhecido(message){
 	}
 	if(posicaoGuardaChuva !== -1){
 		posicaoGuardaChuva += 1;
-		
+		/*
 		//temporario limpar tags		
 			switch(message.guild.id){		
 				case "368240657816354836": //bro
@@ -587,6 +587,9 @@ function getNickConhecido(message){
 		var retorno = message.member.nickname.substring(posicaoGuardaChuva).replace(TAG,"");
 		retorno = retorno.substring(1);
 		TAG = "";
+		*/
+		var retorno = message.member.nickname.substring(posicaoGuardaChuva);
+		retorno = retorno.substring(1);
 		return retorno;
 	}else{
 		throw false;
