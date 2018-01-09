@@ -84,7 +84,7 @@ client.on('message', message => {
 		//break;
 		
 		default:
-			message.guild.leave(); console.log("sai");
+			message.guild.leave(); console.log("sai"); return;
 		break;
 			
 	}
