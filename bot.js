@@ -91,6 +91,7 @@ client.on('message', message => {
 			if(nickLegivel === undefined){
 				try{
 					nickLegivel=parametroUsado = getNickConhecido(message);
+					parametroUsado=encodeURI(parametroUsado);
 				}catch(e){
 					print(message, errorNickNaoEncontrado); return;
 				}
@@ -145,6 +146,7 @@ client.on('message', message => {
 		case "up":			
 			try{
 				nickLegivel=parametroUsado = getNickConhecido(message);
+				parametroUsado=encodeURI(parametroUsado);
 				if(args[1] !== undefined) print(message,"ei! eu sei qm é vc \:thinking:, da proxima nao escreve o nick, escreve o comando up sem dizer o nick");
 			}catch(e){
 				//caso nao tenha guarda chuva, mantem o nick como arg
