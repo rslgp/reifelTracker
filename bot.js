@@ -70,6 +70,22 @@ client.on('message', message => {
 		break;
 	}
 	
+	switch(message.guild.id){//se nao for server autorizado, o bot sai
+		case "368240657816354836": //bro		
+		break;
+		
+		case "373611766737010690": //PDX
+		break;
+		
+		case "363610360688672778": //privado fortnite-reifel
+		break;
+		
+		default:
+			message.guild.leave(); console.log("sai");
+		break;
+			
+	}
+	
 	//se tiver espaco no nick
 	var parametroUsado = "", nickLegivel="", site="";
 	if(args.length>2){ 
