@@ -46,7 +46,7 @@ client.on('message', message => {
 	
 	switch(message.guild.id){//se nao for server autorizado, o bot sai
 		case "368240657816354836": //bro
-			if(message.channel.id!==387003077695373315) return; //se nao for no bot-spam ignora a msg (poupa processamento)
+			if(message.channel.id!=387003077695373315) return; //se nao for no bot-spam ignora a msg (poupa processamento)
 		break;
 		
 		//case "373611766737010690": //PDX
