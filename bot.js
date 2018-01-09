@@ -44,6 +44,26 @@ var TAG = "";
 client.on('message', message => {
 	if(message.author.bot) return; //ignora poupar processamento bot
 	
+	switch(message.guild.id){//se nao for server autorizado, o bot sai
+		case "368240657816354836": //bro
+			if(message.channel.id!==387003077695373315) return; //se nao for no bot-spam ignora a msg (poupa processamento)
+		break;
+		
+		//case "373611766737010690": //PDX
+		//break;
+		
+		case "363610360688672778": //privado fortnite-reifel
+		break;
+		
+		//case "397143937057554433": //fps
+		//break;
+		
+		default:
+			message.guild.leave(); console.log("sai"); return;
+		break;
+			
+	}
+	
 	if(message.content[0] === "!") {
 		//print(message,"Opaa...\r\na v2 do reifelTracker agora inicia o comando com **.** \r\nexemplos: .t .up .help"); 
 		message.content[0]="."
@@ -68,26 +88,7 @@ client.on('message', message => {
 		default:
 			return;
 		break;
-	}
-	
-	switch(message.guild.id){//se nao for server autorizado, o bot sai
-		case "368240657816354836": //bro		
-		break;
-		
-		//case "373611766737010690": //PDX
-		//break;
-		
-		case "363610360688672778": //privado fortnite-reifel
-		break;
-		
-		//case "397143937057554433": //fps
-		//break;
-		
-		default:
-			message.guild.leave(); console.log("sai"); return;
-		break;
-			
-	}
+	}	
 	
 	//se tiver espaco no nick
 	var parametroUsado = "", nickLegivel="", site="";
