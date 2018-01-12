@@ -7,10 +7,10 @@ client.login(process.env.BOT_TOKEN);
 //versao 1.0
 const message = new Discord.Message();
 const Browser = require('zombie');
-const creditos = "> criado por Reifel <", separador=" | ", quebraLinha="\r\n";
+const creditos = "> criado por Reifel <", /*separador=" | "*/, quebraLinha="\r\n";
 
 //tratando casos de erro
-const errorNickNaoEncontrado="nick não encontrado", errorJsonCapture="iih... foi mal, nao consegui, tenta dnvo q vai",
+const errorNickNaoEncontrado="nick não encontrado",
 errorNuncaGanhouSquad="nunca ganhou squad", errorFortnitetracker=", nick não encontrado, tente !alt nick"
 ;
 
@@ -29,7 +29,7 @@ var refreshMAXSTACK=13;
 var refreshTEMPO=1800000;//30min 1800000
 
 var interval, refreshIsRunning=0;
-var readySimultaneoContador;
+//var readySimultaneoContador;
 
 const helpMessage = "comandos disponiveis:\r\n**!tracker nick** - (ou **!t nick**, consulta nick do fortnite de alguem)\r\n**!up seuNick** - (atualizar winrate do seu nick)\r\n**!auto seuNick** - (atualiza o seu winrate sozinho a cada 30 min, apos "+refreshRealizadosMAX+" atualizacoes todas as "+refreshMAXSTACK+" vagas ficam livres)\r\n**!alt seuNick** - (acessa tracker em site alternativo caso o fortnitetracker esteja bug ou off)";
 
@@ -66,7 +66,7 @@ client.on('message', message => {
 	
 	if(message.content[0] === "!") {
 		//print(message,"Opaa...\r\na v2 do reifelTracker agora inicia o comando com **.** \r\nexemplos: .t .up .help"); 
-		message.content[0]="."
+		message.content[0]=".";
 	}
 	else{
 		if(message.content[0] !== ".") return; //se nao for comando ignora
@@ -145,6 +145,7 @@ client.on('message', message => {
 					day7elem = browser.queryAll("body>div.container.content-container>div:nth-child(1)>script:nth-child(10)");
 					
 					var j7 = day7elem[0].textContent;
+					day7elem=null;
 					var j8 = j7.split("}");
 					d7kd = j8[15].split(":")[2].replace(/(\r\n|\n|\r|\"| )/gm,"");
 					d7WinRate = j8[17].split(":")[2].replace(/(\r\n|\n|\r|\"| )/gm,"");
@@ -156,7 +157,15 @@ client.on('message', message => {
 						print(message,  "sem 7dias de "+nickLegivel+"dessa vez :(");
 					}
 					
-					msgPadraoBot( message, search(text,nickLegivel)+d7Texto, site, creditos, nickLegivel );
+					var jsonSquad;
+					try{
+						jsonSquad = getJsonSquad(text);
+						text=null;
+					}catch(e){		
+						console.log("error search");
+						throw false;
+					}
+					msgPadraoBot( message, search(jsonSquad,nickLegivel)+d7Texto, site, creditos, nickLegivel );
 				}catch(e){
 					print(message, nickLegivel + errorFortnitetracker);
 				}
@@ -202,8 +211,7 @@ client.on('message', message => {
 				}catch(e){
 					try{ //tentar atualizar usando outro site
 						var site = siteStormShield+parametroUsado;
-						Browser.visit(site, function (e, browser) {
-							var elem; 							
+						Browser.visit(site, function (e, browser) {					
 							var winP;	
 							try{							
 								winP = padraoAlt(browser,6);
@@ -270,9 +278,7 @@ client.on('message', message => {
 		
 		case "alt":
 			var site = siteStormShield+parametroUsado;
-			Browser.visit(site, function (e, browser) {
-				var elem; 
-				
+			Browser.visit(site, function (e, browser) {				
 				var wins,winP,kd,kills;	
 				try{				
 					kills = padraoAlt(browser,1);				
@@ -322,15 +328,8 @@ var buscas= [
 '"p9"'
 ];
 
-function search(text,nick){	
+function search(jsonSquad,nick){	
 	//console.log(text+"\r\n\r\n");
-	var jsonSquad;
-	try{
-		jsonSquad = getJsonSquad(text);		
-	}catch(e){		
-		console.log("error search");
-		throw false;
-	}
 	
 	var resultado="";
 	var wins = 2
@@ -372,7 +371,7 @@ function search(text,nick){
 	//else resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[wins].value+separador+"Win %: "+jsonSquad[winP].value +separador+"Kills: "+jsonSquad[kills].value +separador+ "K/d: "+jsonSquad[kd].value;
 	//else resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[wins].value+separador+"Win %: "+jsonSquad[winP].value +separador+"Kills: "+jsonSquad[kills].value +separador+ "K/d: "+jsonSquad[kd].value;
 	else resultado = formatarMsg(jsonSquad[winP].value,jsonSquad[kd].value,jsonSquad[wins].value,jsonSquad[kills].value);
-		
+	jsonSquad=null;	
 	
 	return resultado;
 }
@@ -392,14 +391,7 @@ function formatarMsg(winP, kd, wins, kills){
 	return p1+quebraLinha+p3;
 }
 
-function up(text){	
-	var jsonSquad;
-	try{
-		jsonSquad = getJsonSquad(text);
-	}catch(e){			
-		console.log("error up");
-		throw false;		
-	}
+function up(jsonSquad){	
 	
 	var winP = 9;
 	var matches = 10;	
@@ -481,7 +473,15 @@ function setWinRateNick(message, site, i){
 	Browser.visit(site, function (e, browser) {
 		var text = browser.html();	
 		try{
-			winRate = up(text);	
+			var jsonSquad;
+			try{
+				jsonSquad = getJsonSquad(text);
+			}catch(e){			
+				console.log("error up");
+				throw false;		
+			}
+			
+			winRate = up(jsonSquad);	
 			atualizarWinRateNick(message, winRate, i);
 		}catch(e){
 			refreshAuto = refreshAuto.splice(i, 1);//nick errado remove do array
@@ -493,7 +493,7 @@ function runAutoUpdateWinRate(message){
 	//console.log("fui iniciado");
 	interval = setInterval (function (){
 			//console.log("vivo");
-			if(refreshTamanho==0){
+			if(refreshTamanho===0){
 				//console.log("parando autoupdate 1");
 				clearInterval(interval);
 				refreshIsRunning = 0;
@@ -520,6 +520,7 @@ function padraoNick(winrate, nick){
 
 function getJsonSquad(text){
 	var temp = text.substring(text.indexOf(buscas[0])+16);
+	text=null;
 	temp = temp.substr( 0,temp.indexOf(buscas[1]) );
 	temp = temp.substring(temp.indexOf(buscas[2]));
 	temp = temp.substring(5,temp.indexOf("]")+1);
@@ -539,7 +540,14 @@ function getJsonSquad(text){
 
 function padraoAtualizarNome(message,nickLegivel,text,site){
 	try{
-		var winRate = up(text);
+		var jsonSquad;
+		try{
+			jsonSquad = getJsonSquad(text);
+		}catch(e){			
+			console.log("error up");
+			throw false;		
+		}
+		var winRate = up(jsonSquad);
 	}catch(e){
 		console.log("erro padraoAtualizarNome");
 		throw false;
