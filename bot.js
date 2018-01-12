@@ -545,7 +545,6 @@ function padraoAtualizarNome(message,nickLegivel,text,site){
 		var jsonSquad;
 		try{
 			jsonSquad = getJsonSquad(text);
-			text=null;
 		}catch(e){			
 			console.log("error up");
 			throw false;		
