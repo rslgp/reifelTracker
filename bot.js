@@ -520,9 +520,10 @@ function padraoNick(winrate, nick){
 
 function getJsonSquad(text){
 	var temp = text.substring(text.indexOf(buscas[0])+16);
-	text=null;
+	
 	temp = temp.substr( 0,temp.indexOf(buscas[1]) );
 	temp = temp.substring(temp.indexOf(buscas[2]));
+	text=null;
 	temp = temp.substring(5,temp.indexOf("]")+1);
 	
 	//console.log(temp);
