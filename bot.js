@@ -124,6 +124,15 @@ client.on('message', message => {
 				try{
 					var text = browser.html();
 					
+					var jsonSquad;
+					try{
+						jsonSquad = getJsonSquad(text);
+						text=null;
+					}catch(e){		
+						console.log("error search");
+						throw false;
+					}
+					
 					var d7Texto="";
 					try{
 					//day7
@@ -156,15 +165,7 @@ client.on('message', message => {
 					}catch(e){
 						print(message,  "sem 7dias de "+nickLegivel+"dessa vez :(");
 					}
-					
-					var jsonSquad;
-					try{
-						jsonSquad = getJsonSquad(text);
-						text=null;
-					}catch(e){		
-						console.log("error search");
-						throw false;
-					}
+
 					msgPadraoBot( message, search(jsonSquad,nickLegivel)+d7Texto, site, creditos, nickLegivel );
 				}catch(e){
 					print(message, nickLegivel + errorFortnitetracker);
@@ -476,6 +477,7 @@ function setWinRateNick(message, site, i){
 			var jsonSquad;
 			try{
 				jsonSquad = getJsonSquad(text);
+				text=null;
 			}catch(e){			
 				console.log("error up");
 				throw false;		
@@ -543,6 +545,7 @@ function padraoAtualizarNome(message,nickLegivel,text,site){
 		var jsonSquad;
 		try{
 			jsonSquad = getJsonSquad(text);
+			text=null;
 		}catch(e){			
 			console.log("error up");
 			throw false;		
