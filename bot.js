@@ -523,7 +523,6 @@ function getJsonSquad(text){
 	
 	temp = temp.substr( 0,temp.indexOf(buscas[1]) );
 	temp = temp.substring(temp.indexOf(buscas[2]));
-	text=null;
 	temp = temp.substring(5,temp.indexOf("]")+1);
 	
 	//console.log(temp);
@@ -535,7 +534,7 @@ function getJsonSquad(text){
 		console.log("erro getJsonSquad");
 		throw false;
 	}
-	
+	text=null;
 	return jsonSquad;
 }
 
