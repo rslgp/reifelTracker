@@ -521,11 +521,18 @@ function padraoNick(winrate, nick){
 }
 
 function getJsonSquad(text){
+	/*
+	//old
 	var temp = text.substring(text.indexOf(buscas[0])+16);
 	
 	temp = temp.substr( 0,temp.indexOf(buscas[1]) );
 	temp = temp.substring(temp.indexOf(buscas[2]));
-	temp = temp.substring(5,temp.indexOf("]")+1);
+	temp = temp.substring(5,temp.indexOf("]")+1);*/
+	
+	
+	//super otimizacao de processamento e memoria, usar o startOf do indexOf
+	var inicio = ( text.indexOf( buscas[2], ( text.indexOf(buscas[0])+16 ) )+5 );
+	var temp = text.substring( inicio, ( text.indexOf("]", inicio)+1 ) );
 	
 	//console.log(temp);
 	var jsonSquad;
