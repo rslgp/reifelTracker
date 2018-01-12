@@ -7,7 +7,7 @@ client.login(process.env.BOT_TOKEN);
 //versao 1.0
 const message = new Discord.Message();
 const Browser = require('zombie');
-const creditos = "> criado por Reifel <", /*separador=" | "*/, quebraLinha="\r\n";
+const creditos = "> criado por Reifel <", /*separador=" | ",*/ quebraLinha="\r\n";
 
 //tratando casos de erro
 const errorNickNaoEncontrado="nick não encontrado",
