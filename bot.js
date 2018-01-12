@@ -278,7 +278,7 @@ client.on('message', message => {
 		break;
 		
 		case "alt":
-			var site = siteStormShield+parametroUsado;
+			site = siteStormShield+parametroUsado;
 			Browser.visit(site, function (e, browser) {				
 				var wins,winP,kd,kills;	
 				try{				
