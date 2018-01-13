@@ -1,6 +1,13 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 
+//CALABOCA VUE -- comentar em caso de debug, se precisar
+console.log = function log()
+{
+  
+} 
+//FIM-CALABOCA
+
 //trocar o token
 client.login(process.env.BOT_TOKEN);
 
