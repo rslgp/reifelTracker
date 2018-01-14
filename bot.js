@@ -342,11 +342,11 @@ function search(jsonSquad,nick){
 	var resultado="";
 	var wins = 2
 	,winP = 9
-	,kd = 11
-	,kills = 8
+	,kd = 8
+	,kills = 11
 	;		
 	
-	if(jsonSquad[wins].label === 'Wins' && jsonSquad[winP].label === 'Win %' && jsonSquad[kd].label === 'Kills' && jsonSquad[kills].value === 'K/d')
+	if(jsonSquad[wins].label === 'Wins' && jsonSquad[winP].label === 'Win %' && jsonSquad[kills].label === 'Kills' && jsonSquad[kd].value === 'K/d')
 	{}	
 	else{			
 			var n=0;
@@ -401,10 +401,10 @@ function formatarMsg(winP, kd, wins, kills){
 
 function up(jsonSquad){	
 	
-	var winP = 9;
-	var matches = 10;	
+	var winP = 9, matches = 10, kd = 8;	
+	var retorno = [];
 	
-	if(jsonSquad[winP].label !== 'Win %' || jsonSquad[matches].label !== 'Matches'){			
+	if(jsonSquad[winP].label !== 'Win %' || jsonSquad[matches].label !== 'Matches' || jsonSquad[kd].value !== 'K/d'){			
 			var n=0;
 			for( i=0; i < jsonSquad.length; i++ ){
 				//console.log(jsonSquad[i].label);
@@ -416,6 +416,10 @@ function up(jsonSquad){
 					case "Matches":
 						matches = n;
 					break;
+					
+					case "K/d":
+						kd = n;
+					break;
 				}
 				n++;
 			}
@@ -423,18 +427,22 @@ function up(jsonSquad){
 	try{
 		//cap new accounts
 		if(jsonSquad[matches].value < 36){ //no data to build trusty sample
-			return (jsonSquad[winP].ValueDec * 0.2).toFixed(2)+"*";
+			retorno[0] = (jsonSquad[winP].ValueDec * 0.2).toFixed(2)+"*";
 		}
 		//old accounts or ok winrate
 		if(jsonSquad[matches].value > 250 || jsonSquad[winP].value < 20){ //pessoas de conta antiga ou pessoas q sao novas e tem winrate aceitavel
-			return jsonSquad[winP].value;
+			retorno[0] = jsonSquad[winP].value;
 		}else{			
-			return (jsonSquad[winP].ValueDec * 0.57).toFixed(2)+"*";		
+			retorno[0] = (jsonSquad[winP].ValueDec * 0.57).toFixed(2)+"*";		
 		}
 		
 	}catch(e){
 		console.log("erro no cap");
 	}
+	
+	retorno[1]=jsonSquad[kd].value;
+	
+	return retorno;
 	
 }
 
@@ -490,8 +498,8 @@ function setWinRateNick(message, site, i){
 				throw false;		
 			}
 			
-			winRate = up(jsonSquad);	
-			atualizarWinRateNick(message, winRate, i);
+			var winrKD = up(jsonSquad);	
+			atualizarWinRateNick(message, winrKD[0], i);
 		}catch(e){
 			refreshAuto = refreshAuto.splice(i, 1);//nick errado remove do array
 		}		
@@ -563,13 +571,13 @@ function padraoAtualizarNome(message,nickLegivel,text,site){
 			console.log("error up");
 			throw false;		
 		}
-		var winRate = up(jsonSquad);
+		var winrKD = up(jsonSquad);
 	}catch(e){
 		console.log("erro padraoAtualizarNome");
 		throw false;
 	}
 	//if(message.member.hasPermission("MANAGE_NICKNAMES"))
-	message.member.setNickname( padraoNick(winRate,nickLegivel) ).then(user => message.reply(`atualizei winrate \:umbrella2:`)).catch(console.error);	
+	message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(user => message.reply(", kd:"+winrKD[2]+` atualizei winrate \:umbrella2:`)).catch(console.error);	
 	//else print(message, "ainda nao tenho permissao pra mudar seu nick :(");
 }
 
