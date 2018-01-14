@@ -83,7 +83,7 @@ client.on('message', message => {
 	var args = message.content.slice(1).trim().split(/ +/g);
 	//console.log(args);
 	var comando = args[0];
-	
+	comando = comando.toLowerCase()
 	switch(comando){ //so responder a nossos comandos, poupar cpu
 		case "t":
 		case "tracker":
@@ -111,7 +111,7 @@ client.on('message', message => {
 
 
 		
-	switch(comando.toLowerCase()){
+	switch(comando){
 		case "t":
 			comando = "tracker";
 		case "tracker":
