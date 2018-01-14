@@ -577,7 +577,7 @@ function padraoAtualizarNome(message,nickLegivel,text,site){
 		throw false;
 	}
 	//if(message.member.hasPermission("MANAGE_NICKNAMES"))
-	message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(user => message.reply(", kd:"+winrKD[2]+` atualizei winrate \:umbrella2:`)).catch(console.error);	
+	message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(user => message.reply(", kd:"+winrKD[1]+` atualizei winrate \:umbrella2:`)).catch(console.error);	
 	//else print(message, "ainda nao tenho permissao pra mudar seu nick :(");
 }
 
