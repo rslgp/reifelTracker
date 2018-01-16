@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-/*
+
 //CALABOCA VUE -- comentar em caso de debug, se precisar
 console.log = function log()
 {
@@ -707,7 +707,6 @@ function getNickConhecido(message){
 	}
 }
 
-function changeRole(member,oldRole, newRole){	
-	member.addRoles([newRole]);				
-	member.removeRoles([oldRole]);
+function changeRole(member,oldRole, newRole){			
+	member.removeRoles([oldRole]).then(member.addRoles([newRole]));
 }
