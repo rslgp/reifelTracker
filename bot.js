@@ -371,7 +371,10 @@ client.on('message', message => {
 						changeRole(message.member, '387071306451124224', '373640161290092544');		
 						print(message,"Parabéns! Você agora é <@&373640161290092544> \:trophy: \:ok_hand:");							
 					}else {
-						
+						//um dia talvez sera aqui q serao kickados e mandando msg q qnd atingir 10% e 1.1 kd podem voltar
+						//aprendiz
+						member.addRole('376134044439805952');
+						print(message,"patente cadastrada");
 					}
 					message.member.removeRole('387071306451124224').then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel))).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(console.error);
 				}catch(e){
