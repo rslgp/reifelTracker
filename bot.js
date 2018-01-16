@@ -332,6 +332,9 @@ client.on('message', message => {
 					throw false;		
 				}
 				var winrKD = up(jsonSquad);
+				
+				//se n tiver o minimo de wins ignora
+				if(jsonSquad[10].value > 250 || winrKD[0] < 20){}else{return;}
 				/*
 				MITICO		- Win % 45 - K/d 6.7
 				GODLIKE		- Win % 30 - K/d 4.3
