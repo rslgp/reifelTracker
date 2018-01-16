@@ -344,27 +344,27 @@ client.on('message', message => {
 					if(		winrKD[0]>=45 && winrKD[1]>=6.7){//mitico
 						if(message.member.roles.has('393260318434000907')) return;
 						changeRole(message.member, '376840180688224257', '393260318434000907');	
-						print(message,"Parabéns! você agora é <@&393260318434000907> \:trophy: \:ok_hand:");
+						print(message,"Parabéns! Você agora é <@&393260318434000907> \:trophy: \:ok_hand:");
 					}else if(winrKD[0]>=30 && winrKD[1]>=4.3){//godlike
 						if(message.member.roles.has('376840180688224257')) return;
 						changeRole(message.member, '373639920591306753', '376840180688224257');	
-						print(message,"Parabéns! você agora é <@&376840180688224257> \:trophy: \:ok_hand:");						
+						print(message,"Parabéns! Você agora é <@&376840180688224257> \:trophy: \:ok_hand:");						
 					}else if(winrKD[0]>=25 && winrKD[1]>=3.5){//lendario
 						if(message.member.roles.has('373639920591306753')) return;
 						changeRole(message.member, '373640006314754057', '373639920591306753');
-						print(message,"Parabéns! você agora é <@&373639920591306753> \:trophy: \:ok_hand:");		
+						print(message,"Parabéns! Você agora é <@&373639920591306753> \:trophy: \:ok_hand:");		
 					}else if(winrKD[0]>=20 && winrKD[1]>=2.7){//epic
 						if(message.member.roles.has('373640006314754057')) return;
 						changeRole(message.member, '373640089986924554', '373640006314754057');
-						print(message,"Parabéns! você agora é <@&373640006314754057> \:trophy: \:ok_hand:");		
+						print(message,"Parabéns! Você agora é <@&373640006314754057> \:trophy: \:ok_hand:");		
 					}else if(winrKD[0]>=15 && winrKD[1]>=1.9){//rare
 						if(message.member.roles.has('373640089986924554')) return;
 						changeRole(message.member, '373640161290092544', '373640089986924554');		
-						print(message,"Parabéns! você agora é <@&373640089986924554> \:trophy: \:ok_hand:");							
+						print(message,"Parabéns! Você agora é <@&373640089986924554> \:trophy: \:ok_hand:");							
 					}else if(winrKD[0]>=10 && winrKD[1]>=1.1){//incomum
 						if(message.member.roles.has('373640161290092544')) return;
 						changeRole(message.member, '387071306451124224', '373640161290092544');		
-						print(message,"Parabéns! você agora é <@&373640161290092544> \:trophy: \:ok_hand:");							
+						print(message,"Parabéns! Você agora é <@&373640161290092544> \:trophy: \:ok_hand:");							
 					}else {
 						
 					}
