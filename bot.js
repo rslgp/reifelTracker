@@ -708,5 +708,5 @@ function getNickConhecido(message){
 }
 
 function changeRole(member,oldRole, newRole){			
-	member.addRoles([newRole]);
+	member.addRole(newRole);
 }
