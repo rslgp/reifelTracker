@@ -261,6 +261,8 @@ client.on('message', message => {
 				runAutoUpdateWinRate(message);
 			}
 			
+			parametroUsado = encodeURI(getNickConhecido(message));
+			
 			for( i=0; i<refreshTamanho; i++){
 				if(parametroUsado === refreshAuto[i].parametroUsado) {
 						print(message, errorUsuarioRegistrado); //error user existente
