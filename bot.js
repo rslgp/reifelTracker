@@ -1,12 +1,12 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-
+/*
 //CALABOCA VUE -- comentar em caso de debug, se precisar
 console.log = function log()
 {
   
 } 
-//FIM-CALABOCA
+//FIM-CALABOCA*/
 
 //trocar o token
 client.login(process.env.BOT_TOKEN);
@@ -91,6 +91,7 @@ client.on('message', message => {
 		case "up":
 		case "auto":
 		case "help":
+		case "rank":
 		break;
 		default:
 			return;
@@ -704,4 +705,9 @@ function getNickConhecido(message){
 	}else{
 		throw false;
 	}
+}
+
+function changeRole(member,oldRole, newRole){	
+	member.addRoles([newRole]);				
+	member.removeRoles([oldRole]);
 }
