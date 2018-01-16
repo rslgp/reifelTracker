@@ -356,7 +356,7 @@ client.on('message', message => {
 					}else {
 						
 					}
-					member.removeRoles(['387071306451124224']);
+					member.removeRole('387071306451124224');
 				}catch(e){
 					
 				}
