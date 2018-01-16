@@ -38,7 +38,7 @@ var refreshTEMPO=1800000;//30min 1800000
 var interval, refreshIsRunning=0;
 //var readySimultaneoContador;
 
-const helpMessage = "comandos disponiveis:\r\n**!tracker nick** - (ou **!t nick**, consulta nick do fortnite de alguem)\r\n**!up seuNick** - (atualizar winrate do seu nick)\r\n**!auto seuNick** - (atualiza o seu winrate sozinho a cada 30 min, apos "+refreshRealizadosMAX+" atualizacoes todas as "+refreshMAXSTACK+" vagas ficam livres)\r\n**!alt seuNick** - (acessa tracker em site alternativo caso o fortnitetracker esteja bug ou off)";
+const helpMessage = "comandos disponiveis:\r\n**!tracker nick** - (ou **!t nick**, consulta nick do fortnite de alguem)\r\n**!up seuNick** - (atualizar winrate do seu nick)\r\n**!auto seuNick** - (atualiza o seu winrate sozinho a cada 30 min, apos "+refreshRealizadosMAX+" atualizacoes todas as "+refreshMAXSTACK+" vagas ficam livres)\r\n**!alt seuNick** - (acessa tracker em site alternativo caso o fortnitetracker esteja bug ou off)\r\n**!rank** - sobe de patente caso atingiu win% e kd";
 
 const errorUsuarioRegistrado = "usuario ja esta registrado", errorRefreshLotado="fila atualizacao lotada", 
 sucessoRegistro=" conseguiu se registrar", chamadaFilaLIVRE=">> a fila de atualizar win % automatica esta LIVRE <<", sucessoWinRateAtualizado="atualizei os win % de vcs";
@@ -307,6 +307,62 @@ client.on('message', message => {
 				var resultado = formatarMsg(winP,kd,wins,kills);
 				msgPadraoBot(message, resultado, site, creditos, nickLegivel);
 			});			
+		break;
+		
+		case "rank":
+			
+			try{
+				nickLegivel=parametroUsado = getNickConhecido(message);
+				parametroUsado=encodeURI(parametroUsado);
+				if(args[1] !== undefined) print(message,"ei! eu sei qm é vc \:thinking:, da proxima nao escreve o nick, escreve o comando up sem dizer o nick");
+			}catch(e){
+				//caso nao tenha guarda chuva, mantem o nick como arg
+			}
+			
+		site = siteFortniteTracker+parametroUsado;
+		Browser.visit(site, function (e, browser){
+			try{					
+				var text = browser.html();
+				var jsonSquad;
+				try{
+					jsonSquad = getJsonSquad(text);
+				}catch(e){			
+					console.log("error rank");
+					throw false;		
+				}
+				var winrKD = up(jsonSquad);
+				/*
+				MITICO		- Win % 45 - K/d 6.7
+				GODLIKE		- Win % 30 - K/d 4.3
+				LEGENDARY	- Win % 25 - K/d 3.5
+				EPIC		- Win % 20 - K/d 2.7
+				RARE		- Win % 15  - K/d 1.9
+				INCOMUM		- Win % 10 - K/d 1.1
+				*/
+				try{
+					if(		winrKD[0]>=45 && winrKD[1]>=6.7){//mitico
+						changeRole(message.member, '376840180688224257', '393260318434000907');							
+					}else if(winrKD[0]>=30 && winrKD[1]>=4.3){//godlike
+						changeRole(message.member, '373639920591306753', '376840180688224257');							
+					}else if(winrKD[0]>=25 && winrKD[1]>=3.5){//lendario
+						changeRole(message.member, '373640006314754057', '373639920591306753');
+					}else if(winrKD[0]>=20 && winrKD[1]>=2.7){//epic
+						changeRole(message.member, '373640089986924554', '373640006314754057');
+					}else if(winrKD[0]>=15 && winrKD[1]>=1.9){//rare
+						changeRole(message.member, '373640161290092544', '373640089986924554');							
+					}else if(winrKD[0]>=10 && winrKD[1]>=1.1){//incomum
+						changeRole(message.member, '387071306451124224', '373640161290092544');							
+					}else {
+						
+					}
+					
+				}catch(e){
+					
+				}
+			}catch(e){					
+				console.log("error rank2");
+			}
+		});		
 		break;
 		
 		case "debug":
