@@ -343,22 +343,22 @@ client.on('message', message => {
 				try{
 					if(		winrKD[0]>=45 && winrKD[1]>=6.7){//mitico
 						changeRole(message.member, '376840180688224257', '393260318434000907');	
-						print(message,"voce subiu pra mitico");
+						print(message,"voce subiu pra <@&393260318434000907>, parabéns");
 					}else if(winrKD[0]>=30 && winrKD[1]>=4.3){//godlike
 						changeRole(message.member, '373639920591306753', '376840180688224257');	
-						print(message,"voce subiu pra godlike");						
+						print(message,"voce subiu pra <@&376840180688224257>, parabéns");						
 					}else if(winrKD[0]>=25 && winrKD[1]>=3.5){//lendario
 						changeRole(message.member, '373640006314754057', '373639920591306753');
-						print(message,"voce subiu pra lendario");		
+						print(message,"voce subiu pra <@&373639920591306753>, parabéns");		
 					}else if(winrKD[0]>=20 && winrKD[1]>=2.7){//epic
 						changeRole(message.member, '373640089986924554', '373640006314754057');
-						print(message,"voce subiu pra epic");		
+						print(message,"voce subiu pra <@&373640006314754057>, parabéns");		
 					}else if(winrKD[0]>=15 && winrKD[1]>=1.9){//rare
 						changeRole(message.member, '373640161290092544', '373640089986924554');		
-						print(message,"voce subiu pra rare");							
+						print(message,"voce subiu pra <@&373640089986924554>, parabéns");							
 					}else if(winrKD[0]>=10 && winrKD[1]>=1.1){//incomum
 						changeRole(message.member, '387071306451124224', '373640161290092544');		
-						print(message,"voce subiu pra incomum");							
+						print(message,"voce subiu pra <@&373640161290092544>, parabéns");							
 					}else {
 						
 					}
