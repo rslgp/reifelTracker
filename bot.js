@@ -368,9 +368,7 @@ client.on('message', message => {
 					}else {
 						
 					}
-					message.member.removeRole('387071306451124224')
-					.then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel))) )
-					.then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(console.error);
+					message.member.removeRole('387071306451124224').then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel))).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(console.error);
 				}catch(e){
 					
 				}
