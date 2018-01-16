@@ -368,7 +368,7 @@ client.on('message', message => {
 					}else {
 						
 					}
-					member.removeRole('387071306451124224');
+					message.member.removeRole('387071306451124224');
 				}catch(e){
 					
 				}
