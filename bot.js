@@ -260,8 +260,8 @@ client.on('message', message => {
 				refreshIsRunning=1;
 				runAutoUpdateWinRate(message);
 			}
-			
-			parametroUsado = encodeURI(getNickConhecido(message));
+			nickLegivel = parametroUsado = getNickConhecido(message);
+			parametroUsado = encodeURI(parametroUsado);
 			
 			for( i=0; i<refreshTamanho; i++){
 				if(parametroUsado === refreshAuto[i].parametroUsado) {
