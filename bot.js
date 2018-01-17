@@ -728,6 +728,11 @@ function getNickConhecido(message){
 }
 
 function changeRole(member,oldRole, newRole){			
-	member.addRole(newRole);
-	member.removeRole(oldRole);
+	try{
+		member.addRole(newRole);		
+	}catch(e){};
+	
+	try{
+	member.removeRole(oldRole);	
+	}catch(e){};
 }
