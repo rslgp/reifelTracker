@@ -402,7 +402,8 @@ client.on('message', message => {
 						member.addRole('376134044439805952'); //aprendiz
 						print(message,"patente cadastrada");
 					}
-					message.member.removeRole(desconhecido).then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel))).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(console.error);
+					if(message.member.roles.has(desconhecido)) message.member.removeRole(desconhecido).then(message.member.removeRole(desconhecido)).then(message.member.removeRole(desconhecido)).catch(console.error);
+					message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(console.error);
 				}catch(e){
 					
 				}
@@ -753,10 +754,11 @@ function getNickConhecido(message){
 	}
 }
 
-function changeRole(member,oldRole, newRole){			
+function changeRole(member,oldRole, newRole){	
 	try{
-		member.addRole(newRole).catch();		
+		member.addRole(newRole).then(member.addRole(newRole)).then(member.addRole(newRole)).catch();		
 	}catch(e){};
+	
 	
 	try{
 		if( member.roles.has(oldRole) ) member.removeRole(oldRole).catch();	
