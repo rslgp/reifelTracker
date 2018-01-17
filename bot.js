@@ -74,6 +74,15 @@ client.on('message', message => {
 			
 	}
 	
+	
+	if(message.content[0] === "!") {
+		//print(message,"Opaa...\r\na v2 do reifelTracker agora inicia o comando com **.** \r\nexemplos: .t .up .help"); 
+		message.content[0]=".";
+	}
+	else{
+		if(message.content[0] !== ".") return; //se nao for comando ignora
+	}
+	
 	//anti-spam
 	if(cooldownUser.indexOf(message.member.id) !== -1 ){print(message,message.member.nickname+" você está em cooldown");return;}
 	else{
@@ -88,14 +97,6 @@ client.on('message', message => {
 		}, 3000);
 	}
 	//fim anti
-	
-	if(message.content[0] === "!") {
-		//print(message,"Opaa...\r\na v2 do reifelTracker agora inicia o comando com **.** \r\nexemplos: .t .up .help"); 
-		message.content[0]=".";
-	}
-	else{
-		if(message.content[0] !== ".") return; //se nao for comando ignora
-	}
 		
 	//dividindo cada palavra da mensagem em um array de palavras
 	var args = message.content.slice(1).trim().split(/ +/g);
