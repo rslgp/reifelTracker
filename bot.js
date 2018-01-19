@@ -399,7 +399,7 @@ client.on('message', message => {
 					}else {
 						//um dia talvez sera aqui q serao kickados e mandando msg q qnd atingir 10% e 1.1 kd podem voltar
 						//aprendiz
-						member.addRole('376134044439805952'); //aprendiz
+						changeRole(message.member, desconhecido,'376134044439805952'); //aprendiz
 						print(message,"patente cadastrada");
 					}
 					if(message.member.roles.has(desconhecido)) message.member.removeRole(desconhecido).then(message.member.removeRole(desconhecido)).then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )).catch(console.error);
