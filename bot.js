@@ -403,7 +403,7 @@ client.on('message', message => {
 						print(message,"patente cadastrada");
 					}
 					if(message.member.roles.has(desconhecido)) message.member.removeRole(desconhecido).then(message.member.removeRole(desconhecido)).then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )).catch(console.error);
-					message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(console.error);
+					message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(console.error);
 				}catch(e){
 					
 				}
