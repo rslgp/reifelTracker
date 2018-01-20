@@ -348,14 +348,16 @@ client.on('message', message => {
 				var jsonSquad;
 				try{
 					jsonSquad = getJsonSquad(text);
+					text=null;
 				}catch(e){			
-					console.log("error rank");
+					//console.log("error rank");
 					throw false;		
 				}
 				var winrKD = up(jsonSquad);
 				
 				//se n tiver o minimo de wins ignora
 				if(jsonSquad[10].value > 250 || winrKD[0] < 20){}else{return;}
+				jsonSquad=null;
 				/*
 				MITICO		- Win % 45 - K/d 6.7
 				GODLIKE		- Win % 30 - K/d 4.3
@@ -408,7 +410,7 @@ client.on('message', message => {
 					
 				}
 			}catch(e){					
-				console.log("error rank2");
+				//console.log("error rank2");
 			}
 		});		
 		break;
