@@ -148,7 +148,7 @@ client.on('message', message => {
 			
 			site = siteFortniteTracker+parametroUsado;
 			//crawler
-			Browser.visit(site, function (e, browser) {				
+			var variavelVisita = Browser.visit(site, function (e, browser) {				
 				try{
 					var text = browser.html();
 					
@@ -198,7 +198,8 @@ client.on('message', message => {
 				}catch(e){
 					print(message, nickLegivel + errorFortnitetracker);
 				}
-			});	
+			});			
+			variavelVisita=null;
 		break;
 		
 		case "up":			
@@ -233,14 +234,14 @@ client.on('message', message => {
 			*/
 			
 			site = siteFortniteTracker+parametroUsado;
-			Browser.visit(site, function (e, browser) {
+			var variavelVisita = Browser.visit(site, function (e, browser) {
 				try{					
 					var text = browser.html();
 					padraoAtualizarNome(message,nickLegivel,text,site);
 				}catch(e){
 					try{ //tentar atualizar usando outro site
 						var site = siteStormShield+parametroUsado;
-						Browser.visit(site, function (e, browser) {					
+						var variavelVisita = Browser.visit(site, function (e, browser) {					
 							var winP;	
 							try{							
 								winP = padraoAlt(browser,6);
@@ -263,7 +264,7 @@ client.on('message', message => {
 			if(nickLegivel === undefined) {print(message, errorNickNaoEncontrado); return;}	
 			TAG = "";
 			site = siteFortniteTracker+parametroUsado;
-			Browser.visit(site, function (e, browser) {
+			var variavelVisita = Browser.visit(site, function (e, browser) {
 				try{
 					var text = browser.html();
 					padraoAtualizarNome(message,nickLegivel,text,site);
@@ -309,7 +310,7 @@ client.on('message', message => {
 		
 		case "alt":
 			site = siteStormShield+parametroUsado;
-			Browser.visit(site, function (e, browser) {				
+			var variavelVisita = Browser.visit(site, function (e, browser) {				
 				var wins,winP,kd,kills;	
 				try{				
 					kills = padraoAlt(browser,1);				
@@ -343,7 +344,7 @@ client.on('message', message => {
 			}
 			
 		site = siteFortniteTracker+parametroUsado;
-		Browser.visit(site, function (e, browser){
+		var variavelVisita = Browser.visit(site, function (e, browser){
 			try{					
 				var text = browser.html();
 				var jsonSquad;
@@ -413,7 +414,8 @@ client.on('message', message => {
 			}catch(e){					
 				//console.log("error rank2");
 			}
-		});		
+		});	
+		variavelVisita=null;
 		break;
 		
 		case "debug":
@@ -593,7 +595,7 @@ function atualizarWinRateNick(message, winRate, i){
 //fim ForRecursivo - stack update
 
 function setWinRateNick(message, site, i){
-	Browser.visit(site, function (e, browser) {
+	var variavelVisita = Browser.visit(site, function (e, browser) {
 		var text = browser.html();	
 		try{
 			var jsonSquad;
@@ -611,6 +613,8 @@ function setWinRateNick(message, site, i){
 			refreshAuto = refreshAuto.splice(i, 1);//nick errado remove do array
 		}		
 	});
+	
+	variavelVisita=null;
 }
 
 function runAutoUpdateWinRate(message){
