@@ -82,7 +82,7 @@ client.on('message', message => {
 	else{
 		if(message.content[0] !== ".") return; //se nao for comando ignora
 	}
-	
+	/*
 	//anti-spam
 	if(cooldownUser.indexOf(message.member.id) !== -1 ){print(message,"você está em cooldown");return;}
 	else{
@@ -97,6 +97,7 @@ client.on('message', message => {
 		}, 3000);
 	}
 	//fim anti
+	*/
 		
 	//dividindo cada palavra da mensagem em um array de palavras
 	var args = message.content.slice(1).trim().split(/ +/g);
