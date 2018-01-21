@@ -358,7 +358,7 @@ client.on('message', message => {
 				var winrKD = up(jsonSquad);
 				
 				//se n tiver o minimo de wins ignora
-				if(jsonSquad[10].value > 250 || winrKD[0] < 20){}else{return;}
+				if(jsonSquad[10].value > 250 || winrKD[0] < 26){}else{return;}
 				jsonSquad=null;
 				/*
 				MITICO		- Win % 45 - K/d 6.7
@@ -539,7 +539,7 @@ function up(jsonSquad){
 			retorno[0] = (jsonSquad[winP].ValueDec * 0.2).toFixed(2)+"*";
 		}
 		//old accounts or ok winrate
-		if(jsonSquad[matches].value > 250 || jsonSquad[winP].value < 20){ //pessoas de conta antiga ou pessoas q sao novas e tem winrate aceitavel
+		if(jsonSquad[matches].value > 250 || jsonSquad[winP].value < 26){ //pessoas de conta antiga ou pessoas q sao novas e tem winrate aceitavel
 			retorno[0] = jsonSquad[winP].value;
 		}else{			
 			retorno[0] = (jsonSquad[winP].ValueDec * 0.57).toFixed(2)+"*";		
