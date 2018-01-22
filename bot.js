@@ -109,7 +109,6 @@ client.on('message', message => {
 		case "tracker":
 		case "alt":
 		case "up":
-		case "auto":
 		case "help":
 		case "rank":
 		break;
