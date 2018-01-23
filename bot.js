@@ -356,9 +356,24 @@ client.on('message', message => {
 				}
 				var winrKD = up(jsonSquad);
 				
+				var matches=11;
+				if(jsonSquad[matches].label !== 'Matches'){
+					var n=0;
+					for( i=0; i < jsonSquad.length; i++ ){
+						//console.log(jsonSquad[i].label);
+						switch(jsonSquad[i].label){
+							case "Matches":
+								matches = n;
+							break;					
+						}
+						n++;
+					}					
+				}	
+			
 				//se n tiver o minimo de wins ignora
-				if(jsonSquad[10].value > 250 || winrKD[0] < 26){}else{return;}
+				if(jsonSquad[matches].ValueInt > 250 || winrKD[0] < 26){}else{return;}
 				jsonSquad=null;
+				
 				/*
 				MITICO		- Win % 45 - K/d 6.7
 				GODLIKE		- Win % 30 - K/d 4.3
@@ -509,7 +524,7 @@ function formatarMsg(winP, kd, wins, kills){
 
 function up(jsonSquad){	
 	
-	var winP = 9, matches = 10, kd = 8;	
+	var winP = 9, matches = 11, kd = 8;	
 	var retorno = [];
 	
 	if(jsonSquad[winP].label !== 'Win %' || jsonSquad[matches].label !== 'Matches' || jsonSquad[kd].value !== 'K/d'){			
@@ -534,11 +549,11 @@ function up(jsonSquad){
 	}
 	try{
 		//cap new accounts
-		if(jsonSquad[matches].value < 36){ //no data to build trusty sample
+		if(jsonSquad[matches].ValueInt < 36){ //no data to build trusty sample
 			retorno[0] = (jsonSquad[winP].ValueDec * 0.2).toFixed(2)+"*";
 		}
 		//old accounts or ok winrate
-		if(jsonSquad[matches].value > 250 || jsonSquad[winP].value < 26){ //pessoas de conta antiga ou pessoas q sao novas e tem winrate aceitavel
+		if(jsonSquad[matches].ValueInt > 250 || jsonSquad[winP].value < 26){ //pessoas de conta antiga ou pessoas q sao novas e tem winrate aceitavel
 			retorno[0] = jsonSquad[winP].value;
 		}else{			
 			retorno[0] = (jsonSquad[winP].ValueDec * 0.57).toFixed(2)+"*";		
