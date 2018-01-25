@@ -199,6 +199,7 @@ client.on('message', message => {
 					print(message, nickLegivel + errorFortnitetracker);
 				}
 				browser.deleteCookies();
+				browser.destroy();
 			});			
 			variavelVisita=null;
 		break;
@@ -242,7 +243,7 @@ client.on('message', message => {
 				}catch(e){
 					try{ //tentar atualizar usando outro site
 						var site = siteStormShield+parametroUsado;
-						var variavelVisita = Browser.visit(site, function (e, browser) {					
+						var variavelVisita2 = Browser.visit(site, function (e, browser) {					
 							var winP;	
 							try{							
 								winP = padraoAlt(browser,6);
@@ -252,14 +253,20 @@ client.on('message', message => {
 								return;
 							}			
 							message.member.setNickname( padraoNick(winP,nickLegivel) ).then(user => message.reply(`atualizei winrate \:umbrella2:`)).catch(console.error);	
+							
+							browser.deleteCookies();
+							browser.destroy();
 						});
+						variavelVisita2=null;
 					}catch(e){
 						print(message, nickLegivel + errorFortnitetracker);						
 					}
 				}
 				
 				browser.deleteCookies();
+				browser.destroy();
 			});	
+			variavelVisita=null;
 		break;
 		
 		/*
