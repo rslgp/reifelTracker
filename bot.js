@@ -777,11 +777,15 @@ function getNickConhecido(message){
 
 function changeRole(member,oldRole, newRole){	
 	try{
-		member.addRole(newRole).then(member.addRole(newRole)).then(member.addRole(newRole)).catch();		
+		member.addRole(newRole).then(verifyRole(member,newRole)).then(verifyRole(member,newRole)).catch();		
 	}catch(e){};
 	
 	
 	try{
 		if( member.roles.has(oldRole) ) member.removeRole(oldRole).catch();	
 	}catch(e){};
+}
+
+function verifyRole(member, role){
+	if(member.roles.has(role)){return;}else{member.addRole(newRole);}
 }
