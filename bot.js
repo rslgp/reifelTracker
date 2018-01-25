@@ -14,6 +14,7 @@ client.login(process.env.BOT_TOKEN);
 //versao 1.0
 const message = new Discord.Message();
 const Browser = require('zombie');
+Browser.silent = true;
 const creditos = "> criado por Reifel <", /*separador=" | ",*/ quebraLinha="\r\n";
 
 //tratando casos de erro
@@ -197,6 +198,7 @@ client.on('message', message => {
 				}catch(e){
 					print(message, nickLegivel + errorFortnitetracker);
 				}
+				browser.deleteCookies();
 			});			
 			variavelVisita=null;
 		break;
@@ -255,6 +257,8 @@ client.on('message', message => {
 						print(message, nickLegivel + errorFortnitetracker);						
 					}
 				}
+				
+				browser.deleteCookies();
 			});	
 		break;
 		
