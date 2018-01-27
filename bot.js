@@ -382,7 +382,14 @@ client.on('message', message => {
 				}	
 			
 				//se n tiver o minimo de wins ignora
-				if(jsonSquad[matches].ValueInt > 250 || winrKD[0] < 26){}else{return;}
+				if(jsonSquad[matches].ValueInt > 250 || winrKD[0] < 26){
+					
+				}else{					
+					changeRole(message.member, desconhecido, incomum);		
+					print(message,"Parabéns! Você agora é <@&373640161290092544> \:trophy: \:ok_hand:");
+					jsonSquad=null;
+					return;
+				}
 				jsonSquad=null;
 				
 				/*
