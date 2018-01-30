@@ -24,7 +24,7 @@ errorNuncaGanhouSquad="nunca ganhou squad", errorFortnitetracker=", nick não en
 
 const siteFortniteTracker = "https://fortnitetracker.com/profile/pc/", siteStormShield = "https://www.stormshield.one/pvp/stats/";
 
-const winsStormShieldPath="body>div.container>div:nth-child(2)>div.col-12.col-md-8>div>div:nth-child(3)>div>div:nth-child(3)>div:nth-child(2)>a>div.istat__value";
+const winsStormShieldPath="body > div.container.pvp > div:nth-child(1) > div.col-12.col-md-8 > div:nth-child(1) > div:nth-child(4) > div > div.post > div:nth-child(2) > div:nth-child(2) > a > div.istat__value";
 
 const comandoErrado = "comando invalido";
 
@@ -747,7 +747,7 @@ function padraoAlt(browser,id) {
 	if(id===0){
 		elem = browser.queryAll(winsStormShieldPath);		
 	}else{
-		elem = browser.queryAll("body>div.container>div:nth-child(2)>div.col-12.col-md-8>div>div:nth-child(3)>div>div:nth-child(4)>div:nth-child("+id+")>div>a>div.stat__value");
+		elem = browser.queryAll("body > div.container.pvp > div:nth-child(1) > div.col-12.col-md-8 > div:nth-child(1) > div:nth-child(4) > div > div.post > div:nth-child(3) > div:nth-child("+id+") > div > a > div.stat__value");
 	}
 	var retorno = elem[0].innerHTML;
 	return retorno.replace(/(\r\n|\n|\r)/gm,"");
