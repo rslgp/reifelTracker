@@ -198,8 +198,13 @@ client.on('message', message => {
 				}catch(e){
 					print(message, nickLegivel + errorFortnitetracker);
 				}
-				browser.deleteCookies();
-				browser.destroy();
+				
+				try{
+					browser.deleteCookies();
+					browser.destroy();					
+				}catch(e){
+					
+				}
 			});			
 			variavelVisita=null;
 		break;
@@ -254,17 +259,24 @@ client.on('message', message => {
 							}			
 							message.member.setNickname( padraoNick(winP,nickLegivel) ).then(user => message.reply(`atualizei winrate \:umbrella2:`)).catch(console.error);	
 							
-							browser.deleteCookies();
-							browser.destroy();
+							try{
+								browser.deleteCookies();
+								browser.destroy();					
+							}catch(e){
+								
+							}
 						});
 						variavelVisita2=null;
 					}catch(e){
 						print(message, nickLegivel + errorFortnitetracker);						
 					}
 				}
-				
-				browser.deleteCookies();
-				browser.destroy();
+				try{
+					browser.deleteCookies();
+					browser.destroy();					
+				}catch(e){
+					
+				}
 			});	
 			variavelVisita=null;
 		break;
