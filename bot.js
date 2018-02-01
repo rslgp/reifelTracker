@@ -44,15 +44,17 @@ const helpMessage = "comandos disponiveis:\r\n**!tracker nick** - (ou **!t nick*
 const errorUsuarioRegistrado = "usuario ja esta registrado", errorRefreshLotado="fila atualizacao lotada", 
 sucessoRegistro=" conseguiu se registrar", chamadaFilaLIVRE=">> a fila de atualizar win % automatica esta LIVRE <<", sucessoWinRateAtualizado="atualizei os win % de vcs";
 
+var salaRank;
+
 client.on('ready', () => {
 	client.user.username="reifelTracker";
 	client.user.setUsername("reifelTracker");
+	salaRank = client.channels.get("368505848667832321")
 });
 
 var TAG = "";
 var cooldownUser = [];
 
-const salaRank = client.channels.get("368505848667832321");
 
 client.on('message', message => {
 	if(message.author.bot) return; //ignora poupar processamento bot
