@@ -52,6 +52,8 @@ client.on('ready', () => {
 var TAG = "";
 var cooldownUser = [];
 
+const salaRank = client.channels.get("368505848667832321");
+
 client.on('message', message => {
 	if(message.author.bot) return; //ignora poupar processamento bot
 	
@@ -412,7 +414,8 @@ client.on('message', message => {
 				RARE		- Win % 15  - K/d 1.9
 				INCOMUM		- Win % 10 - K/d 1.1
 				*/
-				var mitico='393260318434000907', godlike='376840180688224257', legendary='373639920591306753', epic='373640006314754057', rare='373640089986924554', incomum='373640161290092544', desconhecido='387071306451124224';
+				const mitico='393260318434000907', godlike='376840180688224257', legendary='373639920591306753', epic='373640006314754057', rare='373640089986924554', incomum='373640161290092544', desconhecido='387071306451124224', continuaOndeEsta = "continua onde está, verifique "+salaRank+" antes de usar o comando rank";
+				
 				try{
 					if(		winrKD[0]>=45 && winrKD[1]>=6.7){//mitico
 						if(message.member.roles.has(mitico)) return;
@@ -420,27 +423,27 @@ client.on('message', message => {
 						print(message,"Parabéns! Você agora é <@&393260318434000907> \:trophy: \:ok_hand:");
 						
 					}else if(winrKD[0]>=30 && winrKD[1]>=4.3){//godlike
-						if(message.member.roles.has(godlike)) {print(message,"continua onde está"); return;}
+						if(message.member.roles.has(godlike)) {print(message,continuaOndeEsta); return;}
 						changeRole(message.member, legendary, godlike);	
 						print(message,"Parabéns! Você agora é <@&376840180688224257> \:trophy: \:ok_hand:");	
 						
 					}else if(winrKD[0]>=25 && winrKD[1]>=3.5){//lendario
-						if(message.member.roles.has(legendary)) {print(message,"continua onde está"); return;}
+						if(message.member.roles.has(legendary)) {print(message,continuaOndeEsta); return;}
 						changeRole(message.member, epic, legendary);
 						print(message,"Parabéns! Você agora é <@&373639920591306753> \:trophy: \:ok_hand:");	
 						
 					}else if(winrKD[0]>=20 && winrKD[1]>=2.7){//epic
-						if(message.member.roles.has(epic)){print(message,"continua onde está"); return;}
+						if(message.member.roles.has(epic)){print(message,continuaOndeEsta); return;}
 						changeRole(message.member, rare, epic);
 						print(message,"Parabéns! Você agora é <@&373640006314754057> \:trophy: \:ok_hand:");
 						
 					}else if(winrKD[0]>=15 && winrKD[1]>=1.9){//rare
-						if(message.member.roles.has(rare)) {print(message,"continua onde está"); return;}
+						if(message.member.roles.has(rare)) {print(message,continuaOndeEsta); return;}
 						changeRole(message.member, incomum, rare);	
 						print(message,"Parabéns! Você agora é <@&373640089986924554> \:trophy: \:ok_hand:");
 						
 					}else if(winrKD[0]>=10 && winrKD[1]>=1.1){//incomum
-						if(message.member.roles.has(incomum)) {print(message,"continua onde está"); return;}
+						if(message.member.roles.has(incomum)) {print(message,continuaOndeEsta); return;}
 						changeRole(message.member, desconhecido, incomum);		
 						print(message,"Parabéns! Você agora é <@&373640161290092544> \:trophy: \:ok_hand:");
 						
