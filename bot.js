@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-/*
+
 //CALABOCA VUE -- comentar em caso de debug, se precisar
 console.log = function log()
 {
