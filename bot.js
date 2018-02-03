@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-
+/*
 //CALABOCA VUE -- comentar em caso de debug, se precisar
 console.log = function log()
 {
@@ -160,6 +160,7 @@ client.on('message', message => {
 						var jsonSquad;
 						try{
 							jsonSquad = getJsonSquad(text);
+							console.log(jsonSquad);
 							text=null;
 						}catch(e){		
 							console.log("error search");
@@ -193,7 +194,7 @@ client.on('message', message => {
 						d7WinRate = j8[17].split(":")[2].replace(/(\r\n|\n|\r|\"| )/gm,"");
 						d7WinRate = d7WinRate.slice(0,-1);
 						
-						d7Texto="\r\n7dias>> win%: **"+d7WinRate+"** kd: **"+d7kd+"**";
+						d7Texto="\r\n7dias: win%: **"+d7WinRate+"** kd: **"+d7kd+"**";
 
 						}catch(e){
 							print(message,  "sem 7dias de "+nickLegivel+"dessa vez :(");
@@ -507,33 +508,49 @@ function search(jsonSquad,nick){
 	//console.log(text+"\r\n\r\n");
 	
 	var resultado="";
-	var wins = 2
-	,winP = 9
-	,kd = 8
-	,kills = 11
-	;		
+	var trn = 0
+	,wins = 2
+	,kd = 9
+	,winP = 10
+	,kills = 12;
 	
-	if(jsonSquad[wins].label === 'Wins' && jsonSquad[winP].label === 'Win %' && jsonSquad[kills].label === 'Kills' && jsonSquad[kd].value === 'K/d')
+	const winsLabel = 'Wins'
+	,winpLabel = 'Win %'
+	,killsLabel = 'Kills'
+	,kdLabel = 'K/d'
+	,trnLabel = 'TRN Rating'
+	;
+	
+	if(jsonSquad[wins].label === 'Wins' && jsonSquad[winP].label === 'Win %' && jsonSquad[kills].label === 'Kills' && jsonSquad[kd].label === 'K/d' && jsonSquad[trn].label === 'TRN Rating')
 	{}	
 	else{			
 			var n=0;
 			for( i=0; i < jsonSquad.length; i++ ){
 				//console.log(jsonSquad[i].label);
 				switch(jsonSquad[i].label){
-					case "Wins":
+					case winsLabel:
 						wins = n;
+						console.log("wins = "+n);
 					break;
 					
-					case "Win %":
+					case winpLabel:
 						winP = n;
+						console.log("winP = "+n);
 					break;
 						
-					case "Kills":
+					case killsLabel:
 						kills = n;
+						console.log("kills = "+n);
 					break;
 					
-					case "K/d":
+					case kdLabel:
 						kd = n;
+						console.log("kd = "+n);
+					break;
+					
+					case trnLabel:
+						trn = n;
+						console.log("trn = "+n);
 					break;
 					
 				}
@@ -545,7 +562,7 @@ function search(jsonSquad,nick){
 	//resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[wins].value+separador+"Win %: "+jsonSquad[winP].value +separador+"Kills: "+jsonSquad[kills].value +separador+ "K/d: "+jsonSquad[kd].value +quebraLinha+ site +quebraLinha+ creditos;
 	//else resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[wins].value+separador+"Win %: "+jsonSquad[winP].value +separador+"Kills: "+jsonSquad[kills].value +separador+ "K/d: "+jsonSquad[kd].value;
 	//else resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[wins].value+separador+"Win %: "+jsonSquad[winP].value +separador+"Kills: "+jsonSquad[kills].value +separador+ "K/d: "+jsonSquad[kd].value;
-	else resultado = formatarMsg(jsonSquad[winP].value,jsonSquad[kd].value,jsonSquad[wins].value,jsonSquad[kills].value);
+	else resultado = formatarMsg(jsonSquad[winP].value, jsonSquad[kd].value, jsonSquad[wins].value, jsonSquad[kills].value, jsonSquad[trn].value );
 	jsonSquad=null;	
 	
 	return resultado;
@@ -559,11 +576,12 @@ function rightJustify(str, length, char ) {
     return fill.join('');
 }
 
-function formatarMsg(winP, kd, wins, kills){
-	var p1 = "Win %: **"+winP+"** / K/d: **"+kd+"**";
-	var p2 = "Wins: "+wins+" / Kills: "+kills;
-	var p3 = "Wins: "+wins+rightJustify(p2,p1.length-7,' ')+" / Kills: "+kills;
-	return p1+quebraLinha+p3;
+function formatarMsg(winP, kd, wins, kills,trn){
+	const p1 = "Win %: **"+winP+"** / Kd: **"+kd+"**"
+	,p2 = "Wins: "+wins+" / Kills: "+kills
+	,p3 = "Wins: "+wins+rightJustify(p2,p1.length-7,' ')+" / Kills: "+kills
+	,p4 = "Nota: **"+trn+"** de __5000__";
+	return p1+quebraLinha+p3+quebraLinha+p4;
 }
 
 function up(jsonSquad){	
@@ -617,9 +635,9 @@ function msgPadraoBot(message, text, site, rodape, nick){
 		message.channel.send({embed: {
 			  color: 3447003,
 				description: text,
-				title: "site: stats de "+nick,
+				title: "Perfil Squad de "+nick,
 				url:site,
-				footer: {text:rodape+" +info: !help"}
+				footer: {text:rodape+" !help"}
 			}
 		});	
 }
