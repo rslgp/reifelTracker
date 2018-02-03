@@ -49,7 +49,7 @@ var salaRank;
 client.on('ready', () => {
 	client.user.username="reifelTracker";
 	client.user.setUsername("reifelTracker");
-	salaRank = client.channels.get("368505848667832321")
+	salaRank = client.channels.get("368505848667832321");
 });
 
 var TAG = "";
