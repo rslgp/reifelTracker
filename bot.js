@@ -586,10 +586,10 @@ function formatarMsg(winP, kd, wins, kills,trn){
 
 function up(jsonSquad){	
 	
-	var winP = 9, matches = 11, kd = 8;	
+	var winP = 10, matches = 11, kd = 9;
 	var retorno = [];
 	
-	if(jsonSquad[winP].label !== 'Win %' || jsonSquad[matches].label !== 'Matches' || jsonSquad[kd].value !== 'K/d'){			
+	if(jsonSquad[winP].label !== 'Win %' || jsonSquad[matches].label !== 'Matches' || jsonSquad[kd].label !== 'K/d'){			
 			var n=0;
 			for( i=0; i < jsonSquad.length; i++ ){
 				//console.log(jsonSquad[i].label);
