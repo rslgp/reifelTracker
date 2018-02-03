@@ -15,7 +15,7 @@ client.login(process.env.BOT_TOKEN);
 const message = new Discord.Message();
 const Browser = require('zombie');
 Browser.silent = true;
-const creditos = "> criado por Reifel <", /*separador=" | ",*/ quebraLinha="\r\n";
+const creditos = "> criado por Reifel#5047 <", /*separador=" | ",*/ quebraLinha="\r\n";
 
 //tratando casos de erro
 const errorNickNaoEncontrado="nick não encontrado",
@@ -152,65 +152,67 @@ client.on('message', message => {
 			
 			site = siteFortniteTracker+parametroUsado;
 			//crawler
-			var variavelVisita = Browser.visit(site, function (e, browser) {				
-				try{
-					var text = browser.html();
-					
-					var jsonSquad;
+			try{
+				var variavelVisita = Browser.visit(site, function (e, browser) {				
 					try{
-						jsonSquad = getJsonSquad(text);
-						text=null;
-					}catch(e){		
-						console.log("error search");
-						throw false;
-					}
-					
-					var d7Texto="";
-					try{
-					//day7
-					var d7WinRate, d7kd;
-					var day7elem;
-					
-					/* //versao antiga, bug as vezes
-					day7elem = browser.queryAll("body>div.container.content-container>div>div#profile>div.trn-profile.dtr-profile>div>div.content>div:nth-child(1)>div.dtr-stats-card.last7>div.trn-stats>div:nth-child(7)>div.value");
-					d7kd = day7elem[0].innerHTML;
+						var text = browser.html();
+						
+						var jsonSquad;
+						try{
+							jsonSquad = getJsonSquad(text);
+							text=null;
+						}catch(e){		
+							console.log("error search");
+							throw false;
+						}
+						
+						var d7Texto="";
+						try{
+						//day7
+						var d7WinRate, d7kd;
+						var day7elem;
+						
+						/* //versao antiga, bug as vezes
+						day7elem = browser.queryAll("body>div.container.content-container>div>div#profile>div.trn-profile.dtr-profile>div>div.content>div:nth-child(1)>div.dtr-stats-card.last7>div.trn-stats>div:nth-child(7)>div.value");
+						d7kd = day7elem[0].innerHTML;
 
-					day7elem = browser.queryAll("body>div.container.content-container>div>div#profile>div.trn-profile.dtr-profile>div>div.content>div:nth-child(1)>div.dtr-stats-card.last7>div.trn-stats>div:nth-child(8)>div.value");
-					d7WinRate = day7elem[0].innerHTML;
+						day7elem = browser.queryAll("body>div.container.content-container>div>div#profile>div.trn-profile.dtr-profile>div>div.content>div:nth-child(1)>div.dtr-stats-card.last7>div.trn-stats>div:nth-child(8)>div.value");
+						d7WinRate = day7elem[0].innerHTML;
 
-					d7Texto="\r\n7dias>> win%: **"+d7WinRate.slice(0, -1)+"** kd: **"+d7kd+"**";
-					*/
-					//fim day7	
-					
-					//pelo array Last7
-					day7elem = browser.queryAll("body>div.container.content-container>div:nth-child(1)>script:nth-child(10)");
-					
-					var j7 = day7elem[0].textContent;
-					day7elem=null;
-					var j8 = j7.split("}");
-					d7kd = j8[15].split(":")[2].replace(/(\r\n|\n|\r|\"| )/gm,"");
-					d7WinRate = j8[17].split(":")[2].replace(/(\r\n|\n|\r|\"| )/gm,"");
-					d7WinRate = d7WinRate.slice(0,-1);
-					
-					d7Texto="\r\n7dias>> win%: **"+d7WinRate+"** kd: **"+d7kd+"**";
+						d7Texto="\r\n7dias>> win%: **"+d7WinRate.slice(0, -1)+"** kd: **"+d7kd+"**";
+						*/
+						//fim day7	
+						
+						//pelo array Last7
+						day7elem = browser.queryAll("body>div.container.content-container>div:nth-child(1)>script:nth-child(10)");
+						
+						var j7 = day7elem[0].textContent;
+						day7elem=null;
+						var j8 = j7.split("}");
+						d7kd = j8[15].split(":")[2].replace(/(\r\n|\n|\r|\"| )/gm,"");
+						d7WinRate = j8[17].split(":")[2].replace(/(\r\n|\n|\r|\"| )/gm,"");
+						d7WinRate = d7WinRate.slice(0,-1);
+						
+						d7Texto="\r\n7dias>> win%: **"+d7WinRate+"** kd: **"+d7kd+"**";
 
+						}catch(e){
+							print(message,  "sem 7dias de "+nickLegivel+"dessa vez :(");
+						}
+
+						msgPadraoBot( message, search(jsonSquad,nickLegivel)+d7Texto, site, creditos, nickLegivel );
 					}catch(e){
-						print(message,  "sem 7dias de "+nickLegivel+"dessa vez :(");
+						print(message, nickLegivel + errorFortnitetracker);
 					}
-
-					msgPadraoBot( message, search(jsonSquad,nickLegivel)+d7Texto, site, creditos, nickLegivel );
-				}catch(e){
-					print(message, nickLegivel + errorFortnitetracker);
-				}
-				
-				try{
-					browser.deleteCookies();
-					browser.destroy();					
-				}catch(e){
 					
-				}
-			});			
-			variavelVisita=null;
+					try{
+						browser.deleteCookies();
+						browser.destroy();					
+					}catch(e){
+						
+					}
+				});
+				variavelVisita=null;
+			}catch(e){}			
 		break;
 		
 		case "up":			
@@ -245,44 +247,46 @@ client.on('message', message => {
 			*/
 			
 			site = siteFortniteTracker+parametroUsado;
-			var variavelVisita = Browser.visit(site, function (e, browser) {
-				try{					
-					var text = browser.html();
-					padraoAtualizarNome(message,nickLegivel,text,site);
-				}catch(e){
-					try{ //tentar atualizar usando outro site
-						var site = siteStormShield+parametroUsado;
-						var variavelVisita2 = Browser.visit(site, function (e, browser) {					
-							var winP;	
-							try{							
-								winP = padraoAlt(browser,6);
-								winP = winP.slice(0, -1);//remover char porcentagem
-							}catch(e){
-								print(message,errorNickNaoEncontrado);
-								return;
-							}			
-							message.member.setNickname( padraoNick(winP,nickLegivel) ).then(user => message.reply(`atualizei winrate \:umbrella2:`)).catch(console.error);	
-							
-							try{
-								browser.deleteCookies();
-								browser.destroy();					
-							}catch(e){
-								
-							}
-						});
-						variavelVisita2=null;
+			try{
+				var variavelVisita = Browser.visit(site, function (e, browser) {
+					try{					
+						var text = browser.html();
+						padraoAtualizarNome(message,nickLegivel,text,site);
 					}catch(e){
-						print(message, nickLegivel + errorFortnitetracker);						
+						try{ //tentar atualizar usando outro site
+							var site = siteStormShield+parametroUsado;
+							var variavelVisita2 = Browser.visit(site, function (e, browser) {					
+								var winP;	
+								try{							
+									winP = padraoAlt(browser,6);
+									winP = winP.slice(0, -1);//remover char porcentagem
+								}catch(e){
+									print(message,errorNickNaoEncontrado);
+									return;
+								}			
+								message.member.setNickname( padraoNick(winP,nickLegivel) ).then(user => message.reply(`atualizei winrate \:umbrella2:`)).catch(console.error);	
+								
+								try{
+									browser.deleteCookies();
+									browser.destroy();					
+								}catch(e){
+									
+								}
+							});
+							variavelVisita2=null;
+						}catch(e){
+							print(message, nickLegivel + errorFortnitetracker);						
+						}
 					}
-				}
-				try{
-					browser.deleteCookies();
-					browser.destroy();					
-				}catch(e){
-					
-				}
-			});	
-			variavelVisita=null;
+					try{
+						browser.deleteCookies();
+						browser.destroy();					
+					}catch(e){
+						
+					}
+				});	
+				variavelVisita=null;
+			}catch(e){}
 		break;
 		
 		/*
@@ -336,27 +340,30 @@ client.on('message', message => {
 		
 		case "alt":
 			site = siteStormShield+parametroUsado;
-			var variavelVisita = Browser.visit(site, function (e, browser) {				
-				var wins,winP,kd,kills;	
-				try{				
-					kills = padraoAlt(browser,1);				
-					wins = padraoAlt(browser,0);
-					kd = padraoAlt(browser,2);
+			try{
+				var variavelVisita = Browser.visit(site, function (e, browser) {				
+					var wins,winP,kd,kills;	
+					try{				
+						kills = padraoAlt(browser,1);				
+						wins = padraoAlt(browser,0);
+						kd = padraoAlt(browser,2);
 
-					winP = padraoAlt(browser,6);
-					winP = winP.slice(0, -1);//remover char porcentagem
-				}catch(e){
-					print(message,"comando alt esta instavel");
-					return;
-				}
-				
-				
-				//console.log(wins+" "+kd+" "+winP+" "+kills);
-				
-				//var resultado = ">> "+nickLegivel+" Squad <<\r\nWins: "+ wins +separador+"Win %: "+ winP +separador+"Kills: "+ kills +separador+ "K/d: "+kd;
-				var resultado = formatarMsg(winP,kd,wins,kills);
-				msgPadraoBot(message, resultado, site, creditos, nickLegivel);
-			});			
+						winP = padraoAlt(browser,6);
+						winP = winP.slice(0, -1);//remover char porcentagem
+					}catch(e){
+						print(message,"comando alt esta instavel");
+						return;
+					}
+					
+					
+					//console.log(wins+" "+kd+" "+winP+" "+kills);
+					
+					//var resultado = ">> "+nickLegivel+" Squad <<\r\nWins: "+ wins +separador+"Win %: "+ winP +separador+"Kills: "+ kills +separador+ "K/d: "+kd;
+					var resultado = formatarMsg(winP,kd,wins,kills);
+					msgPadraoBot(message, resultado, site, creditos, nickLegivel);
+				});	
+				variavelVisita=null;
+			}catch(e){}
 		break;
 		
 		case "rank":
@@ -370,101 +377,103 @@ client.on('message', message => {
 			}
 			
 		site = siteFortniteTracker+parametroUsado;
-		var variavelVisita = Browser.visit(site, function (e, browser){
-			try{					
-				var text = browser.html();
-				var jsonSquad;
-				try{
-					jsonSquad = getJsonSquad(text);
-					text=null;
-				}catch(e){			
-					//console.log("error rank");
-					throw false;		
-				}
-				var winrKD = up(jsonSquad);
-				
-				var matches=11;
-				if(jsonSquad[matches].label !== 'Matches'){
-					var n=0;
-					for( i=0; i < jsonSquad.length; i++ ){
-						//console.log(jsonSquad[i].label);
-						switch(jsonSquad[i].label){
-							case "Matches":
-								matches = n;
-							break;					
-						}
-						n++;
-					}					
-				}	
-			
-				//se n tiver o minimo de wins ignora
-				if(jsonSquad[matches].ValueInt > 250 || winrKD[0] < 26){
+		try{
+			var variavelVisita = Browser.visit(site, function (e, browser){
+				try{					
+					var text = browser.html();
+					var jsonSquad;
+					try{
+						jsonSquad = getJsonSquad(text);
+						text=null;
+					}catch(e){			
+						//console.log("error rank");
+						throw false;		
+					}
+					var winrKD = up(jsonSquad);
 					
-				}else{					
-					changeRole(message.member, desconhecido, incomum);		
-					print(message,"Parabéns! Você agora é <@&373640161290092544> \:trophy: \:ok_hand:");
-					jsonSquad=null;
-					return;
-				}
-				jsonSquad=null;
+					var matches=11;
+					if(jsonSquad[matches].label !== 'Matches'){
+						var n=0;
+						for( i=0; i < jsonSquad.length; i++ ){
+							//console.log(jsonSquad[i].label);
+							switch(jsonSquad[i].label){
+								case "Matches":
+									matches = n;
+								break;					
+							}
+							n++;
+						}					
+					}	
 				
-				/*
-				MITICO		- Win % 45 - K/d 6.7
-				GODLIKE		- Win % 30 - K/d 4.3
-				LEGENDARY	- Win % 25 - K/d 3.5
-				EPIC		- Win % 20 - K/d 2.7
-				RARE		- Win % 15  - K/d 1.9
-				INCOMUM		- Win % 10 - K/d 1.1
-				*/
-				const mitico='393260318434000907', godlike='376840180688224257', legendary='373639920591306753', epic='373640006314754057', rare='373640089986924554', incomum='373640161290092544', desconhecido='387071306451124224', continuaOndeEsta = "continua onde está, verifique "+salaRank+" antes de usar o comando rank";
-				
-				try{
-					if(		winrKD[0]>=45 && winrKD[1]>=6.7){//mitico
-						if(message.member.roles.has(mitico)) return;
-						changeRole(message.member, godlike, mitico);	
-						print(message,"Parabéns! Você agora é <@&393260318434000907> \:trophy: \:ok_hand:");
+					//se n tiver o minimo de wins ignora
+					if(jsonSquad[matches].ValueInt > 250 || winrKD[0] < 26){
 						
-					}else if(winrKD[0]>=30 && winrKD[1]>=4.3){//godlike
-						if(message.member.roles.has(godlike)) {print(message,continuaOndeEsta); return;}
-						changeRole(message.member, legendary, godlike);	
-						print(message,"Parabéns! Você agora é <@&376840180688224257> \:trophy: \:ok_hand:");	
-						
-					}else if(winrKD[0]>=25 && winrKD[1]>=3.5){//lendario
-						if(message.member.roles.has(legendary)) {print(message,continuaOndeEsta); return;}
-						changeRole(message.member, epic, legendary);
-						print(message,"Parabéns! Você agora é <@&373639920591306753> \:trophy: \:ok_hand:");	
-						
-					}else if(winrKD[0]>=20 && winrKD[1]>=2.7){//epic
-						if(message.member.roles.has(epic)){print(message,continuaOndeEsta); return;}
-						changeRole(message.member, rare, epic);
-						print(message,"Parabéns! Você agora é <@&373640006314754057> \:trophy: \:ok_hand:");
-						
-					}else if(winrKD[0]>=15 && winrKD[1]>=1.9){//rare
-						if(message.member.roles.has(rare)) {print(message,continuaOndeEsta); return;}
-						changeRole(message.member, incomum, rare);	
-						print(message,"Parabéns! Você agora é <@&373640089986924554> \:trophy: \:ok_hand:");
-						
-					}else if(winrKD[0]>=10 && winrKD[1]>=1.1){//incomum
-						if(message.member.roles.has(incomum)) {print(message,continuaOndeEsta); return;}
+					}else{					
 						changeRole(message.member, desconhecido, incomum);		
 						print(message,"Parabéns! Você agora é <@&373640161290092544> \:trophy: \:ok_hand:");
-						
-					}else {
-						//um dia talvez sera aqui q serao kickados e mandando msg q qnd atingir 10% e 1.1 kd podem voltar
-						//aprendiz
-						changeRole(message.member, desconhecido,'376134044439805952'); //aprendiz
-						print(message,"patente cadastrada");
+						jsonSquad=null;
+						return;
 					}
-					if(message.member.roles.has(desconhecido)) message.member.removeRole(desconhecido).then(message.member.removeRole(desconhecido)).then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )).catch(console.error);
-					message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(console.error);
-				}catch(e){
+					jsonSquad=null;
 					
+					/*
+					MITICO		- Win % 45 - K/d 6.7
+					GODLIKE		- Win % 30 - K/d 4.3
+					LEGENDARY	- Win % 25 - K/d 3.5
+					EPIC		- Win % 20 - K/d 2.7
+					RARE		- Win % 15  - K/d 1.9
+					INCOMUM		- Win % 10 - K/d 1.1
+					*/
+					const mitico='393260318434000907', godlike='376840180688224257', legendary='373639920591306753', epic='373640006314754057', rare='373640089986924554', incomum='373640161290092544', desconhecido='387071306451124224', continuaOndeEsta = "continua onde está, verifique "+salaRank+" antes de usar o comando rank";
+					
+					try{
+						if(		winrKD[0]>=45 && winrKD[1]>=6.7){//mitico
+							if(message.member.roles.has(mitico)) return;
+							changeRole(message.member, godlike, mitico);	
+							print(message,"Parabéns! Você agora é <@&393260318434000907> \:trophy: \:ok_hand:");
+							
+						}else if(winrKD[0]>=30 && winrKD[1]>=4.3){//godlike
+							if(message.member.roles.has(godlike)) {print(message,continuaOndeEsta); return;}
+							changeRole(message.member, legendary, godlike);	
+							print(message,"Parabéns! Você agora é <@&376840180688224257> \:trophy: \:ok_hand:");	
+							
+						}else if(winrKD[0]>=25 && winrKD[1]>=3.5){//lendario
+							if(message.member.roles.has(legendary)) {print(message,continuaOndeEsta); return;}
+							changeRole(message.member, epic, legendary);
+							print(message,"Parabéns! Você agora é <@&373639920591306753> \:trophy: \:ok_hand:");	
+							
+						}else if(winrKD[0]>=20 && winrKD[1]>=2.7){//epic
+							if(message.member.roles.has(epic)){print(message,continuaOndeEsta); return;}
+							changeRole(message.member, rare, epic);
+							print(message,"Parabéns! Você agora é <@&373640006314754057> \:trophy: \:ok_hand:");
+							
+						}else if(winrKD[0]>=15 && winrKD[1]>=1.9){//rare
+							if(message.member.roles.has(rare)) {print(message,continuaOndeEsta); return;}
+							changeRole(message.member, incomum, rare);	
+							print(message,"Parabéns! Você agora é <@&373640089986924554> \:trophy: \:ok_hand:");
+							
+						}else if(winrKD[0]>=10 && winrKD[1]>=1.1){//incomum
+							if(message.member.roles.has(incomum)) {print(message,continuaOndeEsta); return;}
+							changeRole(message.member, desconhecido, incomum);		
+							print(message,"Parabéns! Você agora é <@&373640161290092544> \:trophy: \:ok_hand:");
+							
+						}else {
+							//um dia talvez sera aqui q serao kickados e mandando msg q qnd atingir 10% e 1.1 kd podem voltar
+							//aprendiz
+							changeRole(message.member, desconhecido,'376134044439805952'); //aprendiz
+							print(message,"patente cadastrada");
+						}
+						if(message.member.roles.has(desconhecido)) message.member.removeRole(desconhecido).then(message.member.removeRole(desconhecido)).then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )).catch(console.error);
+						message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(console.error);
+					}catch(e){
+						
+					}
+				}catch(e){					
+					//console.log("error rank2");
 				}
-			}catch(e){					
-				//console.log("error rank2");
-			}
-		});	
-		variavelVisita=null;
+			});	
+			variavelVisita=null;
+		}catch(e){}
 		break;
 		
 		case "debug":
@@ -644,26 +653,28 @@ function atualizarWinRateNick(message, winRate, i){
 //fim ForRecursivo - stack update
 
 function setWinRateNick(message, site, i){
-	var variavelVisita = Browser.visit(site, function (e, browser) {
-		var text = browser.html();	
-		try{
-			var jsonSquad;
+	try{
+		var variavelVisita = Browser.visit(site, function (e, browser) {
+			var text = browser.html();	
 			try{
-				jsonSquad = getJsonSquad(text);
-				text=null;
-			}catch(e){			
-				console.log("error up");
-				throw false;		
-			}
-			
-			var winrKD = up(jsonSquad);	
-			atualizarWinRateNick(message, winrKD[0], i);
-		}catch(e){
-			refreshAuto = refreshAuto.splice(i, 1);//nick errado remove do array
-		}		
-	});
-	
-	variavelVisita=null;
+				var jsonSquad;
+				try{
+					jsonSquad = getJsonSquad(text);
+					text=null;
+				}catch(e){			
+					console.log("error up");
+					throw false;		
+				}
+				
+				var winrKD = up(jsonSquad);	
+				atualizarWinRateNick(message, winrKD[0], i);
+			}catch(e){
+				refreshAuto = refreshAuto.splice(i, 1);//nick errado remove do array
+			}		
+		});
+		
+		variavelVisita=null;
+	}catch(e){}
 }
 
 function runAutoUpdateWinRate(message){
