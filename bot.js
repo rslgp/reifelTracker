@@ -840,6 +840,18 @@ function getNickConhecido(message){
 }
 
 function changeRole(member,oldRole, newRole){	
+	
+	setTimeout(function(){ 
+			member.addRole(newRole).catch(console.error);
+		}, 1700);
+		
+		
+	setTimeout(function(){ 
+			if( member.roles.has(oldRole) ) member.removeRole(oldRole).catch(console.error);	
+		}, 1700);
+		
+	/*
+	//go horse
 	try{
 		member.addRole(newRole).then(verifyRole(member,newRole)).then(verifyRole(member,newRole)).catch(console.error);		
 	}catch(e){};
@@ -848,6 +860,7 @@ function changeRole(member,oldRole, newRole){
 	try{
 		if( member.roles.has(oldRole) ) member.removeRole(oldRole).catch(console.error);	
 	}catch(e){};
+	*/
 }
 
 function verifyRole(member, role){
