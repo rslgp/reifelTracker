@@ -358,7 +358,7 @@ client.on('message', message => {
 					//console.log(wins+" "+kd+" "+winP+" "+kills);
 					
 					//var resultado = ">> "+nickLegivel+" Squad <<\r\nWins: "+ wins +separador+"Win %: "+ winP +separador+"Kills: "+ kills +separador+ "K/d: "+kd;
-					var resultado = formatarMsg(winP,kd,wins,kills);
+					var resultado = formatarMsg(winP,kd,wins,kills,'--');
 					msgPadraoBot(message, resultado, site, creditos, nickLegivel);
 				});	
 				variavelVisita=null;
@@ -513,7 +513,7 @@ function search(jsonSquad,nick){
 	,winP = 10
 	,kills = 12;
 	
-	const winsLabel = 'Wins'
+	var winsLabel = 'Wins'
 	,winpLabel = 'Win %'
 	,killsLabel = 'Kills'
 	,kdLabel = 'K/d'
@@ -529,27 +529,27 @@ function search(jsonSquad,nick){
 				switch(jsonSquad[i].label){
 					case winsLabel:
 						wins = n;
-						console.log("wins = "+n);
+						//console.log("wins = "+n);
 					break;
 					
 					case winpLabel:
 						winP = n;
-						console.log("winP = "+n);
+						//console.log("winP = "+n);
 					break;
 						
 					case killsLabel:
 						kills = n;
-						console.log("kills = "+n);
+						//console.log("kills = "+n);
 					break;
 					
 					case kdLabel:
 						kd = n;
-						console.log("kd = "+n);
+						//console.log("kd = "+n);
 					break;
 					
 					case trnLabel:
 						trn = n;
-						console.log("trn = "+n);
+						//console.log("trn = "+n);
 					break;
 					
 				}
