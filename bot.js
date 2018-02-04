@@ -158,7 +158,7 @@ client.on('message', message => {
 						var jsonSquad;
 						try{
 							jsonSquad = getJsonSquad(text);
-							console.log(jsonSquad);
+							//console.log(jsonSquad);
 							text=null;
 						}catch(e){		
 							console.log("error search");
