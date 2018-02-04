@@ -521,7 +521,7 @@ function search(jsonSquad,nick){
 	,trnLabel = 'TRN Rating'
 	;
 	
-	if(jsonSquad[wins].label === 'Wins' && jsonSquad[winP].label === 'Win %' && jsonSquad[kills].label === 'Kills' && jsonSquad[kd].label === 'K/d' && jsonSquad[trn].label === 'TRN Rating')
+	if(jsonSquad[wins].label === 'Wins' && jsonSquad[winP].label === 'Win %' && jsonSquad[kills].label === 'Kills' && jsonSquad[kd].label === 'K/d')
 	{}	
 	else{			
 			var n=0;
@@ -558,11 +558,18 @@ function search(jsonSquad,nick){
 			}
 	}
 	
+	var valorTrn;
+	try{
+		valorTrn = jsonSquad[trn].value;		
+	}catch(e){
+		valorTrn = '--';
+	}
+	
 	if(jsonSquad[wins].value===0) resultado= errorNuncaGanhouSquad;
 	//resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[wins].value+separador+"Win %: "+jsonSquad[winP].value +separador+"Kills: "+jsonSquad[kills].value +separador+ "K/d: "+jsonSquad[kd].value +quebraLinha+ site +quebraLinha+ creditos;
 	//else resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[wins].value+separador+"Win %: "+jsonSquad[winP].value +separador+"Kills: "+jsonSquad[kills].value +separador+ "K/d: "+jsonSquad[kd].value;
 	//else resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[wins].value+separador+"Win %: "+jsonSquad[winP].value +separador+"Kills: "+jsonSquad[kills].value +separador+ "K/d: "+jsonSquad[kd].value;
-	else resultado = formatarMsg(jsonSquad[winP].value, jsonSquad[kd].value, jsonSquad[wins].value, jsonSquad[kills].value, jsonSquad[trn].value );
+	else resultado = formatarMsg(jsonSquad[winP].value, jsonSquad[kd].value, jsonSquad[wins].value, jsonSquad[kills].value, valorTrn);
 	jsonSquad=null;	
 	
 	return resultado;
