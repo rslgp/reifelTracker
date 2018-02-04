@@ -513,7 +513,7 @@ function search(jsonSquad,nick){
 	,winP = 10
 	,kills = 12;
 	
-	var winsLabel = 'Wins'
+	const winsLabel = 'Wins'
 	,winpLabel = 'Win %'
 	,killsLabel = 'Kills'
 	,kdLabel = 'K/d'
