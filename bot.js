@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-
+/*
 //CALABOCA VUE -- comentar em caso de debug, se precisar
 console.log = function log()
 {
@@ -200,6 +200,7 @@ client.on('message', message => {
 
 						msgPadraoBot( message, search(jsonSquad,nickLegivel)+d7Texto, site, creditos, nickLegivel );
 					}catch(e){
+						console.log(e.message);
 						print(message, nickLegivel + errorFortnitetracker);
 					}
 					
