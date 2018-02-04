@@ -19,7 +19,7 @@ const creditos = "> criado por Reifel#5047 <", /*separador=" | ",*/ quebraLinha=
 
 //tratando casos de erro
 const errorNickNaoEncontrado="nick não encontrado",
-errorNuncaGanhouSquad="nunca ganhou squad", errorFortnitetracker=", algo deu errado, tenta o comando dnvo"
+errorNuncaGanhouSquad="nunca ganhou squad", errorFortnitetracker=", algo deu errado, tenta o comando dnvo -- (o site do fortnitetracker ta caindo hoje 04/02) pra tracker usem !alt e pra up use com paciencia"
 ;
 
 const siteFortniteTracker = "https://fortnitetracker.com/profile/pc/", siteStormShield = "https://www.stormshield.one/pvp/stats/";
