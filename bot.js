@@ -39,7 +39,7 @@ var refreshTEMPO=1800000;//30min 1800000
 var interval, refreshIsRunning=0;
 //var readySimultaneoContador;
 
-const helpMessage = "comandos disponiveis:\r\n**!tracker nick** - (ou **!t nick**, consulta nick do fortnite de alguem)\r\n**!up seuNick** - (atualizar winrate do seu nick)\r\n**!auto seuNick** - (atualiza o seu winrate sozinho a cada 30 min, apos "+refreshRealizadosMAX+" atualizacoes todas as "+refreshMAXSTACK+" vagas ficam livres)\r\n**!alt seuNick** - (acessa tracker em site alternativo caso o fortnitetracker esteja bug ou off)\r\n**!rank** - sobe de patente caso atingiu win% e kd";
+const helpMessage = "comandos disponiveis (inicie com ! ou .):\r\n**!t nick** - (ou **!t nick**, consulta nick do fortnite de alguem)\r\n**!up seuNick** - (atualizar winrate do seu nick)\r\n(desativado)**!auto seuNick** - (atualiza o seu winrate sozinho a cada 30 min, apos "+refreshRealizadosMAX+" atualizacoes todas as "+refreshMAXSTACK+" vagas ficam livres)\r\n**!alt seuNick** - (acessa tracker em site alternativo caso o fortnitetracker esteja bug ou off)\r\n**!rank** - sobe de patente caso atingiu win% e kd";
 
 const errorUsuarioRegistrado = "usuario ja esta registrado", errorRefreshLotado="fila atualizacao lotada", 
 sucessoRegistro=" conseguiu se registrar", chamadaFilaLIVRE=">> a fila de atualizar win % automatica esta LIVRE <<", sucessoWinRateAtualizado="atualizei os win % de vcs";
@@ -111,10 +111,10 @@ client.on('message', message => {
 	comando = comando.toLowerCase()
 	switch(comando){ //so responder a nossos comandos, poupar cpu
 		case "t":
-		case "tracker":
 		case "alt":
 		case "up":
 		case "help":
+		case "ranking":
 		case "rank":
 		break;
 		default:
@@ -138,8 +138,6 @@ client.on('message', message => {
 		
 	switch(comando){
 		case "t":
-			comando = "tracker";
-		case "tracker":
 			if(nickLegivel === undefined){
 				try{
 					nickLegivel=parametroUsado = getNickConhecido(message);
@@ -352,7 +350,7 @@ client.on('message', message => {
 						winP = padraoAlt(browser,6);
 						winP = winP.slice(0, -1);//remover char porcentagem
 					}catch(e){
-						print(message,"comando alt esta instavel");
+						print(message,"comando alt esta instavel (so funciona na segunda tentativa ou indefinido)");
 						return;
 					}
 					
@@ -367,6 +365,7 @@ client.on('message', message => {
 			}catch(e){}
 		break;
 		
+		case "ranking":
 		case "rank":
 			
 			try{
