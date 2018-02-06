@@ -15,7 +15,7 @@ client.login(process.env.BOT_TOKEN);
 const message = new Discord.Message();
 const Browser = require('zombie');
 Browser.silent = true;
-const creditos = "> criado por Reifel#5047 <", /*separador=" | ",*/ quebraLinha="\r\n";
+const creditos = "> criado por Reifel#5047 <", /*separador=" | ",*/ quebraLinha="\r\n", doacao=": [reifeltracker.ml](http://reifeltracker.ml/)\r\n(*boleto / cartão de crédito*)";
 
 //tratando casos de erro
 const errorNickNaoEncontrado="nick não encontrado",
@@ -642,7 +642,7 @@ function up(jsonSquad){
 function msgPadraoBot(message, text, site, rodape, nick){
 		message.channel.send({embed: {
 			  color: 3447003,
-				description: text,
+				description: text+quebraLinha+randomDonate(),
 				title: "Perfil Squad de "+nick,
 				url:site,
 				footer: {text:rodape+" !help"}
@@ -873,4 +873,10 @@ function changeRole(member,oldRole, newRole){
 
 function verifyRole(member, role){
 	if(member.roles.has(role)){return;}else{member.addRole(newRole);}
+}
+
+function randomDonate(){
+	const msgDonate = ['Donate', 'Dá uma moral', 'Apoie'];
+	var index = Math.floor(Math.random() * 3);
+	return quebraLinha+msgDonate[index]+doacao;
 }
