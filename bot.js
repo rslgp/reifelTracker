@@ -73,6 +73,11 @@ client.on('message', message => {
 		//case "397143937057554433": //fps
 		//break;
 		
+		case "325413143943577601"://pai
+			if(message.channel.id!=410482990091862036) return; //se nao for no tracker ignora a msg (poupa processamento)
+			//console.log(message.guild.roles);
+		break;
+		
 		default:
 			message.guild.leave(); console.log("sai"); return;
 		break;
@@ -392,83 +397,104 @@ client.on('message', message => {
 					}
 					var winrKD = up(jsonSquad);
 					
-					var matches=11;
-					if(jsonSquad[matches].label !== 'Matches'){
-						var n=0;
-						for( i=0; i < jsonSquad.length; i++ ){
-							//console.log(jsonSquad[i].label);
-							switch(jsonSquad[i].label){
-								case "Matches":
-									matches = n;
-								break;					
+					switch(message.guild.id){
+						case '325413143943577601': //pai
+							const gamer = '410483257264701441', iniciante = '410483152214163457',continuaOndeEstaPai = "continua onde está,\r\nOuro - kd >= 3.0\r\nPrata - kd >= 2.0";
+							if(winrKD[1]>=3.0){
+								if(message.member.roles.has(gamer)) {print(message,continuaOndeEstaPai); return;}
+								changeRole(message.member, iniciante, gamer);	
+								print(message,"Parabéns! Você agora é <@&410483257264701441> \:trophy: \:ok_hand:");
+							}else if(winrKD[1]>=2.0){
+								if(message.member.roles.has(iniciante)) {print(message,continuaOndeEstaPai); return;}
+								changeRole(message.member, iniciante, gamer);	
+								print(message,"Parabéns! Você agora é <@&410483152214163457> \:trophy: \:ok_hand:");
+							}else{
+								print(message,"Você precisa e consegue aumentar o kd, eu acredito!");
 							}
-							n++;
-						}					
-					}	
-				
-					//se n tiver o minimo de wins ignora
-					if(jsonSquad[matches].ValueInt > 250 || winrKD[0] < 26){
+							message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) ).then(message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) )).then(user => message.reply("winrate: **"+winrKD[0]+`**, atualizei kd \:umbrella2:`)).catch(err => console.log(err));
+						break;
 						
-					}else{					
-						changeRole(message.member, desconhecido, incomum);		
-						print(message,"Parabéns! Você agora é <@&373640161290092544> \:trophy: \:ok_hand:");
-						jsonSquad=null;
-						return;
-					}
-					jsonSquad=null;
-					
-					/*
-					MITICO		- Win % 45 - K/d 6.7
-					GODLIKE		- Win % 30 - K/d 4.3
-					LEGENDARY	- Win % 25 - K/d 3.5
-					EPIC		- Win % 20 - K/d 2.7
-					RARE		- Win % 15  - K/d 1.9
-					INCOMUM		- Win % 10 - K/d 1.1
-					*/
-					const mitico='393260318434000907', godlike='376840180688224257', legendary='373639920591306753', epic='373640006314754057', rare='373640089986924554', incomum='373640161290092544', desconhecido='387071306451124224', continuaOndeEsta = "continua onde está, verifique "+salaRank+" antes de usar o comando rank";
-					
-					try{
-						if(		winrKD[0]>=45 && winrKD[1]>=6.7){//mitico
-							if(message.member.roles.has(mitico)) return;
-							changeRole(message.member, godlike, mitico);	
-							print(message,"Parabéns! Você agora é <@&393260318434000907> \:trophy: \:ok_hand:");
-							
-						}else if(winrKD[0]>=30 && winrKD[1]>=4.3){//godlike
-							if(message.member.roles.has(godlike)) {print(message,continuaOndeEsta); return;}
-							changeRole(message.member, legendary, godlike);	
-							print(message,"Parabéns! Você agora é <@&376840180688224257> \:trophy: \:ok_hand:");	
-							
-						}else if(winrKD[0]>=25 && winrKD[1]>=3.5){//lendario
-							if(message.member.roles.has(legendary)) {print(message,continuaOndeEsta); return;}
-							changeRole(message.member, epic, legendary);
-							print(message,"Parabéns! Você agora é <@&373639920591306753> \:trophy: \:ok_hand:");	
-							
-						}else if(winrKD[0]>=20 && winrKD[1]>=2.7){//epic
-							if(message.member.roles.has(epic)){print(message,continuaOndeEsta); return;}
-							changeRole(message.member, rare, epic);
-							print(message,"Parabéns! Você agora é <@&373640006314754057> \:trophy: \:ok_hand:");
-							
-						}else if(winrKD[0]>=15 && winrKD[1]>=1.9){//rare
-							if(message.member.roles.has(rare)) {print(message,continuaOndeEsta); return;}
-							changeRole(message.member, incomum, rare);	
-							print(message,"Parabéns! Você agora é <@&373640089986924554> \:trophy: \:ok_hand:");
-							
-						}else if(winrKD[0]>=10 && winrKD[1]>=1.1){//incomum
-							if(message.member.roles.has(incomum)) {print(message,continuaOndeEsta); return;}
-							changeRole(message.member, desconhecido, incomum);		
-							print(message,"Parabéns! Você agora é <@&373640161290092544> \:trophy: \:ok_hand:");
-							
-						}else {
-							//um dia talvez sera aqui q serao kickados e mandando msg q qnd atingir 10% e 1.1 kd podem voltar
-							//aprendiz
-							changeRole(message.member, desconhecido,'376134044439805952'); //aprendiz
-							print(message,"patente cadastrada");
-						}
-						if(message.member.roles.has(desconhecido)) message.member.removeRole(desconhecido).then(message.member.removeRole(desconhecido)).then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )).catch(err => console.log(err));;
-						message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));;
-					}catch(e){
+						case '368240657816354836': //bro
+							var matches=11;
+							if(jsonSquad[matches].label !== 'Matches'){
+								var n=0;
+								for( i=0; i < jsonSquad.length; i++ ){
+									//console.log(jsonSquad[i].label);
+									switch(jsonSquad[i].label){
+										case "Matches":
+											matches = n;
+										break;					
+									}
+									n++;
+								}					
+							}	
 						
+							//se n tiver o minimo de wins ignora
+							if(jsonSquad[matches].ValueInt > 250 || winrKD[0] < 26){
+								
+							}else{					
+								changeRole(message.member, desconhecido, incomum);		
+								print(message,"Parabéns! Você agora é <@&373640161290092544> \:trophy: \:ok_hand:");
+								jsonSquad=null;
+								return;
+							}
+							jsonSquad=null;
+							
+							/*
+							MITICO		- Win % 45 - K/d 6.7
+							GODLIKE		- Win % 30 - K/d 4.3
+							LEGENDARY	- Win % 25 - K/d 3.5
+							EPIC		- Win % 20 - K/d 2.7
+							RARE		- Win % 15  - K/d 1.9
+							INCOMUM		- Win % 10 - K/d 1.1
+							*/
+							const mitico='393260318434000907', godlike='376840180688224257', legendary='373639920591306753', epic='373640006314754057', rare='373640089986924554', incomum='373640161290092544', desconhecido='387071306451124224', continuaOndeEsta = "continua onde está, verifique "+salaRank+" antes de usar o comando rank";
+							
+							try{
+								if(		winrKD[0]>=45 && winrKD[1]>=6.7){//mitico
+									if(message.member.roles.has(mitico)) return;
+									changeRole(message.member, godlike, mitico);	
+									print(message,"Parabéns! Você agora é <@&393260318434000907> \:trophy: \:ok_hand:");
+									
+								}else if(winrKD[0]>=30 && winrKD[1]>=4.3){//godlike
+									if(message.member.roles.has(godlike)) {print(message,continuaOndeEsta); return;}
+									changeRole(message.member, legendary, godlike);	
+									print(message,"Parabéns! Você agora é <@&376840180688224257> \:trophy: \:ok_hand:");	
+									
+								}else if(winrKD[0]>=25 && winrKD[1]>=3.5){//lendario
+									if(message.member.roles.has(legendary)) {print(message,continuaOndeEsta); return;}
+									changeRole(message.member, epic, legendary);
+									print(message,"Parabéns! Você agora é <@&373639920591306753> \:trophy: \:ok_hand:");	
+									
+								}else if(winrKD[0]>=20 && winrKD[1]>=2.7){//epic
+									if(message.member.roles.has(epic)){print(message,continuaOndeEsta); return;}
+									changeRole(message.member, rare, epic);
+									print(message,"Parabéns! Você agora é <@&373640006314754057> \:trophy: \:ok_hand:");
+									
+								}else if(winrKD[0]>=15 && winrKD[1]>=1.9){//rare
+									if(message.member.roles.has(rare)) {print(message,continuaOndeEsta); return;}
+									changeRole(message.member, incomum, rare);	
+									print(message,"Parabéns! Você agora é <@&373640089986924554> \:trophy: \:ok_hand:");
+									
+								}else if(winrKD[0]>=10 && winrKD[1]>=1.1){//incomum
+									if(message.member.roles.has(incomum)) {print(message,continuaOndeEsta); return;}
+									changeRole(message.member, desconhecido, incomum);		
+									print(message,"Parabéns! Você agora é <@&373640161290092544> \:trophy: \:ok_hand:");
+									
+								}else {
+									//um dia talvez sera aqui q serao kickados e mandando msg q qnd atingir 10% e 1.1 kd podem voltar
+									//aprendiz
+									changeRole(message.member, desconhecido,'376134044439805952'); //aprendiz
+									print(message,"patente cadastrada");
+								}
+								if(message.member.roles.has(desconhecido)) message.member.removeRole(desconhecido).then(message.member.removeRole(desconhecido)).then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )).catch(err => console.log(err));;
+								message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));
+							}catch(e){
+								
+							}
+						break;
 					}
+					
 				}catch(e){					
 					//console.log("error rank2");
 				}
@@ -730,6 +756,10 @@ function runAutoUpdateWinRate(message){
 //"☂ "
 function padraoNick(winrate, nick){
 	return winrate+"% ☂"+TAG+" "+nick;
+}
+
+function padraoNickKD(kd, nick){
+	return kd+" ☂"+TAG+" "+nick;
 }
 
 function getJsonSquad(text){
