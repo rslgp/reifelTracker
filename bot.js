@@ -876,8 +876,9 @@ function verifyRole(member, role){
 }
 
 const msgDonate = ['Donate', 'Dá uma moral', 'Apoie', 'Nunca te pedi nda', 'Be my senpai', 'Envia um airdrop', 'Dropa bala média'];
-function randomDonate(){	
-	var index = Math.floor(Math.random() * (msgDonate.length+1));
-	if(index === msgDonate.length) return "";
+function randomDonate(){
+	const reduzirMsgDonate = Math.ceil(msgDonate.length*0.4);
+	const index = Math.floor(Math.random() * (msgDonate.length+reduzirMsgDonate));
+	if(index >= msgDonate.length) return "";
 	else return quebraLinha+msgDonate[index]+doacao;
 }
