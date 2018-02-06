@@ -803,8 +803,18 @@ function padraoAtualizarNome(message,nickLegivel,text,site){
 		console.log("erro padraoAtualizarNome");
 		throw false;
 	}
+	switch(message.guild.id){
+		case "368240657816354836": //bro
+			message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));	
+		break;
+					
+		case "325413143943577601"://pai
+			message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) ).then(user => message.reply("winrate: **"+winrKD[0]+`**, atualizei kd \:umbrella2:`)).catch(err => console.log(err));	
+			//console.log(message.guild.roles);
+		break;
+	}
 	//if(message.member.hasPermission("MANAGE_NICKNAMES"))
-	message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));	
+	
 	//else print(message, "ainda nao tenho permissao pra mudar seu nick :(");
 }
 
