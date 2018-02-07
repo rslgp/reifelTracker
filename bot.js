@@ -15,7 +15,7 @@ client.login(process.env.BOT_TOKEN);
 const message = new Discord.Message();
 const Browser = require('zombie');
 Browser.silent = true;
-const creditos = "> criado por Reifel#5047 <", /*separador=" | ",*/ quebraLinha="\r\n", doacao=": **[donates aqui](http://reifeltracker.ml/)**\r\n(*boleto / cartão de crédito*)";
+const creditos = "> criado por Reifel#5047 <", /*separador=" | ",*/ quebraLinha="\r\n", doacao=": **[Doações aqui](http://reifeltracker.ml/)**\r\n(*boleto / cartão de crédito*)";
 
 //tratando casos de erro
 const errorNickNaoEncontrado="nick não encontrado",
@@ -917,7 +917,7 @@ function verifyRole(member, role){
 	if(member.roles.has(role)){return;}else{member.addRole(newRole);}
 }
 
-const msgDonate = ['Donate', 'Dá uma moral', 'Apoie', 'Nunca te pedi nda', 'Be my senpai', 'Envia um airdrop', 'Dropa bala média', 'Põe o jump'];
+const msgDonate = ['Donate', 'Dá uma moral', 'Apoie', 'Nunca te pedi nda', 'Be my senpai', 'Envia um airdrop', 'Dropa bala média', 'Põe o jump', 'Gostou?'];
 function randomDonate(){
 	const reduzirMsgDonate = Math.ceil(msgDonate.length*0.4);
 	const index = Math.floor(Math.random() * (msgDonate.length+reduzirMsgDonate));
