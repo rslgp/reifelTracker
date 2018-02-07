@@ -15,7 +15,7 @@ client.login(process.env.BOT_TOKEN);
 const message = new Discord.Message();
 const Browser = require('zombie');
 Browser.silent = true;
-const creditos = "> criado por Reifel#5047 <", /*separador=" | ",*/ quebraLinha="\r\n", doacao=": **[http://reifeltracker.ml/](http://reifeltracker.ml/)**\r\n(*boleto / cartão de crédito*)";
+const creditos = "> criado por Reifel#5047 <", /*separador=" | ",*/ quebraLinha="\r\n", doacao=": **dê [doação aqui](http://reifeltracker.ml/)**\r\n(*boleto / cartão de crédito*)";
 
 //tratando casos de erro
 const errorNickNaoEncontrado="nick não encontrado",
