@@ -399,7 +399,7 @@ client.on('message', message => {
 					
 					switch(message.guild.id){
 						case '325413143943577601': //pai
-							const gamer = '410483257264701441', iniciante = '410483152214163457',continuaOndeEstaPai = "continua onde está,\r\nOuro - kd >= 3.0\r\nPrata - kd >= 2.0";
+							const gamer = '410483257264701441', iniciante = '410483152214163457', bronze = '410529877830139924',continuaOndeEstaPai = "continua onde está,\r\nOuro - kd >= 3.0\r\nPrata - kd >= 2.0";
 							if(winrKD[1]>=3.0){
 								if(message.member.roles.has(gamer)) {print(message,continuaOndeEstaPai); return;}
 								changeRole(message.member, iniciante, gamer);	
@@ -409,7 +409,9 @@ client.on('message', message => {
 								changeRole(message.member, iniciante, gamer);	
 								print(message,"Parabéns! Você agora é <@&410483152214163457> \:trophy: \:ok_hand:");
 							}else{
-								print(message,"Você precisa e consegue aumentar o kd, eu acredito!");
+								if(message.member.roles.has(bronze)) {print(message,continuaOndeEstaPai); return;}
+								changeRole(message.member, gamer, bronze);	
+								print(message,"Parabéns! Você agora é <@&410529877830139924> \:trophy: \:ok_hand:");
 							}
 							message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) ).then(message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) )).then(user => message.reply("winrate: **"+winrKD[0]+`**, atualizei kd \:umbrella2:`)).catch(err => console.log(err));
 						break;
