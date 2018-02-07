@@ -400,11 +400,11 @@ client.on('message', message => {
 					switch(message.guild.id){
 						case '325413143943577601': //pai
 							const gamer = '410483257264701441', iniciante = '410483152214163457', bronze = '410529877830139924',continuaOndeEstaPai = "continua onde está,\r\nOuro - kd >= 3.0\r\nPrata - kd >= 2.0";
-							if(winrKD[1]>=3.0){
+							if(winrKD[1]>=2.0){
 								if(message.member.roles.has(gamer)) {print(message,continuaOndeEstaPai); return;}
 								changeRole(message.member, iniciante, gamer);	
 								print(message,"Parabéns! Você agora é <@&410483257264701441> \:trophy: \:ok_hand:");
-							}else if(winrKD[1]>=2.0){
+							}else if(winrKD[1]>=1.0){
 								if(message.member.roles.has(iniciante)) {print(message,continuaOndeEstaPai); return;}
 								changeRole(message.member, iniciante, gamer);	
 								print(message,"Parabéns! Você agora é <@&410483152214163457> \:trophy: \:ok_hand:");
