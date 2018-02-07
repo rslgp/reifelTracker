@@ -78,6 +78,10 @@ client.on('message', message => {
 			//console.log(message.guild.roles);
 		break;
 		
+		case '313195845761761281'://galera gamer
+			if(message.channel.id!=410811452232826892) return;
+		break;
+		
 		default:
 			message.guild.leave(); console.log("sai"); return;
 		break;
@@ -401,12 +405,12 @@ client.on('message', message => {
 						case '325413143943577601': //pai
 							const gamer = '410483257264701441', iniciante = '410483152214163457', bronze = '410529877830139924',continuaOndeEstaPai = "continua onde está,\r\nOuro - kd >= 2.0\r\nPrata - kd >= 1.0\r\nBronze < 1.0";
 							if(winrKD[1]>=2.0){
-								if(message.member.roles.has(gamer)) {print(message,continuaOndeEstaPai); return;}
+								if(message.member.roles.has(gamer)) {print(message,"você está na patente máxima");return;}
 								changeRole(message.member, iniciante, gamer);	
 								print(message,"Parabéns! Você agora é <@&410483257264701441> \:trophy: \:ok_hand:");
 							}else if(winrKD[1]>=1.0){
 								if(message.member.roles.has(iniciante)) {print(message,continuaOndeEstaPai); return;}
-								changeRole(message.member, iniciante, gamer);	
+								changeRole(message.member, bronze, gamer);	
 								print(message,"Parabéns! Você agora é <@&410483152214163457> \:trophy: \:ok_hand:");
 							}else{
 								if(message.member.roles.has(bronze)) {print(message,continuaOndeEstaPai); return;}
@@ -432,7 +436,7 @@ client.on('message', message => {
 							}	
 						
 							//se n tiver o minimo de wins ignora
-							if(jsonSquad[matches].ValueInt > 250 || winrKD[0] < 26){
+							if(jsonSquad[matches].ValueInt > 250 && winrKD[0] < 26){
 								
 							}else{					
 								changeRole(message.member, desconhecido, incomum);		
@@ -454,7 +458,7 @@ client.on('message', message => {
 							
 							try{
 								if(		winrKD[0]>=45 && winrKD[1]>=6.7){//mitico
-									if(message.member.roles.has(mitico)) return;
+									if(message.member.roles.has(mitico)){print(message,"você está na patente máxima");return;}
 									changeRole(message.member, godlike, mitico);	
 									print(message,"Parabéns! Você agora é <@&393260318434000907> \:trophy: \:ok_hand:");
 									
@@ -494,6 +498,24 @@ client.on('message', message => {
 							}catch(e){
 								
 							}
+						break;
+						
+						case '313195845761761281'://galera gamer
+							const galComum='410811911567835157', galEpico='410811966618337280', galLendario='410812044397379604', continuaOndeEstaGal = "continua onde está,\r\Lendario - winrate >= 30\r\nEpico - winrate >= 22\r\nComum < 22";
+							if(winrKD[0]>=30){
+								if(message.member.roles.has(galLendario)) {print(message,"você está na patente máxima");return;}
+								changeRole(message.member, galEpico, galLendario);	
+								print(message,"Parabéns! Você agora é <@&410812044397379604> \:trophy: \:ok_hand:");
+							}else if(winrKD[0]>=22){
+								if(message.member.roles.has(galEpico)) {print(message,continuaOndeEstaGal); return;}
+								changeRole(message.member, galComum, galEpico);	
+								print(message,"Parabéns! Você agora é <@&410811966618337280> \:trophy: \:ok_hand:");
+							}else{
+								if(message.member.roles.has(galComum)) {print(message,continuaOndeEstaGal); return;}
+								changeRole(message.member, galLendario, galComum);	
+								print(message,"Parabéns! Você agora é <@&410811911567835157> \:trophy: \:ok_hand:");
+							}
+							message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));
 						break;
 					}
 					
@@ -813,6 +835,10 @@ function padraoAtualizarNome(message,nickLegivel,text,site){
 		case "325413143943577601"://pai
 			message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) ).then(user => message.reply("winrate: **"+winrKD[0]+`**, atualizei kd \:umbrella2:`)).catch(err => console.log(err));	
 			//console.log(message.guild.roles);
+		break;
+		
+		case "313195845761761281": //galera gamer
+			message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));	
 		break;
 	}
 	//if(message.member.hasPermission("MANAGE_NICKNAMES"))
