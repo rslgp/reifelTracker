@@ -19,7 +19,7 @@ const creditos = "> criado por Reifel#5047 <", /*separador=" | ",*/ quebraLinha=
 
 //tratando casos de erro
 const errorNickNaoEncontrado="nick não encontrado",
-errorNuncaGanhouSquad="nunca ganhou squad", errorFortnitetracker=", algo deu errado, tenta o comando dnvo -- (o site do fortnitetracker ta caindo hoje 04/02) pra tracker usem !alt e pra up use com paciencia"
+errorNuncaGanhouSquad="nunca ganhou squad", errorFortnitetracker=", --ERRO--, possíveis causas: escreveu o nick errado, jogador não joga no PC, o site fortnitetracker está caindo ou com problemas";
 ;
 
 const siteFortniteTracker = "https://fortnitetracker.com/profile/pc/", siteStormShield = "https://www.stormshield.one/pvp/stats/";
@@ -273,7 +273,7 @@ client.on('message', message => {
 									print(message,errorNickNaoEncontrado);
 									return;
 								}			
-								message.member.setNickname( padraoNick(winP,nickLegivel) ).then(user => message.reply(`atualizei winrate \:umbrella2:`)).catch(err => console.log(err));;	
+								message.member.setNickname( padraoNick(winP,nickLegivel) ).then(user => message.reply(`atualizei winrate \:umbrella2:`)).catch(err => console.log(err));	
 								
 								try{
 									browser.deleteCookies();
@@ -493,7 +493,7 @@ client.on('message', message => {
 									changeRole(message.member, desconhecido,'376134044439805952'); //aprendiz
 									print(message,"patente cadastrada");
 								}
-								if(message.member.roles.has(desconhecido)) message.member.removeRole(desconhecido).then(message.member.removeRole(desconhecido)).then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )).catch(err => console.log(err));;
+								if(message.member.roles.has(desconhecido)) message.member.removeRole(desconhecido).then(message.member.removeRole(desconhecido)).then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )).catch(err => console.log(err));
 								message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));
 							}catch(e){
 								
@@ -724,7 +724,7 @@ function forRecusivo(message, i){
 }
 
 function atualizarWinRateNick(message, winRate, i){
-	message.guild.members.get(refreshAuto[i].member).setNickname( padraoNick(winRate, refreshAuto[i].nickLegivel) ).then( forRecusivo(message, i+1) ).catch(err => console.log(err));;
+	message.guild.members.get(refreshAuto[i].member).setNickname( padraoNick(winRate, refreshAuto[i].nickLegivel) ).then( forRecusivo(message, i+1) ).catch(err => console.log(err));
 }
 //fim ForRecursivo - stack update
 
@@ -918,23 +918,23 @@ function getNickConhecido(message){
 function changeRole(member,oldRole, newRole){	
 	
 	setTimeout(function(){ 
-			member.addRole(newRole).catch(err => console.log(err));;
+			member.addRole(newRole).catch(err => console.log(err));
 		}, 1700);
 		
 		
 	setTimeout(function(){ 
-			if( member.roles.has(oldRole) ) member.removeRole(oldRole).catch(err => console.log(err));;	
+			if( member.roles.has(oldRole) ) member.removeRole(oldRole).catch(err => console.log(err));	
 		}, 1700);
 		
 	/*
 	//go horse
 	try{
-		member.addRole(newRole).then(verifyRole(member,newRole)).then(verifyRole(member,newRole)).catch(err => console.log(err));;		
+		member.addRole(newRole).then(verifyRole(member,newRole)).then(verifyRole(member,newRole)).catch(err => console.log(err));		
 	}catch(e){};
 	
 	
 	try{
-		if( member.roles.has(oldRole) ) member.removeRole(oldRole).catch(err => console.log(err));;	
+		if( member.roles.has(oldRole) ) member.removeRole(oldRole).catch(err => console.log(err));	
 	}catch(e){};
 	*/
 }
