@@ -403,18 +403,18 @@ client.on('message', message => {
 					
 					switch(message.guild.id){
 						case '325413143943577601': //pai
-							const gamer = '410483257264701441', iniciante = '410483152214163457', bronze = '410529877830139924',continuaOndeEstaPai = "continua onde está,\r\nOuro - kd >= 2.0\r\nPrata - kd >= 1.0\r\nBronze < 1.0";
+							const ouro = '410483257264701441', prata = '410483152214163457', bronze = '410529877830139924',continuaOndeEstaPai = "continua onde está,\r\nOuro - kd >= 2.0\r\nPrata - kd >= 1.0\r\nBronze < 1.0";
 							if(winrKD[1]>=2.0){
-								if(message.member.roles.has(gamer)) {print(message,"você está na patente máxima");return;}
-								changeRole(message.member, iniciante, gamer);	
+								if(message.member.roles.has(ouro)) {print(message,"você está na patente máxima");return;}
+								changeRole(message.member, prata, ouro);	
 								print(message,"Parabéns! Você agora é <@&410483257264701441> \:trophy: \:ok_hand:");
 							}else if(winrKD[1]>=1.0){
-								if(message.member.roles.has(iniciante)) {print(message,continuaOndeEstaPai); return;}
-								changeRole(message.member, bronze, gamer);	
+								if(message.member.roles.has(prata)) {print(message,continuaOndeEstaPai); return;}
+								changeRole(message.member, bronze, prata);	
 								print(message,"Parabéns! Você agora é <@&410483152214163457> \:trophy: \:ok_hand:");
 							}else{
 								if(message.member.roles.has(bronze)) {print(message,continuaOndeEstaPai); return;}
-								changeRole(message.member, gamer, bronze);	
+								changeRole(message.member, ouro, bronze);	
 								print(message,"Parabéns! Você agora é <@&410529877830139924> \:trophy: \:ok_hand:");
 							}
 							message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) ).then(message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) )).then(user => message.reply("winrate: **"+winrKD[0]+`**, atualizei kd \:umbrella2:`)).catch(err => console.log(err));
