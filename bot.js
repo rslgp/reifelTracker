@@ -73,10 +73,10 @@ client.on('message', message => {
 		//case "397143937057554433": //fps
 		//break;
 		
-		case "325413143943577601"://pai
-			if(message.channel.id!=410482990091862036) return; //se nao for no tracker ignora a msg (poupa processamento)
+		//case "325413143943577601"://pai
+		//	if(message.channel.id!=410482990091862036) return; //se nao for no tracker ignora a msg (poupa processamento)
 			//console.log(message.guild.roles);
-		break;
+		//break;
 		
 		case '313195845761761281'://galera gamer
 			if(message.channel.id!=410811452232826892) return;
