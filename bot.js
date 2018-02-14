@@ -117,7 +117,7 @@ client.on('message', message => {
 	var args = message.content.slice(1).trim().split(/ +/g);
 	//console.log(args);
 	var comando = args[0];
-	comando = comando.toLowerCase()
+	comando = comando.toLowerCase();
 	switch(comando){ //so responder a nossos comandos, poupar cpu
 		case "t":
 		case "alt":
@@ -525,6 +525,55 @@ client.on('message', message => {
 			});	
 			variavelVisita=null;
 		}catch(e){}
+		break;
+		
+		case "arma":
+			const arma = '413377500027289609', sniper = '413377502552129538', shotgun = '413377506524135455', explosivos = '413377504620052490';
+			if(message.member.roles.has('413377500027289609')){
+				print(message,"Arma principal já registrada");
+				return;
+			}else{
+				if(nickLegivel==undefined){
+					print(message,"opcoes: sniper, shotgun, explosivos");
+					return;
+				}
+				switch(nickLegivel.toLowerCase()){
+					case "sniper":
+						message.member.addRole(sniper).catch(err => console.log(err));
+						
+						message.member.addRole(arma).catch(err => console.log(err));
+						print(message,"arma registrada com sucesso");
+					break;
+					
+					case "espingarda":
+					case "pump":
+					case "shotgun":
+						message.member.addRole(shotgun).catch(err => console.log(err));
+						
+						message.member.addRole(arma).catch(err => console.log(err));
+						print(message,"arma registrada com sucesso");
+					break;
+					
+					case "bazuca":
+					case "rocket":
+					case "granadeira":
+					case "granada":
+					case "explosivos":
+						message.member.addRole(explosivos).catch(err => console.log(err));
+					
+						message.member.addRole(arma).catch(err => console.log(err));
+						print(message,"arma registrada com sucesso");
+					break;
+					
+					case "opcoes":
+						print(message,"opcoes: sniper, shotgun, explosivos");
+					break;
+					
+					default:
+						print(message,"opcoes: sniper, shotgun, explosivos");
+					break;
+				}
+			}
 		break;
 		
 		case "debug":
