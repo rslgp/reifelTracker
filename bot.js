@@ -125,6 +125,7 @@ client.on('message', message => {
 		case "help":
 		case "ranking":
 		case "rank":
+		case "arma":
 		break;
 		default:
 			return;
@@ -528,13 +529,13 @@ client.on('message', message => {
 		break;
 		
 		case "arma":
-			const arma = '413377500027289609', sniper = '413377502552129538', shotgun = '413377506524135455', explosivos = '413377504620052490';
+			const arma = '413377500027289609', sniper = '413377502552129538', shotgun = '413377506524135455', explosivos = '413377504620052490', sucessoArma="arma registrada com sucesso", opcoesArma="opcoes: sniper, shotgun, explosivos";
 			if(message.member.roles.has('413377500027289609')){
 				print(message,"Arma principal já registrada");
 				return;
 			}else{
 				if(nickLegivel==undefined){
-					print(message,"opcoes: sniper, shotgun, explosivos");
+					print(message,opcoesArma);
 					return;
 				}
 				switch(nickLegivel.toLowerCase()){
@@ -542,7 +543,7 @@ client.on('message', message => {
 						message.member.addRole(sniper).catch(err => console.log(err));
 						
 						message.member.addRole(arma).catch(err => console.log(err));
-						print(message,"arma registrada com sucesso");
+						print(message,sucessoArma);
 					break;
 					
 					case "espingarda":
@@ -551,7 +552,7 @@ client.on('message', message => {
 						message.member.addRole(shotgun).catch(err => console.log(err));
 						
 						message.member.addRole(arma).catch(err => console.log(err));
-						print(message,"arma registrada com sucesso");
+						print(message,sucessoArma);
 					break;
 					
 					case "bazuca":
@@ -562,15 +563,15 @@ client.on('message', message => {
 						message.member.addRole(explosivos).catch(err => console.log(err));
 					
 						message.member.addRole(arma).catch(err => console.log(err));
-						print(message,"arma registrada com sucesso");
+						print(message,sucessoArma);
 					break;
 					
 					case "opcoes":
-						print(message,"opcoes: sniper, shotgun, explosivos");
+						print(message,opcoesArma);
 					break;
 					
 					default:
-						print(message,"opcoes: sniper, shotgun, explosivos");
+						print(message,opcoesArma);
 					break;
 				}
 			}
