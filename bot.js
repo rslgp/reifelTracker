@@ -529,8 +529,9 @@ client.on('message', message => {
 		break;
 		
 		case "arma":
-			const arma = '413377500027289609', sniper = '413377502552129538', shotgun = '413377506524135455', explosivos = '413377504620052490', sucessoArma="arma registrada com sucesso", opcoesArma="opcoes: sniper, shotgun, explosivos";
-			if(message.member.roles.has('413377500027289609')){
+			const sniper = '413377502552129538', shotgun = '413377506524135455', explosivos = '413377504620052490', sucessoArma="arma registrada com sucesso", opcoesArma="opcoes: sniper, shotgun, explosivos";
+			 
+			if( message.member.roles.some(r=>[sniper, shotgun, explosivos].includes(r.id)) ){
 				print(message,"Arma principal já registrada");
 				return;
 			}else{
@@ -541,17 +542,14 @@ client.on('message', message => {
 				switch(nickLegivel.toLowerCase()){
 					case "sniper":
 						message.member.addRole(sniper).catch(err => console.log(err));
-						
-						message.member.addRole(arma).catch(err => console.log(err));
 						print(message,sucessoArma);
 					break;
 					
+					case "doze":
 					case "espingarda":
 					case "pump":
 					case "shotgun":
 						message.member.addRole(shotgun).catch(err => console.log(err));
-						
-						message.member.addRole(arma).catch(err => console.log(err));
 						print(message,sucessoArma);
 					break;
 					
@@ -561,8 +559,6 @@ client.on('message', message => {
 					case "granada":
 					case "explosivos":
 						message.member.addRole(explosivos).catch(err => console.log(err));
-					
-						message.member.addRole(arma).catch(err => console.log(err));
 						print(message,sucessoArma);
 					break;
 					
