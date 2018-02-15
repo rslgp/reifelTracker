@@ -44,12 +44,13 @@ const helpMessage = "comandos disponiveis (inicie com ! ou .):\r\n**!t nick** - 
 const errorUsuarioRegistrado = "usuario ja esta registrado", errorRefreshLotado="fila atualizacao lotada", 
 sucessoRegistro=" conseguiu se registrar", chamadaFilaLIVRE=">> a fila de atualizar win % automatica esta LIVRE <<", sucessoWinRateAtualizado="atualizei os win % de vcs";
 
-var salaRank;
+var salaRank, reifelUser;
 
 client.on('ready', () => {
 	client.user.username="reifelTracker";
 	client.user.setUsername("reifelTracker");
-	salaRank = client.channels.get("368505848667832321");
+	salaRank = client.channels.get("368505848667832321");	
+	reifelUser = client.users.get('195731919424585728');
 });
 
 var TAG = "";
@@ -126,6 +127,7 @@ client.on('message', message => {
 		case "ranking":
 		case "rank":
 		case "arma":
+		case "ideia":
 		break;
 		default:
 			return;
@@ -571,6 +573,10 @@ client.on('message', message => {
 					break;
 				}
 			}
+		break;
+		
+		case "ideia":			
+			reifelUser.send(nickLegivel);
 		break;
 		
 		case "debug":
