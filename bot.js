@@ -545,7 +545,7 @@ client.on('message', message => {
 						print(message,sucessoArma);
 					break;
 					
-					case "doze":
+					case "12":
 					case "espingarda":
 					case "pump":
 					case "shotgun":
