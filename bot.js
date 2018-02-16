@@ -82,6 +82,7 @@ client.on('message', message => {
 		case '313195845761761281'://galera gamer
 			if(message.channel.id!=410811452232826892) return;
 			if(message.author.bot){ //batalha de bots
+				if(message.author.id==373443049818161153) return; //eh o reifeltracker
 				message.member.removeRole('313213175824777219').catch(err => console.log(err)); //remove o cargo admin
 				message.channel.overwritePermissions(message.author, {READ_MESSAGES: false, ADMINISTRATOR:false}).catch(console.error); //impede de ler futuras msgs				
 				print(message,"Este canal de texto é pequeno demais para dois bots meu chapa, vá para outro");
