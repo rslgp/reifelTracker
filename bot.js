@@ -39,7 +39,7 @@ var refreshTEMPO=1800000;//30min 1800000
 var interval, refreshIsRunning=0;
 //var readySimultaneoContador;
 
-const helpMessage = "comandos disponiveis (inicie com ! ou .):\r\n**!t nick** - (ou **!t nick**, consulta nick do fortnite de alguem)\r\n**!up seuNick** - (atualizar winrate do seu nick)\r\n(desativado)**!auto seuNick** - (atualiza o seu winrate sozinho a cada 30 min, apos "+refreshRealizadosMAX+" atualizacoes todas as "+refreshMAXSTACK+" vagas ficam livres)\r\n**!alt seuNick** - (acessa tracker em site alternativo caso o fortnitetracker esteja bug ou off)\r\n**!rank** - sobe de patente caso atingiu win% e kd\r\n**!arma nomeArma - registra a sua arma principal de preferência";
+const helpMessage = "comandos disponiveis (inicie com ! ou .):\r\n**!mensalidade** - envia uma mensagem privada com a tabela de preço para rodar esse bot no seu servidor\r\n**!t nick** - (ou **!t nick**, consulta nick do fortnite de alguem)\r\n**!up seuNick** - (atualizar winrate do seu nick)\r\n(desativado)**!auto seuNick** - (atualiza o seu winrate sozinho a cada 30 min, apos "+refreshRealizadosMAX+" atualizacoes todas as "+refreshMAXSTACK+" vagas ficam livres)\r\n**!alt seuNick** - (acessa tracker em site alternativo caso o fortnitetracker esteja bug ou off)\r\n**!rank** - sobe de patente caso atingiu win% e kd\r\n**!arma nomeArma** - registra a sua arma principal de preferência\r\n**!ideia msg** - envia uma ideia nova pro bot ou sugestao de melhoria do que já existe";
 
 const errorUsuarioRegistrado = "usuario ja esta registrado", errorRefreshLotado="fila atualizacao lotada", 
 sucessoRegistro=" conseguiu se registrar", chamadaFilaLIVRE=">> a fila de atualizar win % automatica esta LIVRE <<", sucessoWinRateAtualizado="atualizei os win % de vcs";
@@ -134,6 +134,7 @@ client.on('message', message => {
 		case "rank":
 		case "arma":
 		case "ideia":
+		case "mensalidade":
 		break;
 		default:
 			return;
@@ -382,6 +383,10 @@ client.on('message', message => {
 				});	
 				variavelVisita=null;
 			}catch(e){}
+		break;
+		
+		case "mensalidade":
+			message.author.send('**Mensalidade do bot ReifelTracker**\r\nDepende da quantidade de membros do seu server no discord\r\nlegenda: **<** significa menor que\r\n\r\nmembros -------- reais por mês\r\n< 100 \t\t\t\t-------- R$ 15 \r\n100 a < 350 \t-------- R$ 20\r\n350 a < 500 \t-------- R$ 35\r\n> 500 \t\t\t\t-------- R$ 40\r\n> 1800\t\t\t\t-------- R$ 50\r\n\r\nDá direito a 3 cargos, instalação grátis e so paga quando estiver funcionando, os preços são para usar o bot do jeito que ele é com no máximo pequenas adaptações\r\n--\r\npara grandes modificações e alterações é cobrado serviço de mão de obra por fora da mensalidade');
 		break;
 		
 		case "ranking":
@@ -753,7 +758,7 @@ function msgPadraoBot(message, text, site, rodape, nick){
 				description: text+quebraLinha+randomDonate(),
 				title: "Perfil Squad de "+nick,
 				url:site,
-				footer: {text:rodape+" !help"}
+				footer: {text:"!mensalidade "+rodape+" !help"}
 			}
 		});	
 }
