@@ -708,8 +708,8 @@ function rightJustify(str, length, char ) {
 
 function formatarMsg(winP, kd, wins, kills,trn){
 	const valorTrn = (trn*0.02).toFixed(2);
-	const p1 = "Win %: **"+winP+"** / Kd: **"+kd+"**"
-	,p2 = "Wins: "+wins+" / Kills: "+kills
+	const p1 = "Win %: **"+winP+"** \t/\t Kd: **"+kd+"**"
+	,p2 = "Wins: "+wins+" \t/\t Kills: "+kills
 	,p3 = "Wins: "+wins+rightJustify(p2,p1.length-7,' ')+" / Kills: "+kills
 	,p4 = "Nota(TRN): **"+valorTrn+"** de __100__";
 	return p1+quebraLinha+p3+quebraLinha+p4;
