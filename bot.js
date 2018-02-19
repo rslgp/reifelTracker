@@ -134,7 +134,7 @@ client.on('message', message => {
 		case "rank":
 		case "arma":
 		case "ideia":
-		case "mensalidade":
+		case "queroessebot":
 		break;
 		default:
 			return;
@@ -385,8 +385,8 @@ client.on('message', message => {
 			}catch(e){}
 		break;
 		
-		case "mensalidade":
-			message.author.send('**Mensalidade do bot ReifelTracker**\r\nDepende da quantidade de membros do seu server no discord\r\nlegenda: **<** significa menor que\r\n\r\nmembros -------- reais por mês\r\n< 100 \t\t\t\t-------- R$ 15 \r\n100 a < 350 \t-------- R$ 20\r\n350 a < 500 \t-------- R$ 35\r\n> 500 \t\t\t\t-------- R$ 40\r\n> 1800\t\t\t\t-------- R$ 50\r\n\r\nDá direito a 3 cargos, instalação grátis e só paga quando estiver funcionando, os preços são para usar o bot do jeito que ele é na última atualização dele, com no máximo pequenas adaptações\r\n--\r\npara grandes modificações e alterações é cobrado serviço de mão de obra por fora da mensalidade\r\n----\r\n**plano econômico: R$ 15 por mês** independente do tamanho do servidor para usar apenas o comando !t');
+		case "queroessebot":
+			message.author.send('**Mensalidade do bot ReifelTracker**\r\nDepende da quantidade de membros do seu server no discord\r\nlegenda: **<** significa menor que\r\n\r\nmembros -------- reais por mês\r\n< 100 \t\t\t\t-------- R$ 15 \r\n100 a < 350 \t-------- R$ 20\r\n350 a < 500 \t-------- R$ 35\r\n> 500 \t\t\t\t-------- R$ 40\r\n> 1800\t\t\t\t-------- R$ 50\r\n\r\nDá direito a 3 cargos, instalação grátis e só paga quando estiver funcionando, os preços são para usar o bot do jeito que ele é na última atualização dele, com no máximo pequenas adaptações\r\n--\r\npara grandes modificações e alterações é cobrado serviço de mão de obra por fora da mensalidade\r\n----\r\n**plano econômico: R$ 15 por mês** independente do tamanho do servidor para usar apenas o comando !t\r\n**TRATAR COM:** @Reifel#5047. Não envie mensagem por aqui, envie para reifel');
 		break;
 		
 		case "ranking":
@@ -768,7 +768,7 @@ function msgPadraoBot(message, text, site, rodape, nick){
 				description: text+quebraLinha+randomDonate(),
 				title: "Perfil Squad de "+nick,
 				url:site,
-				footer: {text:"!mensalidade "+rodape+" !help"}
+				footer: {text:"!queroessebot "+rodape+" !help"}
 			}
 		});	
 }
