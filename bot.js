@@ -768,7 +768,7 @@ function msgPadraoBot(message, text, site, rodape, nick){
 				description: text+quebraLinha+randomDonate(),
 				title: "Perfil Squad de "+nick,
 				url:site,
-				footer: {text:"!queroessebot "+rodape+" !help"}
+				footer: {text:"!QueroEsseBot "+rodape+" !help"}
 			}
 		});	
 }
