@@ -901,17 +901,16 @@ function padraoAtualizarNome(message,nickLegivel,text,site){
 		throw false;
 	}
 	switch(message.guild.id){
+		case "313195845761761281": //galera gamer
 		case "368240657816354836": //bro
-			message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));	
+			var winrNome = message.member.nickname.substring(0,message.member.nickname.indexOf("%"));
+			if(winrNome<winrKD[0]) {message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));}
+			else {print(message, "Olha, não atualizei a winrate pois o que você possui no nick é maior que a nova");}
 		break;
 					
 		case "325413143943577601"://pai
 			message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) ).then(user => message.reply("winrate: **"+winrKD[0]+`**, atualizei kd \:umbrella2:`)).catch(err => console.log(err));	
 			//console.log(message.guild.roles);
-		break;
-		
-		case "313195845761761281": //galera gamer
-			message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));	
 		break;
 	}
 	//if(message.member.hasPermission("MANAGE_NICKNAMES"))
