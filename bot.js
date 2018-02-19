@@ -905,7 +905,7 @@ function padraoAtualizarNome(message,nickLegivel,text,site){
 		case "368240657816354836": //bro
 			var winrNome = message.member.nickname.substring(0,message.member.nickname.indexOf("%"));
 			if(winrNome<winrKD[0]) {message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));}
-			else {message.reply("no site é a mesma winrate ou uma menor, não atualizei");}
+			else {message.reply(winrKD[0]+" é o valor no site logo é a mesma winrate ou uma menor, não atualizei");}
 		break;
 					
 		case "325413143943577601"://pai
