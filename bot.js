@@ -450,7 +450,7 @@ client.on('message', message => {
 							}	
 						
 							//se n tiver o minimo de wins ignora
-							if(jsonSquad[matches].ValueInt > 250 || winrKD[0] < 26){
+							if(jsonSquad[matches].ValueInt > 250){
 								
 							}else{					
 								changeRole(message.member, desconhecido, incomum);		
@@ -468,11 +468,21 @@ client.on('message', message => {
 							RARE		- Win % 15  - K/d 1.9
 							INCOMUM		- Win % 10 - K/d 1.1
 							*/
-							const mitico='393260318434000907', godlike='376840180688224257', legendary='373639920591306753', epic='373640006314754057', rare='373640089986924554', incomum='373640161290092544', desconhecido='387071306451124224', continuaOndeEsta = "continua onde está, verifique "+salaRank+" antes de usar o comando rank";
+							const unstoppable='414929764961484800',sanguinario='414929831508312064',mitico='393260318434000907', godlike='376840180688224257', legendary='373639920591306753', epic='373640006314754057', rare='373640089986924554', incomum='373640161290092544', desconhecido='387071306451124224', continuaOndeEsta = "continua onde está, verifique "+salaRank+" antes de usar o comando rank";
 							
 							try{
-								if(		winrKD[0]>=45 && winrKD[1]>=6.7){//mitico
-									if(message.member.roles.has(mitico)){print(message,"você está na patente máxima");return;}
+								if( 			winrKD[0]>=45 && winrKD[1]>=7.4){//unstoppable
+									if(message.member.roles.has(unstoppable)) {print(message,"você está na patente máxima");return;}
+									changeRole(message.member, sanguinario, unstoppable);	
+									print(message,"Parabéns! Você agora é <@&414929764961484800> \:trophy: \:ok_hand:");
+									
+								}else if(		winrKD[0]>=40 && winrKD[1]>=6.5){//sanguinario
+									if(message.member.roles.has(sanguinario)){print(message,continuaOndeEsta); return;}
+									changeRole(message.member, mitico, sanguinario);	
+									print(message,"Parabéns! Você agora é <@&414929831508312064> \:trophy: \:ok_hand:");
+								
+								}else if(		winrKD[0]>=35 && winrKD[1]>=5.7){//mitico
+									if(message.member.roles.has(mitico)){print(message,continuaOndeEsta); return;}
 									changeRole(message.member, godlike, mitico);	
 									print(message,"Parabéns! Você agora é <@&393260318434000907> \:trophy: \:ok_hand:");
 									
@@ -736,7 +746,7 @@ function up(jsonSquad){
 			retorno[0] = (jsonSquad[winP].ValueDec * 0.2).toFixed(2)+"*";
 		}
 		//old accounts or ok winrate
-		if(jsonSquad[matches].ValueInt > 250 || jsonSquad[winP].value < 26){ //pessoas de conta antiga ou pessoas q sao novas e tem winrate aceitavel
+		if(jsonSquad[matches].ValueInt > 250){ //pessoas de conta antiga ou pessoas q sao novas e tem winrate aceitavel
 			retorno[0] = jsonSquad[winP].value;
 		}else{			
 			retorno[0] = (jsonSquad[winP].ValueDec * 0.57).toFixed(2)+"*";		
@@ -985,9 +995,9 @@ function changeRole(member,oldRole, newRole){
 		}, 1700);
 		
 		
-	setTimeout(function(){ 
-			if( member.roles.has(oldRole) ) member.removeRole(oldRole).catch(err => console.log(err));	
-		}, 1700);
+	//setTimeout(function(){ 
+	//		if( member.roles.has(oldRole) ) member.removeRole(oldRole).catch(err => console.log(err));	
+	//	}, 1700);
 		
 	/*
 	//go horse
