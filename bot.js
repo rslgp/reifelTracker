@@ -77,14 +77,21 @@ clientTwitch.on('chat', function(channel, user, message, self){
 		comando = message.substring(1,possuiParametro);		
 	}else{ comando = message.substring(1);}
 	var nick="reifel", nickLegivel="Reifel";
+	
+	switch(comando){
+		case "squad":
+			nick = message.replace("!squad ","");
+			nickLegivel = nick;
+			nick = nick.replace(" ","%20");
+			comando = "tracker";
+		break;
+		case "reifel":
+			comando = "tracker";
+		break;
+	}
 	switch(comando){
 	
-		case "squad":
-		nick = message.replace("!squad ","");
-		nickLegivel = nick;
-		nick = nick.replace(" ","%20");
-		
-		case "reifel":	
+		case "tracker":
 		site = siteFortniteTracker+nick;
 		var variavelVisita = Browser.visit(site, function (e, browser) {				
 					try{
