@@ -71,8 +71,9 @@ client.on('ready', () => {
 
 //twitch
 clientTwitch.on('chat', function(channel, user, message, self){
-	switch(message){		
-		case "!squad":
+	var comando = message.substring(1,message.indexOf(" "));
+	switch(comando){		
+		case "squad":
 		var nick = message.replace("!squad ","");
 		var nickLegivel = nick;
 		nick = nick.replace(" ","%20");
