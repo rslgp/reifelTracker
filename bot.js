@@ -74,6 +74,8 @@ clientTwitch.on('chat', function(channel, user, message, self){
 	switch(message){		
 		case "!squad":
 		var nick = message.replace("!squad ","");
+		var nickLegivel = nick;
+		nick = nick.replace(" ","%20");
 		site = siteFortniteTracker+nick;
 		var variavelVisita = Browser.visit(site, function (e, browser) {				
 					try{
@@ -89,7 +91,7 @@ clientTwitch.on('chat', function(channel, user, message, self){
 							throw false;
 						}
 						
-						clientTwitch.action("reifel", "Números em Squad de "+nick+": "+search(jsonSquad,nick,'t') );
+						clientTwitch.action("reifel", "Números em Squad de "+nickLegivel+": "+search(jsonSquad,nick,'t') );
 						
 					}catch(e){};
 		});
