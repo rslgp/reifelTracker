@@ -1,6 +1,19 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 
+//setting up twitch
+const twitch = require("tmi.js");
+const twiconf = {
+	identity: {
+		username: "reifel",
+		password: process.env.TWITCH_TOKEN
+	},
+	channels: ["reifel"]
+};
+const clientTwitch = new twitch.client(twiconf);
+clientTwitch.connect();
+//fim twitch
+
 //CALABOCA VUE -- comentar em caso de debug, se precisar
 console.log = function log()
 {
@@ -46,6 +59,9 @@ sucessoRegistro=" conseguiu se registrar", chamadaFilaLIVRE=">> a fila de atuali
 
 var salaRank, reifelUser;
 
+var TAG = "";
+var cooldownUser = [];
+
 client.on('ready', () => {
 	client.user.username="reifelTracker";
 	client.user.setUsername("reifelTracker");
@@ -53,9 +69,38 @@ client.on('ready', () => {
 	reifelUser = client.users.get('195731919424585728');
 });
 
-var TAG = "";
-var cooldownUser = [];
-
+//twitch
+clientTwitch.on('chat', function(channel, user, message, self){
+	switch(message){		
+		case "!squad":
+		site = siteFortniteTracker+"reifel";
+		var variavelVisita = Browser.visit(site, function (e, browser) {				
+					try{
+						var text = browser.html();
+						
+						var jsonSquad;
+						try{
+							jsonSquad = getJsonSquad(text);
+							//console.log(jsonSquad);
+							text=null;
+						}catch(e){		
+							console.log("error search");
+							throw false;
+						}
+						
+						clientTwitch.action("reifel", "Números em Squad de Reifel: "+search(jsonSquad,"Reifel",'t') );
+						
+					}catch(e){};
+		});
+		
+		
+		break;
+	}
+});
+clientTwitch.on('connected', function(channel, user, message, self){
+	clientTwitch.action("reifel", "estou vivo, reifel");
+});
+//fim-twitch
 
 client.on('message', message => {
 	if(message.author.bot) return; //ignora poupar processamento bot
@@ -627,7 +672,7 @@ var buscas= [
 '"p9"'
 ];
 
-function search(jsonSquad,nick){	
+function search(jsonSquad,nick,plataforma){ //plataforma discord ou twitch	
 	//console.log(text+"\r\n\r\n");
 	
 	var resultado="";
@@ -692,7 +737,19 @@ function search(jsonSquad,nick){
 	//resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[wins].value+separador+"Win %: "+jsonSquad[winP].value +separador+"Kills: "+jsonSquad[kills].value +separador+ "K/d: "+jsonSquad[kd].value +quebraLinha+ site +quebraLinha+ creditos;
 	//else resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[wins].value+separador+"Win %: "+jsonSquad[winP].value +separador+"Kills: "+jsonSquad[kills].value +separador+ "K/d: "+jsonSquad[kd].value;
 	//else resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[wins].value+separador+"Win %: "+jsonSquad[winP].value +separador+"Kills: "+jsonSquad[kills].value +separador+ "K/d: "+jsonSquad[kd].value;
-	else resultado = formatarMsg(jsonSquad[winP].value, jsonSquad[kd].value, jsonSquad[wins].value, jsonSquad[kills].value, valorTrn);
+	else {
+		//twitch
+		switch(plataforma){			
+			case 't':
+				resultado = "[ "+jsonSquad[winP].value+"% de Win Rate] --- [ "+ jsonSquad[kd].value +" de kills antes de morrer] --- [ "+ jsonSquad[wins].value +" de Win] --- [ " + jsonSquad[kills].value +" no total de Kills] --- [ Nota(TRN): "+ valorTrn+" de 5000]";
+			break;
+			
+			default:
+				resultado = formatarMsg(jsonSquad[winP].value, jsonSquad[kd].value, jsonSquad[wins].value, jsonSquad[kills].value, valorTrn);
+			break;
+		}
+		//fim modif twitch
+	}
 	jsonSquad=null;	
 	
 	return resultado;
