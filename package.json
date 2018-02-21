@@ -4,6 +4,7 @@
   "main": "bot.js",
   "dependencies": {
     "discord.js": "^11.2.1",
+    "tmi.js": "^1.2.1",
     "zombie": "^5.0.7"
   },
   "scripts": {
