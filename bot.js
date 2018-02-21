@@ -71,7 +71,11 @@ client.on('ready', () => {
 
 //twitch
 clientTwitch.on('chat', function(channel, user, message, self){
-	var comando = message.substring(1,message.indexOf(" "));
+	var comando;
+	var possuiParametro = message.indexOf(" ");
+	if(possuiParametro != -1){
+		comando = message.substring(1,possuiParametro);		
+	}else{ comando = message.substring(1);}
 	var nick="reifel", nickLegivel="Reifel";
 	switch(comando){
 	
