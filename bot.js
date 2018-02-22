@@ -32,7 +32,7 @@ const creditos = "> criado por Reifel#5047 <", /*separador=" | ",*/ quebraLinha=
 
 //tratando casos de erro
 const errorNickNaoEncontrado="nick não encontrado",
-errorNuncaGanhouSquad="nunca ganhou squad", errorFortnitetracker=", --ERRO--, possíveis causas: escreveu o nick errado, jogador não joga no PC, o site fortnitetracker está caindo ou com problemas";
+errorNuncaGanhouSquad="nunca ganhou squad", errorFortnitetracker=", --ERRO--, possíveis causas: escreveu o nick errado, jogador não joga no PC, o site fortnitetracker está caindo ou com problemas", errorNaoUsarProprioNick="ei! eu sei qm é vc \:thinking:, da proxima nao escreve o nick, escreve o comando sem dizer seu nick";
 ;
 
 const siteFortniteTracker = "https://fortnitetracker.com/profile/pc/", siteStormShield = "https://www.stormshield.one/pvp/stats/";
@@ -311,7 +311,7 @@ client.on('message', message => {
 			try{
 				nickLegivel=parametroUsado = getNickConhecido(message);
 				parametroUsado=encodeURI(parametroUsado);
-				if(args[1] !== undefined) print(message,"ei! eu sei qm é vc \:thinking:, da proxima nao escreve o nick, escreve o comando up sem dizer o nick");
+				if(args[1] !== undefined) print(message,errorNaoUsarProprioNick);
 			}catch(e){
 				//caso nao tenha guarda chuva, mantem o nick como arg
 			}
@@ -468,7 +468,7 @@ client.on('message', message => {
 			try{
 				nickLegivel=parametroUsado = getNickConhecido(message);
 				parametroUsado=encodeURI(parametroUsado);
-				if(args[1] !== undefined) print(message,"ei! eu sei qm é vc \:thinking:, da proxima nao escreve o nick, escreve o comando up sem dizer o nick");
+				if(args[1] !== undefined) print(message,errorNaoUsarProprioNick);
 			}catch(e){
 				//caso nao tenha guarda chuva, mantem o nick como arg
 			}
@@ -522,6 +522,7 @@ client.on('message', message => {
 								}					
 							}	
 						
+							const unstoppable='414929764961484800',sanguinario='414929831508312064',mitico='393260318434000907', godlike='376840180688224257', legendary='373639920591306753', epic='373640006314754057', rare='373640089986924554', incomum='373640161290092544', desconhecido='387071306451124224', continuaOndeEsta = "continua onde está, verifique "+salaRank+" antes de usar o comando rank";
 							//se n tiver o minimo de wins ignora
 							if(jsonSquad[matches].ValueInt > 250){
 								
@@ -541,7 +542,6 @@ client.on('message', message => {
 							RARE		- Win % 15  - K/d 1.9
 							INCOMUM		- Win % 10 - K/d 1.1
 							*/
-							const unstoppable='414929764961484800',sanguinario='414929831508312064',mitico='393260318434000907', godlike='376840180688224257', legendary='373639920591306753', epic='373640006314754057', rare='373640089986924554', incomum='373640161290092544', desconhecido='387071306451124224', continuaOndeEsta = "continua onde está, verifique "+salaRank+" antes de usar o comando rank";
 							
 							try{
 								if( 			winrKD[0]>=45 && winrKD[1]>=7.4){//unstoppable
