@@ -529,7 +529,8 @@ client.on('message', message => {
 							}else{					
 								changeRole(message.member, desconhecido, incomum);		
 								print(message,"Parabéns! Você agora é <@&373640161290092544> \:trophy: \:ok_hand:");
-								jsonSquad=null;
+								message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));
+								jsonSquad=null;								
 								return;
 							}
 							jsonSquad=null;
