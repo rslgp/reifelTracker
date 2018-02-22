@@ -221,7 +221,9 @@ client.on('message', message => {
 		
 	switch(comando){
 		case "t":
+		var proprionick=false;
 			if(nickLegivel === undefined){
+				proprionick=true;
 				try{
 					nickLegivel=parametroUsado = getNickConhecido(message);
 					parametroUsado=encodeURI(parametroUsado);
@@ -282,6 +284,13 @@ client.on('message', message => {
 						}
 
 						msgPadraoBot( message, search(jsonSquad,nickLegivel)+d7Texto, site, creditos, nickLegivel );
+						//imbutir up aqui, pois agr so atualiza se for maior
+						if(proprionick) {							
+							var winrKD = up(jsonSquad);	
+							var winrNome = message.member.nickname.substring(0,message.member.nickname.indexOf("%"));
+							if(Number(winrNome)<Number(winrKD[0])) {message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));}
+							else {message.reply(winrKD[0]+" é o valor no site logo é a mesma winrate ou uma menor, não atualizei");}										
+						}
 					}catch(e){
 						console.log(e.message);
 						print(message, nickLegivel + errorFortnitetracker);
