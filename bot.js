@@ -991,7 +991,7 @@ function padraoAtualizarNome(message,nickLegivel,text,site){
 		case "368240657816354836": //bro
 			var winrNome = message.member.nickname.substring(0,message.member.nickname.indexOf("%"));
 			if(Number(winrNome)<Number(winrKD[0])) {message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));}
-			else {message.reply(" não atualizei, pois tá = ou < "+winrKD[0]);}
+			else {message.reply(" não atualizei, pois no site está: "+winrKD[0]);}
 		break;
 					
 		case "325413143943577601"://pai
