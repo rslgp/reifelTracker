@@ -273,8 +273,8 @@ client.on('message', message => {
 						var j7 = day7elem[0].textContent;
 						day7elem=null;
 						var j8 = j7.split("}");
-						d7kd = j8[15].split(":")[2].replace(/(\r\n|\n|\r|\"| )/gm,"");
-						d7WinRate = j8[17].split(":")[2].replace(/(\r\n|\n|\r|\"| )/gm,"");
+						d7kd = j8[13].split(":")[2].replace(/(\r\n|\n|\r|\"| )/gm,"");
+						d7WinRate = j8[15].split(":")[2].replace(/(\r\n|\n|\r|\"| )/gm,"");
 						d7WinRate = d7WinRate.slice(0,-1);
 						
 						d7Texto="\r\n7dias: win%: **"+d7WinRate+"** kd: **"+d7kd+"**";
