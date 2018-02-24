@@ -57,7 +57,7 @@ const helpMessage = "comandos disponiveis (inicie com ! ou .):\r\n**!queroessebo
 const errorUsuarioRegistrado = "usuario ja esta registrado", errorRefreshLotado="fila atualizacao lotada", 
 sucessoRegistro=" conseguiu se registrar", chamadaFilaLIVRE=">> a fila de atualizar win % automatica esta LIVRE <<", sucessoWinRateAtualizado="atualizei os win % de vcs";
 
-var salaRank, reifelUser;
+var salaRank,salaVotem,salaAposta, reifelUser;
 
 var TAG = "";
 var cooldownUser = [];
@@ -66,6 +66,8 @@ client.on('ready', () => {
 	client.user.username="reifelTracker";
 	client.user.setUsername("reifelTracker");
 	salaRank = client.channels.get("368505848667832321");	
+	salaVotem = client.channels.get("413597195846156299");	
+	salaAposta = client.channels.get("416769967690743819");
 	reifelUser = client.users.get('195731919424585728');
 });
 
@@ -199,6 +201,8 @@ client.on('message', message => {
 		case "arma":
 		case "ideia":
 		case "queroessebot":
+		case "novavotacao":
+		case "apostar":
 		break;
 		default:
 			return;
@@ -668,6 +672,18 @@ client.on('message', message => {
 					break;
 				}
 			}
+		break;		
+		
+		case "novavotacao":
+			if(message.member.roles.some(r=>[373640089986924554, 373640161290092544].includes(r.id))){return;}//raro e incomum nao pode - multiple
+			salaVotem.send('/poll "Role de '+nickLegivel+'em highelo gameplay" "Rusher Primário" "Rusher Secondário" "Sniper" "Suporte" "Safe Player"').then(message => message.delete());
+			print(message,"enviado para "+salaVotem);
+		break;
+		
+		case "apostar":
+			var nicks = nickLegivel.split(",").join('\" \"');
+			salaAposta.send('/poll "Apostas" "'+nicks+'\"').then(message => message.delete());
+			print(message,"enviado para "+salaAposta);
 		break;
 		
 		case "ideia":			
