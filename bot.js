@@ -195,6 +195,7 @@ client.on('message', message => {
 		case "t":
 		case "alt":
 		case "up":
+		case "help":
 		case "comandos":
 		case "ranking":
 		case "rank":
@@ -696,6 +697,7 @@ client.on('message', message => {
 			console.log(message.member.nickname.substring(indice));
 		break;
 		
+		case "help":
 		case "comandos":
 			print(message, helpMessage);
 		break;
