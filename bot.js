@@ -1,6 +1,10 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 
+const boleto5="[R$5](https://pagseguro.uol.com.br/checkout/nc/nl/donation/conclusion.jhtml?t=e84adc64861b06efe3418389f0daffad6e0dc54e16955395)"
+,boleto10="[R$10](https://pagseguro.uol.com.br/checkout/nc/nl/donation/conclusion.jhtml?t=f48d369f8213c4588265fa2664ed78f014d6ea9dfa90fe6e)"
+;
+
 //setting up twitch
 const twitch = require("tmi.js");
 const twiconf = {
@@ -28,7 +32,7 @@ client.login(process.env.BOT_TOKEN);
 const message = new Discord.Message();
 const Browser = require('zombie');
 Browser.silent = true;
-const creditos = "> criado por Reifel#5047 <", /*separador=" | ",*/ quebraLinha="\r\n", doacao=": **[Doações aqui](http://reifeltracker.ml/)**\r\n(*boleto / cartão de crédito/ depósito*)";
+const creditos = "> criado por Reifel#5047 <", /*separador=" | ",*/ quebraLinha="\r\n", doacao=": **[Doações aqui](http://reifeltracker.ml/)**\r\n**"+boleto5+" - "+boleto10+"** - (*boleto / cartão de crédito/ depósito*)";
 
 //tratando casos de erro
 const errorNickNaoEncontrado="nick não encontrado",
