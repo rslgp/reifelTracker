@@ -603,7 +603,9 @@ client.on('message', message => {
 							if(jsonSquad[matches].ValueInt > 250){
 								
 							}else{					
-								changeRole(message.member, desconhecido, incomum);		
+								changeRole(message.member, desconhecido, incomum);
+								//remover desconhecido
+								if( member.roles.has(desconhecido) ) member.removeRole(desconhecido).catch(err => console.log(err));
 								print(message,"Parabéns! Você agora é <@&373640161290092544> \:trophy: \:ok_hand:");
 								message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));
 								jsonSquad=null;								
@@ -1166,9 +1168,8 @@ function changeRole(member,oldRole, newRole){
 	
 	setTimeout(function(){ 
 			member.addRole(newRole).catch(err => console.log(err));
-		}, 1700);
-		
-		
+		}, 1700);	
+	
 	//setTimeout(function(){ 
 	//		if( member.roles.has(oldRole) ) member.removeRole(oldRole).catch(err => console.log(err));	
 	//	}, 1700);
