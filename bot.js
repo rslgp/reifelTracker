@@ -78,6 +78,14 @@ client.on('ready', () => {
 });
 
 //twitch
+function mute(channel, user, time, reason){
+	clientTwitch.timeout(channel, user.username, time, reason);
+}
+function msgTwitch(texto){
+	clientTwitch.action("reifel",texto);
+}
+var poll = [0,0,0];
+var contagemVoto=0;
 clientTwitch.on('chat', function(channel, user, message, self){
 	var comando;
 	var possuiParametro = message.indexOf(" ");
@@ -87,6 +95,63 @@ clientTwitch.on('chat', function(channel, user, message, self){
 	var nick="reifel", nickLegivel="Reifel";
 	
 	switch(comando){
+		case "votar":
+			var voto =message.replace("!votar ","");
+			switch(voto.toLowerCase()){
+				case '1':
+				case 'a':
+				poll[0]++;
+				break;				
+				case '2':
+				case 'b':
+				poll[1]++;
+				break;
+				case '3':
+				case 'c':
+				poll[2]++;
+				break;
+				default:
+					return;
+				break;
+			}			
+			mute(channel, user, 3, "voted");
+			if(contagemVoto==0){
+				setTimeout(
+					function() {
+						var vencedor = [0,0];
+						for(i=0,maior=0; i<poll.length; i++ ){
+							if(poll[i]>maior){
+								vencedor[0]=i;
+								maior=vencedor[1]=poll[i];
+							}
+						}
+						
+						switch(vencedor[0]){
+							case 0:
+							vencedor[0]='A';
+							break;
+							case 1:
+							vencedor[0]='B';
+							break;
+							case 2:
+							vencedor[0]='C';
+							break;
+						}
+						msgTwitch("vencedor: "+vencedor[0]+" com "+vencedor[1]+" votos - -- -- - resultado total: A: "+poll[0]+" - B: "+poll[1]+" - C: "+poll[2]);
+						contagemVoto=0;
+						poll[0]=poll[1]=poll[2]=0;//zerando poll
+					  
+					}, 3000);
+			}
+			contagemVoto++;
+
+		break;
+		case "resultado":
+			if(user.username=='reifel'){
+				pollAberta=false;
+				msgTwitch();
+			}
+		break;
 		case "squad":
 			nick = message.replace("!squad ","");
 			nickLegivel = nick;
@@ -115,7 +180,7 @@ clientTwitch.on('chat', function(channel, user, message, self){
 							throw false;
 						}
 						
-						clientTwitch.action("reifel", "Números em Squad de "+nickLegivel+": "+search(jsonSquad,nick,'t') );
+						msgTwitch( "Números em Squad de "+nickLegivel+": "+search(jsonSquad,nick,'t') );
 						
 					}catch(e){};
 		});		
@@ -125,7 +190,7 @@ clientTwitch.on('chat', function(channel, user, message, self){
 	}
 });
 clientTwitch.on('connected', function(channel, user, message, self){
-	clientTwitch.action("reifel", "estou vivo, reifel");
+	msgTwitch( "estou vivo, reifel");
 });
 //fim-twitch
 
