@@ -86,7 +86,14 @@ function msgTwitch(texto){
 }
 var poll = [0,0,0];
 var contagemVoto=0;
-const tempoVotacao = 4, tempoVotacaoSegundos=tempoVotacao*1000;
+const tempoVotacao = 6, tempoVotacaoSegundos=tempoVotacao*1000;
+client.on("notice", function (channel, msgid, message) {
+    switch(msgid){
+		case "msg_timedout":
+		break;
+	}
+});
+
 clientTwitch.on('chat', function(channel, user, message, self){
 	if (self) return;//nao se ouvir
 	try{
