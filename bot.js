@@ -88,6 +88,7 @@ var poll = [0,0,0];
 var contagemVoto=0;
 const tempoVotacao = 4, tempoVotacaoSegundos=tempoVotacao*1000;
 clientTwitch.on('chat', function(channel, user, message, self){
+	if (self) return;//nao se ouvir
 	try{
 		var numero = Number(message[0]);
 		if(numero!=0 && numero<4){
