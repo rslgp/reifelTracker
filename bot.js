@@ -107,16 +107,16 @@ clientTwitch.on('chat', function(channel, user, message, self){
 						
 						switch(vencedor[0]){
 							case 0:
-							vencedor[0]='A';
+							vencedor[0]='①';
 							break;
 							case 1:
-							vencedor[0]='B';
+							vencedor[0]='②';
 							break;
 							case 2:
-							vencedor[0]='C';
+							vencedor[0]='③';
 							break;
 						}
-						msgTwitch("vencedor: "+vencedor[0]+" com "+vencedor[1]+" votos - -- -- - resultado total: A: "+poll[0]+" - B: "+poll[1]+" - C: "+poll[2]);
+						msgTwitch("vencedor: "+vencedor[0]+" com "+vencedor[1]+" votos - -- -- - resultado total: ①: "+poll[0]+" - ②: "+poll[1]+" - ③: "+poll[2]);
 						contagemVoto=0;
 						poll[0]=poll[1]=poll[2]=0;//zerando poll
 					  
