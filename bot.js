@@ -79,10 +79,10 @@ client.on('ready', () => {
 
 //twitch
 function mute(channel, user, time, reason){
-	clientTwitch.timeout(channel, user.username, time, reason).catch(e){};
+	clientTwitch.timeout(channel, user.username, time, reason).catch(function(e){});
 }
 function msgTwitch(texto){
-	clientTwitch.action("reifel",texto).catch(e){};
+	clientTwitch.action("reifel",texto).catch(function(e){});
 }
 var poll = [0,0,0];
 var contagemVoto=0;
