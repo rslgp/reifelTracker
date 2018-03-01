@@ -90,7 +90,7 @@ const tempoVotacao = 4, tempoVotacaoSegundos=tempoVotacao*1000;
 clientTwitch.on('chat', function(channel, user, message, self){
 	try{
 		var numero = Number(message[0]);
-		if(numero!=0 && numero<3){
+		if(numero!=0 && numero<4){
 			poll[numero-1]++;
 			
 			mute(channel, user, tempoVotacao, "voted");
