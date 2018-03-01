@@ -86,7 +86,47 @@ function msgTwitch(texto){
 }
 var poll = [0,0,0];
 var contagemVoto=0;
+const tempoVotacao = 4, tempoVotacaoSegundos=tempoVotacao*1000;
 clientTwitch.on('chat', function(channel, user, message, self){
+	try{
+		var numero = Number(message[0]);
+		if(numero!=0 && numero<3){
+			poll[numero-1]++;
+			
+			mute(channel, user, tempoVotacao, "voted");
+			if(contagemVoto==0){
+				setTimeout(
+					function() {
+						var vencedor = [0,0];
+						for(i=0,maior=0; i<poll.length; i++ ){
+							if(poll[i]>maior){
+								vencedor[0]=i;
+								maior=vencedor[1]=poll[i];
+							}
+						}
+						
+						switch(vencedor[0]){
+							case 0:
+							vencedor[0]='A';
+							break;
+							case 1:
+							vencedor[0]='B';
+							break;
+							case 2:
+							vencedor[0]='C';
+							break;
+						}
+						msgTwitch("vencedor: "+vencedor[0]+" com "+vencedor[1]+" votos - -- -- - resultado total: A: "+poll[0]+" - B: "+poll[1]+" - C: "+poll[2]);
+						contagemVoto=0;
+						poll[0]=poll[1]=poll[2]=0;//zerando poll
+					  
+					}, tempoVotacaoSegundos);
+			}
+			contagemVoto++;
+		}
+		
+	}catch(e){}
+	
 	var comando;
 	var possuiParametro = message.indexOf(" ");
 	if(possuiParametro != -1){
@@ -95,6 +135,7 @@ clientTwitch.on('chat', function(channel, user, message, self){
 	var nick="reifel", nickLegivel="Reifel";
 	
 	switch(comando){
+		/*
 		case "votar":
 			var voto =message.replace("!votar ","");
 			switch(voto.toLowerCase()){
@@ -146,6 +187,7 @@ clientTwitch.on('chat', function(channel, user, message, self){
 			contagemVoto++;
 
 		break;
+		*/
 		case "resultado":
 			if(user.username=='reifel'){
 				pollAberta=false;
