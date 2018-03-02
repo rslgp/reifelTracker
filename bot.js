@@ -5,7 +5,7 @@ const boleto2="[R$2](https://pagseguro.uol.com.br/checkout/nc/payment/booklet/pr
 ,boleto5="[R$5](https://pagseguro.uol.com.br/checkout/nc/payment/booklet/print.jhtml?c=1debf73b859a7b18aab243adc62c5a3a425b25c07ffbc043caed93ee9e8bf26d0495de22902485ee&w=C)"
 ,boleto10="[R$10](https://pagseguro.uol.com.br/checkout/nc/payment/booklet/print.jhtml?c=bac28f71c7909b1df5c418ada540d312894d191e1c15191816c26a31898ddfda0b2c02e0d7adc562&w=C)"
 ;
-const boletosPreConfig = boleto2+" - "+boleto5+" - "+boleto10+" dia máx.: 07/03";
+const boletosPreConfig = boleto2+" - "+boleto5+" - "+boleto10+" - dia máx.: 07/03";
 
 //setting up twitch
 const twitch = require("tmi.js");
