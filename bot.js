@@ -1,11 +1,11 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-
-const boleto2="[R$2](https://pagseguro.uol.com.br/checkout/nc/nl/donation/conclusion.jhtml?t=e5e154ff8bb1779765e719c235c55b992ad81b2880658e09)"
-,boleto5="[R$5](https://pagseguro.uol.com.br/checkout/nc/nl/donation/conclusion.jhtml?t=e84adc64861b06efe3418389f0daffad6e0dc54e16955395)"
-,boleto10="[R$10](https://pagseguro.uol.com.br/checkout/nc/nl/donation/conclusion.jhtml?t=f48d369f8213c4588265fa2664ed78f014d6ea9dfa90fe6e)"
+//https://pag.ae/bhvP5V8
+const boleto2="[R$2](https://pagseguro.uol.com.br/checkout/nc/payment/booklet/print.jhtml?c=e35c01fa539ab49ab07c2afd06f17f21f16c594c8cf4577a9e61a8fdcc953250282409d05eefafe8&w=C)"
+,boleto5="[R$5](https://pagseguro.uol.com.br/checkout/nc/payment/booklet/print.jhtml?c=1debf73b859a7b18aab243adc62c5a3a425b25c07ffbc043caed93ee9e8bf26d0495de22902485ee&w=C)"
+,boleto10="[R$10](https://pagseguro.uol.com.br/checkout/nc/payment/booklet/print.jhtml?c=bac28f71c7909b1df5c418ada540d312894d191e1c15191816c26a31898ddfda0b2c02e0d7adc562&w=C)"
 ;
-const boletosPreConfig = boleto2+" - "+boleto5+" - "+boleto10;
+const boletosPreConfig = boleto2+" - "+boleto5+" - "+boleto10+" dia máx.: 07/03";
 
 //setting up twitch
 const twitch = require("tmi.js");
