@@ -7,6 +7,8 @@ const boleto2="[R$2](https://pagseguro.uol.com.br/checkout/nc/payment/booklet/pr
 ;
 const boletosPreConfig = boleto2+" - "+boleto5+" - "+boleto10+" - dia máx.: 07/03";
 
+const apoio = "\r\ndá like pro fix da epic na escada q gira sozinha -> (clique aqui)[https://accounts.epicgames.com/login/customized?regSubheading=Register&productCss=https%3A%2F%2Fwww.epicgames.com%2Ffortnite%2FssoAsset%2Ffortnite-custom.css&response_type=code&state=https%3A%2F%2Fwww.epicgames.com%2Ffortnite%2Fforums%2Fbugs-issues%2Fbug-reports%2F191591-stair-rotates-randomicaly-priorize-to-front-camera-and-only-rotate-if-pressed-r&client_id=52b63176173444eb8291b0dd60586e04&productName=fortnite&loginSubheading=Sign+In]";
+
 //setting up twitch
 const twitch = require("tmi.js");
 const twiconf = {
@@ -34,7 +36,7 @@ client.login(process.env.BOT_TOKEN);
 const message = new Discord.Message();
 const Browser = require('zombie');
 Browser.silent = true;
-const creditos = "> criado por Reifel#5047 <", /*separador=" | ",*/ quebraLinha="\r\n", doacao=": **[Doações aqui](http://reifeltracker.ml/)**\r\n**"+boletosPreConfig+"**\r\n(*boleto / cartão de crédito/ depósito*)";
+const creditos = "> criado por Reifel#5047 <", /*separador=" | ",*/ quebraLinha="\r\n", doacao=": **[Doações aqui](http://reifeltracker.ml/)**\r\n**"+boletosPreConfig+"**\r\n(*boleto / cartão de crédito/ depósito*)"+apoio;
 
 //tratando casos de erro
 const errorNickNaoEncontrado="nick não encontrado",
