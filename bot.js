@@ -664,9 +664,9 @@ client.on('message', message => {
 							}else{					
 								changeRole(message.member, desconhecido, incomum);
 								//remover desconhecido
+								message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));
 								if( member.roles.has(desconhecido) ) member.removeRole(desconhecido).catch(err => console.log(err));
 								print(message,"Parabéns! Você agora é <@&373640161290092544> \:trophy: \:ok_hand:");
-								message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));
 								jsonSquad=null;								
 								return;
 							}
