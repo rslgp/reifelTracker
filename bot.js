@@ -753,8 +753,8 @@ client.on('message', message => {
 						break;
 						
 						case '398566083101196298': //fortnite da depressaum
-						const depRaro='398566083101196298', depEpico='419295575960322048', depLendario='419295597061865492',continuaOndeEstadep = "continua onde está,\r\Lendário - winrate >= 30\r\Epico - winrate >= 22\r\nRaro < 22";;
-						if(winrKD[0]>=30){
+							const depRaro='398566083101196298', depEpico='419295575960322048', depLendario='419295597061865492',continuaOndeEstadep = "continua onde está,\r\Lendário - winrate >= 30\r\Epico - winrate >= 22\r\nRaro < 22";;
+							if(winrKD[0]>=30){
 								if(message.member.roles.has(depLendario)) {print(message,"você está na patente máxima");return;}
 								changeRole(message.member, depEpico, depLendario);	
 								print(message,"Parabéns! Você agora é <@&419295597061865492> \:trophy: \:ok_hand:");
@@ -767,6 +767,7 @@ client.on('message', message => {
 								changeRole(message.member, depLendario, depRaro);	
 								print(message,"Parabéns! Você agora é <@&398566083101196298> \:trophy: \:ok_hand:");
 							}
+							message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));
 						break;
 					}
 					
