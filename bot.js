@@ -261,6 +261,11 @@ client.on('message', message => {
 		case "363610360688672778": //privado fortnite-reifel
 		break;
 		
+		case "398566083101196298": //fortnite da depressaum killerbr
+			console.log(message.guild.roles);
+			if(message.channel.id!=419295377808818177) return;
+		break;
+		
 		//case "397143937057554433": //fps
 		//break;
 		
@@ -745,6 +750,9 @@ client.on('message', message => {
 								print(message,"Parabéns! Você agora é <@&410811911567835157> \:trophy: \:ok_hand:");
 							}
 							message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));
+						break;
+						
+						case '398566083101196298':
 						break;
 					}
 					
