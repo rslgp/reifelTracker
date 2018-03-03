@@ -735,7 +735,7 @@ client.on('message', message => {
 						break;
 						
 						case '313195845761761281'://galera gamer
-							const galComum='410811911567835157', galEpico='410811966618337280', galLendario='410812044397379604', continuaOndeEstaGal = "continua onde está,\r\Lendario - winrate >= 30\r\nEpico - winrate >= 22\r\nComum < 22";
+							const galComum='410811911567835157', galEpico='410811966618337280', galLendario='410812044397379604', continuaOndeEstaGal = "continua onde está,\r\Diamante - winrate >= 30\r\Ouro - winrate >= 22\r\nBronze < 22";
 							if(winrKD[0]>=30){
 								if(message.member.roles.has(galLendario)) {print(message,"você está na patente máxima");return;}
 								changeRole(message.member, galEpico, galLendario);	
@@ -752,7 +752,21 @@ client.on('message', message => {
 							message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));
 						break;
 						
-						case '398566083101196298':
+						case '398566083101196298': //fortnite da depressaum
+						const depRaro='398566083101196298', depEpico='419295575960322048', depLendario='419295597061865492',continuaOndeEstadep = "continua onde está,\r\Lendário - winrate >= 30\r\Epico - winrate >= 22\r\nRaro < 22";;
+						if(winrKD[0]>=30){
+								if(message.member.roles.has(depLendario)) {print(message,"você está na patente máxima");return;}
+								changeRole(message.member, depEpico, depLendario);	
+								print(message,"Parabéns! Você agora é <@&419295597061865492> \:trophy: \:ok_hand:");
+							}else if(winrKD[0]>=22){
+								if(message.member.roles.has(depEpico)) {print(message,continuaOndeEstadep); return;}
+								changeRole(message.member, depRaro, depEpico);	
+								print(message,"Parabéns! Você agora é <@&419295575960322048> \:trophy: \:ok_hand:");
+							}else{
+								if(message.member.roles.has(depRaro)) {print(message,continuaOndeEstadep); return;}
+								changeRole(message.member, depLendario, depRaro);	
+								print(message,"Parabéns! Você agora é <@&398566083101196298> \:trophy: \:ok_hand:");
+							}
 						break;
 					}
 					
