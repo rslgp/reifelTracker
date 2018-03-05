@@ -263,7 +263,7 @@ client.on('message', message => {
 		case "363610360688672778": //privado fortnite-reifel
 		break;
 		
-		case "398566083101196298": //fortnite da depressaum killerbr
+		case "398566083101196298": //fortnite da depressaum killerbr - pago 15 mes 03
 			if(message.channel.id!=419295377808818177) return;
 		break;
 		
@@ -275,7 +275,7 @@ client.on('message', message => {
 			//console.log(message.guild.roles);
 		//break;
 		
-		case '313195845761761281'://galera gamer
+		case '313195845761761281'://galera gamer - pago 20 mes 02
 			if(message.channel.id!=410811452232826892) return;
 			if(message.author.bot){ //batalha de bots
 				if(message.author.id==373443049818161153) return; //eh o reifeltracker
@@ -283,6 +283,11 @@ client.on('message', message => {
 				message.channel.overwritePermissions(message.author, {READ_MESSAGES: false, ADMINISTRATOR:false}).catch(console.error); //impede de ler futuras msgs				
 				print(message,"Este canal de texto é pequeno demais para dois bots meu chapa, vá para outro");
 			}
+		break;
+		
+		case '377628278627893248': //most wanted mwd ninja - pago 20 mes 03
+			if(message.channel.id!=420327257505005568) return;
+			console.log(message.guild.roles);
 		break;
 		
 		default:
@@ -754,7 +759,7 @@ client.on('message', message => {
 						break;
 						
 						case '398566083101196298': //fortnite da depressaum
-							const depRaro='419295542863069205', depEpico='419295575960322048', depLendario='419295597061865492',continuaOndeEstadep = "continua onde está,\r\Lendário - kd >= 3\r\Epico - kd >= 2\r\nRaro >= 1";;
+							const depRaro='419295542863069205', depEpico='419295575960322048', depLendario='419295597061865492',continuaOndeEstadep = "continua onde está,\r\Lendário - kd >= 3\r\Epico - kd >= 2\r\nRaro >= 1";
 							if(winrKD[1]>=3){
 								if(message.member.roles.has(depLendario)) {print(message,"você está na patente máxima");return;}
 								changeRole(message.member, depEpico, depLendario);	
@@ -767,6 +772,26 @@ client.on('message', message => {
 								if(message.member.roles.has(depRaro)) {print(message,continuaOndeEstadep); return;}
 								changeRole(message.member, depLendario, depRaro);	
 								print(message,"Parabéns! Você agora é <@&419295542863069205> \:trophy: \:ok_hand:");
+							}else{
+								print(message,continuaOndeEstadep); return;
+							}
+							message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) ).then(message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) )).then(user => message.reply("winrate: **"+winrKD[0]+`**, atualizei kd \:umbrella2:`)).catch(err => console.log(err));
+						break;
+						
+						case '377628278627893248': //most wanted
+							const mwdRaro='420326919758807060', mwdEpico='420326972045000715', mwdLendario='420326999064707082',continuaOndeEstamwd = "continua onde está,\r\Lendário - kd >= 3\r\Epico - kd >= 2\r\nRaro >= 1";
+							if(winrKD[1]>=3){
+								if(message.member.roles.has(depLendario)) {print(message,"você está na patente máxima");return;}
+								changeRole(message.member, depEpico, depLendario);	
+								print(message,"Parabéns! Você agora é <@&420326999064707082> \:trophy: \:ok_hand:");
+							}else if(winrKD[1]>=2){
+								if(message.member.roles.has(depEpico)) {print(message,continuaOndeEstadep); return;}
+								changeRole(message.member, depRaro, depEpico);	
+								print(message,"Parabéns! Você agora é <@&420326972045000715> \:trophy: \:ok_hand:");
+							}else if(winrKD[1]>=1){
+								if(message.member.roles.has(depRaro)) {print(message,continuaOndeEstadep); return;}
+								changeRole(message.member, depLendario, depRaro);	
+								print(message,"Parabéns! Você agora é <@&420326919758807060> \:trophy: \:ok_hand:");
 							}else{
 								print(message,continuaOndeEstadep); return;
 							}
