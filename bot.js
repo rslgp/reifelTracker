@@ -1191,6 +1191,7 @@ function padraoAtualizarNome(message,nickLegivel,text,site){
 					
 		case "325413143943577601"://pai
 		case "398566083101196298"://depressaum
+		case "377628278627893248"://mwd
 			message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) ).then(user => message.reply("winrate: **"+winrKD[0]+`**, atualizei kd \:umbrella2:`)).catch(err => console.log(err));	
 			//console.log(message.guild.roles);
 		break;
