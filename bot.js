@@ -99,6 +99,14 @@ clientTwitch.on("notice", function (channel, msgid, message) {
 	}
 });
 
+clientTwitch.on("join", function (channel, username, self) {
+    msgTwitch("Bem vindo a live "+username);
+});
+
+clientTwitch.on("part", function (channel, username, self) {
+    reifelUser.send(username+" saiu da live");
+});
+
 const followers = ["kalapus", "edacata", "ezeey_", "argentabryan", "luizcarlos741", "cattkn", "tarsisfventura", "rafaelrialo", "96dps", "spray_arg", "joaopedrotwd123", "fofenho", "ffninja", "guilhermealfenas", "benguinha", "andrerocha2511", "inst34d", "refluxlt", "zyanyz", "joaobombadill", "nicoedu", "loosebr", "olek0707pt", "cyanide_poison", "bozo126", "doggamerbrr", "keiroga", "columbina", "gusa08", "dmtrafaaa", "rogatkagaming", "slingy0", "iceonice", "taiobatv00", "alm_a03", "cazinskye", "fatihtkale", "caiohms", "ryanpatric4555"];
 function anunciarRecursivo(i){
 	if(i<followers.length){
