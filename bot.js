@@ -115,6 +115,7 @@ clientTwitch.on("part", function (channel, username, self) {
 	switch(username){
 		case "nightbot":
 		case "electricalskateboard":
+		case "96dps":
 			return;
 		break;
 		default:
