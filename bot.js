@@ -139,7 +139,7 @@ clientTwitch.on('chat', function(channel, user, message, self){
 		if(numero!=0 && numero<4){
 			poll[numero-1]++;
 			
-			mute(channel, user, tempoVotacao, "voted");
+			//mute(channel, user, tempoVotacao, "voted");
 			if(contagemVoto==0){
 				setTimeout(
 					function() {
