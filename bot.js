@@ -99,6 +99,15 @@ client.on("notice", function (channel, msgid, message) {
 	}
 });
 
+const followers = ["kalapus", "edacata", "ezeey_", "argentabryan", "luizcarlos741", "cattkn", "tarsisfventura", "rafaelrialo", "96dps", "spray_arg", "joaopedrotwd123", "fofenho", "ffninja", "guilhermealfenas", "benguinha", "andrerocha2511", "inst34d", "refluxlt", "zyanyz", "joaobombadill", "nicoedu", "loosebr", "olek0707pt", "cyanide_poison", "bozo126", "doggamerbrr", "keiroga", "columbina", "gusa08", "dmtrafaaa", "rogatkagaming", "slingy0", "iceonice", "taiobatv00", "alm_a03", "cazinskye", "fatihtkale", "caiohms", "ryanpatric4555"];
+function anunciarRecursivo(i){
+	if(i<followers.length){
+		clientTwitch.whisper(followers[i], "eae! a Live ta on :)) vamo lá ver twitch.tv/reifel").then(function(data) {anunciarRecursivo(i+1); return;}).catch(function(err) {anunciarRecursivo(i+1); return;});
+	}else{
+		return;
+	}
+}
+
 clientTwitch.on('chat', function(channel, user, message, self){
 	if (self) return;//nao se ouvir
 	try{
@@ -200,12 +209,15 @@ clientTwitch.on('chat', function(channel, user, message, self){
 			contagemVoto++;
 
 		break;
-		*/
 		case "resultado":
 			if(user.username=='reifel'){
 				pollAberta=false;
 				msgTwitch();
 			}
+		break;
+		*/
+		case "anunciar":
+			anunciarRecursivo(0);
 		break;
 		case "squad":
 			nick = message.replace("!squad ","");
