@@ -100,7 +100,15 @@ clientTwitch.on("notice", function (channel, msgid, message) {
 });
 
 clientTwitch.on("join", function (channel, username, self) {
-    msgTwitch("Bem vindo a live "+username);
+	switch(username){
+		case "nightbot":
+		case "electricalskateboard":
+			return;
+		break;
+		default:
+			msgTwitch("Bem vindo a live "+username);
+		break;
+	}
 });
 
 clientTwitch.on("part", function (channel, username, self) {
