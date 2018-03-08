@@ -125,7 +125,7 @@ clientTwitch.on("part", function (channel, username, self) {
 });
 
 const avisoLiveOn="eae! a Live ta on :)) twitch.tv/reifel";
-const followers = ["kalapus", "edacata", "ezeey_", "argentabryan", "luizcarlos741", "cattkn", "tarsisfventura", "rafaelrialo", "96dps", "spray_arg", "joaopedrotwd123", "fofenho", "ffninja", "guilhermealfenas", "benguinha", "andrerocha2511", "inst34d", "refluxlt", "zyanyz", "joaobombadill", "nicoedu", "loosebr", "olek0707pt", "cyanide_poison", "bozo126", "doggamerbrr", "keiroga", "columbina", "gusa08", "dmtrafaaa", "rogatkagaming", "slingy0", "iceonice", "taiobatv00", "alm_a03", "cazinskye", "fatihtkale", "caiohms", "ryanpatric4555"];
+const followers = ["blasmadafaka", "nether1_", "gotalitu", "skaf12345", "colb_elite", "hy4z", "lhiel", "kalapus", "edacata", "ezeey_", "argentabryan", "luizcarlos741", "cattkn", "tarsisfventura", "riialo", "96dps", "spray_arg", "joaopedrotwd123", "fofenho", "ffninja", "guilhermealfenas", "benguinha", "andrerocha2511", "inst34d", "refluxlt", "zyanyz", "joaobombadill", "nicoedu", "loosebr", "olek0707pt", "cyanide_poison", "bozo126", "doggamerbrr", "keiroga", "columbina", "gusa08", "dmtrafaaa", "rogatkagaming", "slingy0", "iceonice", "taiobatv00", "alm_a03", "cazinskye", "fatihtkale", "caiohms", "ryanpatric4555"];
 function anunciarRecursivo(i){
 	if(i<followers.length){
 		setTimeout(
