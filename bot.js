@@ -6,7 +6,7 @@ const boleto2="[R$2](https://pagseguro.uol.com.br/checkout/nc/payment/booklet/pr
 ,boleto10="[R$10](https://pagseguro.uol.com.br/checkout/nc/payment/booklet/print.jhtml?c=bac28f71c7909b1df5c418ada540d312894d191e1c15191816c26a31898ddfda0b2c02e0d7adc562&w=C)"
 ;
 //const boletosPreConfig = boleto2+" - "+boleto5+" - "+boleto10+" - dia máx.: 07/03";
-const boletosPreConfig = "**Anuncie/divulgue aqui** - pm: Reifel#5047";
+const boletosPreConfig = "Patrocinado por: **Anuncie/divulgue aqui** - pm: Reifel#5047";
 
 const tabelaPreco = '**Mensalidade do bot ReifelTracker**\r\nDepende da quantidade de membros do seu server no discord\r\n\r\nmembros -------- reais por mês\r\n1 a 100             -------- R$ 15\r\n100 a 350       -------- R$ 20\r\n351 a 500        -------- R$ 30\r\nmaior q 501      -------- R$ 35\r\nmaior q 1800   -------- R$ 45\r\n\r\nDá direito a 3 cargos, instalação grátis e só paga quando estiver funcionando, os preços são para usar o bot do jeito que ele é na última atualização dele, com no máximo pequenas adaptações\r\n--\r\npara grandes modificações e alterações é cobrado serviço de mão de obra por fora da mensalidade\r\n----\r\n**plano econômico: R$ 15 por mês** independente do tamanho do servidor para usar apenas o comando !t\r\n**TRATAR COM:** @Reifel#5047 <@195731919424585728>. Não envie mensagem por aqui, envie para reifel';
 
