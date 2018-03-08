@@ -1341,7 +1341,7 @@ function verifyRole(member, role){
 
 const msgDonate = ['Donate', 'Dá uma moral', 'Apoie', 'Nunca te pedi nda', 'Be my senpai', 'Envia um airdrop', 'Dropa bala média', 'Põe o jump', 'Gostou?', 'Faz um cover'];
 function randomDonate(){
-	const reduzirMsgDonate = Math.ceil(msgDonate.length*0.6);
+	const reduzirMsgDonate = Math.ceil(msgDonate.length*0.75);
 	const index = Math.floor(Math.random() * (msgDonate.length+reduzirMsgDonate));
 	if(index >= msgDonate.length) return "";
 	else return quebraLinha+msgDonate[index]+doacao;
