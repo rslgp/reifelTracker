@@ -1,10 +1,10 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 //https://pag.ae/bhvP5V8
-const boleto2="[R$2](https://pagseguro.uol.com.br/checkout/nc/payment/booklet/print.jhtml?c=e35c01fa539ab49ab07c2afd06f17f21f16c594c8cf4577a9e61a8fdcc953250282409d05eefafe8&w=C)"
-,boleto5="[R$5](https://pagseguro.uol.com.br/checkout/nc/payment/booklet/print.jhtml?c=1debf73b859a7b18aab243adc62c5a3a425b25c07ffbc043caed93ee9e8bf26d0495de22902485ee&w=C)"
-,boleto10="[R$10](https://pagseguro.uol.com.br/checkout/nc/payment/booklet/print.jhtml?c=bac28f71c7909b1df5c418ada540d312894d191e1c15191816c26a31898ddfda0b2c02e0d7adc562&w=C)"
-;
+//const boleto2="[R$2](https://pagseguro.uol.com.br/checkout/nc/payment/booklet/print.jhtml?c=e35c01fa539ab49ab07c2afd06f17f21f16c594c8cf4577a9e61a8fdcc953250282409d05eefafe8&w=C)"
+//,boleto5="[R$5](https://pagseguro.uol.com.br/checkout/nc/payment/booklet/print.jhtml?c=1debf73b859a7b18aab243adc62c5a3a425b25c07ffbc043caed93ee9e8bf26d0495de22902485ee&w=C)"
+//,boleto10="[R$10](https://pagseguro.uol.com.br/checkout/nc/payment/booklet/print.jhtml?c=bac28f71c7909b1df5c418ada540d312894d191e1c15191816c26a31898ddfda0b2c02e0d7adc562&w=C)"
+//;
 //const boletosPreConfig = boleto2+" - "+boleto5+" - "+boleto10+" - dia máx.: 07/03";
 const boletosPreConfig = "Patrocinado por: **Anuncie/divulgue aqui** - pm: Reifel#5047";
 
@@ -126,12 +126,13 @@ clientTwitch.on("part", function (channel, username, self) {
 });
 
 const avisoLiveOn="eae! a Live ta on :)) twitch.tv/reifel";
+var avisoLiveOnHorario;
 const followers = ["blasmadafaka", "nether1_", "gotalitu", "skaf12345", "colb_elite", "hy4z", "lhiel", "kalapus", "edacata", "ezeey_", "argentabryan", "luizcarlos741", "cattkn", "tarsisfventura", "riialo", "96dps", "spray_arg", "joaopedrotwd123", "fofenho", "ffninja", "guilhermealfenas", "benguinha", "andrerocha2511", "inst34d", "refluxlt", "zyanyz", "joaobombadill", "nicoedu", "loosebr", "olek0707pt", "cyanide_poison", "bozo126", "doggamerbrr", "keiroga", "columbina", "gusa08", "dmtrafaaa", "rogatkagaming", "slingy0", "iceonice", "taiobatv00", "alm_a03", "cazinskye", "fatihtkale", "caiohms", "ryanpatric4555"];
 function anunciarRecursivo(i){
 	if(i<followers.length){
 		setTimeout(
 		function() {
-			clientTwitch.whisper(followers[i], avisoLiveOn).then(function(data) {anunciarRecursivo(i+1); return;}).catch(function(err) {anunciarRecursivo(i+1); return;});
+			clientTwitch.whisper(followers[i], avisoLiveOnHorario).then(function(data) {anunciarRecursivo(i+1); return;}).catch(function(err) {anunciarRecursivo(i+1); return;});
 		}, 2000);
 	}else{
 		return;
@@ -247,6 +248,8 @@ clientTwitch.on('chat', function(channel, user, message, self){
 		break;
 		*/
 		case "anunciar":
+			var d = new Date();
+			avisoLiveOnHorario=avisoLiveOn+" hoje dia "+d.getDate()+" abriu de "+(Number(d.getHours())-3)+"h";
 			anunciarRecursivo(0);
 		break;
 		case "squad":
