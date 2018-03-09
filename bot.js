@@ -255,12 +255,12 @@ clientTwitch.on('chat', function(channel, user, message, self){
 			if(username == "reifel"){
 				//for(i=0;i<5;i++){ //4 vezes
 					//setTimeout(
-						function() {
+						//function() {
 							msgTwitch("Top 3 clips da semana - Reifel:");
 							msgTwitch(clip[0]);
 							msgTwitch(clip[1]);
 							msgTwitch(clip[2]);
-						}
+						//}
 					//,1800000);//30min				
 				//}
 			}
