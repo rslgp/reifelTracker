@@ -94,7 +94,11 @@ var poll = [0,0,0];
 var contagemVoto=0;
 const tempoVotacao = 6, tempoVotacaoSegundos=tempoVotacao*1000;
 
-const clip=["desert eagle + sniper: https://clips.twitch.tv/HorribleYawningMelonKeyboardCat", "impulse bomb + 1 granada 2 shield + pistolao: https://clips.twitch.tv/SlickClearNoodleRedCoat", "desert eagle + pump: https://clips.twitch.tv/PiliableBitterFiddleheadsAsianGlow"];
+const clip=[
+"desert eagle + sniper: https://clips.twitch.tv/HorribleYawningMelonKeyboardCat",
+"impulse bomb + 1 granada 2 shield + pistolao: https://clips.twitch.tv/SlickClearNoodleRedCoat", 
+"desert eagle + pump: https://clips.twitch.tv/PiliableBitterFiddleheadsAsianGlow",
+"https://clips.twitch.tv/PlainSpinelessArugulaTwitchRaid"];
 
 const avisoLiveOn="eae! a Live ta on :)) twitch.tv/reifel";
 var avisoLiveOnHorario;
@@ -253,16 +257,17 @@ clientTwitch.on('chat', function(channel, user, message, self){
 		*/
 		case "clips":
 			if(user.username == 'reifel'){
-				//for(i=0;i<5;i++){ //4 vezes
-					//setTimeout(
-						//function() {
+				for(i=0;i<5;i++){ //4 vezes
+					setTimeout(
+						function() {
 							msgTwitch("Top 3 clips da semana - Reifel:");
 							msgTwitch(clip[0]);
 							msgTwitch(clip[1]);
 							msgTwitch(clip[2]);
-						//}
-					//,1800000);//30min				
-				//}
+							msgTwitch("rocket ride do dia: "+clip[3]);
+						}
+					,1800000);//30min				
+				}
 			}
 		break;
 		case "anunciar":
