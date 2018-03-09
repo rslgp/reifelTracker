@@ -265,6 +265,7 @@ clientTwitch.on('chat', function(channel, user, message, self){
 							msgTwitch(clip[1]);
 							msgTwitch(clip[2]);
 							msgTwitch("rocket ride do dia: "+clip[3]);
+							msgTwitch("ql horario vc costuma ver stream? diz em tiny.cc/enquete-reifel");
 						}
 					,1800000);//30min				
 				}
