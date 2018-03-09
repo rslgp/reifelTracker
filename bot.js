@@ -93,6 +93,13 @@ function msgTwitch(texto){
 var poll = [0,0,0];
 var contagemVoto=0;
 const tempoVotacao = 6, tempoVotacaoSegundos=tempoVotacao*1000;
+
+const clip=["desert eagle + sniper: https://clips.twitch.tv/HorribleYawningMelonKeyboardCat", "impulse bomb + 1 granada 2 shield + pistolao: https://clips.twitch.tv/SlickClearNoodleRedCoat", "desert eagle + pump: https://clips.twitch.tv/PiliableBitterFiddleheadsAsianGlow"];
+
+const avisoLiveOn="eae! a Live ta on :)) twitch.tv/reifel";
+var avisoLiveOnHorario;
+const followers = ["blasmadafaka", "nether1_", "gotalitu", "skaf12345", "colb_elite", "hy4z", "lhiel", "kalapus", "edacata", "ezeey_", "argentabryan", "luizcarlos741", "cattkn", "tarsisfventura", "riialo", "96dps", "spray_arg", "joaopedrotwd123", "fofenho", "ffninja", "guilhermealfenas", "benguinha", "andrerocha2511", "inst34d", "refluxlt", "zyanyz", "joaobombadill", "nicoedu", "loosebr", "olek0707pt", "cyanide_poison", "bozo126", "doggamerbrr", "keiroga", "columbina", "gusa08", "dmtrafaaa", "rogatkagaming", "slingy0", "iceonice", "taiobatv00", "alm_a03", "cazinskye", "fatihtkale", "caiohms", "ryanpatric4555"];
+
 clientTwitch.on("notice", function (channel, msgid, message) {
     switch(msgid){
 		case "msg_timedout":
@@ -125,9 +132,6 @@ clientTwitch.on("part", function (channel, username, self) {
 	}
 });
 
-const avisoLiveOn="eae! a Live ta on :)) twitch.tv/reifel";
-var avisoLiveOnHorario;
-const followers = ["blasmadafaka", "nether1_", "gotalitu", "skaf12345", "colb_elite", "hy4z", "lhiel", "kalapus", "edacata", "ezeey_", "argentabryan", "luizcarlos741", "cattkn", "tarsisfventura", "riialo", "96dps", "spray_arg", "joaopedrotwd123", "fofenho", "ffninja", "guilhermealfenas", "benguinha", "andrerocha2511", "inst34d", "refluxlt", "zyanyz", "joaobombadill", "nicoedu", "loosebr", "olek0707pt", "cyanide_poison", "bozo126", "doggamerbrr", "keiroga", "columbina", "gusa08", "dmtrafaaa", "rogatkagaming", "slingy0", "iceonice", "taiobatv00", "alm_a03", "cazinskye", "fatihtkale", "caiohms", "ryanpatric4555"];
 function anunciarRecursivo(i){
 	if(i<followers.length){
 		setTimeout(
@@ -247,10 +251,26 @@ clientTwitch.on('chat', function(channel, user, message, self){
 			}
 		break;
 		*/
+		case "clips":
+			if(username == "reifel"){
+				//for(i=0;i<5;i++){ //4 vezes
+					//setTimeout(
+						function() {
+							msgTwitch("Top 3 clips da semana - Reifel:");
+							msgTwitch(clip[0]);
+							msgTwitch(clip[1]);
+							msgTwitch(clip[2]);
+						}
+					//,1800000);//30min				
+				//}
+			}
+		break;
 		case "anunciar":
-			var d = new Date();
-			avisoLiveOnHorario=avisoLiveOn+" hoje dia "+d.getDate()+" abriu de "+(Number(d.getHours())-3)+"h";
-			anunciarRecursivo(0);
+			if(username == "reifel"){
+				var d = new Date();
+				avisoLiveOnHorario=avisoLiveOn+" hoje dia "+d.getDate()+" abriu de "+(Number(d.getHours())-3)+"h";
+				anunciarRecursivo(0);				
+			}
 		break;
 		case "squad":
 			nick = message.replace("!squad ","");
