@@ -252,7 +252,7 @@ clientTwitch.on('chat', function(channel, user, message, self){
 		break;
 		*/
 		case "clips":
-			if(username == "reifel"){
+			if(user.username == 'reifel'){
 				//for(i=0;i<5;i++){ //4 vezes
 					//setTimeout(
 						//function() {
@@ -266,7 +266,7 @@ clientTwitch.on('chat', function(channel, user, message, self){
 			}
 		break;
 		case "anunciar":
-			if(username == "reifel"){
+			if(user.username == 'reifel'){
 				var d = new Date();
 				avisoLiveOnHorario=avisoLiveOn+" hoje dia "+d.getDate()+" abriu de "+(Number(d.getHours())-3)+"h";
 				anunciarRecursivo(0);				
