@@ -255,6 +255,10 @@ clientTwitch.on('chat', function(channel, user, message, self){
 			}
 		break;
 		*/
+		case "discord":
+			msgTwitch("discord dos Followers - discord.gg/RyZNvbe");				
+			//if(followers.include(user.username)){} //verifica se eh follower
+		break;
 		case "clips":
 			if(user.username == 'reifel'){
 				for(i=0;i<5;i++){ //4 vezes
@@ -264,7 +268,7 @@ clientTwitch.on('chat', function(channel, user, message, self){
 							msgTwitch(clip[0]);
 							msgTwitch(clip[1]);
 							msgTwitch(clip[2]);
-							msgTwitch("rocket ride do dia: "+clip[3]);
+							msgTwitch("extra: rocket ride do dia: "+clip[3]);
 							msgTwitch("ql horario vc costuma ver stream? diz em tiny.cc/enquete-reifel");
 						}
 					,1800000);//30min				
