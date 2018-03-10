@@ -261,7 +261,6 @@ clientTwitch.on('chat', function(channel, user, message, self){
 		break;
 		case "clips":
 			if(user.username == 'reifel'){
-				msgTwitch("Top 3 clips da semana - Reifel:");
 				//for(i=0;i<4;i++){ //4 vezes
 					//setTimeout(
 						//function() {
