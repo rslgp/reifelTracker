@@ -262,12 +262,6 @@ clientTwitch.on('chat', function(channel, user, message, self){
 		case "clips":
 			if(user.username == 'reifel'){
 				msgTwitch("Top 3 clips da semana - Reifel:");
-							msgTwitch(clip[0]);
-							msgTwitch(clip[1]);
-							msgTwitch(clip[2]);
-							msgTwitch("extra: rocket ride do dia: "+clip[3]);
-							msgTwitch("ql horario vc costuma ver stream? diz em tiny.cc/enquete-reifel");
-						
 				for(i=0;i<4;i++){ //4 vezes
 					setTimeout(
 						function() {
