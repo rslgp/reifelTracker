@@ -260,7 +260,7 @@ clientTwitch.on('chat', function(channel, user, message, self){
 			//if(followers.include(user.username)){} //verifica se eh follower
 		break;
 		case "clips":
-			if(user.username == 'reifel'){
+			//if(user.username == 'reifel'){
 				//for(i=0;i<4;i++){ //4 vezes
 					//setTimeout(
 						//function() {
@@ -273,7 +273,7 @@ clientTwitch.on('chat', function(channel, user, message, self){
 						//}
 					//,1800000);//30min				
 				//}
-			}
+			//}
 		break;
 		case "anunciar":
 			if(user.username == 'reifel'){
