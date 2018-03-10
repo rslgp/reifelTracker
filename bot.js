@@ -102,7 +102,7 @@ const clip=[
 
 const avisoLiveOn="eae! a Live ta on :)) twitch.tv/reifel";
 var avisoLiveOnHorario;
-const followers = ["blasmadafaka", "nether1_", "gotalitu", "skaf12345", "colb_elite", "hy4z", "lhiel", "kalapus", "edacata", "ezeey_", "argentabryan", "luizcarlos741", "cattkn", "tarsisfventura", "riialo", "96dps", "spray_arg", "joaopedrotwd123", "fofenho", "ffninja", "guilhermealfenas", "benguinha", "andrerocha2511", "inst34d", "refluxlt", "zyanyz", "joaobombadill", "nicoedu", "loosebr", "olek0707pt", "cyanide_poison", "bozo126", "doggamerbrr", "keiroga", "columbina", "gusa08", "dmtrafaaa", "rogatkagaming", "slingy0", "iceonice", "taiobatv00", "alm_a03", "cazinskye", "fatihtkale", "caiohms", "ryanpatric4555"];
+const followers = ["96dps", "alm_a03", "andrerocha2511", "argentabryan", "benguinha", "blasmadafaka", "bozo126", "caiohms", "cattkn", "cazinskye", "colb_elite", "columbina", "cyanide_poison", "deathsavage_", "dmtrafaaa", "doggamerbrr", "dravenisbroken", "edacata", "erzatv1", "ezeey_", "fatihtkale", "ffninja", "fofenho", "gamerplay000", "gotalitu", "guilhermealfenas", "gusa08", "hugonm", "hy4z", "iceonice", "inst34d", "jesseferreiradavid", "joaobombadill", "joaopedrotwd123", "kaena1", "kalapus", "keiroga", "lhiel", "llhawkblack", "loosebr", "luizcarlos741", "marechal401", "martos441", "nether1_", "nicoedu", "olek0707pt", "overlocked", "peterparker_4g", "refluxlt", "riialo", "rogatkagaming", "ryanpatric4555", "scifi404", "senterppppp", "skaf12345", "slingy0", "spray_arg", "taiobatv00", "tarsisfventura", "tonhaotv", "zyanyz"];
 
 clientTwitch.on("notice", function (channel, msgid, message) {
     switch(msgid){
