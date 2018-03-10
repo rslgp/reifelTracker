@@ -118,7 +118,7 @@ clientTwitch.on("join", function (channel, username, self) {
 			return;
 		break;
 		default:
-			msgTwitch("Bem vindo a live @"+username);
+			msgTwitch("Bem vindo (Welcome) a live @"+username);
 		break;
 	}
 });
