@@ -259,10 +259,10 @@ clientTwitch.on('chat', function(channel, user, message, self){
 		*/
 		case "discord":
 			msgTwitch("discord dos Followers - discord.gg/RyZNvbe");				
-			//if(followers.include(user.username)){} //verifica se eh follower
+			//if(followers.includes(user.username)){} //verifica se eh follower
 		break;
 		case "fila":
-			if(filaSquad.include(user.username)){}
+			if(filaSquad.includes(user.username)){}
 			else{msgTwitch(user.username+" sua posicao na fila é "+(filaSquad.push(user.username)+1))}
 		break;
 		case "andarfila":
