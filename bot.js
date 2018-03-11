@@ -270,13 +270,14 @@ clientTwitch.on('chat', function(channel, user, message, self){
 				var qtd = message.replace("!andarfila ",""), escolhidos="";
 				qtd = Number(qtd);
 				for(i=0; i<qtd;i++){
-					escolhidos= filaSquad.shift()+" - ";
+					escolhidos += filaSquad.shift()+" - ";
 				}
 				msgTwitch(escolhidos);
 			}
 		break;
 		case "verfila":
-			msgTwitch(filaSquad.toString());
+			if(filaSquad.length==0) msgTwitch("vazia");
+			else msgTwitch(filaSquad.toString());
 		break;
 		
 		case "clips":
