@@ -267,7 +267,7 @@ clientTwitch.on('chat', function(channel, user, message, self){
 		break;
 		case "andarfila":
 			if(user.username=='reifel'){
-				var qtd = message.replace("!andarfila ",""), escolhidos="";
+				var qtd = message.replace("!andarfila ",""), escolhidos="Escolhidos: ";
 				qtd = Number(qtd);
 				for(i=0; i<qtd;i++){
 					escolhidos += filaSquad.shift()+" - ";
