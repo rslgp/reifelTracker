@@ -263,7 +263,7 @@ clientTwitch.on('chat', function(channel, user, message, self){
 		break;
 		case "fila":
 			if(filaSquad.includes(user.username)){}
-			else{msgTwitch(user.username+" sua posicao na fila é "+(filaSquad.push(user.username)+1))}
+			else{msgTwitch(user.username+" sua posicao na fila é "+(filaSquad.push(user.username)))}
 		break;
 		case "andarfila":
 			if(user.username=='reifel'){
