@@ -94,6 +94,8 @@ var poll = [0,0,0];
 var contagemVoto=0;
 const tempoVotacao = 6, tempoVotacaoSegundos=tempoVotacao*1000;
 
+var filaSquad = [];
+
 const clip=[
 "desert eagle + sniper: https://clips.twitch.tv/HorribleYawningMelonKeyboardCat",
 "impulse bomb + 1 granada 2 shield + pistolao: https://clips.twitch.tv/SlickClearNoodleRedCoat", 
@@ -102,7 +104,7 @@ const clip=[
 
 const avisoLiveOn="eae! a Live ta on :)) twitch.tv/reifel";
 var avisoLiveOnHorario;
-const followers = ["96dps", "alm_a03", "andrerocha2511", "argentabryan", "barbosarj", "benguinha", "biiagianni", "blasmadafaka", "botwu", "bozo126", "brunocarlan", "caiohms", "call_strom", "cattkn", "cauamandraga", "cazinskye", "cogwhistle", "colb_elite", "columbina", "cyanide_poison", "deadlikeimearnhardt", "deathsavage_", "delfim88", "dmtrafaaa", "doggamerbrr", "domineiter", "dravenisbroken", "edacata", "erzatv1", "expecial_light", "ezeey_", "fatihtkale", "ffninja", "fofenho", "foliao543", "gabrielnogas", "gabussauro", "gamerplay000", "garamirezyt", "gigozubu", "gotalitu", "grayguitar", "grutz", "guilhermealfenas", "gusa08", "hugonm", "hy4z", "iazulmarinho", "iceonice", "ileoox", "inst34d", "jesseferreiradavid", "joaobombadill", "joaopedrotwd123", "jrbellon", "kaena1", "kalapus", "keiroga", "krushem761", "leehunterz", "leojobim", "leozinrasta", "lethalfiness", "lhiel", "llhawkblack", "loosebr", "lucaasroxy1", "lucaosxd", "lucasbr0501", "luizcarlos741", "marechal401", "martos441", "matsigui", "megazzero", "meneguccii", "miwo55", "mrwaguinho", "mtadeuz", "namoratozy", "nether1_", "nicoedu", "ninjadfps", "olek0707pt", "overlocked", "pedrohfhg", "pedronkz", "peterparker_4g", "poste9", "quecalordapoha", "refluxlt", "remx28", "riialo", "ripyouall", "rogatkagaming", "rudyhimself", "rxpeppa", "ryanpatric4555", "scifi404", "senterppppp", "shagnakam_", "skaf12345", "skgm666", "slingy0", "spray_arg", "sstylerr97", "sxxmarvs", "taiobatv00", "taizunpk", "tarsisfventura", "thiagoortukz", "tonhaotv", "tsumiki220", "uns3en_7", "voltagexking_yt", "xinbinha2468", "y3ux", "zfearz", "zhades9", "zyanyz"];
+const followers = ["96dps", "alm_a03", "andrerocha2511", "argentabryan", "azuzinho123", "barbosarj", "benguinha", "bhgameplays", "biiagianni", "blasmadafaka","borgodd", "botwu", "bozo126", "brunocarlan", "bzhx", "caiohms", "call_strom", "cattkn", "cauamandraga", "cazinskye", "cogwhistle", "colb_elite", "columbina", "cyanide_poison", "deadlikeimearnhardt", "deathsavage_", "delfim88", "dmtrafaaa", "doggamerbrr", "domineiter", "dravenisbroken", "edacata", "erzatv1", "expecial_light", "ezeey_", "fatihtkale", "ffninja", "fofenho", "foliao543", "gabrielnogas", "gabussauro", "gamerplay000", "garamirezyt", "gigozubu", "gotalitu", "grayguitar", "grutz", "guilhermealfenas", "guilhermemoralll", "gusa08", "hugonm", "hy4z", "iazulmarinho", "iceonice", "ileoox", "inst34d", "jesseferreiradavid", "joaobombadill", "joaopedrotwd123", "jrbellon", "kaena1", "kalapus", "keiroga", "krushem761", "lari", "leehunterz", "lekdoguinho", "leojobim", "leozinrasta", "lethalfiness", "lhiel", "llhawkblack", "lmythsl", "loosebr", "lucaasroxy1", "lucaosxd", "lucasbr0501", "luizcarlos741", "marechal401", "mariobigode", "martos441", "matsigui", "megazzero", "meneguccii", "miwo55", "mrwaguinho", "mtadeuz", "namoratozy", "nether1_", "nicoedu", "nicolas_sempai", "ninjadfps", "olek0707pt", "orerevo", "overlocked", "pedrohfhg", "pedronkz", "peterparker_4g", "poste9", "quecalordapoha", "refluxlt", "remx28", "riialo", "ripyouall", "rogatkagaming", "rudyhimself", "rxpeppa", "ryanpatric4555", "scifi404", "senterppppp", "shagnakam_", "skaf12345", "skgm666", "slingy0", "spray_arg", "sstylerr97", "sxxmarvs", "taiobatv00", "tarsisfventura", "thiagoortukz", "thronezilla", "tonhaotv", "tsumiki220", "uns3en_7", "uvbloo", "voltagexking_yt", "xinbinha2468", "xisquedelhenapan", "y3ux", "zfearz", "zhades9","painmandara", "zyanyz"];
 
 clientTwitch.on("notice", function (channel, msgid, message) {
     switch(msgid){
@@ -259,6 +261,24 @@ clientTwitch.on('chat', function(channel, user, message, self){
 			msgTwitch("discord dos Followers - discord.gg/RyZNvbe");				
 			//if(followers.include(user.username)){} //verifica se eh follower
 		break;
+		case "fila":
+			if(fila.include(user.username)){}
+			else{fila.push(user.username)}
+		break;
+		case "andarfila":
+			if(user.username=='reifel'){
+				var qtd = message.replace("!andarfila ",""), escolhidos="";
+				qtd = Number(qtd);
+				for(i=0; i<qtd;i++){
+					escolhidos= fila.shift()+" - ";
+				}
+				msgTwitch(escolhidos);
+			}
+		break;
+		case "verfila":
+			msgTwitch(fila.toString());
+		break;
+		
 		case "clips":
 			//if(user.username == 'reifel'){
 				//for(i=0;i<4;i++){ //4 vezes
