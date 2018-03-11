@@ -262,21 +262,21 @@ clientTwitch.on('chat', function(channel, user, message, self){
 			//if(followers.include(user.username)){} //verifica se eh follower
 		break;
 		case "fila":
-			if(fila.include(user.username)){}
-			else{fila.push(user.username)}
+			if(filaSquad.include(user.username)){}
+			else{msgTwitch(user.username+" sua posicao na fila é "+(filaSquad.push(user.username)+1))}
 		break;
 		case "andarfila":
 			if(user.username=='reifel'){
 				var qtd = message.replace("!andarfila ",""), escolhidos="";
 				qtd = Number(qtd);
 				for(i=0; i<qtd;i++){
-					escolhidos= fila.shift()+" - ";
+					escolhidos= filaSquad.shift()+" - ";
 				}
 				msgTwitch(escolhidos);
 			}
 		break;
 		case "verfila":
-			msgTwitch(fila.toString());
+			msgTwitch(filaSquad.toString());
 		break;
 		
 		case "clips":
