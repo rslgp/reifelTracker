@@ -100,7 +100,7 @@ var filaSquad = [];
 const clip=[
 "desert eagle + sniper: https://clips.twitch.tv/HorribleYawningMelonKeyboardCat",
 "impulse bomb + 1 granada 2 shield + pistolao: https://clips.twitch.tv/SlickClearNoodleRedCoat", 
-"desert eagle + pump: https://clips.twitch.tv/PiliableBitterFiddleheadsAsianGlow",
+"desert eagle + shotgun: https://clips.twitch.tv/PiliableBitterFiddleheadsAsianGlow",
 "https://clips.twitch.tv/PlainSpinelessArugulaTwitchRaid"];
 
 const avisoLiveOn="eae! a Live ta on :)) twitch.tv/reifel";
