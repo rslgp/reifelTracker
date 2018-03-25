@@ -772,12 +772,12 @@ client.on('message', message => {
 							const unstoppable='414929764961484800',sanguinario='414929831508312064',mitico='393260318434000907', godlike='376840180688224257', legendary='373639920591306753', epic='373640006314754057', rare='373640089986924554', incomum='373640161290092544', desconhecido='387071306451124224', continuaOndeEsta = "continua onde está, verifique "+salaRank+" antes de usar o comando rank";
 							//se n tiver o minimo de wins ignora
 							if(jsonSquad[matches].ValueInt > 250){
-								if( member.roles.has(desconhecido) ) member.removeRole(desconhecido).catch(err => console.log(err));
+								if( member.roles.has(desconhecido) ) message.member.removeRole(desconhecido).catch(err => console.log(err));
 							}else{					
 								changeRole(message.member, desconhecido, incomum);
 								//remover desconhecido
 								message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));
-								if( member.roles.has(desconhecido) ) member.removeRole(desconhecido).catch(err => console.log(err));
+								if( member.roles.has(desconhecido) ) message.member.removeRole(desconhecido).catch(err => console.log(err));
 								print(message,"Parabéns! Você agora é <@&373640161290092544> \:trophy: \:ok_hand:");
 								jsonSquad=null;								
 								return;
