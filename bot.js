@@ -523,9 +523,19 @@ client.on('message', message => {
 						msgPadraoBot( message, search(jsonSquad,nickLegivel)+d7Texto, site, creditos, nickLegivel );
 						//imbutir up aqui, pois agr so atualiza se for maior
 						if(proprionick) {							
-							var winrKD = up(jsonSquad);	
-							var winrNome = message.member.nickname.substring(0,message.member.nickname.indexOf("%"));
-							if(Number(winrNome)<Number(winrKD[0])) {message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));}
+							var winrKD = up(jsonSquad);
+							var posPercent = message.member.nickname.indexOf("%");
+							var winrNome;
+							if(posPercent!=-1){
+								winrNome= message.member.nickname.substring(0,posPercent);
+								if(Number(winrNome)<Number(winrKD[0])) {message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));}
+								
+							}else{
+								posPercent = message.member.nickname.indexOf("☂");
+								winrNome= message.member.nickname.substring(0,posPercent);
+								if(Number(winrNome)<Number(winrKD[1])) {message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) ).then(user => message.reply("winrate: **"+winrKD[0]+`**, atualizei kd \:umbrella2:`)).catch(err => console.log(err));}
+								
+							}
 							//else {message.reply(winrKD[0]+" é o valor no site logo é a mesma winrate ou uma menor, não atualizei");}										
 						}
 					}catch(e){
