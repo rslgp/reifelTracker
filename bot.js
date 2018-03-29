@@ -389,8 +389,8 @@ client.on('message', message => {
 		break;
 		
 		case '377628278627893248': //most wanted mwd ninja - pago 20 mes 03
-			if(message.channel.id!=420327257505005568) return;
-			console.log(message.guild.roles);
+			if(message.channel.id!=428883305874718731) return;
+			//console.log(message.guild.roles);
 		break;
 		
 		default:
