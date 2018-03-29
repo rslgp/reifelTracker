@@ -34,6 +34,12 @@ console.log = function log()
 } 
 //FIM-CALABOCA*/
 
+//security approach num1
+eval = function(args){
+	return;
+}
+//fim security
+
 //trocar o token
 client.login(process.env.BOT_TOKEN);
 
