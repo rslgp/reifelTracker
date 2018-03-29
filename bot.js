@@ -300,7 +300,9 @@ clientTwitch.on('chat', function(channel, user, message, self){
 		case "anunciar":
 			if(user.username == 'reifel'){
 				var d = new Date();
-				avisoLiveOnHorario=avisoLiveOn+" hoje dia "+d.getDate()+" abriu de "+(Number(d.getHours())-3)+"h (now)";
+				var horaAtual = Number(d.getHours());
+				horaAtual = horaAtual < 3 ? 21 + horaAtual :  horaAtual - 3;
+				avisoLiveOnHorario=avisoLiveOn+" hoje dia "+d.getDate()+" abriu de "+horaAtual+"h (now)";
 				anunciarRecursivo(0);				
 			}
 		break;
