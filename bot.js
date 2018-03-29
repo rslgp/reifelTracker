@@ -134,7 +134,11 @@ clientTwitch.on("part", function (channel, username, self) {
 			return;
 		break;
 		default:
-			reifelUser.send(username+" saiu da live");
+			var d = new Date();
+			var horaAtual = Number(d.getHours());
+			horaAtual = horaAtual < 3 ? 21 + horaAtual :  horaAtual - 3;
+			horaAtual = horaAtual + " : "+d.getMinutes();
+			reifelUser.send(username+" saiu da live "+horaAtual);
 		break;
 	}
 });
