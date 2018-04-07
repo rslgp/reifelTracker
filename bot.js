@@ -517,7 +517,7 @@ client.on('message', message => {
 						//fim day7	
 						
 						//pelo array Last7
-						day7elem = browser.queryAll("body>div.container.content-container>div:nth-child(1)>script:nth-child(10)");
+						day7elem = browser.queryAll("body > div.container.content-container > div:nth-child(1) > script:nth-child(11)");
 						
 						var j7 = day7elem[0].textContent;
 						day7elem=null;
@@ -527,10 +527,6 @@ client.on('message', message => {
 						d7WinRate = d7WinRate.slice(0,-1);
 						
 						d7Texto="\r\n7dias: win%: **"+d7WinRate+"** kd: **"+d7kd+"**";
-
-						}catch(e){
-							print(message,  "sem 7dias de "+nickLegivel+"dessa vez :(");
-						}
 
 						msgPadraoBot( message, search(jsonSquad,nickLegivel)+d7Texto, site, creditos, nickLegivel );
 						//imbutir up aqui, pois agr so atualiza se for maior
@@ -1418,7 +1414,7 @@ function verifyRole(member, role){
 
 const msgDonate = ['Donate', 'Dá uma moral', 'Apoie', 'Nunca te pedi nda', 'Be my senpai', 'Envia um airdrop', 'Dropa bala média', 'Põe o jump', 'Gostou?', 'Faz um cover'];
 function randomDonate(){
-	const reduzirMsgDonate = Math.ceil(msgDonate.length*0.95);
+	const reduzirMsgDonate = Math.ceil(msgDonate.length*1.2);
 	const index = Math.floor(Math.random() * (msgDonate.length+reduzirMsgDonate));
 	if(index >= msgDonate.length) return "";
 	else return quebraLinha+msgDonate[index]+doacao;
