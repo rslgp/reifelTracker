@@ -527,7 +527,10 @@ client.on('message', message => {
 						d7WinRate = d7WinRate.slice(0,-1);
 						
 						d7Texto="\r\n7dias: win%: **"+d7WinRate+"** kd: **"+d7kd+"**";
-
+						
+						}catch(e){
+							print(message,  "sem 7dias de "+nickLegivel+"dessa vez :(");
+						}
 						msgPadraoBot( message, search(jsonSquad,nickLegivel)+d7Texto, site, creditos, nickLegivel );
 						//imbutir up aqui, pois agr so atualiza se for maior
 						if(proprionick) {							
