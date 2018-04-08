@@ -526,7 +526,7 @@ client.on('message', message => {
 						d7WinRate = j8[15].split(":")[2].replace(/(\r\n|\n|\r|\"| )/gm,"");
 						//d7WinRate = d7WinRate.slice(0,-1);
 						
-						d7Texto="\r\n7d: w%**"+d7WinRate+"** kd: **"+d7kd+"**";
+						d7Texto="\r\nNa semana: **"+d7WinRate+"** kd: **"+d7kd+"**";
 						
 						}catch(e){
 							print(message,  "sem 7dias de "+nickLegivel+"dessa vez :(");
@@ -1110,7 +1110,7 @@ function formatarMsg(winP, kd, wins, kills,trn){
 	const p1 = "Win %: **"+winP+"** \t/\t Kd: **"+kd+"**"
 	,p2 = "Wins: "+wins+" / Kills: "+kills
 	,p3 = "Wins: "+wins+rightJustify(p2,p1.length-7,' ')+" \t/\t Kills: "+kills
-	,p4 = "Desempenho: **"+valorTrn+"** de __100__";
+	,p4 = "Desempenho: **"+valorTrn+"**%";
 	return p1+quebraLinha+p3+quebraLinha+p4;
 }
 
