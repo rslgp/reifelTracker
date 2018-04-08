@@ -524,9 +524,9 @@ client.on('message', message => {
 						var j8 = j7.split("}");
 						d7kd = j8[13].split(":")[2].replace(/(\r\n|\n|\r|\"| )/gm,"");
 						d7WinRate = j8[15].split(":")[2].replace(/(\r\n|\n|\r|\"| )/gm,"");
-						d7WinRate = d7WinRate.slice(0,-1);
+						//d7WinRate = d7WinRate.slice(0,-1);
 						
-						d7Texto="\r\n7dias: win%: **"+d7WinRate+"** kd: **"+d7kd+"**";
+						d7Texto="\r\n7d: w%**"+d7WinRate+"** kd: **"+d7kd+"**";
 						
 						}catch(e){
 							print(message,  "sem 7dias de "+nickLegivel+"dessa vez :(");
@@ -1083,7 +1083,7 @@ function search(jsonSquad,nick,plataforma){ //plataforma discord ou twitch
 		//twitch
 		switch(plataforma){			
 			case 't':
-				resultado = "[ "+jsonSquad[winP].value+"% de Win Rate] --- [ "+ jsonSquad[kd].value +" de kills antes de morrer] --- [ "+ jsonSquad[wins].value +" de Win] --- [ " + jsonSquad[kills].value +" no total de Kills] --- [ Nota(TRN): "+ valorTrn+" de 5000]";
+				resultado = "[ "+jsonSquad[winP].value+"% de Win Rate] --- [ "+ jsonSquad[kd].value +" de kills antes de morrer] --- [ "+ jsonSquad[wins].value +" de Win] --- [ " + jsonSquad[kills].value +" no total de Kills] --- [ Desempenho: "+ valorTrn+" de 5000]";
 			break;
 			
 			default:
