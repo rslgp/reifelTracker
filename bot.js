@@ -526,7 +526,7 @@ client.on('message', message => {
 						d7WinRate = j8[15].split(":")[2].replace(/(\r\n|\n|\r|\"| )/gm,"");
 						//d7WinRate = d7WinRate.slice(0,-1);
 						
-						d7Texto="\r\nNa semana: **"+d7WinRate+"** kd: **"+d7kd+"**";
+						d7Texto="\r\n7dias: **"+d7WinRate+"** kd: **"+d7kd+"**";
 						
 						}catch(e){
 							print(message,  "sem 7dias de "+nickLegivel+"dessa vez :(");
