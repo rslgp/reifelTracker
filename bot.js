@@ -1110,7 +1110,7 @@ function formatarMsg(winP, kd, wins, kills,trn){
 	const p1 = "Win %: **"+winP+"** \t/\t Kd: **"+kd+"**"
 	,p2 = "Wins: "+wins+" / Kills: "+kills
 	,p3 = "Wins: "+wins+rightJustify(p2,p1.length-7,' ')+" \t/\t Kills: "+kills
-	,p4 = "Nota(TRN): **"+valorTrn+"** de __100__";
+	,p4 = "Desempenho: **"+valorTrn+"** de __100__";
 	return p1+quebraLinha+p3+quebraLinha+p4;
 }
 
