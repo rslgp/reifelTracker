@@ -358,7 +358,7 @@ clientTwitch.on('connected', function(channel, user, message, self){
 });
 //fim-twitch
 function suspenso(message){
-	print(message,"Suspenso, aguardando o admin renovar o contrato...");
+	print(message,"Suspenso, aguardando admin ou responsável renovar o contrato...");
 }
 client.on('message', message => {
 	if(message.author.bot) return; //ignora poupar processamento bot
