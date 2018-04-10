@@ -403,7 +403,7 @@ client.on('message', message => {
 		case '377628278627893248': //most wanted mwd ninja - pago 20 mes 03
 			if(message.channel.id!=428883305874718731) return;
 			
-			suspenso(message);return;
+			//suspenso(message);return;
 			//console.log(message.guild.roles);
 		break;
 		
