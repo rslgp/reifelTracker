@@ -357,7 +357,9 @@ clientTwitch.on('connected', function(channel, user, message, self){
 	msgTwitch( "estou vivo, reifel");
 });
 //fim-twitch
-
+function suspenso(message){
+	print(message,"Suspenso, aguardando o admin renovar o contrato...");
+}
 client.on('message', message => {
 	if(message.author.bot) return; //ignora poupar processamento bot
 	
@@ -374,6 +376,7 @@ client.on('message', message => {
 		
 		case "398566083101196298": //fortnite da depressaum killerbr - pago 15 mes 03
 			if(message.channel.id!=419295377808818177) return;
+			suspenso(message);return;
 		break;
 		
 		//case "397143937057554433": //fps
@@ -386,6 +389,9 @@ client.on('message', message => {
 		
 		case '313195845761761281'://galera gamer - pago 20 mes 02
 			if(message.channel.id!=410811452232826892) return;
+			
+			suspenso(message);return;
+			
 			if(message.author.bot){ //batalha de bots
 				if(message.author.id==373443049818161153) return; //eh o reifeltracker
 				message.member.removeRole('313213175824777219').catch(err => console.log(err)); //remove o cargo admin
@@ -396,6 +402,8 @@ client.on('message', message => {
 		
 		case '377628278627893248': //most wanted mwd ninja - pago 20 mes 03
 			if(message.channel.id!=428883305874718731) return;
+			
+			suspenso(message);return;
 			//console.log(message.guild.roles);
 		break;
 		
