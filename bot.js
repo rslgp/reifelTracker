@@ -526,7 +526,7 @@ client.on('message', message => {
 						//fim day7	
 						
 						//pelo array Last7
-						day7elem = browser.queryAll("body > div.container.content-container > div:nth-child(1) > script:nth-child(11)");
+						day7elem = browser.queryAll("body > div.container.content-container > div:nth-child(1) > script:nth-child(10)");
 						
 						var j7 = day7elem[0].textContent;
 						day7elem=null;
