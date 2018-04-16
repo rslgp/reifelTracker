@@ -48,7 +48,7 @@ const message = new Discord.Message();
 const Browser = require('zombie');
 Browser.silent = true;
 Browser.waitDuration='6s'; //cloudflare
-const creditos = "> criado por Reifel#5047 <", /*separador=" | ",*/ quebraLinha="\r\n", doacao=": [apoia.se](https://apoia.se/reifel)\r\n(*boleto / cartão de crédito/ depósito*)"+apoio;
+const creditos = "> criado por Reifel#5047 <", /*separador=" | ",*/ quebraLinha="\r\n", doacao=": [apoia.se/reifel](https://apoia.se/reifel)\r\n(*boleto / cartão de crédito/ depósito*)"+apoio;
 
 //tratando casos de erro
 const errorNickNaoEncontrado="nick não encontrado",
