@@ -153,7 +153,6 @@ clientTwitch.on("part", function (channel, username, self) {
 	}
 });
 
-var contadordePausa=0;
 function anunciarRecursivo(i){
 	if(i<followers.length){
 		setTimeout(
@@ -161,7 +160,6 @@ function anunciarRecursivo(i){
 			clientTwitch.whisper(followers[i], avisoLiveOnHorario).then(function(data) {anunciarRecursivo(i+1); return;}).catch(function(err) {anunciarRecursivo(i+1); return;});
 		}, Math.ceil(((Math.random()*3000)+2000)));
 	}else{
-		contadordePausa=0;
 		return;
 	}
 }
