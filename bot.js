@@ -145,6 +145,7 @@ clientTwitch.on("part", function (channel, username, self) {
 		case "96dps":
 		case "stay_hydrated_bot":
 		case "streamelements":
+		case "givemehoneynow":
 			return;
 		break;
 		default:
