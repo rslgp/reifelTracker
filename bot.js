@@ -939,11 +939,11 @@ client.on('message', message => {
 						
 						case '377628278627893248': //most wanted
 							const mwdRaro='420326919758807060', mwdEpico='420326972045000715', mwdLendario='420326999064707082',continuaOndeEstamwd = "continua onde está,\r\Lendário - kd >= 3\r\Epico - kd >= 2\r\nRaro >= 1";
-							if(winrKD[1]>=3){
+							if(winrKD[1]>=5){
 								if(message.member.roles.has(mwdLendario)) {print(message,"você está na patente máxima");return;}
 								changeRole(message.member, mwdEpico, mwdLendario);	
 								print(message,"Parabéns! Você agora é <@&420326999064707082> \:trophy: \:ok_hand:");
-							}else if(winrKD[1]>=2){
+							}else if(winrKD[1]>=3){
 								if(message.member.roles.has(mwdEpico)) {print(message,continuaOndeEstamwd); return;}
 								changeRole(message.member, mwdRaro, mwdEpico);	
 								print(message,"Parabéns! Você agora é <@&420326972045000715> \:trophy: \:ok_hand:");
