@@ -918,7 +918,7 @@ client.on('message', message => {
 						break;
 						
 						case '385896642429321216': //colosso
-							const colRaro='442862754886451200', colEpico='442862734460059668', colLendario='442862713681477644',continuaOndeEstacol = "continua onde está,\r\Big Rider - kd >= 3\r\Marola - kd >= 2\r\Pescador >= 1";
+							const colRaro='442862754886451200', colEpico='442862734460059668', colLendario='442862713681477644',continuaOndeEstacol = "continua onde está,\r\Big Rider - kd >= 4\r\Marola - kd >= 2.5\r\Pescador >= 1.25";
 							if(winrKD[1]>=4){
 								if(message.member.roles.has(colLendario)) {print(message,"você está na patente máxima");return;}
 								changeRole(message.member, colEpico, colLendario);	
