@@ -1208,7 +1208,10 @@ function msgPadraoBot(message, text, site, rodape, nick){
 				description: text+quebraLinha+randomDonate(),
 				title: "Perfil Squad de "+nick,
 				url:site,
-				footer: {text:"!QueroEsseBot "+rodape+" !comandos"}
+				footer: {
+					icon_url:"https://cdn.discordapp.com/icons/415640869173985290/0fd60eb77e312879b613820d84674891.png",
+					text:"!QueroEsseBot "+rodape+" !comandos"
+					}
 			}
 		});	
 }
