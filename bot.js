@@ -1209,7 +1209,7 @@ function msgPadraoBot(message, text, site, rodape, nick){
 				title: "Perfil Squad de "+nick,
 				url:site,
 				footer: {
-					icon_url:"https://cdn.discordapp.com/avatars/195731919424585728/9d5e514c328e3573531c72664b2e6d2b.png?size=32
+					icon_url:"https://cdn.discordapp.com/avatars/195731919424585728/9d5e514c328e3573531c72664b2e6d2b.png?size=32"
 					text:"!QueroEsseBot "+rodape+" !comandos"
 					}
 			}
