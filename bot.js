@@ -918,19 +918,19 @@ client.on('message', message => {
 						break;
 						
 						case '385896642429321216': //colosso
-							const colRaro='420326919758807060', colEpico='420326972045000715', colLendario='420326999064707082',continuaOndeEstacol = "continua onde está,\r\Lendário - kd >= 3\r\Epico - kd >= 2\r\nRaro >= 1";
+							const colRaro='442862754886451200', colEpico='442862734460059668', colLendario='442862713681477644',continuaOndeEstacol = "continua onde está,\r\Lendário - kd >= 3\r\Epico - kd >= 2\r\nRaro >= 1";
 							if(winrKD[1]>=3){
 								if(message.member.roles.has(colLendario)) {print(message,"você está na patente máxima");return;}
 								changeRole(message.member, colEpico, colLendario);	
-								print(message,"Parabéns! Você agora é <@&420326999064707082> \:trophy: \:ok_hand:");
+								print(message,"Parabéns! Você agora é <@&442862713681477644> \:trophy: \:ok_hand:");
 							}else if(winrKD[1]>=2){
 								if(message.member.roles.has(colEpico)) {print(message,continuaOndeEstacol); return;}
 								changeRole(message.member, colRaro, colEpico);	
-								print(message,"Parabéns! Você agora é <@&420326972045000715> \:trophy: \:ok_hand:");
+								print(message,"Parabéns! Você agora é <@&442862734460059668> \:trophy: \:ok_hand:");
 							}else if(winrKD[1]>=1){
 								if(message.member.roles.has(colRaro)) {print(message,continuaOndeEstacol); return;}
 								changeRole(message.member, colLendario, colRaro);	
-								print(message,"Parabéns! Você agora é <@&420326919758807060> \:trophy: \:ok_hand:");
+								print(message,"Parabéns! Você agora é <@&442862754886451200> \:trophy: \:ok_hand:");
 							}else{
 								print(message,continuaOndeEstacol); return;
 							}
