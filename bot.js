@@ -919,15 +919,15 @@ client.on('message', message => {
 						
 						case '385896642429321216': //colosso
 							const colRaro='442862754886451200', colEpico='442862734460059668', colLendario='442862713681477644',continuaOndeEstacol = "continua onde está,\r\Lendário - kd >= 3\r\Epico - kd >= 2\r\nRaro >= 1";
-							if(winrKD[1]>=3){
+							if(winrKD[1]>=4){
 								if(message.member.roles.has(colLendario)) {print(message,"você está na patente máxima");return;}
 								changeRole(message.member, colEpico, colLendario);	
 								print(message,"Parabéns! Você agora é <@&442862713681477644> \:trophy: \:ok_hand:");
-							}else if(winrKD[1]>=2){
+							}else if(winrKD[1]>=2.5){
 								if(message.member.roles.has(colEpico)) {print(message,continuaOndeEstacol); return;}
 								changeRole(message.member, colRaro, colEpico);	
 								print(message,"Parabéns! Você agora é <@&442862734460059668> \:trophy: \:ok_hand:");
-							}else if(winrKD[1]>=1){
+							}else if(winrKD[1]>=1.25){
 								if(message.member.roles.has(colRaro)) {print(message,continuaOndeEstacol); return;}
 								changeRole(message.member, colLendario, colRaro);	
 								print(message,"Parabéns! Você agora é <@&442862754886451200> \:trophy: \:ok_hand:");
