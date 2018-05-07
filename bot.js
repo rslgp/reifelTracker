@@ -932,7 +932,7 @@ client.on('message', message => {
 								changeRole(message.member, colLendario, colRaro);	
 								print(message,"Parabéns! Você agora é <@&442862754886451200> \:trophy: \:ok_hand:");
 							}else{
-								print(message,"Continue melhorando! ainda não possui KD pra conquistar seu cargo.\r\n(use comando up se quiser apenas atualizar nick)\r\nKD: "+ winrKD[1]+continuaOndeEstacol); return;
+								print(message,winrKD[1]+"de KD\r\nContinue melhorando! ainda não possui KD pra conquistar seu cargo.\r\n(use comando !up se quiser atualizar nick)\r\n"+continuaOndeEstacol); return;
 							}
 							message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) ).then(message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) )).then(user => message.reply("winrate: **"+winrKD[0]+`**, atualizei kd \:umbrella2:`)).catch(err => console.log(err));
 						break;
