@@ -421,7 +421,7 @@ client.on('message', message => {
 		break;
 		
 		default:
-			message.owner.send("Não Autorizado por Reifel\r\n"+tabelaPreco); message.guild.leave(); console.log("sai"); return;
+			if(message.owner) message.owner.send("Não Autorizado por Reifel\r\n"+tabelaPreco); message.guild.leave(); console.log("sai"); return;
 		break;
 			
 	}
