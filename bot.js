@@ -1041,6 +1041,7 @@ client.on('message', message => {
 		
 		case "prefab":
 			if(message.author==reifelUser){
+				var rolesCriadas = [0,0,0];
 				try{
 					message.guild.createRole({
 						name: 'rank1',
