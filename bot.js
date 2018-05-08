@@ -469,6 +469,7 @@ client.on('message', message => {
 		case "queroessebot":
 		case "novavotacao":
 		case "apostar":
+		case "prefab":
 		break;
 		default:
 			return;
@@ -1036,6 +1037,37 @@ client.on('message', message => {
 		case "help":
 		case "comandos":
 			print(message, helpMessage);
+		break;
+		
+		case "prefab":
+			if(message.autor==reifelUser){
+				try{
+					message.guild.createRole({
+						name: 'rank1',
+						color: 'GOLD',
+						hoist: true, 
+						managed: true,
+						mentionable: true
+
+					}).then(role => rolesCriadas[0] = role.id).catch(console.error);
+
+					message.guild.createRole({
+						name: 'rank2',
+						color: 'PURPLE',
+						hoist: true, 
+						managed: true,
+						mentionable: true
+					}).then(role => rolesCriadas[1] = role.id).catch(console.error);		
+
+					message.guild.createRole({
+						name: 'rank3',
+						color: 'BLUE',
+						hoist: true, 
+						managed: true,
+						mentionable: true
+					}).then(role => print(message,rolesCriadas[0]+" - "+rolesCriadas[1]+" - "+role.id)).catch(console.error);
+				}catch(e){};
+			}
 		break;
 				
 		//case ".ready":
