@@ -1040,7 +1040,7 @@ client.on('message', message => {
 		break;
 		
 		case "prefab":
-			if(message.autor==reifelUser){
+			if(message.author==reifelUser){
 				try{
 					message.guild.createRole({
 						name: 'rank1',
