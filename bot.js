@@ -12,6 +12,8 @@ const boletosPreConfig = "";
 const tabelaPreco = '**Mensalidade do bot ReifelTracker**\r\nDepende da quantidade de membros do seu server no discord\r\n\r\nmembros -------- reais por mês\r\n1 a 100             -------- R$ 15\r\n100 a 350       -------- R$ 17\r\n351 a 500        -------- R$ 22\r\nmaior q 501      -------- R$ 25\r\nmaior q 1800   -------- R$ 30\r\n\r\nDá direito a 3 cargos, instalação grátis e só paga quando estiver funcionando, os preços são para usar o bot do jeito que ele é na última atualização dele, com no máximo pequenas adaptações\r\n--\r\npara grandes modificações e alterações é cobrado serviço de mão de obra por fora da mensalidade\r\n----\r\n**plano econômico: R$ 15 por mês** independente do tamanho do servidor para usar apenas o comando !t\r\n**TRATAR COM:** @Reifel#5047 <@195731919424585728>. Não envie mensagem por aqui, envie para reifel';
 
 const apoio = "";
+var imageIcon = null;
+
 //"\r\n\r\ndá like pro fix da epic na escada q gira sozinha -> [clique aqui](https://accounts.epicgames.com/login/customized?regSubheading=Register&productCss=https%3A%2F%2Fwww.epicgames.com%2Ffortnite%2FssoAsset%2Ffortnite-custom.css&response_type=code&state=https%3A%2F%2Fwww.epicgames.com%2Ffortnite%2Fforums%2Fbugs-issues%2Fbug-reports%2F191591-stair-rotates-randomicaly-priorize-to-front-camera-and-only-rotate-if-pressed-r&client_id=52b63176173444eb8291b0dd60586e04&productName=fortnite&loginSubheading=Sign+In)";
 
 //setting up twitch
@@ -369,8 +371,10 @@ clientTwitch.on('connected', function(channel, user, message, self){
 function suspenso(message){
 	print(message,"Suspenso, aguardando admin ou responsável renovar o contrato...");
 }
+
 client.on('message', message => {
 	if(message.author.bot) return; //ignora poupar processamento bot
+	if(imageIcon==null) imageIcon = message.guild.iconURL;
 	
 	switch(message.guild.id){//se nao for server autorizado, o bot sai
 		case "368240657816354836": //bro
