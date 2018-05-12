@@ -339,7 +339,7 @@ clientTwitch.on('chat', function(channel, user, message, self){
 	switch(comando){
 	
 		case "tracker":
-		site = siteFortniteTracker+nick;
+		site = siteFortniteTracker+nick+"?old=1";
 		var variavelVisita = Browser.visit(site, function (e, browser) {				
 					try{
 						var text = browser.html();
@@ -506,7 +506,7 @@ client.on('message', message => {
 			}
 			//if(nickLegivel === undefined) {print(message, errorNickNaoEncontrado); return;}
 			
-			site = siteFortniteTracker+parametroUsado;
+			site = siteFortniteTracker+parametroUsado+"?old=1";
 			//crawler
 			try{
 				var variavelVisita = Browser.visit(site, function (e, browser) {				
@@ -620,7 +620,7 @@ client.on('message', message => {
 			}
 			*/
 			
-			site = siteFortniteTracker+parametroUsado;
+			site = siteFortniteTracker+parametroUsado+"?old=1";
 			try{
 				var variavelVisita = Browser.visit(site, function (e, browser) {
 					try{					
@@ -755,7 +755,7 @@ client.on('message', message => {
 				//caso nao tenha guarda chuva, mantem o nick como arg
 			}
 			
-		site = siteFortniteTracker+parametroUsado;
+		site = siteFortniteTracker+parametroUsado+"?old=1";
 		try{
 			var variavelVisita = Browser.visit(site, function (e, browser){
 				try{					
@@ -1272,7 +1272,7 @@ function updateWinRateStack(message){
 function forRecusivo(message, i){
 	if(i<refreshTamanho){
 		//console.log(i+" update "+refreshAuto[i].nickLegivel);
-		var site = siteFortniteTracker+refreshAuto[i].parametroUsado;
+		var site = siteFortniteTracker+refreshAuto[i].parametroUsado+"?old=1";
 		
 		setWinRateNick(message, site, i);
 		
