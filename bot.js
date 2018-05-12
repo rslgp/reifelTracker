@@ -49,7 +49,8 @@ const message = new Discord.Message();
 const Browser = require('zombie');
 Browser.silent = true;
 Browser.waitDuration='6s'; //cloudflare
-const creditos = "> criado por Reifel#5047 <", /*separador=" | ",*/ quebraLinha="\r\n", doacao=": [apoia.se/reifel](https://apoia.se/reifel) - [twitch](https://www.twitch.tv/reifel/)\r\n(*boleto | cartão de crédito - qlqr valor*)"+apoio;
+//[apoia.se/reifel](https://apoia.se/reifel) - (*boleto | cartão de crédito - qlqr valor*)
+const creditos = "> criado por Reifel#5047 <", /*separador=" | ",*/ quebraLinha="\r\n", doacao=":[twitch/reifel](https://www.twitch.tv/reifel/)\r\n(terça|quarta|fds 1600+wins)"+apoio;
 
 //tratando casos de erro
 const errorNickNaoEncontrado="nick não encontrado",
