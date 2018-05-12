@@ -382,7 +382,7 @@ client.on('message', message => {
 		//case "373611766737010690": //PDX
 		//break;
 		
-		case "385896642429321216": //colosso
+		case "385896642429321216": //colosso pagou 14.88 (abaixo do de tabela) mes 05
 			if(message.channel.id!=442862631691354112) return;
 		break;
 		
@@ -415,7 +415,7 @@ client.on('message', message => {
 			}
 		break;
 		
-		case '377628278627893248': //most wanted mwd ninja - pago 20 mes 03
+		case '377628278627893248': //most wanted mwd ninja - pago 20 mes 05
 			if(message.channel.id!=428883305874718731) return;
 			
 			//suspenso(message);return;
