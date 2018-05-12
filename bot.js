@@ -50,7 +50,7 @@ const Browser = require('zombie');
 Browser.silent = true;
 Browser.waitDuration='6s'; //cloudflare
 //[apoia.se/reifel](https://apoia.se/reifel) - (*boleto | cartão de crédito - qlqr valor*)
-const creditos = "> criado por Reifel#5047 <", /*separador=" | ",*/ quebraLinha="\r\n", doacao=":[twitch/reifel](https://www.twitch.tv/reifel/)\r\n(terça|quarta|fds 1600+wins)"+apoio;
+const creditos = "> criado por Reifel#5047 <", /*separador=" | ",*/ quebraLinha="\r\n", doacao=": [twitch/reifel](https://www.twitch.tv/reifel/)\r\n(terça|quarta|fds 1600+wins)"+apoio;
 
 //tratando casos de erro
 const errorNickNaoEncontrado="nick não encontrado",
