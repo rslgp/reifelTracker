@@ -1507,5 +1507,5 @@ function randomDonate(){
 	const reduzirMsgDonate = Math.ceil(msgDonate.length*1.6);
 	const index = Math.floor(Math.random() * (msgDonate.length+reduzirMsgDonate));
 	if(index >= msgDonate.length) return "";
-	else return quebraLinha+AnunciarNovosPlanos+quebraLinha+msgDonate[index]+doacao;
+	else return AnunciarNovosPlanos+quebraLinha+msgDonate[index]+doacao;
 }
