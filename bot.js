@@ -552,7 +552,7 @@ client.on('message', message => {
 						d7WinRate = j8[15].split(":")[2].replace(/(\r\n|\n|\r|\"| )/gm,"");
 						//d7WinRate = d7WinRate.slice(0,-1);
 						
-						d7Texto="\r\n7dias: **"+d7WinRate+"** kd: **"+d7kd+"**"+AnunciarNovosPlanos;
+						d7Texto="\r\n7dias: **"+d7WinRate+"** kd: **"+d7kd+"**";
 						
 						}catch(e){
 							d7Texto = "sem dessa vez :(";
@@ -1504,8 +1504,8 @@ function verifyRole(member, role){
 
 const msgDonate = ['Donate', 'Dá uma moral', 'Apoie', 'Nunca te pedi nda', 'Be my senpai', 'Envia um airdrop', 'Dropa bala média', 'Põe o jump', 'Gostou?', 'Faz um cover'];
 function randomDonate(){
-	const reduzirMsgDonate = Math.ceil(msgDonate.length*1.4);
+	const reduzirMsgDonate = Math.ceil(msgDonate.length*1.6);
 	const index = Math.floor(Math.random() * (msgDonate.length+reduzirMsgDonate));
 	if(index >= msgDonate.length) return "";
-	else return quebraLinha+msgDonate[index]+doacao;
+	else return quebraLinha+AnunciarNovosPlanos+quebraLinha+msgDonate[index]+doacao;
 }
