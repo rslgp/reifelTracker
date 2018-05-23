@@ -94,7 +94,7 @@ client.on('ready', () => {
 	reifelUser = client.users.get('195731919424585728');
 	client.user.setPresence({
 		game: {
-			name: "em "+client.guilds.array().length +" servidores | !tbQueroUsar"
+			name: "em "+client.guilds.array().length +" discords | !tbQueroUsar"
 		}
 	}); 
 });
