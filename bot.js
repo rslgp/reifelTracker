@@ -1250,8 +1250,7 @@ function compararPlayers(jsonSquadPA,nickA, jsonSquadPB,nickB){
 	
 	if(ganhos[0]=="") ganhos[0]="nada";
 	if(ganhos[1]=="") ganhos[1]="nada";
-	resultado = "\r\n```bash\r\n\r\ncomando exclusivo $premium\r\n```";
-	resultado += "\r\nNa comparação foi melhor\r\n"+nickA+": "+ganhos[0]+"\r\n"+nickB+": "+ganhos[1];
+	resultado = "\r\n```bash\r\n\r\ncomando exclusivo $premium\r\n```\r\nNa comparação foi melhor\r\n"+nickA+": "+ganhos[0]+"\r\n"+nickB+": "+ganhos[1];
 	
 	
 	return resultado;
