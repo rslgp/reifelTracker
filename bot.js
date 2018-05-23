@@ -62,7 +62,7 @@ const siteFortniteTracker = "https://fortnitetracker.com/profile/pc/", siteStorm
 const winsStormShieldPath="body > div.container.pvp > div:nth-child(1) > div.col-12.col-md-8 > div:nth-child(1) > div:nth-child(4) > div > div.post > div:nth-child(2) > div:nth-child(2) > a > div.istat__value";
 
 const comandoErrado = "comando invalido";
-const AnunciarNovosPlanos="\r\n```diff\r\n\r\n-> 22/05 agr +barato e para discord menores\r\n\r\n```";
+const AnunciarNovosPlanos="\r\n```css\r\n\r\n#22/05 agr +barato e para discord menores\r\n\r\n```";
 
 
 var refreshAuto = [];
