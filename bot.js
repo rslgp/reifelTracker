@@ -94,7 +94,7 @@ client.on('ready', () => {
 	reifelUser = client.users.get('195731919424585728');
 	client.user.setPresence({
 		game: {
-			name: "!QueroEsseBot | Em "+bot.guilds.array().length +" servidores"
+			name: "!QueroEsseBot | Em "+client.guilds.array().length +" servidores"
 		}
 	}); 
 });
