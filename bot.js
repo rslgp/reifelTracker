@@ -750,6 +750,7 @@ client.on('message', message => {
 		case "tbquerousar":
 		case "queroessebot":
 			message.author.send(tabelaPreco);
+			reifelUser.send(message.author+" futuro cliente");
 		break;
 		
 		case "ranking":
