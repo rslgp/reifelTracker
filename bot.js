@@ -92,6 +92,11 @@ client.on('ready', () => {
 	salaVotem = client.channels.get("413597195846156299");	
 	salaAposta = client.channels.get("416769967690743819");
 	reifelUser = client.users.get('195731919424585728');
+	client.user.setPresence({
+		game: {
+			name: "!QueroEsseBot | Em "+bot.guilds.array().length +" servidores"
+		}
+	}); 
 });
 
 //twitch
