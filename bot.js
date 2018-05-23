@@ -50,7 +50,7 @@ const Browser = require('zombie');
 Browser.silent = true;
 Browser.waitDuration='6s'; //cloudflare
 //[apoia.se/reifel](https://apoia.se/reifel) - (*boleto | cartão de crédito - qlqr valor*)
-const creditos = "> criado por Reifel#5047 <", /*separador=" | ",*/ quebraLinha="\r\n", doacao=": coloque reifeltracker no seu discord com !tbQueroUsar"+apoio;
+const creditos = "> criado por Reifel#5047 <", /*separador=" | ",*/ quebraLinha="\r\n", doacao=": coloque reifeltracker no seu discord com !tbQuero"+apoio;
 
 //tratando casos de erro
 const errorNickNaoEncontrado="nick não encontrado",
@@ -94,7 +94,7 @@ client.on('ready', () => {
 	reifelUser = client.users.get('195731919424585728');
 	client.user.setPresence({
 		game: {
-			name: "em "+client.guilds.array().length +" discords | !tbQueroUsar"
+			name: "em "+client.guilds.array().length +" discords| !tbQuero"
 		}
 	}); 
 });
@@ -475,7 +475,7 @@ client.on('message', message => {
 		case "rank":
 		case "arma":
 		case "ideia":
-		case "tbquerousar":
+		case "tbquero":
 		case "queroessebot":
 		case "novavotacao":
 		case "apostar":
@@ -747,7 +747,7 @@ client.on('message', message => {
 				variavelVisita=null;
 			}catch(e){}
 		break;
-		case "tbquerousar":
+		case "tbquero":
 		case "queroessebot":
 			message.author.send(tabelaPreco);
 			reifelUser.send(message.author+" futuro cliente");
