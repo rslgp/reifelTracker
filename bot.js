@@ -469,6 +469,7 @@ client.on('message', message => {
 		case "t":
 		case "alt":
 		case "up":
+		case "vs":
 		case "help":
 		case "comandos":
 		case "ranking":
@@ -686,6 +687,75 @@ client.on('message', message => {
 			});	
 		break;
 		*/
+
+		case "vs":
+		if(message.author!=reifelUser) return;
+		var jsonSquadPA,jsonSquadPB;
+		
+		var players = parametroUsado.split("%20x%20");
+				
+		site = siteFortniteTracker+players[1]+"?old=1";
+		
+		try{
+			var variavelVisita = Browser.visit(site, function (e, browser) {				
+						try{
+							var text1 = browser.html();
+							
+							try{
+								jsonSquadPB = getJsonSquad(text1);
+								//console.log(jsonSquad);
+								text1=null;
+								
+								site = siteFortniteTracker+players[0]+"?old=1";
+								try{
+									var variavelVisita2 = Browser.visit(site, function (e, browser2) {				
+												try{
+													var text2 = browser2.html();
+													
+													try{
+														jsonSquadPA = getJsonSquad(text2);
+														//console.log(jsonSquad);
+														text2=null;
+														print( message, compararPlayers(jsonSquadPA, decodeURI(players[0]), jsonSquadPB, decodeURI(players[1]), message) );
+														
+													}catch(e){		
+														console.log("error search");
+														throw false;
+													}
+												}catch(e){
+													console.log(e.message);
+													print(message, nickLegivel + errorFortnitetracker);
+												}
+												
+												try{
+													browser2.deleteCookies();
+													browser2.destroy();					
+												}catch(e){
+													
+												}
+									});
+									variavelVisita2=null;
+								}catch(e){}
+							}catch(e){		
+								console.log("error search");
+								throw false;
+							}
+						}catch(e){
+							console.log(e.message);
+							print(message, nickLegivel + errorFortnitetracker);
+						}
+						
+						try{
+							browser.deleteCookies();
+							browser.destroy();					
+						}catch(e){
+							
+						}
+			});
+			variavelVisita=null;
+		}catch(e){}
+			
+		break;
 		
 		case "auto":
 			
@@ -1098,6 +1168,93 @@ var buscas= [
 '</script>',
 '"p9"'
 ];
+
+function compararPlayers(jsonSquadPA,nickA, jsonSquadPB,nickB){
+	//console.log(text+"\r\n\r\n");
+	
+	var resultado="";
+	var trn = 0
+	,wins = 2
+	,kd = 9
+	,winP = 10
+	,kills = 12;
+	
+	const winsLabel = 'Wins'
+	,winpLabel = 'Win %'
+	,killsLabel = 'Kills'
+	,kdLabel = 'K/d'
+	,trnLabel = 'TRN Rating'
+	;
+	
+	if(jsonSquadPA[wins].label === 'Wins' && jsonSquadPA[winP].label === 'Win %' && jsonSquadPA[kills].label === 'Kills' && jsonSquadPA[kd].label === 'K/d')
+	{}	
+	else{			
+			var n=0;
+			for( i=0; i < jsonSquadPA.length; i++ ){
+				//console.log(jsonSquadPA[i].label);
+				switch(jsonSquadPA[i].label){
+					case winsLabel:
+						wins = n;
+						//console.log("wins = "+n);
+					break;
+					
+					case winpLabel:
+						winP = n;
+						//console.log("winP = "+n);
+					break;
+						
+					case killsLabel:
+						kills = n;
+						//console.log("kills = "+n);
+					break;
+					
+					case kdLabel:
+						kd = n;
+						//console.log("kd = "+n);
+					break;
+					
+				}
+				n++;
+			}
+	}
+	var trnA, trnB;
+	try{
+		trnA = jsonSquadPA[trn].ValueInt;	
+		trnB = jsonSquadPB[trn].ValueInt;			
+	}catch(e){
+		trnA = 0;	
+		trnB = 0;
+	}
+	
+	var ganhos=["",""];
+	var txtwins=" Wins ", txtkd=" kd ",  txtwinsP=" Wins% ", txtkills=" kills ", txttrn=" desempenho ";
+	var ganhador=0;
+	
+
+	
+	ganhador = (jsonSquadPA[wins].ValueInt > jsonSquadPB[wins].ValueInt ) ? 0 : 1;
+	ganhos[ganhador]+=txtwins;
+	
+	ganhador = (jsonSquadPA[kd].ValueDec > jsonSquadPB[kd].ValueDec )? 0 : 1;	
+	ganhos[ganhador]+=txtkd;
+	
+	ganhador = (jsonSquadPA[winP].ValueDec > jsonSquadPB[winP].ValueDec )? 0 : 1;	
+	ganhos[ganhador]+=txtwinsP;
+	
+	ganhador = (jsonSquadPA[kills].ValueInt > jsonSquadPB[kills].ValueInt )? 0 : 1;	
+	ganhos[ganhador]+=txtkills;
+	
+	ganhador = (trnA > trnB )? 0 : 1;	
+	ganhos[ganhador]+=txttrn;
+	
+	
+	if(ganhos[0]=="") ganhos[0]="nada";
+	if(ganhos[1]=="") ganhos[1]="nada";
+	resultado = "Na comparação foi melhor,\r\n"+nickA+": "+ganhos[0]+"\r\n"+nickB+": "+ganhos[1];
+	
+	
+	return resultado;
+}
 
 function search(jsonSquad,nick,plataforma){ //plataforma discord ou twitch	
 	//console.log(text+"\r\n\r\n");
