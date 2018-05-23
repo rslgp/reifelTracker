@@ -475,6 +475,7 @@ client.on('message', message => {
 		case "rank":
 		case "arma":
 		case "ideia":
+		case "tbquerousar":
 		case "queroessebot":
 		case "novavotacao":
 		case "apostar":
