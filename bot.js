@@ -1250,7 +1250,7 @@ function msgPadraoBot(message, text, site, rodape, nick){
 		message.channel.send({embed: {
 			  color: 3447003,
 				description: text+quebraLinha+randomDonate(),
-				title: nick+" [Squad]",
+				title: ( nick.charAt(0).toUpperCase() + nick.slice(1) ) +" (Squad)",
 				url:site,
 				//author: {
 				//	name : "Perfil Squad de "+nick,
