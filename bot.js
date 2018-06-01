@@ -344,7 +344,8 @@ clientTwitch.on('chat', function(channel, user, message, self){
 	
 		case "tracker":
 		site = siteFortniteTracker+nick+"?old=1";
-		var variavelVisita = Browser.visit(site, function (e, browser) {				
+		var variavelVisita = Browser.visit(site, function (e, browser) {
+					if(e) throw e;
 					try{
 						var text = browser.html();
 						
@@ -361,7 +362,7 @@ clientTwitch.on('chat', function(channel, user, message, self){
 						msgTwitch( "Números em Squad de "+nickLegivel+": "+search(jsonSquad,nick,'t') );
 						
 					}catch(e){};
-		}).fail(console.error);		
+		});		
 		break;
 		
 		
@@ -516,7 +517,8 @@ client.on('message', message => {
 			site = siteFortniteTracker+parametroUsado+"?old=1";
 			//crawler
 			try{
-				var variavelVisita = Browser.visit(site, function (e, browser) {				
+				var variavelVisita = Browser.visit(site, function (e, browser) {
+					if(e) throw e;
 					try{
 						var text = browser.html();
 						
@@ -591,7 +593,7 @@ client.on('message', message => {
 					}catch(e){
 						
 					}
-				}).fail(console.error);
+				});
 				variavelVisita=null;
 			}catch(e){}			
 		break;
@@ -630,6 +632,7 @@ client.on('message', message => {
 			site = siteFortniteTracker+parametroUsado+"?old=1";
 			try{
 				var variavelVisita = Browser.visit(site, function (e, browser) {
+					if(e) throw e;
 					try{					
 						var text = browser.html();
 						padraoAtualizarNome(message,nickLegivel,text,site);
@@ -637,6 +640,7 @@ client.on('message', message => {
 						try{ //tentar atualizar usando outro site
 							var site = siteStormShield+parametroUsado;
 							var variavelVisita2 = Browser.visit(site, function (e, browser) {					
+								if(e) throw e;
 								var winP;	
 								try{							
 									winP = padraoAlt(browser,6);
@@ -665,7 +669,7 @@ client.on('message', message => {
 					}catch(e){
 						
 					}
-				}).fail(console.error);	
+				});	
 				variavelVisita=null;
 			}catch(e){}
 		break;
@@ -691,6 +695,7 @@ client.on('message', message => {
 			var winrate = nick.substring(0,nick.indexOf("☂")-1);
 			site = siteFortniteTracker+parametroUsado;
 			var variavelVisita = Browser.visit(site, function (e, browser){
+				if(e) throw e;
 				try{					
 					var text = browser.html();
 					var jsonSquad;
@@ -725,7 +730,7 @@ client.on('message', message => {
 					
 				}
 				}catch(e){}
-			}).fail(console.error);
+			});
 			variavelVisita=null;
 		break;
 
@@ -738,7 +743,8 @@ client.on('message', message => {
 		site = siteFortniteTracker+players[1]+"?old=1";
 		
 		try{
-			var variavelVisita = Browser.visit(site, function (e, browser) {				
+			var variavelVisita = Browser.visit(site, function (e, browser) {
+				if(e) throw e;
 						try{
 							var text1 = browser.html();
 							
@@ -750,7 +756,8 @@ client.on('message', message => {
 								site = siteFortniteTracker+players[0]+"?old=1";
 								try{
 									var variavelVisita2 = Browser.visit(site, function (e, browser2) {				
-												try{
+										if(e) throw e;		
+										try{
 													var text2 = browser2.html();
 													
 													try{
@@ -792,7 +799,7 @@ client.on('message', message => {
 						}catch(e){
 							
 						}
-			}).fail(console.error);
+			});
 			variavelVisita=null;
 		}catch(e){}
 			
@@ -835,6 +842,7 @@ client.on('message', message => {
 			site = siteStormShield+parametroUsado;
 			try{
 				var variavelVisita = Browser.visit(site, function (e, browser) {				
+					if(e) throw e;
 					var wins,winP,kd,kills;	
 					try{				
 						kills = padraoAlt(browser,1);				
@@ -854,7 +862,7 @@ client.on('message', message => {
 					//var resultado = ">> "+nickLegivel+" Squad <<\r\nWins: "+ wins +separador+"Win %: "+ winP +separador+"Kills: "+ kills +separador+ "K/d: "+kd;
 					var resultado = formatarMsg(winP,kd,wins,kills,'--');
 					msgPadraoBot(message, resultado, site, creditos, nickLegivel);
-				}).fail(console.error);	
+				});	
 				variavelVisita=null;
 			}catch(e){}
 		break;
@@ -878,6 +886,7 @@ client.on('message', message => {
 		site = siteFortniteTracker+parametroUsado+"?old=1";
 		try{
 			var variavelVisita = Browser.visit(site, function (e, browser){
+				if(e) throw e;
 				try{					
 					var text = browser.html();
 					var jsonSquad;
@@ -1084,7 +1093,7 @@ client.on('message', message => {
 				}catch(e){					
 					//console.log("error rank2");
 				}
-			}).fail(console.error);	
+			});	
 			variavelVisita=null;
 		}catch(e){}
 		break;
@@ -1494,8 +1503,9 @@ function atualizarWinRateNick(message, winRate, i){
 function setWinRateNick(message, site, i){
 	try{
 		var variavelVisita = Browser.visit(site, function (e, browser) {
-			var text = browser.html();	
+			if(e) throw e;	
 			try{
+			var text = browser.html();
 				var jsonSquad;
 				try{
 					jsonSquad = getJsonSquad(text);
@@ -1510,7 +1520,7 @@ function setWinRateNick(message, site, i){
 			}catch(e){
 				refreshAuto = refreshAuto.splice(i, 1);//nick errado remove do array
 			}		
-		}).fail(console.error);
+		});
 		
 		variavelVisita=null;
 	}catch(e){}
