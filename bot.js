@@ -711,7 +711,7 @@ client.on('message', message => {
 					}
 				}else{					
 					if( (parseFloat(winrate) + 0.7) >= parseFloat(winrKD[0]) ) {
-						message.member.setNickname( padraoNickKD(winrKD[0],nickLegivel) ).then(user => message.reply("o seu nick foi atualizado")).catch(err => console.log(err));
+						message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(user => message.reply("o seu nick foi atualizado")).catch(err => console.log(err));
 						return;
 					}else{
 						print(message, "nao posso trocar seu nick");
