@@ -703,14 +703,14 @@ client.on('message', message => {
 					}
 				var winrKD = up(jsonSquad);
 				if(nick.indexOf("%") !== -1){
-					if(winrKD[1] + 0.2 <= winrate) {
+					if(parseFloat(winrKD[1]) + 0.2 <= winrate) {
 						message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) );
 						return;
 					}else{
 						print(message, "nao posso trocar seu nick");
 					}
 				}else{					
-					if(winrKD[0] + 0.8 <= winrate) {
+					if(parseFloat(winrKD[0]) + 0.8 <= winrate) {
 						message.member.setNickname( padraoNickKD(winrKD[0],nickLegivel) );
 						return;
 					}else{
