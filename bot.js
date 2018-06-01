@@ -714,7 +714,7 @@ client.on('message', message => {
 						message.member.setNickname( padraoNickKD(winrKD[0],nickLegivel) ).then(user => message.reply("o seu nick foi atualizado")).catch(err => console.log(err));
 						return;
 					}else{
-						print(message, "nao posso trocar seu nick "+parseFloat(winrate) +" "+ winrKD[0]);
+						print(message, "nao posso trocar seu nick "+parseFloat(winrate) +" "+ winrKD[0]+" "+site);
 					}
 				}
 						
