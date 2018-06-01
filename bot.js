@@ -344,8 +344,7 @@ clientTwitch.on('chat', function(channel, user, message, self){
 	
 		case "tracker":
 		site = siteFortniteTracker+nick+"?old=1";
-		var variavelVisita = Browser.visit(site, function (e, browser) {
-					if(e) throw e;
+		var variavelVisita = Browser.visit(site, function (e, browser) {				
 					try{
 						var text = browser.html();
 						
@@ -517,8 +516,7 @@ client.on('message', message => {
 			site = siteFortniteTracker+parametroUsado+"?old=1";
 			//crawler
 			try{
-				var variavelVisita = Browser.visit(site, function (e, browser) {
-					if(e) throw e;
+				var variavelVisita = Browser.visit(site, function (e, browser) {				
 					try{
 						var text = browser.html();
 						
@@ -632,7 +630,6 @@ client.on('message', message => {
 			site = siteFortniteTracker+parametroUsado+"?old=1";
 			try{
 				var variavelVisita = Browser.visit(site, function (e, browser) {
-					if(e) throw e;
 					try{					
 						var text = browser.html();
 						padraoAtualizarNome(message,nickLegivel,text,site);
@@ -640,7 +637,6 @@ client.on('message', message => {
 						try{ //tentar atualizar usando outro site
 							var site = siteStormShield+parametroUsado;
 							var variavelVisita2 = Browser.visit(site, function (e, browser) {					
-								if(e) throw e;
 								var winP;	
 								try{							
 									winP = padraoAlt(browser,6);
@@ -695,7 +691,6 @@ client.on('message', message => {
 			var winrate = nick.substring(0,nick.indexOf("☂")-1);
 			site = siteFortniteTracker+parametroUsado;
 			var variavelVisita = Browser.visit(site, function (e, browser){
-				if(e) throw e;
 				try{					
 					var text = browser.html();
 					var jsonSquad;
@@ -743,8 +738,7 @@ client.on('message', message => {
 		site = siteFortniteTracker+players[1]+"?old=1";
 		
 		try{
-			var variavelVisita = Browser.visit(site, function (e, browser) {
-				if(e) throw e;
+			var variavelVisita = Browser.visit(site, function (e, browser) {				
 						try{
 							var text1 = browser.html();
 							
@@ -756,8 +750,7 @@ client.on('message', message => {
 								site = siteFortniteTracker+players[0]+"?old=1";
 								try{
 									var variavelVisita2 = Browser.visit(site, function (e, browser2) {				
-										if(e) throw e;		
-										try{
+												try{
 													var text2 = browser2.html();
 													
 													try{
@@ -842,7 +835,6 @@ client.on('message', message => {
 			site = siteStormShield+parametroUsado;
 			try{
 				var variavelVisita = Browser.visit(site, function (e, browser) {				
-					if(e) throw e;
 					var wins,winP,kd,kills;	
 					try{				
 						kills = padraoAlt(browser,1);				
@@ -886,7 +878,6 @@ client.on('message', message => {
 		site = siteFortniteTracker+parametroUsado+"?old=1";
 		try{
 			var variavelVisita = Browser.visit(site, function (e, browser){
-				if(e) throw e;
 				try{					
 					var text = browser.html();
 					var jsonSquad;
@@ -1503,9 +1494,8 @@ function atualizarWinRateNick(message, winRate, i){
 function setWinRateNick(message, site, i){
 	try{
 		var variavelVisita = Browser.visit(site, function (e, browser) {
-			if(e) throw e;	
+			var text = browser.html();	
 			try{
-			var text = browser.html();
 				var jsonSquad;
 				try{
 					jsonSquad = getJsonSquad(text);
