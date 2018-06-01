@@ -1,10 +1,7 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 //https://pag.ae/bhvP5V8
-//const boleto2="[R$2](https://pagseguro.uol.com.br/checkout/nc/payment/booklet/print.jhtml?c=e35c01fa539ab49ab07c2afd06f17f21f16c594c8cf4577a9e61a8fdcc953250282409d05eefafe8&w=C)"
-//,boleto5="[R$5](https://pagseguro.uol.com.br/checkout/nc/payment/booklet/print.jhtml?c=1debf73b859a7b18aab243adc62c5a3a425b25c07ffbc043caed93ee9e8bf26d0495de22902485ee&w=C)"
-//,boleto10="[R$10](https://pagseguro.uol.com.br/checkout/nc/payment/booklet/print.jhtml?c=bac28f71c7909b1df5c418ada540d312894d191e1c15191816c26a31898ddfda0b2c02e0d7adc562&w=C)"
-//;
+
 //const boletosPreConfig = boleto2+" - "+boleto5+" - "+boleto10+" - dia máx.: 07/03";
 //const boletosPreConfig = "Patrocinado por: **Anuncie/divulgue aqui** - pm: Reifel#5047";
 const boletosPreConfig = "";
@@ -474,6 +471,7 @@ client.on('message', message => {
 		case "comandos":
 		case "ranking":
 		case "rank":
+		case "troquei":
 		case "arma":
 		case "ideia":
 		case "tbquero":
@@ -687,6 +685,49 @@ client.on('message', message => {
 			});	
 		break;
 		*/
+		
+		case "troquei":
+			var nick = message.member.nickname;
+			var winrate = nick.substring(0,nick.indexOf("☂")-1);
+			site = siteFortniteTracker+parametroUsado;
+			var variavelVisita = Browser.visit(site, function (e, browser){
+				try{					
+					var text = browser.html();
+					var jsonSquad;
+					try{
+						jsonSquad = getJsonSquad(text);
+						text=null;
+					}catch(e){			
+						//console.log("error rank");
+						throw false;		
+					}
+				var winrKD = up(jsonSquad);
+				if(nick.indexOf("%") !== -1){
+					if(winrKD[1] + 0.2 < winrate) {
+						message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) );
+						return;
+					}else{
+						print(message, "nao posso trocar seu nick");
+					}
+				}else{					
+					if(winrKD[0] + 0.8 < winrate) {
+						message.member.setNickname( padraoNickKD(winrKD[0],nickLegivel) );
+						return;
+					}else{
+						print(message, "nao posso trocar seu nick");
+					}
+				}
+						
+				try{
+					browser.deleteCookies();
+					browser.destroy();					
+				}catch(e){
+					
+				}
+				}catch(e){}
+			});
+			variavelVisita=null;
+		break;
 
 		case "vs":
 		if(message.author!=reifelUser) return;
