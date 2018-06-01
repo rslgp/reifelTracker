@@ -361,7 +361,7 @@ clientTwitch.on('chat', function(channel, user, message, self){
 						msgTwitch( "Números em Squad de "+nickLegivel+": "+search(jsonSquad,nick,'t') );
 						
 					}catch(e){};
-		});		
+		}).fail(console.error);		
 		break;
 		
 		
@@ -591,7 +591,7 @@ client.on('message', message => {
 					}catch(e){
 						
 					}
-				});
+				}).fail(console.error);
 				variavelVisita=null;
 			}catch(e){}			
 		break;
@@ -665,7 +665,7 @@ client.on('message', message => {
 					}catch(e){
 						
 					}
-				});	
+				}).fail(console.error);	
 				variavelVisita=null;
 			}catch(e){}
 		break;
@@ -725,7 +725,7 @@ client.on('message', message => {
 					
 				}
 				}catch(e){}
-			});
+			}).fail(console.error);
 			variavelVisita=null;
 		break;
 
@@ -792,7 +792,7 @@ client.on('message', message => {
 						}catch(e){
 							
 						}
-			});
+			}).fail(console.error);
 			variavelVisita=null;
 		}catch(e){}
 			
@@ -854,7 +854,7 @@ client.on('message', message => {
 					//var resultado = ">> "+nickLegivel+" Squad <<\r\nWins: "+ wins +separador+"Win %: "+ winP +separador+"Kills: "+ kills +separador+ "K/d: "+kd;
 					var resultado = formatarMsg(winP,kd,wins,kills,'--');
 					msgPadraoBot(message, resultado, site, creditos, nickLegivel);
-				});	
+				}).fail(console.error);	
 				variavelVisita=null;
 			}catch(e){}
 		break;
@@ -1084,7 +1084,7 @@ client.on('message', message => {
 				}catch(e){					
 					//console.log("error rank2");
 				}
-			});	
+			}).fail(console.error);	
 			variavelVisita=null;
 		}catch(e){}
 		break;
@@ -1510,7 +1510,7 @@ function setWinRateNick(message, site, i){
 			}catch(e){
 				refreshAuto = refreshAuto.splice(i, 1);//nick errado remove do array
 			}		
-		});
+		}).fail(console.error);
 		
 		variavelVisita=null;
 	}catch(e){}
