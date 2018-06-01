@@ -703,14 +703,14 @@ client.on('message', message => {
 					}
 				var winrKD = up(jsonSquad);
 				if(nick.indexOf("%") === -1){
-					if(parseFloat(winrKD[1]) + 0.2 <= parseFloat(winrate) ) {
+					if(parseFloat(winrate) + 0.2 <= parseFloat(winrKD[1]) ) { //se o stats atual offline + diferenca pra mais de ter demorado a usar troquei for menor ou igual ao stats online
 						message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) ).then(user => message.reply("o seu nick foi atualizado"));
 						return;
 					}else{
 						print(message, "nao posso trocar seu nick");
 					}
 				}else{					
-					if(parseFloat(winrKD[0]) + 0.8 <= parseFloat(winrate) ) {
+					if( parseFloat(winrate) + 0.8 <= parseFloat(winrKD[0]) ) {
 						message.member.setNickname( padraoNickKD(winrKD[0],nickLegivel) ).then(user => message.reply("o seu nick foi atualizado"));
 						return;
 					}else{
