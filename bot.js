@@ -689,7 +689,7 @@ client.on('message', message => {
 		case "troquei":
 			var nick = message.member.nickname;
 			var winrate = nick.substring(0,nick.indexOf("☂")-1);
-			site = siteFortniteTracker+parametroUsado;
+			site = siteFortniteTracker+parametroUsado+"?old=1";
 			var variavelVisita = Browser.visit(site, function (e, browser){
 				try{					
 					var text = browser.html();
