@@ -702,7 +702,7 @@ client.on('message', message => {
 						throw false;		
 					}
 				var winrKD = up(jsonSquad);
-				if(nick.indexOf("%") !== -1){
+				if(nick.indexOf("%") === -1){
 					if(parseFloat(winrKD[1]) + 0.2 <= parseFloat(winrate) ) {
 						message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) ).then(user => message.reply("o seu nick foi atualizado"));
 						return;
