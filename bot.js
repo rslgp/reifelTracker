@@ -1177,6 +1177,8 @@ client.on('message', message => {
 			//tirando bot do server
 			//message.guild.leave();
 			
+			print(message,"reifeltracker 100% desinstalado");
+			
 		break;
 		
 		case "help":
