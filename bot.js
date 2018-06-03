@@ -1164,7 +1164,7 @@ client.on('message', message => {
 			//removendo o apelido de todos
 			for(var membros of message.guild.members){
 				try{
-					membros[1].setNickname("").catch(console.error);
+					membros[1].setNickname("").catch(err=>continue);
 				}catch(e){}
 			}
 
