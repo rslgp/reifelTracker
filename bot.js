@@ -1160,20 +1160,21 @@ client.on('message', message => {
 				
 		case "uninstall":
 			if(message.author!=reifelUser) return;
-			
-			//removendo o apelido de todos
-			for(var membros of message.guild.members){
-					membros[1].setNickname("");
-			}
-			
-			//removendo as roles
-			var roles = parametroUsado.split("%20-%20");
-			for(role of roles){
-				message.guild.roles.find("id",role).delete();
-			}
-			
-			//tirando bot do server
-			//message.guild.leave();			
+			try{
+				//removendo o apelido de todos
+				for(var membros of message.guild.members){
+						membros[1].setNickname("");
+				}
+
+				//removendo as roles
+				var roles = parametroUsado.split("%20-%20");
+				for(role of roles){
+					message.guild.roles.find("id",role).delete();
+				}
+
+				//tirando bot do server
+				//message.guild.leave();
+			}catch(e){}
 		break;
 		
 		case "help":
