@@ -479,6 +479,7 @@ client.on('message', message => {
 		case "novavotacao":
 		case "apostar":
 		case "prefab":
+		case "uninstall":
 		break;
 		default:
 			return;
@@ -1152,8 +1153,27 @@ client.on('message', message => {
 		
 		case "debug":
 			//console.log(message);
-			var indice = message.member.nickname.indexOf("☂")+2;
-			console.log(message.member.nickname.substring(indice));
+			//var indice = message.member.nickname.indexOf("☂")+2;
+			//console.log(message.member.nickname.substring(indice));
+		break;
+		
+				
+		case "uninstall":
+			if(message.author!=reifelUser) return;
+			
+			//removendo o apelido de todos
+			for(var membros of message.guild.members){
+					membros[1].setNickname("");
+			}
+			
+			//removendo as roles
+			var roles = parametroUsado.split("%20-%20");
+			for(role of roles){
+				message.guild.roles.find("id",role).delete();
+			}
+			
+			//tirando bot do server
+			//message.guild.leave();			
 		break;
 		
 		case "help":
