@@ -388,6 +388,7 @@ client.on('message', message => {
 		
 		case "385896642429321216": //colosso pagou 14.88 (abaixo do de tabela) mes 05
 			if(message.channel.id!=442862631691354112) return;
+			suspenso(message);return;
 		break;
 		
 		case "363610360688672778": //privado fortnite-reifel
