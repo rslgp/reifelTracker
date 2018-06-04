@@ -590,7 +590,7 @@ client.on('message', message => {
 					
 					try{
 						browser.deleteCookies();
-						browser.destroy();					
+						browser.tabs.closeAll(); browser.window.close(); browser.destroy();					
 					}catch(e){
 						
 					}
@@ -652,7 +652,7 @@ client.on('message', message => {
 								
 								try{
 									browser.deleteCookies();
-									browser.destroy();					
+									browser.tabs.closeAll(); browser.window.close(); browser.destroy();					
 								}catch(e){
 									
 								}
@@ -664,7 +664,7 @@ client.on('message', message => {
 					}
 					try{
 						browser.deleteCookies();
-						browser.destroy();					
+						browser.tabs.closeAll(); browser.window.close(); browser.destroy();					
 					}catch(e){
 						
 					}
@@ -723,7 +723,7 @@ client.on('message', message => {
 						
 				try{
 					browser.deleteCookies();
-					browser.destroy();					
+					browser.tabs.closeAll(); browser.window.close(); browser.destroy();					
 				}catch(e){
 					
 				}
@@ -791,7 +791,7 @@ client.on('message', message => {
 						
 						try{
 							browser.deleteCookies();
-							browser.destroy();					
+							browser.tabs.closeAll(); browser.window.close(); browser.destroy();					
 						}catch(e){
 							
 						}
