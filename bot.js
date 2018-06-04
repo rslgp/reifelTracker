@@ -59,8 +59,8 @@ const siteFortniteTracker = "https://fortnitetracker.com/profile/pc/", siteStorm
 const winsStormShieldPath="body > div.container.pvp > div:nth-child(1) > div.col-12.col-md-8 > div:nth-child(1) > div:nth-child(4) > div > div.post > div:nth-child(2) > div:nth-child(2) > a > div.istat__value";
 
 const comandoErrado = "comando invalido";
-const AnunciarNovosPlanos="\r\n```md\r\n\r\n#22/05 agr +barato e para discord menores\r\n```";
-
+//const AnunciarNovosPlanos="\r\n```md\r\n\r\n#22/05 agr +barato e para discord menores\r\n```";
+const AnunciarNovosPlanos="\r\n```fix\r\n\r\nSó esse mês, aproveite 1 semana grátis de reifeltracker\r\nno seu servidor de discord ou de um amigo (!semana)\r\n```";
 
 var refreshAuto = [];
 var refreshTamanho = 0;
@@ -475,6 +475,7 @@ client.on('message', message => {
 		case "troquei":
 		case "arma":
 		case "ideia":
+		case "semana":
 		case "tbquero":
 		case "queroessebot":
 		case "novavotacao":
@@ -859,6 +860,10 @@ client.on('message', message => {
 				});	
 				variavelVisita=null;
 			}catch(e){}
+		break;
+		case "semana":
+			message.author.send("Certo! avisei ao Reifel que vc quer semana gratis, ele vai mandar msg pra vc jaja pra comecar a instalação");
+			reifelUser.send(message.author+" quer semana gratis");
 		break;
 		case "tbquero":
 		case "queroessebot":
@@ -1735,8 +1740,8 @@ function verifyRole(member, role){
 
 const msgDonate = ['Donate', 'Dá uma moral', 'Apoie', 'Nunca te pedi nda', 'Be my senpai', 'Envia um airdrop', 'Dropa bala média', 'Põe o jump', 'Gostou?', 'Faz um cover'];
 function randomDonate(){
-	const reduzirMsgDonate = Math.ceil(msgDonate.length*1.6);
+	const reduzirMsgDonate = Math.ceil(msgDonate.length*2.1);
 	const index = Math.floor(Math.random() * (msgDonate.length+reduzirMsgDonate));
 	if(index >= msgDonate.length) return "";
-	else return quebraLinha+msgDonate[index]+doacao;
+	else return AnunciarNovosPlanos+quebraLinha+msgDonate[index]+doacao;
 }
