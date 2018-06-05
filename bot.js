@@ -60,7 +60,7 @@ const winsStormShieldPath="body > div.container.pvp > div:nth-child(1) > div.col
 
 const comandoErrado = "comando invalido";
 //const AnunciarNovosPlanos="\r\n```md\r\n\r\n#22/05 agr +barato e para discord menores\r\n```";
-const AnunciarNovosPlanos="\r\n```fix\r\n\r\nSó esse mês, aproveite 1 semana grátis de reifeltracker\r\nno seu servidor de discord ou de um amigo (!semana)\r\n```";
+const AnunciarNovosPlanos="```fix\r\n\r\nSó esse mês, aproveite 1 semana grátis de reifeltracker\r\nno seu servidor de discord ou de um amigo (!semana)\r\n```";
 
 var refreshAuto = [];
 var refreshTamanho = 0;
