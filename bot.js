@@ -47,7 +47,7 @@ const Browser = require('zombie');
 Browser.silent = true;
 Browser.waitDuration='6s'; //cloudflare
 //[apoia.se/reifel](https://apoia.se/reifel) - (*boleto | cartão de crédito - qlqr valor*)
-const creditos = "> criado por Reifel#5047 <", /*separador=" | ",*/ quebraLinha="\r\n", doacao=": tb use esse bot noutro discord com !tbQuero"+apoio;
+const rodape = "dono:Reifel#5047|!QueroEsseBot|!comandos", /*separador=" | ",*/ quebraLinha="\r\n", doacao=": tb use esse bot noutro discord com !tbQuero"+apoio;
 
 //tratando casos de erro
 const errorNickNaoEncontrado="nick não encontrado",
@@ -565,7 +565,7 @@ client.on('message', message => {
 						}catch(e){
 							d7Texto = "sem dessa vez :(";
 						}
-						msgPadraoBot( message, search(jsonSquad,nickLegivel)+d7Texto, site, creditos, nickLegivel );
+						msgPadraoBot( message, search(jsonSquad,nickLegivel)+d7Texto, site, nickLegivel );
 						//imbutir up aqui, pois agr so atualiza se for maior
 						if(proprionick) {							
 							var winrKD = up(jsonSquad);
@@ -856,7 +856,7 @@ client.on('message', message => {
 					
 					//var resultado = ">> "+nickLegivel+" Squad <<\r\nWins: "+ wins +separador+"Win %: "+ winP +separador+"Kills: "+ kills +separador+ "K/d: "+kd;
 					var resultado = formatarMsg(winP,kd,wins,kills,'--');
-					msgPadraoBot(message, resultado, site, creditos, nickLegivel);
+					msgPadraoBot(message, resultado, site, nickLegivel);
 				});	
 				variavelVisita=null;
 			}catch(e){}
@@ -1475,7 +1475,7 @@ function up(jsonSquad){
 	
 }
 
-function msgPadraoBot(message, text, site, rodape, nick){
+function msgPadraoBot(message, text, site, nick){
 		message.channel.send({embed: {
 			  color: 3447003,
 				description: text+quebraLinha+randomDonate(),
@@ -1488,7 +1488,7 @@ function msgPadraoBot(message, text, site, rodape, nick){
 				//},
 				footer: {
 					icon_url:"https://cdn.discordapp.com/avatars/195731919424585728/9d5e514c328e3573531c72664b2e6d2b.png?size=32",
-					text:"!QueroEsseBot "+rodape+" !comandos"
+					text: rodape
 				}
 			}
 		});	
