@@ -385,6 +385,10 @@ client.on('message', message => {
 		
 		//case "373611766737010690": //PDX
 		//break;
+			
+		case "263777831635386368": //brothers
+			if(message.channel.id!=453622337997111296) return;
+		break;
 		
 		case "385896642429321216": //colosso pagou 14.88 (abaixo do de tabela) mes 05
 			if(message.channel.id!=442862631691354112) return;
