@@ -1098,15 +1098,15 @@ client.on('message', message => {
 							if(winrKD[1]>=5){
 								if(message.member.roles.has(brtsLendario)) {print(message,"você está na patente máxima");return;}
 								changeRole(message.member, brtsEpico, brtsLendario);	
-								print(message,"Parabéns! Você agora é <@&420326999064707082> \:trophy: \:ok_hand:");
+								print(message,"Parabéns! Você agora é <@&453703573537030144> \:trophy: \:ok_hand:");
 							}else if(winrKD[1]>=3){
 								if(message.member.roles.has(brtsEpico)) {print(message,continuaOndeEstabrts); return;}
 								changeRole(message.member, brtsRaro, brtsEpico);	
-								print(message,"Parabéns! Você agora é <@&420326972045000715> \:trophy: \:ok_hand:");
+								print(message,"Parabéns! Você agora é <@&453703574124363776> \:trophy: \:ok_hand:");
 							}else if(winrKD[1]>=1){
 								if(message.member.roles.has(brtsRaro)) {print(message,continuaOndeEstabrts); return;}
 								changeRole(message.member, brtsLendario, brtsRaro);	
-								print(message,"Parabéns! Você agora é <@&420326919758807060> \:trophy: \:ok_hand:");
+								print(message,"Parabéns! Você agora é <@&453703574380347403> \:trophy: \:ok_hand:");
 							}else{
 								print(message,continuaOndeEstabrts); return;
 							}
@@ -1224,7 +1224,7 @@ client.on('message', message => {
 				var rolesCriadas = [0,0,0];
 				try{
 					message.guild.createRole({
-						name: 'rank1',
+						name: 'Lendário',
 						color: 'GOLD',
 						hoist: true, 
 						managed: true,
@@ -1233,7 +1233,7 @@ client.on('message', message => {
 					}).then(role => rolesCriadas[0] = role.id).catch(console.error);
 
 					message.guild.createRole({
-						name: 'rank2',
+						name: 'Épico',
 						color: 'PURPLE',
 						hoist: true, 
 						managed: true,
@@ -1241,7 +1241,7 @@ client.on('message', message => {
 					}).then(role => rolesCriadas[1] = role.id).catch(console.error);		
 
 					message.guild.createRole({
-						name: 'rank3',
+						name: 'Raro',
 						color: 'BLUE',
 						hoist: true, 
 						managed: true,
