@@ -47,7 +47,7 @@ const Browser = require('zombie');
 Browser.silent = true;
 Browser.waitDuration='6s'; //cloudflare
 //[apoia.se/reifel](https://apoia.se/reifel) - (*boleto | cartão de crédito - qlqr valor*)
-const rodape = "dono:Reifel#5047 !QueroEsseBot|!comandos", /*separador=" | ",*/ quebraLinha="\r\n", doacao=": tb use esse bot noutro discord com !tbQuero"+apoio;
+const rodape = "dono:Reifel#5047 !QueroEsseBot|!comandos", /*separador=" | ",*/ quebraLinha="\r\n", doacao=": use tb em outro discord - !tbQuero"+apoio;
 
 //tratando casos de erro
 const errorNickNaoEncontrado="nick não encontrado",
