@@ -1099,11 +1099,11 @@ client.on('message', message => {
 							if(winrKD[0]>=30){
 								if(message.member.roles.has(brtsLendario)) {print(message,"você está na patente máxima");return;}
 								changeRole(message.member, brtsEpico, brtsLendario);	
-								print(message,"Parabéns! Você agora é <@&410812044397379604> \:trophy: \:ok_hand:");
+								print(message,"Parabéns! Você agora é <@&453703573537030144> \:trophy: \:ok_hand:");
 							}else if(winrKD[0]>=22){
 								if(message.member.roles.has(brtsEpico)) {print(message,continuaOndeEstabrts); return;}
 								changeRole(message.member, brtsRaro, brtsEpico);	
-								print(message,"Parabéns! Você agora é <@&410811966618337280> \:trophy: \:ok_hand:");
+								print(message,"Parabéns! Você agora é <@&453703574124363776> \:trophy: \:ok_hand:");
 							}else{
 								if(message.member.roles.has(brtsRaro)) {print(message,continuaOndeEstabrts); return;}
 								changeRole(message.member, brtsLendario, brtsRaro);	
