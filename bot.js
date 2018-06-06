@@ -1095,23 +1095,21 @@ client.on('message', message => {
 						
 						
 						case '263777831635386368': //brothers
-							const brtsRaro='453703574380347403', brtsEpico='453703574124363776', brtsLendario='453703573537030144',continuaOndeEstabrts = "continua onde está,\r\Lendário - kd >= 3\r\Epico - kd >= 2\r\nRaro >= 1";
-							if(winrKD[1]>=5){
+							const brtsRaro='453703574380347403', brtsEpico='453703574124363776', brtsLendario='453703573537030144',continuaOndeEstabrts = "continua onde está,\r\Lendário - kd >= 30\r\Epico - kd >= 22\r\nRaro < 22";
+							if(winrKD[0]>=30){
 								if(message.member.roles.has(brtsLendario)) {print(message,"você está na patente máxima");return;}
 								changeRole(message.member, brtsEpico, brtsLendario);	
-								print(message,"Parabéns! Você agora é <@&453703573537030144> \:trophy: \:ok_hand:");
-							}else if(winrKD[1]>=3){
+								print(message,"Parabéns! Você agora é <@&410812044397379604> \:trophy: \:ok_hand:");
+							}else if(winrKD[0]>=22){
 								if(message.member.roles.has(brtsEpico)) {print(message,continuaOndeEstabrts); return;}
 								changeRole(message.member, brtsRaro, brtsEpico);	
-								print(message,"Parabéns! Você agora é <@&453703574124363776> \:trophy: \:ok_hand:");
-							}else if(winrKD[1]>=1){
+								print(message,"Parabéns! Você agora é <@&410811966618337280> \:trophy: \:ok_hand:");
+							}else{
 								if(message.member.roles.has(brtsRaro)) {print(message,continuaOndeEstabrts); return;}
 								changeRole(message.member, brtsLendario, brtsRaro);	
 								print(message,"Parabéns! Você agora é <@&453703574380347403> \:trophy: \:ok_hand:");
-							}else{
-								print(message,continuaOndeEstabrts); return;
 							}
-							message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) ).then(message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) )).then(user => message.reply("winrate: **"+winrKD[0]+`**, atualizei kd \:umbrella2:`)).catch(err => console.log(err));
+							message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));
 						break;
 						
 					}
@@ -1652,12 +1650,12 @@ function padraoAtualizarNome(message,nickLegivel,text,site){
 	switch(message.guild.id){
 		case "313195845761761281": //galera gamer
 		case "368240657816354836": //bro
+		case "263777831635386368": //brts
 			var winrNome = message.member.nickname.substring(0,message.member.nickname.indexOf("%"));
 			if(Number(winrNome)<Number(winrKD[0])) {message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));}
 			else {message.reply(" não atualizei, pois no site está: "+winrKD[0]);}
 		break;
 					
-		case "263777831635386368": //brts
 		case "325413143943577601"://pai
 		case "398566083101196298"://depressaum
 		case "377628278627893248"://mwd
