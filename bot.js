@@ -6,7 +6,7 @@ const client = new Discord.Client();
 //const boletosPreConfig = "Patrocinado por: **Anuncie/divulgue aqui** - pm: Reifel#5047";
 const boletosPreConfig = "";
 
-const tabelaPreco = '**Mensalidade do bot ReifelTracker**\r\nDepende da quantidade de membros do seu server no discord\r\n\r\nmembros -------- reais por mês\r\n1 a 49            -------- R$ 5\r\n50 a 100        -------- R$ 12\r\n101 a 350       -------- R$ 15\r\n351 a 500        -------- R$ 18\r\nmaior q 501      -------- R$ 20\r\nmaior q 1800    -------- R$ 24\r\n\r\nForma de pagamento: boleto, transferência bancária (banco do brasil), depósito, paypal\r\nDá direito a 3 cargos, instalação grátis e só paga quando estiver funcionando, os preços são para usar o bot do jeito que ele é na última atualização dele, com no máximo pequenas adaptações\r\n--\r\npara grandes modificações e alterações é cobrado serviço de mão de obra por fora da mensalidade\r\n----\r\n**plano econômico: R$ 12 por mês** independente do tamanho do servidor para usar apenas o comando !t\r\n**TRATAR COM:** @Reifel#5047 <@195731919424585728>. Não envie mensagem por aqui, envie para reifel';
+const tabelaPreco = '**Mensalidade do bot ReifelTracker**\r\n*Depende da quantidade de membros do seu server no discord\r\n\r\nmembros -------- reais por mês\r\n1 a 49            -------- R$ 5\r\n50 a 100        -------- R$ 12\r\n101 a 350       -------- R$ 15\r\n351 a 500        -------- R$ 18\r\nmaior q 501      -------- R$ 20\r\nmaior q 1800    -------- R$ 24\r\n\r\nForma de pagamento: boleto, transferência bancária (banco do brasil), depósito, paypal\r\nDá direito a 3 cargos, instalação grátis e só paga quando estiver funcionando, os preços são para usar o bot do jeito que ele é na última atualização dele, com no máximo pequenas adaptações\r\n--\r\npara grandes modificações e alterações é cobrado serviço de mão de obra por fora da mensalidade\r\n----\r\n**plano econômico: R$ 12 por mês** independente do tamanho do servidor para usar apenas o comando !t\r\n**TRATAR COM:** @Reifel#5047 <@195731919424585728>. Não envie mensagem por aqui, envie para reifel';
 
 const apoio = "";
 
@@ -47,7 +47,7 @@ const Browser = require('zombie');
 Browser.silent = true;
 Browser.waitDuration='6s'; //cloudflare
 //[apoia.se/reifel](https://apoia.se/reifel) - (*boleto | cartão de crédito - qlqr valor*)
-const rodape = "dono:Reifel#5047 !QueroEsseBot|!comandos", /*separador=" | ",*/ quebraLinha="\r\n", doacao=": use tb em outro discord - !tbQuero"+apoio;
+const rodape = "dono:Reifel#5047 !comandos|por R$5* no seu !discord", /*separador=" | ",*/ quebraLinha="\r\n", doacao=": use em outro !discord"+apoio;
 
 //tratando casos de erro
 const errorNickNaoEncontrado="nick não encontrado",
@@ -60,7 +60,7 @@ const winsStormShieldPath="body > div.container.pvp > div:nth-child(1) > div.col
 
 const comandoErrado = "comando invalido";
 //const AnunciarNovosPlanos="\r\n```md\r\n\r\n#22/05 agr +barato e para discord menores\r\n```";
-const AnunciarNovosPlanos="\r\n```fix\r\n\r\nSó esse mês: use 7 dias grátis de reifeltracker\r\nno seu servidor ou de amigo(!semana)\r\n```";
+const AnunciarNovosPlanos="\r\n```fix\r\n\r\nSó esse mês: use o bot 7 dias grátis\r\nno seu servidor ou de amigo(!semana)\r\n```";
 
 var refreshAuto = [];
 var refreshTamanho = 0;
@@ -73,7 +73,7 @@ var interval, refreshIsRunning=0;
 //var readySimultaneoContador;
 
 //const helpMessage = "comandos disponiveis (inicie com ! ou .):\r\n**!queroessebot** - envia uma mensagem privada com a tabela de preço para rodar esse bot no seu servidor\r\n**!t nick** - (consulta nick do fortnite de alguem)\r\n**!up seuNick** - (atualizar winrate do seu nick)\r\n(desativado)**!auto seuNick** - (atualiza o seu winrate sozinho a cada 30 min, apos "+refreshRealizadosMAX+" atualizacoes todas as "+refreshMAXSTACK+" vagas ficam livres)\r\n**!alt seuNick** - (acessa tracker em site alternativo caso o fortnitetracker esteja bug ou off)\r\n**!rank** - sobe de patente caso atingiu win% e kd\r\n**!arma nomeArma** - registra a sua arma principal de preferência\r\n**!ideia msg** - envia uma ideia nova pro bot ou sugestao de melhoria do que já existe\r\n**!novavotacao @mencionar** - comando para inserir novo player a votacao\r\n**!apostar @mencionar , @mencionar, ...** - iniciar aposta nos player citados\r\n**.troquei NovoNick** - se trocou de nick na epic use esse comando\r\n**.vs playerA x playerB** - exclusivo para usuario premium reifeltracker, compara dois players";
-const helpMessage = "comandos disponiveis (inicie com ! ou .):\r\n**!queroessebot** - envia uma mensagem privada com a tabela de preço para rodar esse bot no seu servidor\r\n**!t nick** - consulta nick do fortnite de alguem\r\n**!up seuNick** - atualizar winrate do seu nick\r\n**!rank** - sobe de patente caso atingiu win% e kd\r\n**!arma nomeArma** - registra a sua arma principal de preferência\r\n**!ideia msg** - envia uma ideia nova pro bot ou sugestao de melhoria do que já existe\r\n**.troquei NovoNick** - se trocou de nick na epic use esse comando\r\n**.vs playerA x playerB** - [premium reifeltracker], compara dois players\r\n**passiva premium** - [premium reifeltracker] atualiza stats no nick sozinho de tempo em tempo\r\npremium R$1/mes, minimo: boleto 3, transferencia/paypal 1";
+const helpMessage = "comandos disponiveis (inicie com ! ou .):\r\n**!discord** - envia uma mensagem privada com a tabela de preço para ter esse bot no seu discord ou de amigo\r\n**!t nick** - consulta nick do fortnite de alguem\r\n**!up seuNick** - atualizar winrate do seu nick\r\n**!rank** - sobe de patente caso atingiu win% e kd\r\n**!arma nomeArma** - registra a sua arma principal de preferência\r\n**!ideia msg** - envia uma ideia nova pro bot ou sugestao de melhoria do que já existe\r\n**.troquei NovoNick** - se trocou de nick na epic use esse comando\r\n**.vs playerA x playerB** - [premium reifeltracker], compara dois players\r\n**passiva premium** - [premium reifeltracker] atualiza stats no nick sozinho de tempo em tempo\r\npremium R$1/mes, minimo: boleto 3, transferencia/paypal 1";
 
 const errorUsuarioRegistrado = "usuario ja esta registrado", errorRefreshLotado="fila atualizacao lotada", 
 sucessoRegistro=" conseguiu se registrar", chamadaFilaLIVRE=">> a fila de atualizar win % automatica esta LIVRE <<", sucessoWinRateAtualizado="atualizei os win % de vcs";
@@ -92,7 +92,7 @@ client.on('ready', () => {
 	reifelUser = client.users.get('195731919424585728');
 	client.user.setPresence({
 		game: {
-			name: "em "+client.guilds.array().length +" discords| !tbQuero"
+			name: "em "+client.guilds.array().length +" discords| !discord"
 		}
 	}); 
 });
@@ -481,8 +481,8 @@ client.on('message', message => {
 		case "arma":
 		case "ideia":
 		case "semana":
+		case "discord":
 		case "tbquero":
-		case "queroessebot":
 		case "novavotacao":
 		case "apostar":
 		case "prefab":
@@ -870,8 +870,8 @@ client.on('message', message => {
 			message.author.send("Certo! avisei ao Reifel que vc quer semana gratis, ele vai mandar msg pra vc jaja pra comecar a instalação");
 			reifelUser.send(message.author+" quer semana gratis");
 		break;
+		case "discord":
 		case "tbquero":
-		case "queroessebot":
 			message.author.send(tabelaPreco);
 			reifelUser.send(message.author+" futuro cliente");
 		break;
