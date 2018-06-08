@@ -6,7 +6,7 @@ const client = new Discord.Client();
 //const boletosPreConfig = "Patrocinado por: **Anuncie/divulgue aqui** - pm: Reifel#5047";
 const boletosPreConfig = "";
 
-const tabelaPreco = '**Mensalidade do bot ReifelTracker**\r\n*Depende da quantidade de membros do seu server no discord\r\n\r\nmembros -------- reais por mês\r\n1 a 49            -------- R$ 5\r\n50 a 100        -------- R$ 12\r\n101 a 350       -------- R$ 15\r\n351 a 500        -------- R$ 18\r\nmaior q 501      -------- R$ 20\r\nmaior q 1800    -------- R$ 24\r\n\r\nForma de pagamento: boleto, transferência bancária (banco do brasil), depósito, paypal\r\nDá direito a 3 cargos, instalação grátis e só paga quando estiver funcionando, os preços são para usar o bot do jeito que ele é na última atualização dele, com no máximo pequenas adaptações\r\n--\r\npara grandes modificações e alterações é cobrado serviço de mão de obra por fora da mensalidade\r\n----\r\n**plano econômico: R$ 12 por mês** independente do tamanho do servidor para usar apenas o comando !t\r\n**TRATAR COM:** @Reifel#5047 <@195731919424585728>. Não envie mensagem por aqui, envie para reifel';
+const tabelaPreco = '**Mensalidade do bot ReifelTracker**\r\n*Depende da quantidade de membros do seu server no discord\r\n\r\nExperimente grátis por 7 dias\r\nmembros -------- reais por mês\r\n1 a 49            -------- R$ 5\r\n50 a 100        -------- R$ 12\r\n101 a 350       -------- R$ 15\r\n351 a 500        -------- R$ 18\r\nmaior q 501      -------- R$ 20\r\nmaior q 1800    -------- R$ 24\r\n\r\nForma de pagamento: boleto, transferência bancária (banco do brasil), depósito, paypal\r\nDá direito a 3 cargos, instalação grátis e só paga quando estiver funcionando, os preços são para usar o bot do jeito que ele é na última atualização dele, com no máximo pequenas adaptações\r\n--\r\npara grandes modificações e alterações é cobrado serviço de mão de obra por fora da mensalidade\r\n----\r\n**plano econômico: R$ 12 por mês** independente do tamanho do servidor para usar apenas o comando !t\r\n**TRATAR COM:** @Reifel#5047 <@195731919424585728>. Não envie mensagem por aqui, envie para reifel';
 
 const apoio = "";
 
@@ -1767,7 +1767,7 @@ function verifyRole(member, role){
 
 const msgDonate = ['Donate', 'Dá uma moral', 'Apoie', 'Nunca te pedi nda', 'Be my senpai', 'Envia um airdrop', 'Dropa bala média', 'Põe o jump', 'Gostou?', 'Faz um cover'];
 function randomDonate(){
-	const reduzirMsgDonate = Math.ceil(msgDonate.length*2.1);
+	const reduzirMsgDonate = Math.ceil(msgDonate.length*2.6);
 	const index = Math.floor(Math.random() * (msgDonate.length+reduzirMsgDonate));
 	if(index >= msgDonate.length) return "";
 	else return AnunciarNovosPlanos+quebraLinha+msgDonate[index]+doacao;
