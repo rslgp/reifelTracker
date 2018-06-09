@@ -85,6 +85,9 @@ var salaRank,salaVotem,salaAposta, reifelUser;
 var TAG = "";
 var cooldownUser = [];
 
+var imageJimp,fontJimp;
+const tempFile="stats.png";
+
 client.on('ready', () => {
 	client.user.username="reifelTracker";
 	client.user.setUsername("reifelTracker");
@@ -97,6 +100,15 @@ client.on('ready', () => {
 			name: "em "+client.guilds.array().length +" discord| .discord"
 		}
 	}); 
+	
+	Jimp.read("https://i.imgur.com/1JUAOPs.gif", function (err, imagemBackground) {
+		Jimp.loadFont(Jimp.FONT_SANS_16_WHITE).then(function (fontCarregada) {
+			imageJimp=imagemBackground;
+			fontJimp=fontCarregada;
+			
+			imageJimp.deflateStrategy(0).filterType(0);
+		});
+	});
 });
 
 //twitch
@@ -1275,22 +1287,16 @@ var buscas= [
 ];
 
 function msgImg(message){
-	const tempFile="stats.png";
-	Jimp.read("https://i.imgur.com/1JUAOPs.gif", function (err, imageJimp) {
-		Jimp.loadFont(Jimp.FONT_SANS_16_WHITE).then(function (font) {
-			imageJimp.deflateStrategy(0)
-				.filterType(0)
-				.print(font, 5,18, "Hello world!")
-				.write(tempFile, function(){
-				
-					// Create the attachment using MessageAttachment
-					const attachment = new Discord.Attachment(tempFile);
-					// Send the attachment in the message channel with a content
-					message.channel.send(attachment);
-				});
-		});
+	var copiaJimp = imageJimp.clone();
+	copiaJimp.print(fontJimp, 5,18, "Hello world!")
+		.write(tempFile, function(){
 		
-	});
+			// Create the attachment using MessageAttachment
+			const attachment = new Discord.Attachment(tempFile);
+			// Send the attachment in the message channel with a content
+			message.channel.send(attachment);
+		});
+	copiaJimp=null;
 }
 
 function compararPlayers(jsonSquadPA,nickA, jsonSquadPB,nickB){
