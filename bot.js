@@ -51,7 +51,7 @@ const rodape = "dono:Reifel#5047 !comandos|por R$5* no seu !discord", /*separado
 
 //tratando casos de erro
 const errorNickNaoEncontrado="nick não encontrado",
-errorNuncaGanhouSquad="nunca ganhou squad", errorFortnitetracker=", --ERRO--, possíveis causas: escreveu o nick errado, jogador não joga no PC, o site fortnitetracker está caindo ou com problemas", errorNaoUsarProprioNick="ei! eu sei qm é vc \:thinking:, da próxima usa o comando sem nick";
+errorNuncaGanhouSquad="nunca ganhou squad", errorFortnitetracker=", --ERRO--, possíveis causas: escreveu o nick errado, jogador não joga no PC, o site fortnitetracker está caindo ou com problemas, mudou de nick? .troquei novoNick", errorNaoUsarProprioNick="ei! eu sei qm é vc \:thinking:, da próxima usa o comando sem nick";
 ;
 
 const siteFortniteTracker = "https://fortnitetracker.com/profile/pc/", siteStormShield = "https://www.stormshield.one/pvp/stats/";
