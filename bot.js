@@ -488,6 +488,7 @@ client.on('message', message => {
 		case "novavotacao":
 		case "apostar":
 		case "prefab":
+		case "debug":
 		case "uninstall":
 		break;
 		default:
