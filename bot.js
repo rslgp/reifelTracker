@@ -41,11 +41,13 @@ eval = function(args){
 //trocar o token
 client.login(process.env.BOT_TOKEN);
 
-//versao 1.0
+//versao 1.1
 const message = new Discord.Message();
 const Browser = require('zombie');
 Browser.silent = true;
 Browser.waitDuration='6s'; //cloudflare
+
+var Jimp = require("jimp");
 //[apoia.se/reifel](https://apoia.se/reifel) - (*boleto | cartão de crédito - qlqr valor*)
 const rodape = "dono:Reifel#5047 !comandos|por R$5* no seu !discord", /*separador=" | ",*/ quebraLinha="\r\n", doacao=": use em outro !discord"+apoio;
 
