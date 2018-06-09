@@ -1184,6 +1184,10 @@ client.on('message', message => {
 		break;
 		
 		case "debug":
+			if(message.author!=reifelUser) return;
+			
+			print(message,"ok");
+			msgImg(message);
 			//console.log(message);
 			//var indice = message.member.nickname.indexOf("☂")+2;
 			//console.log(message.member.nickname.substring(indice));
@@ -1266,6 +1270,22 @@ var buscas= [
 '</script>',
 '"p9"'
 ];
+
+function msgImg(message){
+	Jimp.read("https://i.imgur.com/tSv5ElJ.png", function (err, imageJimp) {
+		Jimp.loadFont(Jimp.FONT_SANS_16_WHITE).then(function (font) {
+			imageJimp.print(font, 5,18, "Hello world!");
+			imageJimp.write("jimp.png", function(){
+				
+				// Create the attachment using MessageAttachment
+				const attachment = new Discord.Attachment('./jimp.png');
+				// Send the attachment in the message channel with a content
+				message.channel.send(attachment);
+			});
+		});
+		
+	});
+}
 
 function compararPlayers(jsonSquadPA,nickA, jsonSquadPB,nickB){
 	//console.log(text+"\r\n\r\n");
