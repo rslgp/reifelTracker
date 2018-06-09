@@ -1275,16 +1275,19 @@ var buscas= [
 ];
 
 function msgImg(message){
-	Jimp.read("https://i.imgur.com/tSv5ElJ.png", function (err, imageJimp) {
+	const tempFile="stats.png";
+	Jimp.read("https://i.imgur.com/1JUAOPs.gif", function (err, imageJimp) {
 		Jimp.loadFont(Jimp.FONT_SANS_16_WHITE).then(function (font) {
-			imageJimp.print(font, 5,18, "Hello world!");
-			imageJimp.write("jimp.png", function(){
+			imageJimp.deflateStrategy(0)
+				.filterType(0)
+				.print(font, 5,18, "Hello world!")
+				.write(tempFile, function(){
 				
-				// Create the attachment using MessageAttachment
-				const attachment = new Discord.Attachment('./jimp.png');
-				// Send the attachment in the message channel with a content
-				message.channel.send(attachment);
-			});
+					// Create the attachment using MessageAttachment
+					const attachment = new Discord.Attachment(tempFile);
+					// Send the attachment in the message channel with a content
+					message.channel.send(attachment);
+				});
 		});
 		
 	});
