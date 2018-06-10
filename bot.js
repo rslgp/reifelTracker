@@ -502,6 +502,7 @@ client.on('message', message => {
 		case "apostar":
 		case "prefab":
 		case "debug":
+		case "reloadimg":
 		case "uninstall":
 		break;
 		default:
@@ -1272,6 +1273,18 @@ client.on('message', message => {
 		
 		case "ideia":			
 			reifelUser.send(nickLegivel);
+		break;
+		
+		case "reloadimg":
+			if(message.author!=reifelUser) return;
+			Jimp.read("http://snip.li/reifelbackground1", function (err, imagemBackground) {
+				Jimp.loadFont(Jimp.FONT_SANS_16_WHITE).then(function (fontCarregada) {
+					imageJimp=imagemBackground;
+					fontJimp=fontCarregada;
+
+					imageJimp.deflateStrategy(0).filterType(0);
+				});
+			});
 		break;
 		
 		case "debug":
