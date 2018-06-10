@@ -484,6 +484,7 @@ client.on('message', message => {
 	comando = comando.toLowerCase();
 	switch(comando){ //so responder a nossos comandos, poupar cpu
 		case "t":
+		case "ti":
 		case "alt":
 		case "up":
 		case "vs":
