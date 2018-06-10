@@ -373,7 +373,7 @@ clientTwitch.on('chat', function(channel, user, message, self){
 							throw false;
 						}
 						
-						msgTwitch( "Números em Squad de "+nickLegivel+": "+search(jsonSquad,nick,'t') );
+						msgTwitch( "Números em Squad de "+nickLegivel+": "+search(jsonSquad,'t') );
 						
 					}catch(e){};
 		});		
@@ -585,7 +585,7 @@ client.on('message', message => {
 						}catch(e){
 							d7Texto = "sem dessa vez :(";
 						}
-						msgPadraoBot( message, search(jsonSquad,nickLegivel)+d7Texto, site, nickLegivel );
+						msgPadraoBot( message, search(jsonSquad)+d7Texto, site, nickLegivel );
 						//imbutir up aqui, pois agr so atualiza se for maior
 						if(proprionick) {							
 							var winrKD = up(jsonSquad);
@@ -1180,7 +1180,72 @@ client.on('message', message => {
 					break;
 				}
 			}
-		break;		
+		break;
+		case "ti":
+			site = siteFortniteTracker+parametroUsado+"?old=1";
+			//crawler
+			try{
+				var variavelVisita = Browser.visit(site, function (e, browser) {				
+					try{
+						var text = browser.html();
+
+						var jsonSquad;
+						try{
+							jsonSquad = getJsonSquad(text);
+							//console.log(jsonSquad);
+							text=null;
+						}catch(e){		
+							console.log("error search");
+							throw false;
+						}
+
+						try{
+						//day7
+						var d7WinRate, d7kd;
+						var day7elem;
+
+
+						day7elem = browser.queryAll("body > div.container.content-container > div:nth-child(1) > script:nth-child(10)");
+
+						var j7 = day7elem[0].textContent;
+						day7elem=null;
+						var j8 = j7.split("}");
+						d7kd = j8[13].split(":")[2].replace(/(\r\n|\n|\r|\"| )/gm,"");
+						d7WinRate = j8[15].split(":")[2].replace(/(\r\n|\n|\r|\"| )/gm,"");
+						d7WinRate = d7WinRate.slice(0,-1);
+
+						
+
+						}catch(e){
+							
+							d7WinRate="?";
+							d7kd="?";
+						}
+						var valoresJimp = searchJimp(jsonSquad);
+						valoresJimp.push(d7WinRate);
+						valoresJimp.push(d7kd);
+						valoresJimp.push(nickLegivel);
+						msgImg(message, valoresJimp);
+						//var imprimirvalores="";
+						//for(var i of valoresJimp){
+						//	imprimirvalores+=i+" ";
+						//}
+						//print(message,imprimirvalores);
+						}catch(e){
+						//console.log(e.message);
+						print(message, nickLegivel + errorFortnitetracker);
+					}
+
+					try{
+						browser.deleteCookies();
+						browser.tabs.closeAll(); browser.window.close(); browser.destroy();					
+					}catch(e){
+
+					}
+				});
+				variavelVisita=null;
+			}catch(e){}
+		break;
 		
 		case "novavotacao":
 			if(message.member.roles.some(r=>[373640089986924554, 373640161290092544].includes(r.id))){return;}//raro e incomum nao pode - multiple
@@ -1286,9 +1351,18 @@ var buscas= [
 '"p9"'
 ];
 
-function msgImg(message){
+function msgImg(message, valoresJimp){//winrate, kd, wins, kills, trn
+	
 	var copiaJimp = imageJimp.clone();
-	copiaJimp.print(fontJimp, 5,18, "Hello world!")
+	const linha1=16,linha2=71,linha3=40;
+	copiaJimp.print(fontJimp, 78,linha1, valoresJimp[0])
+		.print(fontJimp, 182,linha1, valoresJimp[1])
+		.print(fontJimp, 55,linha2, valoresJimp[2])
+		.print(fontJimp, 163,linha2, valoresJimp[3])
+		.print(fontJimp, 138,102, (valoresJimp[4]*0.02).toFixed(2)+"%")		
+		.print(fontJimp, 87,linha3, valoresJimp[5])		
+		.print(fontJimp, 174,linha3, valoresJimp[6])
+		.print(fontJimp, 5,120, valoresJimp[7])
 		.write(tempFile, function(){
 		
 			// Create the attachment using MessageAttachment
@@ -1386,7 +1460,84 @@ function compararPlayers(jsonSquadPA,nickA, jsonSquadPB,nickB){
 	return resultado;
 }
 
-function search(jsonSquad,nick,plataforma){ //plataforma discord ou twitch	
+function searchJimp(jsonSquad){ //plataforma discord ou twitch	
+	//console.log(text+"\r\n\r\n");
+	
+	var resultado=[];
+	var trn = 0
+	,wins = 2
+	,kd = 9
+	,winP = 10
+	,kills = 12;
+	
+	const winsLabel = 'Wins'
+	,winpLabel = 'Win %'
+	,killsLabel = 'Kills'
+	,kdLabel = 'K/d'
+	,trnLabel = 'TRN Rating'
+	;
+	
+	if(jsonSquad[wins].label === 'Wins' && jsonSquad[winP].label === 'Win %' && jsonSquad[kills].label === 'Kills' && jsonSquad[kd].label === 'K/d')
+	{}	
+	else{			
+			var n=0;
+			for( i=0; i < jsonSquad.length; i++ ){
+				//console.log(jsonSquad[i].label);
+				switch(jsonSquad[i].label){
+					case winsLabel:
+						wins = n;
+						//console.log("wins = "+n);
+					break;
+					
+					case winpLabel:
+						winP = n;
+						//console.log("winP = "+n);
+					break;
+						
+					case killsLabel:
+						kills = n;
+						//console.log("kills = "+n);
+					break;
+					
+					case kdLabel:
+						kd = n;
+						//console.log("kd = "+n);
+					break;
+					
+					case trnLabel:
+						trn = n;
+						//console.log("trn = "+n);
+					break;
+					
+				}
+				n++;
+			}
+	}
+	
+	var valorTrn;
+	try{
+		valorTrn = jsonSquad[trn].value;		
+	}catch(e){
+		valorTrn = '--';
+	}
+	
+	if(jsonSquad[wins].value===0) resultado= errorNuncaGanhouSquad;
+	//resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[wins].value+separador+"Win %: "+jsonSquad[winP].value +separador+"Kills: "+jsonSquad[kills].value +separador+ "K/d: "+jsonSquad[kd].value +quebraLinha+ site +quebraLinha+ creditos;
+	//else resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[wins].value+separador+"Win %: "+jsonSquad[winP].value +separador+"Kills: "+jsonSquad[kills].value +separador+ "K/d: "+jsonSquad[kd].value;
+	//else resultado = ">> "+nick+" Squad <<\r\nWins: "+jsonSquad[wins].value+separador+"Win %: "+jsonSquad[winP].value +separador+"Kills: "+jsonSquad[kills].value +separador+ "K/d: "+jsonSquad[kd].value;
+	else {
+			
+			resultado=[jsonSquad[winP].value, jsonSquad[kd].value, jsonSquad[wins].value, jsonSquad[kills].value, valorTrn];
+		
+		
+		//fim modif twitch
+	}
+	jsonSquad=null;	
+	
+	return resultado;
+}
+
+function search(jsonSquad,plataforma){ //plataforma discord ou twitch	
 	//console.log(text+"\r\n\r\n");
 	
 	var resultado="";
