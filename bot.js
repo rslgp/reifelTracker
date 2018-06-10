@@ -1378,15 +1378,15 @@ var buscas= [
 function msgImg(message, valoresJimp){//winrate, kd, wins, kills, trn
 	
 	var copiaJimp = imageJimp.clone();
-	const linha1=16,linha2=71,linha3=40;
-	copiaJimp.print(fontJimp, 78,linha1, valoresJimp[0])
-		.print(fontJimp, 182,linha1, valoresJimp[1])
-		.print(fontJimp, 55,linha2, valoresJimp[2])
-		.print(fontJimp, 163,linha2, valoresJimp[3])
-		.print(fontJimp, 138,102, (valoresJimp[4]*0.02).toFixed(2)+"%")		
-		.print(fontJimp, 87,linha3, valoresJimp[5])		
-		.print(fontJimp, 174,linha3, valoresJimp[6])
-		.print(fontJimp, 5,122, valoresJimp[7])
+	const linha1=16,linha2=72,linha3=40;
+	copiaJimp.print(fontJimp, 56,linha1, valoresJimp[0])
+		.print(fontJimp, 149,linha1, valoresJimp[1])
+		.print(fontJimp, 47,linha2, valoresJimp[2])
+		.print(fontJimp, 138,linha2, valoresJimp[3])
+		.print(fontJimp, 95,102, (valoresJimp[4]*0.02).toFixed(2)+"%")		
+		.print(fontJimp, 59,linha3, valoresJimp[5])		
+		.print(fontJimp, 151,linha3, valoresJimp[6])
+		.print(fontJimp, 5,120, valoresJimp[7])
 		.write(tempFile, function(){
 		
 			// Create the attachment using MessageAttachment
