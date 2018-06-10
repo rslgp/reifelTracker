@@ -1373,7 +1373,7 @@ function msgImg(message, valoresJimp){//winrate, kd, wins, kills, trn
 		.print(fontJimp, 138,102, (valoresJimp[4]*0.02).toFixed(2)+"%")		
 		.print(fontJimp, 87,linha3, valoresJimp[5])		
 		.print(fontJimp, 174,linha3, valoresJimp[6])
-		.print(fontJimp, 5,120, valoresJimp[7])
+		.print(fontJimp, 5,122, valoresJimp[7])
 		.write(tempFile, function(){
 		
 			// Create the attachment using MessageAttachment
