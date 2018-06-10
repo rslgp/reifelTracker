@@ -1183,6 +1183,16 @@ client.on('message', message => {
 			}
 		break;
 		case "ti":
+			var proprionick=false;
+			if(nickLegivel === undefined){
+				proprionick=true;
+				try{
+					nickLegivel=parametroUsado = getNickConhecido(message);
+					parametroUsado=encodeURI(parametroUsado);
+				}catch(e){
+					print(message, errorNickNaoEncontrado); return;
+				}
+			}
 			site = siteFortniteTracker+parametroUsado+"?old=1";
 			//crawler
 			try{
