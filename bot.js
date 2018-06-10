@@ -101,7 +101,7 @@ client.on('ready', () => {
 		}
 	}); 
 	
-	Jimp.read("https://i.imgur.com/1JUAOPs.gif", function (err, imagemBackground) {
+	Jimp.read("https://i.imgur.com/h8tQivW.png", function (err, imagemBackground) {
 		Jimp.loadFont(Jimp.FONT_SANS_16_WHITE).then(function (fontCarregada) {
 			imageJimp=imagemBackground;
 			fontJimp=fontCarregada;
