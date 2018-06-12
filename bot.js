@@ -765,7 +765,7 @@ client.on('message', message => {
 		break;
 
 		case "vs":
-		if(!( usersPremium.includes(message.author) )) return;
+		if(!( usersPremium.includes(message.author.id) )) return;
 		var jsonSquadPA,jsonSquadPB;
 		
 		var players = parametroUsado.split("%20x%20");
