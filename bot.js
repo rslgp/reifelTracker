@@ -6,7 +6,7 @@ const client = new Discord.Client();
 //const boletosPreConfig = "Patrocinado por: **Anuncie/divulgue aqui** - pm: Reifel#5047";
 const boletosPreConfig = "";
 
-const tabelaPreco = '**Mensalidade do bot ReifelTracker**\r\n*Depende da quantidade de membros do seu server no discord\r\n\r\nExperimente grátis por 7 dias\r\nmembros -------- reais por mês\r\n1 a 49            -------- R$ 5\r\n50 a 100        -------- R$ 12\r\n101 a 350       -------- R$ 15\r\n351 a 500        -------- R$ 18\r\nmaior q 501      -------- R$ 20\r\nmaior q 1800    -------- R$ 24\r\n\r\nForma de pagamento: boleto, transferência bancária (banco do brasil), depósito, paypal\r\nDá direito a 3 cargos, instalação grátis e só paga quando estiver funcionando, os preços são para usar o bot do jeito que ele é na última atualização dele, com no máximo pequenas adaptações. Se não quiser mais, o bot é desinstalado e (opcional) o discord antigo, sem modificações é recuperado.\r\n--\r\npara grandes modificações e alterações é cobrado serviço de mão de obra por fora da mensalidade\r\n----\r\n**plano econômico: R$ 12 por mês** independente do tamanho do servidor para usar apenas o comando !t\r\n**TRATAR COM:** @Reifel#5047 <@195731919424585728>. Não envie mensagem por aqui, envie para reifel';
+const tabelaPreco = '**Mensalidade do bot ReifelTracker**\r\n*Depende da quantidade de membros do seu server no discord\r\n\r\nExperimente grátis por 7 dias\r\nmembros -------- reais por mês\r\n1 a 49            -------- R$ 5\r\n50 a 100        -------- R$ 12\r\n101 a 350       -------- R$ 15\r\n351 a 500        -------- R$ 18\r\nmaior q 501      -------- R$ 20\r\nmaior q 1800    -------- R$ 24\r\n\r\nForma de pagamento: boleto, transferência bancária (banco do brasil), depósito, paypal (+10% do preço pela taxa do paypal)\r\nDá direito a 3 cargos, instalação grátis e só paga quando estiver funcionando, os preços são para usar o bot do jeito que ele é na última atualização dele, com no máximo pequenas adaptações. Se não quiser mais, o bot é desinstalado e (opcional) o discord antigo, sem modificações é recuperado.\r\n--\r\npara grandes modificações e alterações é cobrado serviço de mão de obra por fora da mensalidade\r\n----\r\n**plano econômico: R$ 12 por mês** independente do tamanho do servidor para usar apenas o comando !t\r\n**TRATAR COM:** @Reifel#5047 <@195731919424585728>. Não envie mensagem por aqui, envie para reifel';
 
 const apoio = "";
 
@@ -405,6 +405,7 @@ client.on('message', message => {
 			
 		case "263777831635386368": //brothers
 			if(message.channel.id!=453622337997111296) return;
+			suspenso(message);return;
 		break;
 		
 		case "385896642429321216": //colosso pagou 14.88 (abaixo do de tabela) mes 05
