@@ -1140,11 +1140,11 @@ client.on('message', message => {
 						break;
 							
 						case '381535199454035968': //skgaming
-							//padraoRankWin(message, message.member, nickLegivel, winrKD, lendario, epico, raro);
+							padraoRankWin(message, message.member, nickLegivel, winrKD, 456170372392419328, 456170373055250454, 456170373743116288);
 						break;
 							
 						case '455509665661583360': //snow
-							//padraoRankWin(message, message.member, nickLegivel, winrKD, lendario, epico, raro);
+							padraoRankWin(message, message.member, nickLegivel, winrKD, 456167741003399168, 456167741074833410, 456167741523492884);
 						break;
 						
 					}
@@ -1371,7 +1371,7 @@ client.on('message', message => {
 						hoist: true, 
 						managed: true,
 						mentionable: true
-					}).then(role => print(message,rolesCriadas[0]+" - "+rolesCriadas[1]+" - "+role.id)).catch(console.error);
+					}).then(role => print(message,rolesCriadas[0]+", "+rolesCriadas[1]+", "+role.id)).catch(console.error);
 				}catch(e){};
 			}
 		break;
