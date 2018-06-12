@@ -606,7 +606,7 @@ client.on('message', message => {
 							if(posPercent!=-1){
 								winrNome= message.member.nickname.substring(0,posPercent);
 								if(Number(winrNome)<Number(winrKD[0])) {
-									mudarNick(message.member, padraoNick(winrKD[0],nickLegivel), 'kd: **'+winrKD[1]+'**, ');
+									mudarNick(message, padraoNick(winrKD[0],nickLegivel), 'kd: **'+winrKD[1]+'**, ');
 									//message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));
 								}
 								
@@ -614,7 +614,7 @@ client.on('message', message => {
 								posPercent = message.member.nickname.indexOf("☂");
 								winrNome= message.member.nickname.substring(0,posPercent);
 								if(Number(winrNome)<Number(winrKD[1])) {
-									mudarNick(message.member, padraoNickKD(winrKD[1],nickLegivel), 'winrate: **'+winrKD[0]+'**, ');
+									mudarNick(message, padraoNickKD(winrKD[1],nickLegivel), 'winrate: **'+winrKD[0]+'**, ');
 									//message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) ).then(user => message.reply("winrate: **"+winrKD[0]+`**, atualizei kd \:umbrella2:`)).catch(err => console.log(err));
 								}
 								
@@ -686,7 +686,7 @@ client.on('message', message => {
 									print(message,errorNickNaoEncontrado);
 									return;
 								}			
-								mudarNick(message.member, padraoNick(winP,nickLegivel));
+								mudarNick(message, padraoNick(winP,nickLegivel));
 								//message.member.setNickname( padraoNick(winP,nickLegivel) ).then(user => message.reply(`atualizei winrate \:umbrella2:`)).catch(err => console.log(err));	
 								
 								try{
@@ -746,7 +746,7 @@ client.on('message', message => {
 				var winrKD = up(jsonSquad);
 				if(nick.indexOf("%") === -1){
 					if( (parseFloat(winrate) + 0.3) >= parseFloat(winrKD[1]) ) { //se o stats atual offline for menor ou igual ao stats online
-						mudarNick(message.member, padraoNickKD(winrKD[1],nickLegivel));
+						mudarNick(message, padraoNickKD(winrKD[1],nickLegivel));
 						//message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) ).then(user => message.reply("o seu nick foi atualizado")).catch(err => console.log(err));
 						return;
 					}else{
@@ -754,7 +754,7 @@ client.on('message', message => {
 					}
 				}else{					
 					if( (parseFloat(winrate) + 0.7) >= parseFloat(winrKD[0]) ) {
-						mudarNick(message.member, padraoNick(winrKD[0],nickLegivel));
+						mudarNick(message, padraoNick(winrKD[0],nickLegivel));
 						//message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(user => message.reply("o seu nick foi atualizado")).catch(err => console.log(err));
 						return;
 					}else{
@@ -953,7 +953,7 @@ client.on('message', message => {
 								changeRole(message.member, ouro, bronze);	
 								print(message,"Parabéns! Você agora é <@&410529877830139924> \:trophy: \:ok_hand:");
 							}
-							mudarNick(message.member, padraoNickKD(winrKD[1],nickLegivel), 'winrate: **'+winrKD[0]+'**, ');
+							mudarNick(message, padraoNickKD(winrKD[1],nickLegivel), 'winrate: **'+winrKD[0]+'**, ');
 							//message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) ).then(message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) )).then(user => message.reply("winrate: **"+winrKD[0]+`**, atualizei kd \:umbrella2:`)).catch(err => console.log(err));
 						break;
 						
@@ -979,7 +979,7 @@ client.on('message', message => {
 							}else{					
 								changeRole(message.member, desconhecido, incomum);
 								//remover desconhecido
-								mudarNick(message.member, padraoNick(winrKD[0],nickLegivel), 'kd: **'+winrKD[1]+'**, ');
+								mudarNick(message, padraoNick(winrKD[0],nickLegivel), 'kd: **'+winrKD[1]+'**, ');
 								//message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));
 								if(  message.member.roles.has(desconhecido) ) message.member.removeRole(desconhecido).catch(err => console.log(err));
 								print(message,"Parabéns! Você agora é <@&373640161290092544> \:trophy: \:ok_hand:");
@@ -1044,8 +1044,8 @@ client.on('message', message => {
 									changeRole(message.member, desconhecido,'376134044439805952'); //aprendiz
 									print(message,"patente cadastrada");
 								}
-								if(message.member.roles.has(desconhecido)) message.member.removeRole(desconhecido).then(message.member.removeRole(desconhecido)).then(/*message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )*/ mudarNick(message.member, padraoNick(winrKD[0],nickLegivel)) ).catch(err => message.reply("houve um problema"));
-								mudarNick(message.member, padraoNick(winrKD[0],nickLegivel), 'kd: **'+winrKD[1]+'**, ');
+								if(message.member.roles.has(desconhecido)) message.member.removeRole(desconhecido).then(message.member.removeRole(desconhecido)).then(/*message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )*/ mudarNick(message, padraoNick(winrKD[0],nickLegivel)) ).catch(err => message.reply("houve um problema"));
+								mudarNick(message, padraoNick(winrKD[0],nickLegivel), 'kd: **'+winrKD[1]+'**, ');
 								//message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));
 							}catch(e){
 								
@@ -1437,7 +1437,7 @@ function padraoRankWin(message, usuario, nickLegivel, winrKD, lendario, epico, r
 			changeRole(usuario, lendario, raro);	
 			print(message,msg1Rank+raro+msg2Rank);
 		}
-		mudarNick(message.member, padraoNick(winrKD[0],nickLegivel), 'kd: **'+winrKD[1]+'**, ');
+		mudarNick(message, padraoNick(winrKD[0],nickLegivel), 'kd: **'+winrKD[1]+'**, ');
 		//usuario.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(usuario.setNickname( padraoNick(winrKD[0],nickLegivel) )).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));	
 }
 
@@ -1458,7 +1458,7 @@ function padraoRankKD(message, usuario, nickLegivel, winrKD, lendario, epico, ra
 		}else{
 			print(message,winrKD[1]+" de KD\r\nContinue melhorando! ainda não possui KD pra conquistar seu cargo.\r\n(use comando !up se quiser atualizar nick)\r\n"+continuaRankKD); return;
 		}
-		mudarNick(message.member, padraoNickKD(winrKD[1],nickLegivel), 'winrate: **'+winrKD[0]+'**, ');
+		mudarNick(message, padraoNickKD(winrKD[1],nickLegivel), 'winrate: **'+winrKD[0]+'**, ');
 		//message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) ).then(message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) )).then(user => message.reply("winrate: **"+winrKD[0]+`**, atualizei kd \:umbrella2:`)).catch(err => console.log(err));
 }
 
@@ -1892,8 +1892,8 @@ function runAutoUpdateWinRate(message){
       }, refreshTEMPO);
 }
 
-function mudarNick(membro, novoNick, extra=""){
-	membro.setNickname( novoNick ).then(user => message.reply(extra+`atualizei \:umbrella2:`)).catch(err => message.reply(`nao consegui atualizar, mas seria: `+novoNick));
+function mudarNick(message, novoNick, extra=""){
+	message.member.setNickname( novoNick ).then(user => message.reply(extra+`atualizei \:umbrella2:`)).catch(err => message.reply(`nao consegui atualizar, mas seria: `+novoNick));
 }
 
 //"☂ "
