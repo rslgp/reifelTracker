@@ -1946,22 +1946,42 @@ function padraoAtualizarNome(message,nickLegivel,text,site){
 		throw false;
 	}
 	switch(message.guild.id){
+		
+		/*
 		case "313195845761761281": //galera gamer
 		case "368240657816354836": //bro
 		case "263777831635386368": //brts
 		case "381535199454035968": //skgaming
 		case "455509665661583360": //snow
 			var winrNome = message.member.nickname.substring(0,message.member.nickname.indexOf("%"));
-			if(Number(winrNome)<Number(winrKD[0])) {message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));}
+			if(Number(winrNome)<Number(winrKD[0])) {
+				mudarNick(message, padraoNick(winrKD[0],nickLegivel), 'kd: **'+winrKD[1]+'**, ');
+				//message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));
+			}
 			else {message.reply(" não atualizei, pois no site está: "+winrKD[0]);}
 		break;
+		*/
 					
 		case "325413143943577601"://pai
 		case "398566083101196298"://depressaum
 		case "377628278627893248"://mwd
 		case "385896642429321216"://colosso
-			message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) ).then(user => message.reply("winrate: **"+winrKD[0]+`**, atualizei kd \:umbrella2:`)).catch(err => console.log(err));	
+			var winrNome = message.member.nickname.substring(0,message.member.nickname.indexOf("%"));
+			if(Number(winrNome)<Number(winrKD[1])) {
+				mudarNick(message, padraoNickKD(winrKD[1],nickLegivel), 'winrate: **'+winrKD[0]+'**, ');
+				//message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) ).then(user => message.reply("winrate: **"+winrKD[0]+`**, atualizei kd \:umbrella2:`)).catch(err => console.log(err));	
+			}
+			else {message.reply(" não atualizei, pois no site está: "+winrKD[1]);}	
 			//console.log(message.guild.roles);
+		break;
+		
+		default: //WINRATE
+			var winrNome = message.member.nickname.substring(0,message.member.nickname.indexOf("%"));
+			if(Number(winrNome)<Number(winrKD[0])) {
+				mudarNick(message, padraoNick(winrKD[0],nickLegivel), 'kd: **'+winrKD[1]+'**, ');
+				//message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));
+			}
+			else {message.reply(" não atualizei, pois no site está: "+winrKD[0]);}		
 		break;
 	}
 	//if(message.member.hasPermission("MANAGE_NICKNAMES"))
