@@ -1966,7 +1966,7 @@ function padraoAtualizarNome(message,nickLegivel,text,site){
 		case "398566083101196298"://depressaum
 		case "377628278627893248"://mwd
 		case "385896642429321216"://colosso
-			var winrNome = message.member.nickname.substring(0,message.member.nickname.indexOf("%"));
+			var winrNome = message.member.nickname.substring(0,message.member.nickname.indexOf("☂"));
 			if(Number(winrNome)<Number(winrKD[1])) {
 				mudarNick(message, padraoNickKD(winrKD[1],nickLegivel), 'winrate: **'+winrKD[0]+'**, ');
 				//message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) ).then(user => message.reply("winrate: **"+winrKD[0]+`**, atualizei kd \:umbrella2:`)).catch(err => console.log(err));	
