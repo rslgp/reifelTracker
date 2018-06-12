@@ -1401,7 +1401,7 @@ function padraoRankWin(message, usuario, nickLegivel, winrKD, lendario, epico, r
 			changeRole(usuario, epico, lendario);	
 			print(message,msg1RankWin+lendario+msg2RankWin);
 		}else if(winrKD[0]>=tabela[1]){
-			if(usuario.roles.has(brtsEpico)) {print(message,continuaRankWin); return;}
+			if(usuario.roles.has(epico)) {print(message,continuaRankWin); return;}
 			changeRole(usuario, raro, epico);	
 			print(message,msg1RankWin+epico+msg2RankWin);
 		}else{
