@@ -1465,15 +1465,15 @@ function padraoRankKD(message, usuario, nickLegivel, winrKD, lendario, epico, ra
 function msgImg(message, valoresJimp){//winrate, kd, wins, kills, trn
 	
 	var copiaJimp = imageJimp.clone();
-	const linha1=16,linha2=72,linha3=40;
+	const linha1=9,linha2=65,linha3=33, linha4=95, linha5=113;
 	copiaJimp.print(fontJimp, 56,linha1, valoresJimp[0])
 		.print(fontJimp, 149,linha1, valoresJimp[1])
 		.print(fontJimp, 47,linha2, valoresJimp[2])
 		.print(fontJimp, 138,linha2, valoresJimp[3])
-		.print(fontJimp, 95,102, (valoresJimp[4]*0.02).toFixed(2)+"%")		
+		.print(fontJimp, 95,linha4, (valoresJimp[4]*0.02).toFixed(2)+"%")		
 		.print(fontJimp, 59,linha3, valoresJimp[5])		
 		.print(fontJimp, 151,linha3, valoresJimp[6])
-		.print(fontJimp, 5,120, valoresJimp[7])
+		.print(fontJimp, 5,linha5, valoresJimp[7])
 		.write(tempFile, function(){
 		
 			// Create the attachment using MessageAttachment
