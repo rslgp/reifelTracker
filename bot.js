@@ -2072,8 +2072,10 @@ function padraoAlt(browser,id, opcaoSite=1) {
 			//	elem = browser.queryAll("body > div.container.pvp > div:nth-child(1) > div.col-12.col-md-8 > div:nth-child(1) > div:nth-child(4) > div > div.post > div:nth-child(3) > div:nth-child("+id+") > div > a > div.stat__value");
 			//}
 			elem = browser.queryAll("body > div.container.pvp > div:nth-child(1) > div.col-12.col-md-8 > div:nth-child(1) > div:nth-child(4) > div > div.post > div:nth-child(3) > div:nth-child("+id+") > div > a > div.stat__value");
-			retorno = elem[0].innerText;
-			retorno = retorno.substring(0,retorno.indexOf(espaco));
+			try{
+				retorno = elem[0].innerText;
+				retorno = retorno.substring(0,retorno.indexOf(espaco));				
+			}catch(e){retorno="";}
 		break;
 		
 		case 2: //fortnitestats.com
