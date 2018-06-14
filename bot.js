@@ -2063,7 +2063,7 @@ function readySimultaneo(message){
 */
 
 function padraoAlt(browser,id, opcaoSite=1) {
-	var elem;
+	var elem, retorno;
 	switch(opcaoSite){
 		case 1: //stormshield
 			//if(id===0){
@@ -2072,17 +2072,16 @@ function padraoAlt(browser,id, opcaoSite=1) {
 			//	elem = browser.queryAll("body > div.container.pvp > div:nth-child(1) > div.col-12.col-md-8 > div:nth-child(1) > div:nth-child(4) > div > div.post > div:nth-child(3) > div:nth-child("+id+") > div > a > div.stat__value");
 			//}
 			elem = browser.queryAll("body > div.container.pvp > div:nth-child(1) > div.col-12.col-md-8 > div:nth-child(1) > div:nth-child(4) > div > div.post > div:nth-child(3) > div:nth-child("+id+") > div > a > div.stat__value");
+			retorno = elem[0].innerText;
+			retorno = retorno.substring(0,retorno.indexOf(espaco));
 		break;
 		
 		case 2: //fortnitestats.com
 			elem = browser.queryAll("body > div.container.content > div > div.col-md-8 > div > div:nth-child(10) > div > div:nth-child("+id+") > h4");
+			retorno = elem[0].innerHTML;
 		break;
 		
 	}
-	var retorno;
-	try{
-		retorno = elem[0].innerHTML;		
-	}catch(e){retorno=""}
 	return retorno.replace(/(\r\n|\n|\r)/gm,"");
 }
 
