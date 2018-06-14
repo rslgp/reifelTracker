@@ -1947,9 +1947,14 @@ function padraoAtualizarNome(message,nickLegivel,text,site){
 		throw false;
 	}
 	
-	
-	var userNick = message.member.nickname;
-	var posChuva = userNick.indexOf(trackerTag);
+	var userNick, posChuva;
+	try{
+		userNick = message.member.nickname;
+		posChuva = userNick.indexOf(trackerTag);
+	}catch(e){
+		userNick = null;
+		posChuva = -1;
+	}
 	var winrNome;	
 	
 	switch(message.guild.id){
