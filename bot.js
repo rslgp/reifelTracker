@@ -1769,9 +1769,9 @@ function rightJustify(str, length, char ) {
 }
 
 function formatarMsg(winP, kd, wins, kills,trn){
-	const valorTrn;
-	if(trn[0]!='-') valorTrn = (trn*0.02).toFixed(2);
-	else valorTrn = "--";
+	var valorTrn;
+	if(trn[0]=='-') valorTrn = "--";
+	else valorTrn = (trn*0.02).toFixed(2);
 	const p1 = "Win %: **"+winP+"** \t/\t Kd: **"+kd+"**"
 	,p2 = "Wins: "+wins+" / Kills: "+kills
 	,p3 = "Wins: "+wins+rightJustify(p2,p1.length-7,' ')+" \t/\t Kills: "+kills
