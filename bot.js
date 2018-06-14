@@ -1946,6 +1946,12 @@ function padraoAtualizarNome(message,nickLegivel,text,site){
 		console.log("erro padraoAtualizarNome");
 		throw false;
 	}
+	
+	
+	var userNick = message.member.nickname;
+	var posChuva = userNick.indexOf(trackerTag);
+	var winrNome;	
+	
 	switch(message.guild.id){
 		
 		/*
@@ -1962,9 +1968,6 @@ function padraoAtualizarNome(message,nickLegivel,text,site){
 			else {message.reply(" não atualizei, pois no site está: "+winrKD[0]);}
 		break;
 		*/
-		var userNick = message.member.nickname;
-		var posChuva = userNick.indexOf(trackerTag);
-		var winrNome;
 					
 		case "325413143943577601"://pai
 		case "398566083101196298"://depressaum
