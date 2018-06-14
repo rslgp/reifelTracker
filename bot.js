@@ -890,7 +890,7 @@ client.on('message', message => {
 						winP = padraoAlt(browser,9);
 						winP = winP.slice(0, -1);//remover char porcentagem
 					}catch(e){
-						print(message, e.message);
+						//print(message, e.message);
 						print(message,"comando alt esta instavel (so funciona na segunda tentativa ou indefinido)");
 						return;
 					}
