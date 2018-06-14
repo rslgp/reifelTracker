@@ -8,7 +8,7 @@ const boletosPreConfig = "";
 
 const tabelaPreco = '**Mensalidade do bot ReifelTracker**\r\n*Depende da quantidade de membros do seu server no discord\r\n\r\nExperimente grátis por 7 dias\r\nmembros -------- reais por mês\r\n1 a 49            -------- R$ 5\r\n50 a 100        -------- R$ 12\r\n101 a 350       -------- R$ 15\r\n351 a 500        -------- R$ 18\r\nmaior q 501      -------- R$ 20\r\nmaior q 1800    -------- R$ 24\r\n\r\nForma de pagamento: boleto, transferência bancária (banco do brasil), depósito, paypal (+10% do preço pela taxa do paypal)\r\nDá direito a 3 cargos, instalação grátis e só paga quando estiver funcionando, os preços são para usar o bot do jeito que ele é na última atualização dele, com no máximo pequenas adaptações. Se não quiser mais, o bot é desinstalado e (opcional) o discord antigo, sem modificações é recuperado.\r\n--\r\npara grandes modificações e alterações é cobrado serviço de mão de obra por fora da mensalidade\r\n----\r\n**plano econômico: R$ 12 por mês** independente do tamanho do servidor para usar apenas o comando !t\r\n**TRATAR COM:** @Reifel#5047 <@195731919424585728>. Não envie mensagem por aqui, envie para reifel';
 
-const apoio = "", txt1MudarNick='winrate: **', txt2MudarNick='kd: **',txt3MudarNick='**, ';
+const apoio = "", txt1MudarNick='winrate: **', txt2MudarNick='kd: **',txt3MudarNick='**, ', trackerTag="☂", espaco=" ", ftParam="?old=1";
 
 const usersPremium=['195731919424585728', '377626570816487449'];
 
@@ -62,7 +62,7 @@ const siteFortniteTracker = "https://fortnitetracker.com/profile/pc/", siteStorm
 
 const winsStormShieldPath="body > div.container.pvp > div:nth-child(1) > div.col-12.col-md-8 > div:nth-child(1) > div:nth-child(4) > div > div.post > div:nth-child(2) > div:nth-child(2) > a > div.istat__value";
 
-const comandoErrado = "comando invalido";
+const comandoErrado = "comando inválido";
 //const AnunciarNovosPlanos="\r\n```md\r\n\r\n#22/05 agr +barato e para discord menores\r\n```";
 const AnunciarNovosPlanos="\r\n```fix\r\n\r\nSó esse mês: use o bot 7 dias grátis\r\nno seu servidor ou de amigo(!semana)\r\n```";
 
@@ -360,7 +360,7 @@ clientTwitch.on('chat', function(channel, user, message, self){
 	switch(comando){
 	
 		case "tracker":
-		site = siteFortniteTracker+nick+"?old=1";
+		site = siteFortniteTracker+nick+ftParam;
 		var variavelVisita = Browser.visit(site, function (e, browser) {				
 					try{
 						var text = browser.html();
@@ -549,7 +549,7 @@ client.on('message', message => {
 			}
 			//if(nickLegivel === undefined) {print(message, errorNickNaoEncontrado); return;}
 			
-			site = siteFortniteTracker+parametroUsado+"?old=1";
+			site = siteFortniteTracker+parametroUsado+ftParam;
 			//crawler
 			try{
 				var variavelVisita = Browser.visit(site, function (e, browser) {				
@@ -612,7 +612,7 @@ client.on('message', message => {
 								}
 								
 							}else{
-								posPercent = message.member.nickname.indexOf("☂");
+								posPercent = message.member.nickname.indexOf(trackerTag);
 								winrNome= message.member.nickname.substring(0,posPercent);
 								if(Number(winrNome)<Number(winrKD[1])) {
 									mudarNick(message, padraoNickKD(winrKD[1],nickLegivel), txt1MudarNick+winrKD[0]+txt3MudarNick);
@@ -646,7 +646,7 @@ client.on('message', message => {
 			}catch(e){
 				//caso nao tenha guarda chuva, mantem o nick como arg
 			}
-			//console.log(parametroUsado+" "+nickLegivel);
+			//console.log(parametroUsado+espaco+nickLegivel);
 			//if(nickLegivel === undefined) {nickLegivel=parametroUsado=getNickConhecido(message);}	
 			
 			/*
@@ -669,7 +669,7 @@ client.on('message', message => {
 			}
 			*/
 			
-			site = siteFortniteTracker+parametroUsado+"?old=1";
+			site = siteFortniteTracker+parametroUsado+ftParam;
 			try{
 				var variavelVisita = Browser.visit(site, function (e, browser) {
 					try{					
@@ -731,8 +731,8 @@ client.on('message', message => {
 		
 		case "troquei":
 			var nick = message.member.nickname;
-			var winrate = nick.substring(0,nick.indexOf("☂")-1);
-			site = siteFortniteTracker+parametroUsado+"?old=1";
+			var winrate = nick.substring(0,nick.indexOf(trackerTag)-1);
+			site = siteFortniteTracker+parametroUsado+ftParam;
 			var variavelVisita = Browser.visit(site, function (e, browser){
 				try{					
 					var text = browser.html();
@@ -780,7 +780,7 @@ client.on('message', message => {
 		
 		var players = parametroUsado.split("%20x%20");
 				
-		site = siteFortniteTracker+players[1]+"?old=1";
+		site = siteFortniteTracker+players[1]+ftParam;
 		
 		try{
 			var variavelVisita = Browser.visit(site, function (e, browser) {				
@@ -792,7 +792,7 @@ client.on('message', message => {
 								//console.log(jsonSquad);
 								text1=null;
 								
-								site = siteFortniteTracker+players[0]+"?old=1";
+								site = siteFortniteTracker+players[0]+ftParam;
 								try{
 									var variavelVisita2 = Browser.visit(site, function (e, browser2) {				
 												try{
@@ -869,7 +869,7 @@ client.on('message', message => {
 				
 				refreshAuto.push(usuarioParametroNickTrio);
 				refreshTamanho++;
-				print(message, nickLegivel+sucessoRegistro+" "+refreshTamanho+"/"+refreshMAXSTACK);
+				print(message, nickLegivel+sucessoRegistro+espaco+refreshTamanho+"/"+refreshMAXSTACK);
 				//print(message, refreshAuto.length);				
 			}else{
 				print(message, errorRefreshLotado); //error stack lotado
@@ -894,7 +894,7 @@ client.on('message', message => {
 					}
 					
 					
-					//console.log(wins+" "+kd+" "+winP+" "+kills);
+					//console.log(wins+espaco+kd+espaco+winP+espaco+kills);
 					
 					//var resultado = ">> "+nickLegivel+" Squad <<\r\nWins: "+ wins +separador+"Win %: "+ winP +separador+"Kills: "+ kills +separador+ "K/d: "+kd;
 					var resultado = formatarMsg(winP,kd,wins,kills,'--');
@@ -923,7 +923,7 @@ client.on('message', message => {
 				//caso nao tenha guarda chuva, mantem o nick como arg
 			}
 			
-		site = siteFortniteTracker+parametroUsado+"?old=1";
+		site = siteFortniteTracker+parametroUsado+ftParam;
 		try{
 			var variavelVisita = Browser.visit(site, function (e, browser){
 				try{					
@@ -1241,7 +1241,7 @@ client.on('message', message => {
 					print(message, errorNickNaoEncontrado); return;
 				}
 			}
-			site = siteFortniteTracker+parametroUsado+"?old=1";
+			site = siteFortniteTracker+parametroUsado+ftParam;
 			//crawler
 			try{
 				var variavelVisita = Browser.visit(site, function (e, browser) {				
@@ -1340,7 +1340,7 @@ client.on('message', message => {
 			print(message,"ok");
 			msgImg(message);
 			//console.log(message);
-			//var indice = message.member.nickname.indexOf("☂")+2;
+			//var indice = message.member.nickname.indexOf(trackerTag)+2;
 			//console.log(message.member.nickname.substring(indice));
 		break;
 		
@@ -1830,7 +1830,7 @@ function updateWinRateStack(message){
 function forRecusivo(message, i){
 	if(i<refreshTamanho){
 		//console.log(i+" update "+refreshAuto[i].nickLegivel);
-		var site = siteFortniteTracker+refreshAuto[i].parametroUsado+"?old=1";
+		var site = siteFortniteTracker+refreshAuto[i].parametroUsado+ftParam;
 		
 		setWinRateNick(message, site, i);
 		
@@ -1886,7 +1886,7 @@ function runAutoUpdateWinRate(message){
 			}else{ //atualiza stack
 				updateWinRateStack(message);
 				refreshRealizados++;
-				print(message,sucessoWinRateAtualizado+" "+refreshRealizados+"ª das "+refreshRealizadosMAX);
+				print(message,sucessoWinRateAtualizado+espaco+refreshRealizados+"ª das "+refreshRealizadosMAX);
 				
 			}
       }, refreshTEMPO);
@@ -1898,11 +1898,11 @@ function mudarNick(message, novoNick, extra=""){
 
 //"☂ "
 function padraoNick(winrate, nick){
-	return winrate+"% ☂"+TAG+" "+nick;
+	return winrate+"% ☂"+TAG+espaco+nick;
 }
 
 function padraoNickKD(kd, nick){
-	return kd+" ☂"+TAG+" "+nick;
+	return kd+" ☂"+TAG+espaco+nick;
 }
 
 function getJsonSquad(text){
@@ -1963,7 +1963,7 @@ function padraoAtualizarNome(message,nickLegivel,text,site){
 		break;
 		*/
 		var userNick = message.member.nickname;
-		var posChuva = userNick.indexOf("☂");
+		var posChuva = userNick.indexOf(trackerTag);
 		var winrNome;
 					
 		case "325413143943577601"://pai
@@ -2036,7 +2036,7 @@ function padraoAlt(browser,id) {
 function getNickConhecido(message){
 	var posicaoGuardaChuva = -1;
 	try{
-		posicaoGuardaChuva = message.member.nickname.indexOf("☂");		
+		posicaoGuardaChuva = message.member.nickname.indexOf(trackerTag);		
 	}catch(e){
 		
 	}
