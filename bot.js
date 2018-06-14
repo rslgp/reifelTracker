@@ -60,7 +60,7 @@ errorNuncaGanhouSquad="nunca ganhou squad", errorFortnitetracker=", --ERRO--, po
 
 const siteFortniteTracker = "https://fortnitetracker.com/profile/pc/", siteStormShield = "https://www.stormshield.one/pvp/stats/", siteFortniteStatsCOM="https://fortnitestats.com/stats/";
 
-const winsStormShieldPath="body > div.container.pvp > div:nth-child(1) > div.col-12.col-md-8 > div:nth-child(1) > div:nth-child(4) > div > div.post > div:nth-child(2) > div:nth-child(2) > a > div.istat__value";
+const winsStormShieldPath="body > div.container.pvp > div:nth-child(3) > div.col-12.col-lg-8 > div:nth-child(1) > div:nth-child(4) > div > div.post > div:nth-child(2) > div:nth-child(2) > a > div.istat__value";
 
 const comandoErrado = "comando inválido";
 //const AnunciarNovosPlanos="\r\n```md\r\n\r\n#22/05 agr +barato e para discord menores\r\n```";
@@ -884,7 +884,7 @@ client.on('message', message => {
 					var wins,winP,kd,kills;	
 					try{				
 						kills = padraoAlt(browser,1);				
-						wins = padraoAlt(browser,);
+						wins = padraoAlt(browser,0);
 						kd = padraoAlt(browser,2);
 
 						winP = padraoAlt(browser,6);
