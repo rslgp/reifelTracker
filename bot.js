@@ -2071,7 +2071,7 @@ function padraoAlt(browser,id, opcaoSite=1) {
 		break;
 		
 		case 2: //fortnitestats.com
-			elem = browser.queryAll("body > div.container.content > div > div.col-md-8 > div > div:nth-child(10) > div > div:nth-child("+id+") > h4";
+			elem = browser.queryAll("body > div.container.content > div > div.col-md-8 > div > div:nth-child(10) > div > div:nth-child("+id+") > h4");
 		break;
 		
 	}
