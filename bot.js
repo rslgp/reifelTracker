@@ -1893,7 +1893,7 @@ function runAutoUpdateWinRate(message){
 }
 
 function mudarNick(message, novoNick, extra=""){
-	message.member.setNickname( novoNick ).then(user => message.reply(extra+`atualizei \:umbrella2:`)).catch(err => message.reply(`nao consegui atualizar, mas seria: `+novoNick));
+	message.member.setNickname( novoNick ).then(user => message.reply(extra+`atualizei \:umbrella2:`)).catch(err => message.reply(`Não consegui atualizar, mas seria: `+novoNick));
 }
 
 //"☂ "
