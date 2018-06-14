@@ -58,7 +58,7 @@ const errorNickNaoEncontrado="nick não encontrado",
 errorNuncaGanhouSquad="nunca ganhou squad", errorFortnitetracker=", --ERRO--, possíveis causas: escreveu o nick errado, jogador não joga no PC, o site fortnitetracker está caindo ou com problemas, mudou de nick? .troquei novoNick", errorNaoUsarProprioNick="ei! eu sei qm é vc \:thinking:, da próxima usa o comando sem nick";
 ;
 
-const siteFortniteTracker = "https://fortnitetracker.com/profile/pc/", siteStormShield = "https://www.stormshield.one/pvp/stats/";
+const siteFortniteTracker = "https://fortnitetracker.com/profile/pc/", siteStormShield = "https://www.stormshield.one/pvp/stats/", siteFortniteStatsCOM="https://fortnitestats.com/stats/";
 
 const winsStormShieldPath="body > div.container.pvp > div:nth-child(1) > div.col-12.col-md-8 > div:nth-child(1) > div:nth-child(4) > div > div.post > div:nth-child(2) > div:nth-child(2) > a > div.istat__value";
 
@@ -497,6 +497,7 @@ client.on('message', message => {
 		case "t":
 		case "ti":
 		case "alt":
+		case "alt2":
 		case "up":
 		case "vs":
 		case "help":
@@ -883,10 +884,38 @@ client.on('message', message => {
 					var wins,winP,kd,kills;	
 					try{				
 						kills = padraoAlt(browser,1);				
-						wins = padraoAlt(browser,0);
+						wins = padraoAlt(browser,);
 						kd = padraoAlt(browser,2);
 
 						winP = padraoAlt(browser,6);
+						winP = winP.slice(0, -1);//remover char porcentagem
+					}catch(e){
+						print(message,"comando alt esta instavel (so funciona na segunda tentativa ou indefinido)");
+						return;
+					}
+					
+					
+					//console.log(wins+espaco+kd+espaco+winP+espaco+kills);
+					
+					//var resultado = ">> "+nickLegivel+" Squad <<\r\nWins: "+ wins +separador+"Win %: "+ winP +separador+"Kills: "+ kills +separador+ "K/d: "+kd;
+					var resultado = formatarMsg(winP,kd,wins,kills,'--');
+					msgPadraoBot(message, resultado, site, nickLegivel);
+				});	
+				variavelVisita=null;
+			}catch(e){}
+		break;
+		
+		case "alt2":
+			site = siteFortniteStatsCOM+parametroUsado;
+			try{
+				var variavelVisita = Browser.visit(site, function (e, browser) {				
+					var wins,winP,kd,kills;	
+					try{				
+						kills = padraoAlt(browser,1, 2);				
+						wins = padraoAlt(browser,3, 2);
+						kd = padraoAlt(browser,2, 2);
+
+						winP = padraoAlt(browser,6, 2);
 						winP = winP.slice(0, -1);//remover char porcentagem
 					}catch(e){
 						print(message,"comando alt esta instavel (so funciona na segunda tentativa ou indefinido)");
@@ -2030,12 +2059,21 @@ function readySimultaneo(message){
 }
 */
 
-function padraoAlt(browser,id) {
+function padraoAlt(browser,id, opcaoSite=1) {
 	var elem;
-	if(id===0){
-		elem = browser.queryAll(winsStormShieldPath);		
-	}else{
-		elem = browser.queryAll("body > div.container.pvp > div:nth-child(1) > div.col-12.col-md-8 > div:nth-child(1) > div:nth-child(4) > div > div.post > div:nth-child(3) > div:nth-child("+id+") > div > a > div.stat__value");
+	switch(opcaoSite){
+		case 1: //stormshield
+			if(id===0){
+				elem = browser.queryAll(winsStormShieldPath);		
+			}else{
+				elem = browser.queryAll("body > div.container.pvp > div:nth-child(1) > div.col-12.col-md-8 > div:nth-child(1) > div:nth-child(4) > div > div.post > div:nth-child(3) > div:nth-child("+id+") > div > a > div.stat__value");
+			}
+		break;
+		
+		case 2: //fortnitestats.com
+			elem = browser.queryAll("body > div.container.content > div > div.col-md-8 > div > div:nth-child(10) > div > div:nth-child("+id+") > h4";
+		break;
+		
 	}
 	var retorno = elem[0].innerHTML;
 	return retorno.replace(/(\r\n|\n|\r)/gm,"");
