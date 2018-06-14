@@ -1465,7 +1465,7 @@ function padraoRankKD(message, usuario, nickLegivel, winrKD, lendario, epico, ra
 function msgImg(message, valoresJimp){//winrate, kd, wins, kills, trn
 	
 	var copiaJimp = imageJimp.clone();
-	const linha1=9,linha2=65,linha3=33, linha4=95, linha5=113;
+	const linha1=6,linha2=62,linha3=30, linha4=92, linha5=110;
 	copiaJimp.print(fontJimp, 56,linha1, valoresJimp[0])
 		.print(fontJimp, 149,linha1, valoresJimp[1])
 		.print(fontJimp, 47,linha2, valoresJimp[2])
