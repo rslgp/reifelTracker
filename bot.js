@@ -883,11 +883,11 @@ client.on('message', message => {
 				var variavelVisita = Browser.visit(site, function (e, browser) {				
 					var wins,winP,kd,kills;	
 					try{				
-						kills = padraoAlt(browser,1);				
-						wins = padraoAlt(browser,0);
-						kd = padraoAlt(browser,2);
+						kills = padraoAlt(browser,5);				
+						wins = padraoAlt(browser,2);
+						kd = padraoAlt(browser,6);
 
-						winP = padraoAlt(browser,6);
+						winP = padraoAlt(browser,9);
 						winP = winP.slice(0, -1);//remover char porcentagem
 					}catch(e){
 						print(message, e.message);
@@ -2066,11 +2066,12 @@ function padraoAlt(browser,id, opcaoSite=1) {
 	var elem;
 	switch(opcaoSite){
 		case 1: //stormshield
-			if(id===0){
-				elem = browser.queryAll(winsStormShieldPath);		
-			}else{
-				elem = browser.queryAll("body > div.container.pvp > div:nth-child(1) > div.col-12.col-md-8 > div:nth-child(1) > div:nth-child(4) > div > div.post > div:nth-child(3) > div:nth-child("+id+") > div > a > div.stat__value");
-			}
+			//if(id===0){
+			//	elem = browser.queryAll(winsStormShieldPath);		
+			//}else{
+			//	elem = browser.queryAll("body > div.container.pvp > div:nth-child(1) > div.col-12.col-md-8 > div:nth-child(1) > div:nth-child(4) > div > div.post > div:nth-child(3) > div:nth-child("+id+") > div > a > div.stat__value");
+			//}
+			elem = browser.queryAll("body > div.container.pvp > div:nth-child(1) > div.col-12.col-md-8 > div:nth-child(1) > div:nth-child(4) > div > div.post > div:nth-child(3) > div:nth-child("+id+") > div > a > div.stat__value");
 		break;
 		
 		case 2: //fortnitestats.com
