@@ -2078,7 +2078,10 @@ function padraoAlt(browser,id, opcaoSite=1) {
 		break;
 		
 	}
-	var retorno = elem[0].innerHTML;
+	var retorno;
+	try{
+		retorno = elem[0].innerHTML;		
+	}catch(e){retorno=""}
 	return retorno.replace(/(\r\n|\n|\r)/gm,"");
 }
 
