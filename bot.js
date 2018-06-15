@@ -8,7 +8,7 @@ const boletosPreConfig = "";
 
 const tabelaPreco = '**Mensalidade do bot ReifelTracker**\r\nDepende da quantidade de membros do seu server no discord\r\n\r\nExperimente grátis por 7 dias\r\nmembros -------- reais por mês\r\n1 a 50            -------- R$ 5\r\n51 a 170        -------- R$ 10\r\n171 a 500       -------- R$ 17\r\nmaior q 501      -------- R$ 22\r\n\r\nForma de pagamento: boleto, transferência bancária (banco do brasil), depósito, paypal (+10% do preço pela taxa do paypal)\r\nDá direito a 3 cargos (nomes customizáveis: Lendário, Épico, Raro)(representando kd ou winrate), instalação grátis e só paga quando estiver funcionando, os preços são para usar o bot do jeito que ele é na última atualização dele, com no máximo pequenas adaptações. Se não quiser mais, o bot é desinstalado e (opcional) o discord antigo, sem modificações é recuperado.\r\n--\r\npara grandes modificações e alterações é cobrado serviço de mão de obra por fora da mensalidade\r\n----\r\n**plano econômico: R$ 12 por mês** independente do tamanho do servidor para usar apenas o comando !t\r\n**TRATAR COM:** @Reifel#5047 <@195731919424585728>. Não envie mensagem por aqui, envie para reifel';
 
-const apoio = "", txt1MudarNick='winrate: **', txt2MudarNick='kd: **',txt3MudarNick='**, ', trackerTag="☂", espaco=" ", ftParam="?old=1";
+const apoio = "", txt1MudarNick='winrate: **', txt2MudarNick='kd: **',txt3MudarNick='**, ', trackerTag="☂", espaco=" ", ftParam="?old=1", pfxCom1='!', pfxCom2='.', pfxCom3='c';
 
 const usersPremium=['195731919424585728', '377626570816487449'];
 
@@ -464,12 +464,16 @@ client.on('message', message => {
 	}
 	
 	
-	if(message.content[0] === "!") {
+	if(message.content[0] === pfxCom1) {
 		//print(message,"Opaa...\r\na v2 do reifelTracker agora inicia o comando com **.** \r\nexemplos: .t .up .help"); 
-		message.content[0]=".";
+		message.content[0]='.';
 	}
 	else{
-		if(message.content[0] !== ".") return; //se nao for comando ignora
+		if(message.content[0] !== pfxCom2){
+			if(message.content[0] === pfxCom3 && message.content[0] === pfxCom1) message.reply("u.u c! é comando de bot que usa base roubada do meu código fonte. criei em 30/11/2016 e fui roubado & banido, tenho provas");
+			return; //se nao for comando ignora
+		}
+			
 	}
 	
 	//anti-spam
@@ -518,7 +522,6 @@ client.on('message', message => {
 		case "uninstall":
 		break;
 		default:
-			if(comando.indexOf("c!")===0) message.reply("u.u sabia que esse bot usa a base roubada do meu código fonte? criei em 30/11/2016 e fui banido");
 			return;
 		break;
 	}	
