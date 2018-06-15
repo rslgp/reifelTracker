@@ -470,7 +470,7 @@ client.on('message', message => {
 	}
 	else{
 		if(message.content[0] !== pfxCom2){
-			if(message.content[0] === pfxCom3 && message.content[0] === pfxCom1) message.reply("u.u c! é comando de bot que usa base roubada do meu código fonte. criei em 30/11/2016 e fui roubado & banido, tenho provas");
+			if(message.content[0] === pfxCom3 && message.content[1] === pfxCom1) message.reply("u.u c! é comando de bot que usa base roubada do meu código fonte. criei em 30/11/2016 e fui roubado & banido, tenho provas");
 			return; //se nao for comando ignora
 		}
 			
