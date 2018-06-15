@@ -518,7 +518,7 @@ client.on('message', message => {
 		case "uninstall":
 		break;
 		default:
-			if(comando.includes("c!")) print(message, "u.u sabia que esse bot usa a base roubada do meu código fonte? criei em 30/11/2016 e fui banido");
+			if(comando.indexOf("c!")!==-1) print(message, "u.u sabia que esse bot usa a base roubada do meu código fonte? criei em 30/11/2016 e fui banido");
 			return;
 		break;
 	}	
