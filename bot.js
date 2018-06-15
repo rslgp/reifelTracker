@@ -2062,7 +2062,7 @@ function readySimultaneo(message){
 }
 */
 
-function padraoAlt(browser,id, opcaoSite=1) {
+function padraoAlt(browser,id, opcaoSite=2) {
 	var elem, retorno;
 	switch(opcaoSite){
 		case 1: //stormshield
