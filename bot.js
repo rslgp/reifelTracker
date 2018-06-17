@@ -1114,7 +1114,7 @@ client.on('message', message => {
 									changeRole(message.member, desconhecido,'376134044439805952'); //aprendiz
 									print(message,"patente cadastrada");
 								}
-								if(message.member.roles.has(desconhecido)) message.member.removeRole(desconhecido).then(message.member.removeRole(desconhecido)).then(/*message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )*/ mudarNick(message, padraoNick(winrKD[0],nickLegivel)) ).catch(err => message.reply("houve um problema"));
+								if(message.member.roles.has(desconhecido)) {message.member.removeRole(desconhecido).then(message.member.removeRole(desconhecido)).then(/*message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )*/ mudarNick(message, padraoNick(winrKD[0],nickLegivel)) ).catch(err => message.reply("houve um problema")); return;}
 								mudarNick(message, padraoNick(winrKD[0],nickLegivel), txt2MudarNick+winrKD[1]+txt3MudarNick);
 								//message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(message.member.setNickname( padraoNick(winrKD[0],nickLegivel) )).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));
 							}catch(e){
