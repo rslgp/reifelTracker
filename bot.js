@@ -58,7 +58,7 @@ const errorNickNaoEncontrado="nick não encontrado",
 errorNuncaGanhouSquad="nunca ganhou squad", errorFortnitetracker=", --ERRO--, possíveis causas: escreveu o nick errado, jogador não joga no PC, o site fortnitetracker está caindo ou com problemas, mudou de nick? .troquei novoNick", errorNaoUsarProprioNick="ei! eu sei qm é vc \:thinking:, da próxima usa o comando sem nick";
 ;
 
-const siteFortniteTracker = "https://fortnitetracker.com/profile/pc/", siteStormShield = "https://www.stormshield.one/pvp/stats/", siteFortniteStatsCOM="https://fortnitestats.com/stats/";
+const siteFortniteTracker = "https://fortnitetracker.com/profile/pc/", siteStormShield = "https://www.stormshield.one/pvp/stats/", siteFortniteStatsCOM="https://fortnitestats.com/stats/", siteFortniteScout="https://www.fortnitescout.com/pc/";
 
 const winsStormShieldPath="body > div.container.pvp > div:nth-child(3) > div.col-12.col-lg-8 > div:nth-child(1) > div:nth-child(4) > div > div.post > div:nth-child(2) > div:nth-child(2) > a > div.istat__value";
 
@@ -502,6 +502,7 @@ client.on('message', message => {
 		case "ti":
 		case "alt":
 		case "alt2":
+		case "alt3":
 		case "up":
 		case "vs":
 		case "help":
@@ -881,7 +882,7 @@ client.on('message', message => {
 			}
 		break;
 		
-		case "alt":
+		case "alt3":
 			site = siteStormShield+parametroUsado;
 			try{
 				var variavelVisita = Browser.visit(site, function (e, browser) {				
@@ -937,6 +938,39 @@ client.on('message', message => {
 				variavelVisita=null;
 			}catch(e){}
 		break;
+		
+		case "alt":
+			site = siteFortniteScout+parametroUsado;
+			try{
+				var variavelVisita = Browser.visit(site, function (e, browser) {				
+					var wins,winP,kd,kills,selector;	
+					try{
+						selector = "#performanceSquad > div.fillCard > div.matchPlacementsLegends > div.matchPlacementLegend.matchPlacementWinsColor";
+						wins = getInnerHtml(browser, selector);
+						wins = wins.substring(wins.indexOf(">")+1);
+						
+						selector= "#performanceSquad > div.fillCard > div:nth-child(5) > div.statLineRightSide > small:nth-child(1)";
+						kills = getInnerHtml(browser, selector);
+						kills = kills.substring(0,kills.indexOf("/"));
+						
+						selector= "#performanceSquad > div.fillCard > div:nth-child(5) > div.statLineRightSide > span";
+						kd = getInnerHtml(browser, selector);
+						
+						selector= "#performanceSquad > div.fillCard > div:nth-child(6) > div.statLineRightSide > span"
+						winP = getInnerHtml(browser, selector);
+						winP = winP.slice(0, -1);//remover char porcentagem
+					}catch(e){
+						print(message,"comando alt esta instavel (so funciona na segunda tentativa ou indefinido)");
+						return;
+					}
+					var resultado = formatarMsg(winP,kd,wins,kills,'--');
+					msgPadraoBot(message, resultado, site, nickLegivel);
+				});	
+				variavelVisita=null;
+			}catch(e){}
+		break;
+		
+			
 		case "semana":
 			message.author.send("Certo! avisei ao Reifel que vc quer semana gratis, ele vai mandar msg pra vc jaja pra comecar a instalação");
 			reifelUser.send(message.author+" quer semana gratis");
@@ -2088,6 +2122,16 @@ function padraoAlt(browser,id, opcaoSite=2) {
 		break;
 		
 	}
+	return retorno.replace(/(\r\n|\n|\r)/gm,"");
+}
+
+function getInnerHtml(browser, selector){
+	var elem, retorno;
+	elem = browser.queryAll(selector);
+	try{
+		retorno = elem[0].innerHTML;
+	}catch(e){retorno="";}
+	
 	return retorno.replace(/(\r\n|\n|\r)/gm,"");
 }
 
