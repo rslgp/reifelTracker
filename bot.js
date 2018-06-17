@@ -683,11 +683,12 @@ client.on('message', message => {
 						padraoAtualizarNome(message,nickLegivel,text,site);
 					}catch(e){
 						try{ //tentar atualizar usando outro site
-							var site = siteStormShield+parametroUsado;
+							var site = siteFortniteScout+parametroUsado;
 							var variavelVisita2 = Browser.visit(site, function (e, browser) {					
-								var winP;	
+								var winP, selector;	
 								try{							
-									winP = padraoAlt(browser,6);
+									selector= "#performanceSquad > div.fillCard > div:nth-child(6) > div.statLineRightSide > span"
+									winP = getInnerHtml(browser, selector);
 									winP = winP.slice(0, -1);//remover char porcentagem
 								}catch(e){
 									print(message,errorNickNaoEncontrado);
