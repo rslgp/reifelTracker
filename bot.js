@@ -738,23 +738,30 @@ client.on('message', message => {
 		*/
 		
 		case "solo":
-			site = siteFortniteTracker+parametroUsado+ftParam;
+			try{
+				nickLegivel=parametroUsado = getNickConhecido(message);
+				parametroUsado=encodeURI(parametroUsado);
+				if(args[1] !== undefined) print(message,errorNaoUsarProprioNick);
+			}catch(e){
+				//caso nao tenha guarda chuva, mantem o nick como arg
+			}
+			site = siteFortniteScout+parametroUsado;
 			try{
 				var variavelVisita = Browser.visit(site, function (e, browser) {				
 					var wins,winP,kd,kills,selector;	
 					try{
-						selector = "#profile > div.trn-profile.dtr-profile > div > div.content > div:nth-child(1) > div.dtr-stats-card.pl-solo > div.trn-stats > div:nth-child(3) > div.value";
+						selector = "#performanceSolo > div.fillCard > div.matchPlacementsLegends > div.matchPlacementLegend.matchPlacementWinsColor";
 						wins = getInnerHtml(browser, selector);
-						//wins = wins.substring(wins.indexOf(">")+1);
+						wins = wins.substring(wins.indexOf(">")+1);
 						
-						selector= "#profile > div.trn-profile.dtr-profile > div > div.content > div:nth-child(1) > div.dtr-stats-card.pl-solo > div.trn-stats > div:nth-child(2) > div.value";
+						selector= "#performanceSolo > div.fillCard > div:nth-child(5) > div.statLineRightSide > small:nth-child(1)";
 						kills = getInnerHtml(browser, selector);
-						//kills = kills.substring(0,kills.indexOf("/"));
+						kills = kills.substring(0,kills.indexOf("/"));
 						
-						selector= "#profile > div.trn-profile.dtr-profile > div > div.content > div:nth-child(1) > div.dtr-stats-card.pl-solo > div.trn-stats > div:nth-child(6) > div.value";
+						selector= "#performanceSolo > div.fillCard > div:nth-child(5) > div.statLineRightSide > span";
 						kd = getInnerHtml(browser, selector);
 						
-						selector= "#profile > div.trn-profile.dtr-profile > div > div.content > div:nth-child(1) > div.dtr-stats-card.pl-solo > div.trn-stats > div:nth-child(7) > div.value"
+						selector= "#performanceSolo > div.fillCard > div:nth-child(6) > div.statLineRightSide > span"
 						winP = getInnerHtml(browser, selector);
 						winP = winP.slice(0, -1);//remover char porcentagem
 					}catch(e){
@@ -762,7 +769,7 @@ client.on('message', message => {
 						return;
 					}
 					var resultado = formatarMsg(winP,kd,wins,kills,'--');
-					msgPadraoBot(message, resultado, site, nickLegivel, " (Solo)");
+					msgPadraoBot(message, resultado, site, nickLegivel);
 				});	
 				variavelVisita=null;
 			}catch(e){}
