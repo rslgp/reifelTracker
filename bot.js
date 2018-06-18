@@ -453,8 +453,8 @@ client.on('message', message => {
 			if(message.channel.id!=455283038067097602) return;
 		break;
 			
-		case '455509665661583360': //snow
-			if(message.channel.id!=455509885442850816) return;
+		case '248137763050749952': //viruz-thiago
+			if(message.channel.id!=458110549251850241) return;
 		break;
 		
 		default:
@@ -1241,7 +1241,7 @@ client.on('message', message => {
 							padraoRankWin(message, message.member, nickLegivel, winrKD, '456170372392419328', '456170373055250454', '456170373743116288');
 						break;
 							
-						case '455509665661583360': //snow
+						case '248137763050749952': //snow
 							padraoRankWin(message, message.member, nickLegivel, winrKD, '456167741003399168', '456167741074833410', '456167741523492884');
 						break;
 						
