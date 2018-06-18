@@ -1516,7 +1516,7 @@ client.on('message', message => {
 			}catch(e){};
 
 			//verificar os cargos que nao podem usar o bot (hierarquia)				
-			var roleBotPosicao = message.guild.roles.get(message.guild.members.get(client.user.id)._roles[0]).position;
+			var roleBotPosicao = message.guild.roles.find("name","reifelTracker").position;
 			var tempRole;
 			var retorno ="```diff\r\n";
 			for(var roleID of message.guild.roles){
@@ -1535,7 +1535,7 @@ client.on('message', message => {
 		case "verificar":
 			if(message.author!=reifelUser) return;
 			//verificar os cargos que nao podem usar o bot (hierarquia)				
-			var roleBotPosicao = message.guild.roles.get(message.guild.members.get(client.user.id)._roles[0]).position;
+			var roleBotPosicao = message.guild.roles.find("name","reifelTracker").position;
 			var tempRole;
 			var retorno ="```diff\r\n";
 			for(var roleID of message.guild.roles){
