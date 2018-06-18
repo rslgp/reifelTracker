@@ -738,12 +738,14 @@ client.on('message', message => {
 		*/
 		
 		case "solo":
-			try{
-				nickLegivel=parametroUsado = getNickConhecido(message);
-				parametroUsado=encodeURI(parametroUsado);
-				if(args[1] !== undefined) print(message,errorNaoUsarProprioNick);
-			}catch(e){
-				//caso nao tenha guarda chuva, mantem o nick como arg
+			if(nickLegivel === undefined){
+				try{
+					nickLegivel=parametroUsado = getNickConhecido(message);
+					parametroUsado=encodeURI(parametroUsado);
+					if(args[1] !== undefined) print(message,errorNaoUsarProprioNick);
+				}catch(e){
+					//caso nao tenha guarda chuva, mantem o nick como arg
+				}
 			}
 			site = siteFortniteScout+parametroUsado;
 			try{
