@@ -769,7 +769,7 @@ client.on('message', message => {
 						return;
 					}
 					var resultado = formatarMsg(winP,kd,wins,kills,'--');
-					msgPadraoBot(message, resultado, site, nickLegivel);
+					msgPadraoBot(message, resultado, site, nickLegivel, " (Solo)");
 				});	
 				variavelVisita=null;
 			}catch(e){}
