@@ -519,6 +519,7 @@ client.on('message', message => {
 		case "novavotacao":
 		case "apostar":
 		case "prefab":
+		case "verificar":
 		case "debug":
 		case "reloadimg":
 		case "uninstall":
@@ -1484,53 +1485,67 @@ client.on('message', message => {
 		break;
 		
 		case "prefab":
-			if(message.author==reifelUser){
-				var rolesCriadas = [0,0,0];
-				try{
-					message.guild.createRole({
-						name: 'Lendário',
-						color: 'GOLD',
-						hoist: true, 
-						managed: true,
-						mentionable: true
+			if(message.author!=reifelUser) return;
+			
+			var rolesCriadas = [0,0,0];
+			try{
+				message.guild.createRole({
+					name: 'Lendário',
+					color: 'GOLD',
+					hoist: true, 
+					managed: true,
+					mentionable: true
 
-					}).then(role => rolesCriadas[0] = role.id).catch(console.error);
+				}).then(role => rolesCriadas[0] = role.id).catch(console.error);
 
-					message.guild.createRole({
-						name: 'Épico',
-						color: 'PURPLE',
-						hoist: true, 
-						managed: true,
-						mentionable: true
-					}).then(role => rolesCriadas[1] = role.id).catch(console.error);		
+				message.guild.createRole({
+					name: 'Épico',
+					color: 'PURPLE',
+					hoist: true, 
+					managed: true,
+					mentionable: true
+				}).then(role => rolesCriadas[1] = role.id).catch(console.error);		
 
-					message.guild.createRole({
-						name: 'Raro',
-						color: 'BLUE',
-						hoist: true, 
-						managed: true,
-						mentionable: true
-					}).then(role => print(message,"'"+rolesCriadas[0]+"', '"+rolesCriadas[1]+"', '"+role.id+"'")).catch(console.error);
-				}catch(e){};
-				
-				//verificar os cargos que nao podem usar o bot (hierarquia)				
-				var roleBotPosicao = message.guild.roles.get(message.guild.members.get(client.user.id)._roles[0]).position;
-				var tempRole;
-				var retorno ="```diff\r\n";
-				for(var roleID of message.guild.roles){
-					tempRole=message.guild.roles.get(roleID[0]);
-					if(roleBotPosicao < tempRole.position) retorno+="- "+tempRole.name+quebraLinha;				
-				}
-				retorno+="```";
-				print(message,"cargos que reifeltracker não tem permissão de alterar o nick:\r\n"+retorno+"\r\npara permitir pra esses cargos,\r\nconfigurações do servidor >> cargos >> arraste reifeltracker pra cima\r\ne coloque acima dos cargos que vão utilizar o bot");
+				message.guild.createRole({
+					name: 'Raro',
+					color: 'BLUE',
+					hoist: true, 
+					managed: true,
+					mentionable: true
+				}).then(role => print(message,"'"+rolesCriadas[0]+"', '"+rolesCriadas[1]+"', '"+role.id+"'")).catch(console.error);
+			}catch(e){};
 
-				
+			//verificar os cargos que nao podem usar o bot (hierarquia)				
+			var roleBotPosicao = message.guild.roles.get(message.guild.members.get(client.user.id)._roles[0]).position;
+			var tempRole;
+			var retorno ="```diff\r\n";
+			for(var roleID of message.guild.roles){
+				tempRole=message.guild.roles.get(roleID[0]);
+				if(roleBotPosicao < tempRole.position) retorno+="- "+tempRole.name+quebraLinha;				
 			}
+			retorno+="```";
+			print(message,"cargos que reifeltracker não tem permissão de alterar o nick:\r\n"+retorno+"\r\npara permitir pra esses cargos,\r\nconfigurações do servidor >> cargos >> arraste reifeltracker pra cima\r\ne coloque acima dos cargos que vão utilizar o bot");
+
 		break;
 				
 		//case ".ready":
 		//	readySimultaneo(message);
 		//break;
+			
+		case "verificar":
+			if(message.author!=reifelUser) return;
+			//verificar os cargos que nao podem usar o bot (hierarquia)				
+			var roleBotPosicao = message.guild.roles.get(message.guild.members.get(client.user.id)._roles[0]).position;
+			var tempRole;
+			var retorno ="```diff\r\n";
+			for(var roleID of message.guild.roles){
+				tempRole=message.guild.roles.get(roleID[0]);
+				if(roleBotPosicao < tempRole.position) retorno+="- "+tempRole.name+quebraLinha;				
+			}
+			retorno+="```";
+			print(message,"cargos que reifeltracker não tem permissão de alterar o nick:\r\n"+retorno+"\r\npara permitir pra esses cargos,\r\nconfigurações do servidor >> cargos >> arraste reifeltracker pra cima\r\ne coloque acima dos cargos que vão utilizar o bot");
+
+		break;
 		
 		default:
 			print( message, comandoErrado);
