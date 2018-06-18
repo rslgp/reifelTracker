@@ -506,6 +506,7 @@ client.on('message', message => {
 		case "up":
 		case "vs":
 		case "help":
+		case "solo":
 		case "comandos":
 		case "ranking":
 		case "rank":
@@ -735,6 +736,37 @@ client.on('message', message => {
 			});	
 		break;
 		*/
+		
+		case "solo":
+			site = siteFortniteTracker+parametroUsado+ftParam;
+			try{
+				var variavelVisita = Browser.visit(site, function (e, browser) {				
+					var wins,winP,kd,kills,selector;	
+					try{
+						selector = "#profile > div.trn-profile.dtr-profile > div > div.content > div:nth-child(1) > div.dtr-stats-card.pl-solo > div.trn-stats > div:nth-child(3) > div.value";
+						wins = getInnerHtml(browser, selector);
+						//wins = wins.substring(wins.indexOf(">")+1);
+						
+						selector= "#profile > div.trn-profile.dtr-profile > div > div.content > div:nth-child(1) > div.dtr-stats-card.pl-solo > div.trn-stats > div:nth-child(2) > div.value";
+						kills = getInnerHtml(browser, selector);
+						//kills = kills.substring(0,kills.indexOf("/"));
+						
+						selector= "#profile > div.trn-profile.dtr-profile > div > div.content > div:nth-child(1) > div.dtr-stats-card.pl-solo > div.trn-stats > div:nth-child(6) > div.value";
+						kd = getInnerHtml(browser, selector);
+						
+						selector= "#profile > div.trn-profile.dtr-profile > div > div.content > div:nth-child(1) > div.dtr-stats-card.pl-solo > div.trn-stats > div:nth-child(7) > div.value"
+						winP = getInnerHtml(browser, selector);
+						winP = winP.slice(0, -1);//remover char porcentagem
+					}catch(e){
+						print(message,"comando alt esta instavel (so funciona na segunda tentativa ou indefinido)");
+						return;
+					}
+					var resultado = formatarMsg(winP,kd,wins,kills,'--');
+					msgPadraoBot(message, resultado, site, nickLegivel, " (Solo)");
+				});	
+				variavelVisita=null;
+			}catch(e){}
+		break;
 		
 		case "troquei":
 			var nick = message.member.nickname;
@@ -1866,11 +1898,11 @@ function up(jsonSquad){
 	
 }
 
-function msgPadraoBot(message, text, site, nick){
+function msgPadraoBot(message, text, site, nick, modo=" (Squad)"){
 		message.channel.send({embed: {
 			  color: 3447003,
 				description: text+quebraLinha+randomDonate(),
-				title: ( nick.charAt(0).toUpperCase() + nick.slice(1) ) +" (Squad)",
+				title: ( nick.charAt(0).toUpperCase() + nick.slice(1) ) + modo,
 				url:site,
 				//author: {
 				//	name : "Perfil Squad de "+nick,
