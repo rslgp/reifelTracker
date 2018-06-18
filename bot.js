@@ -1282,8 +1282,8 @@ client.on('message', message => {
 							padraoRankWin(message, message.member, nickLegivel, winrKD, '456170372392419328', '456170373055250454', '456170373743116288');
 						break;
 							
-						case '248137763050749952': //snow
-							padraoRankWin(message, message.member, nickLegivel, winrKD, '456167741003399168', '456167741074833410', '456167741523492884');
+						case '248137763050749952': //viruz
+							padraoRankWin(message, message.member, nickLegivel, winrKD, '458323694247346178', '458323694809251850', '458323694801125397');
 						break;
 						
 					}
