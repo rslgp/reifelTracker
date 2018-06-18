@@ -1512,6 +1512,19 @@ client.on('message', message => {
 						mentionable: true
 					}).then(role => print(message,"'"+rolesCriadas[0]+"', '"+rolesCriadas[1]+"', '"+role.id+"'")).catch(console.error);
 				}catch(e){};
+				
+				//verificar os cargos que nao podem usar o bot (hierarquia)				
+				var roleBotPosicao = message.guild.roles.get(message.guild.members.get(client.user.id)._roles[0]).position;
+				var tempRole;
+				var retorno ="```diff\r\n";
+				for(var roleID of message.guild.roles){
+					tempRole=message.guild.roles.get(roleID[0]);
+					if(roleBotPosicao < tempRole.position) retorno+="- "+tempRole.name+quebraLinha;				
+				}
+				retorno+="```";
+				print(message,"cargos que reifeltracker não tem permissão de alterar o nick:\r\n"+retorno+"\r\npara permitir pra esses cargos,\r\nconfigurações do servidor >> cargos >> arraste reifeltracker pra cima\r\ne coloque acima dos cargos que vão utilizar o bot");
+
+				
 			}
 		break;
 				
