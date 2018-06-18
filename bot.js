@@ -1523,7 +1523,8 @@ client.on('message', message => {
 				tempRole=message.guild.roles.get(roleID[0]);
 				if(roleBotPosicao < tempRole.position) retorno+="- "+tempRole.name+quebraLinha;				
 			}
-			retorno+="```";
+			if(retorno.length===9) retorno+="+todos tem permissão";
+			retorno+="```";			
 			print(message,"cargos que reifeltracker não tem permissão de alterar o nick:\r\n"+retorno+"\r\npara permitir pra esses cargos,\r\nconfigurações do servidor >> cargos >> arraste reifeltracker pra cima\r\ne coloque acima dos cargos que vão utilizar o bot");
 
 		break;
@@ -1542,6 +1543,7 @@ client.on('message', message => {
 				tempRole=message.guild.roles.get(roleID[0]);
 				if(roleBotPosicao < tempRole.position) retorno+="- "+tempRole.name+quebraLinha;				
 			}
+			if(retorno.length===9) retorno+="+todos tem permissão";
 			retorno+="```";
 			print(message,"cargos que reifeltracker não tem permissão de alterar o nick:\r\n"+retorno+"\r\npara permitir pra esses cargos,\r\nconfigurações do servidor >> cargos >> arraste reifeltracker pra cima\r\ne coloque acima dos cargos que vão utilizar o bot");
 
