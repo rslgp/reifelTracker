@@ -973,7 +973,7 @@ client.on('message', message => {
 		
 			
 		case "semana":
-			message.author.send("Certo! avisei ao Reifel que vc quer semana gratis, ele vai mandar msg pra vc jaja pra comecar a instalação");
+			message.author.send("Certo! avisei ao Reifel que vc quer semana gratis, ele vai mandar msg pra vc jaja pra comecar a instalação, se quiser adiantar: cria uma sala reifeltracker no discord q vai usar e manda um convite pro @Reifel#5047 <@195731919424585728> que ele instala");
 			reifelUser.send(message.author+" quer semana gratis");
 		break;
 		case "discord":
