@@ -1916,22 +1916,25 @@ function up(jsonSquad){
 			}
 	}
 	try{
-		//cap new accounts
+		//cap new accounts - nerf smurf
 		if(jsonSquad[matches].ValueInt < 36){ //no data to build trusty sample
 			retorno[0] = (jsonSquad[winP].ValueDec * 0.2).toFixed(2)+"*";
+			retorno[1] = (jsonSquad[kd].ValueDec * 0.2).toFixed(2)+"*";
 		}
 		//old accounts or ok winrate
 		if(jsonSquad[matches].ValueInt > 250){ //pessoas de conta antiga ou pessoas q sao novas e tem winrate aceitavel
 			retorno[0] = jsonSquad[winP].value;
+			retorno[1] = jsonSquad[kd].value;
 		}else{			
-			retorno[0] = (jsonSquad[winP].ValueDec * 0.57).toFixed(2)+"*";		
+			retorno[0] = (jsonSquad[winP].ValueDec * 0.57).toFixed(2)+"*";
+			retorno[1] = (jsonSquad[kd].ValueDec * 0.57).toFixed(2)+"*";
 		}
 		
 	}catch(e){
 		console.log("erro no cap");
 	}
 	
-	retorno[1]=jsonSquad[kd].value;
+	//retorno[1]=jsonSquad[kd].value;
 	
 	return retorno;
 	
