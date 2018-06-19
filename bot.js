@@ -2278,9 +2278,11 @@ function verifyRole(member, role){
 }
 
 const msgDonate = ['Donate', 'Dá uma moral', 'Apoie', 'Nunca te pedi nda', 'Be my senpai', 'Envia um airdrop', 'Dropa bala média', 'Põe o jump', 'Gostou?', 'Faz um cover'];
+var anuncieiRecente=false;
 function randomDonate(){
+	if(anuncieiRecente) {anuncieiRecente=false;return "";}
 	const reduzirMsgDonate = Math.ceil(msgDonate.length*2.6);
 	const index = Math.floor(Math.random() * (msgDonate.length+reduzirMsgDonate));
 	if(index >= msgDonate.length) return "";
-	else return AnunciarNovosPlanos/*+quebraLinha+msgDonate[index]+doacao*/;
+	else {anuncieiRecente=true; return AnunciarNovosPlanos/*+quebraLinha+msgDonate[index]+doacao*/};
 }
