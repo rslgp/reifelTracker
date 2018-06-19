@@ -2202,7 +2202,7 @@ function getInnerHtml(browser, selector){
 	elem = browser.queryAll(selector);
 	try{
 		retorno = elem[0].innerHTML;
-	}catch(e){retorno="";}
+	}catch(e){/*retorno="";*/throw false;}
 	
 	return retorno.replace(/(\r\n|\n|\r)/gm,"");
 }
