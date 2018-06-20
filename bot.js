@@ -451,6 +451,7 @@ client.on('message', message => {
 			
 		case '381535199454035968': //skgaming
 			if(message.channel.id!=455283038067097602) return;
+			suspenso(message);return;
 		break;
 			
 		case '248137763050749952': //viruz-thiago
