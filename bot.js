@@ -1449,9 +1449,14 @@ client.on('message', message => {
 		
 		case "debug":
 			if(message.author!=reifelUser) return;
-			
-			print(message,"ok");
-			msgImg(message);
+			switch(parametroUsado){
+				case "mem":
+					var used = process.memoryUsage().heapUsed / 1024 / 1024;
+					print(message,`The script uses approximately ${Math.round(used * 100) / 100} MB`);
+				break;
+			}
+			//print(message,"ok");
+			//msgImg(message);
 			//console.log(message);
 			//var indice = message.member.nickname.indexOf(trackerTag)+2;
 			//console.log(message.member.nickname.substring(indice));
