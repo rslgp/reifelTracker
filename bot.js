@@ -521,7 +521,8 @@ client.on('message', message => {
 		case "apostar":
 		case "prefab":
 		case "verificar":
-		case "debug":
+		case "debug":			
+		case "db":
 		case "reloadimg":
 		case "uninstall":
 		break;
@@ -1456,6 +1457,17 @@ client.on('message', message => {
 			//console.log(message.member.nickname.substring(indice));
 		break;
 		
+		case "db":
+			if(message.author!=reifelUser) return;
+			
+			var channelBusca = client.channels.get("459432939898273798");			
+			//channelBusca.send('{ "name":"Rafael", "count":30}');
+			
+			channelBusca.fetchMessage('459435742351982618')
+			  .then(message => editarJSON(message) )
+			  .catch(console.error);
+		break;
+		
 				
 		case "uninstall":
 			if(message.author!=reifelUser) return;
@@ -1555,6 +1567,15 @@ client.on('message', message => {
 		break;
 	}
 });
+
+function editarJSON(message){
+	var obj =  JSON.parse(message.content);
+	obj.count += 1;
+	message.edit(JSON.stringify(obj));
+	/*
+	para nova key, obj[NovaKey] = valores
+	*/
+}
 
 //codigo criacao de reifel
 var buscas= [
