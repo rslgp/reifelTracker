@@ -99,7 +99,7 @@ client.on('ready', () => {
 	reifelUser = client.users.get('195731919424585728');
 	client.user.setPresence({
 		game: {
-			name: "com "+client.guilds.array().length +"| .discord"
+			name: "com "+client.guilds.array().length +" |.discord"
 		}
 	}); 
 	
