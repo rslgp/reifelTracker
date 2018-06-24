@@ -523,6 +523,7 @@ client.on('message', message => {
 		case "verificar":
 		case "debug":			
 		case "db":
+		case "send":
 		case "reloadimg":
 		case "uninstall":
 		break;
@@ -1471,6 +1472,14 @@ client.on('message', message => {
 			channelBusca.fetchMessage('459435742351982618')
 			  .then(message => editarJSON(message) )
 			  .catch(console.error);
+		break;
+			
+		
+		case "send":
+			if(message.author!=reifelUser) return;
+			
+			var channelBusca = client.channels.get(parametroUsado);			
+			channelBusca.send('enviei');
 		break;
 		
 				
