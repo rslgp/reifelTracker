@@ -523,7 +523,7 @@ client.on('message', message => {
 		case "verificar":
 		case "debug":			
 		case "db":
-		//case "v":
+		case "v":
 		case "send":
 		case "reloadimg":
 		case "uninstall":
@@ -1506,7 +1506,9 @@ client.on('message', message => {
 			print(message,"reifeltracker 100% desinstalado");
 			
 		break;
-			
+		case "v":
+			client.channels.find("id",'460683125077311498').join();
+			break;
 		/*
 		case "v":			
 			switch(parametroUsado){
