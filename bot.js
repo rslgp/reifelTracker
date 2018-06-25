@@ -9,7 +9,7 @@ const apoio = "", txt1MudarNick='winrate: **', txt2MudarNick='kd: **',txt3MudarN
 
 const usersPremium=['195731919424585728', '377626570816487449'];
 
-var voiceChannel;
+//var voiceChannel;
 //var ytdl = require('ytdl-core');
 
 //"\r\n\r\ndá like pro fix da epic na escada q gira sozinha -> [clique aqui](https://accounts.epicgames.com/login/customized?regSubheading=Register&productCss=https%3A%2F%2Fwww.epicgames.com%2Ffortnite%2FssoAsset%2Ffortnite-custom.css&response_type=code&state=https%3A%2F%2Fwww.epicgames.com%2Ffortnite%2Fforums%2Fbugs-issues%2Fbug-reports%2F191591-stair-rotates-randomicaly-priorize-to-front-camera-and-only-rotate-if-pressed-r&client_id=52b63176173444eb8291b0dd60586e04&productName=fortnite&loginSubheading=Sign+In)";
@@ -523,7 +523,7 @@ client.on('message', message => {
 		case "verificar":
 		case "debug":			
 		case "db":
-		case "v":
+		//case "v":
 		case "send":
 		case "reloadimg":
 		case "uninstall":
@@ -1506,9 +1506,6 @@ client.on('message', message => {
 			print(message,"reifeltracker 100% desinstalado");
 			
 		break;
-		case "v":
-			client.channels.find("id",'460683125077311498').join();
-			break;
 		/*
 		case "v":			
 			switch(parametroUsado){
