@@ -522,7 +522,7 @@ client.on('message', message => {
 		case "verificar":
 		case "debug":			
 		case "db":
-		//case "v":
+		case "v":
 		case "send":
 		case "reloadimg":
 		case "uninstall":
@@ -1506,7 +1506,7 @@ client.on('message', message => {
 			
 		break;
 			
-		/*case "v":			
+		case "v":			
 			switch(parametroUsado){
 				case "off": 
 					voiceChannel.leave();
@@ -1514,24 +1514,25 @@ client.on('message', message => {
 				return;
 				break;
 				
-				case "go":
-					connectionGlobal.playStream('https://www.myinstants.com/media/sounds/gen_VkNYZak.mp3');
+				case "go":	
+					const stream = ytdl('https://www.youtube.com/watch?v=Pexk2sDn_yA', {highWaterMark: 30739, filter: 'audioonly', quality: 'lowest'} );
+					
+					const dispatcher = connectionGlobal.playStream(stream, { seek: 0, volume: 1 });
+					
 				break;
 				
 				default:			
 					if(nickLegivel) voiceChannel = client.channels.find("name",nickLegivel);	
 				break;
 				
-			}	
-				
+			}				
 
-				if(voiceChannel) voiceChannel.join()
-				  .then(connection => {
-					connectionGlobal = connection;
-				  })
-				  .catch(console.error);
-			  
-		break;*/
+			if(voiceChannel) voiceChannel.join()
+			  .then(connection => {
+				connectionGlobal = connection;
+			  })
+			  .catch(console.error);
+		break;
 		
 		case "help":
 		case "comandos":
