@@ -6,6 +6,8 @@
     "discord.js": "^11.2.1",
     "tmi.js": "^1.2.1",
     "jimp": "^0.2.28",
+    "ffmpeg-binaries": "^3.2.2",
+    "opusscript": "^0.0.6",
     "zombie": "^5.0.7"
   },
   "scripts": {
