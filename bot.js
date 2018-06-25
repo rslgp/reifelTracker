@@ -525,7 +525,7 @@ client.on('message', message => {
 		case "verificar":
 		case "debug":			
 		case "db":
-		case "v":
+		//case "v":
 		case "send":
 		case "reloadimg":
 		case "uninstall":
@@ -1509,7 +1509,7 @@ client.on('message', message => {
 			
 		break;
 			
-		case "v":			
+		/*case "v":			
 			switch(parametroUsado){
 				case "off": 
 					voiceChannel.leave();
@@ -1533,8 +1533,8 @@ client.on('message', message => {
 					connectionGlobal = connection;
 				  })
 				  .catch(console.error);
-			  //*/
-		break;
+			  
+		break;*/
 		
 		case "help":
 		case "comandos":
