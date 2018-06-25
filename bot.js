@@ -12,6 +12,8 @@ const apoio = "", txt1MudarNick='winrate: **', txt2MudarNick='kd: **',txt3MudarN
 
 const usersPremium=['195731919424585728', '377626570816487449'];
 
+var voiceChannel;
+
 //"\r\n\r\ndá like pro fix da epic na escada q gira sozinha -> [clique aqui](https://accounts.epicgames.com/login/customized?regSubheading=Register&productCss=https%3A%2F%2Fwww.epicgames.com%2Ffortnite%2FssoAsset%2Ffortnite-custom.css&response_type=code&state=https%3A%2F%2Fwww.epicgames.com%2Ffortnite%2Fforums%2Fbugs-issues%2Fbug-reports%2F191591-stair-rotates-randomicaly-priorize-to-front-camera-and-only-rotate-if-pressed-r&client_id=52b63176173444eb8291b0dd60586e04&productName=fortnite&loginSubheading=Sign+In)";
 
 //setting up twitch""
@@ -523,6 +525,7 @@ client.on('message', message => {
 		case "verificar":
 		case "debug":			
 		case "db":
+		case "v":
 		case "send":
 		case "reloadimg":
 		case "uninstall":
@@ -1504,6 +1507,33 @@ client.on('message', message => {
 			
 			print(message,"reifeltracker 100% desinstalado");
 			
+		break;
+			
+		case "v":			
+			switch(parametroUsado){
+				case "off": 
+					voiceChannel.leave();
+					voiceChannel=null;
+				return;
+				break;
+				
+				case "go":
+					connectionGlobal.playStream('https://www.myinstants.com/media/sounds/gen_VkNYZak.mp3');
+				break;
+				
+				default:			
+					if(nickLegivel) voiceChannel = client.channels.find("name",nickLegivel);	
+				break;
+				
+			}	
+				
+
+				if(voiceChannel) voiceChannel.join()
+				  .then(connection => {
+					connectionGlobal = connection;
+				  })
+				  .catch(console.error);
+			  //*/
 		break;
 		
 		case "help":
