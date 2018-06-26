@@ -1509,13 +1509,13 @@ client.on('message', message => {
 		break;
 			
 		case "s":
-			if(nickLegivel) client.channels.find("name",nickLegivel).join();
-			message.channel.send("m!play https://www.youtube.com/watch?v=4xk0o09O7XM").then(message => message.delete());
+			//if(nickLegivel) client.channels.find("name",nickLegivel).join();
+			//message.channel.send("m!play https://www.youtube.com/watch?v=4xk0o09O7XM").then(message => message.delete());
 
-			const filter = m => m.content.length===0; //msg do bot medalbot embed eh vazio
-			message.channel.awaitMessages(filter, { max: 1, time: 5000, errors: ['time'] })
-			  .then(collected => collected.first().delete() ) //message.channel.fetchMessage().delete()
-			  .catch(collected => console.log(`fail`));
+			//const filter = m => m.content.length===0; //msg do bot medalbot embed eh vazio
+			//message.channel.awaitMessages(filter, { max: 1, time: 5000, errors: ['time'] })
+			//  .then(collected => collected.first().delete() ) //message.channel.fetchMessage().delete()
+			 // .catch(collected => console.log(`fail`));
 		break;
 		/*
 		case "v":			
