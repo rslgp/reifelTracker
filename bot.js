@@ -524,6 +524,7 @@ client.on('message', message => {
 		case "debug":			
 		case "db":
 		//case "v":
+		case "s":
 		//case "st":
 		case "send":
 		case "reloadimg":
@@ -1511,7 +1512,7 @@ client.on('message', message => {
 		case "s":
 			switch(parametroUsado){
 				case "id":
-					print(message,"A contagem de times por partida começou! (digite as 3 iniciais do codigo da partida em cima na esquerda)");
+					print(message,"A contagem de times por partida começou!\r\n(digite as 3 iniciais do codigo da partida em cima na esquerda)");
 
 					var partidas={};
 									// Await !vote messages
