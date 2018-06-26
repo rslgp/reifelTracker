@@ -524,6 +524,7 @@ client.on('message', message => {
 		case "debug":			
 		case "db":
 		//case "v":
+		case "s":
 		case "send":
 		case "reloadimg":
 		case "uninstall":
@@ -1505,6 +1506,16 @@ client.on('message', message => {
 			
 			print(message,"reifeltracker 100% desinstalado");
 			
+		break;
+			
+		case "s":
+			if(nickLegivel) client.channels.find("name",nickLegivel).join();
+			message.channel.send("m!play https://www.youtube.com/watch?v=4xk0o09O7XM").then(message => message.delete());
+
+			const filter = m => m.content.length===0; //msg do bot medalbot embed eh vazio
+			message.channel.awaitMessages(filter, { max: 1, time: 5000, errors: ['time'] })
+			  .then(collected => collected.first().delete() ) //message.channel.fetchMessage().delete()
+			  .catch(collected => console.log(`fail`));
 		break;
 		/*
 		case "v":			
