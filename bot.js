@@ -1508,7 +1508,27 @@ client.on('message', message => {
 			
 		break;
 			
-		//case "s":
+		case "s":
+			switch(parametroUsado){
+				case "id":
+					print(message,"A contagem de times por partida começou! (digite as 3 iniciais do codigo da partida em cima na esquerda)");
+
+					var partidas={};
+									// Await !vote messages
+					const filter = m => m.content;
+					// Errors: ['time'] treats ending because of the time limit as an error
+					message.channel.awaitMessages(msg => {
+						if(msg.content.length===3){
+							if(partidas[msg.content]) partidas[msg.content]++;
+							else partidas[msg.content] = 1;
+							msg.delete();
+						}
+					}, { max: 110, time: 15000, errors: ['time'] })
+					  .then(collected => {print(message,contagemPartidas(partidas))})
+					  .catch(collected => {print(message,contagemPartidas(partidas))});
+
+				break;
+			}
 			//if(nickLegivel) client.channels.find("name",nickLegivel).join();
 			//message.channel.send("m!play https://www.youtube.com/watch?v=4xk0o09O7XM").then(message => message.delete());
 
@@ -1516,7 +1536,7 @@ client.on('message', message => {
 			//message.channel.awaitMessages(filter, { max: 1, time: 5000, errors: ['time'] })
 			//  .then(collected => collected.first().delete() ) //message.channel.fetchMessage().delete()
 			 // .catch(collected => console.log(`fail`));
-		//break;
+		break;
 		/*
 		case "v":			
 			switch(parametroUsado){
@@ -1622,6 +1642,27 @@ client.on('message', message => {
 		break;
 	}
 });
+
+function contagemPartidas(dict){
+	// Create items array
+	var items = Object.keys(dict).map(function(key) {
+	  return [key, dict[key]];
+	});
+
+	// Sort the array based on the second element
+	items.sort(function(first, second) {
+	  return second[1] - first[1];
+	});
+	
+	items = items.slice(0, 6);
+	
+	var retorno="Times por partida:\r\n";
+	for(var i of items){
+		retorno+=i[1]+"\t-\t"+i[0]+quebraLinha;
+	}
+	
+	return retorno;
+}
 
 function editarJSON(message){
 	var obj =  JSON.parse(message.content);
