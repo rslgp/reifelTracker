@@ -456,6 +456,7 @@ client.on('message', message => {
 			
 		case '248137763050749952': //viruz-thiago
 			if(message.channel.id!=458110549251850241) return;
+			suspenso(message);return;
 		break;
 		
 		default:
