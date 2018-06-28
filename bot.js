@@ -90,6 +90,8 @@ var cooldownUser = [];
 var imageJimp,fontJimp;
 const tempFile="stats.png";
 
+var discAutorizados, salasAutorizadas;
+
 client.on('ready', () => {
 	client.user.username="reifelTracker";
 	client.user.setUsername("reifelTracker");
@@ -111,6 +113,15 @@ client.on('ready', () => {
 			imageJimp.deflateStrategy(0).filterType(0);
 		});
 	});
+	
+	client.channels.get("459432939898273798").fetchMessage('461722127205269505')
+			  .then(message => {
+					var obj =  JSON.parse(message.content);
+					discAutorizados = obj["discords"];
+					salasAutorizadas = obj["salas"];	
+					console.log("salvei");
+			} )
+			  .catch(console.error);
 });
 
 //twitch
@@ -535,7 +546,9 @@ client.on('message', message => {
 		case "prefab":
 		case "verificar":
 		case "debug":			
-		case "db":
+		case "db":		
+		case "add":		
+		case "new":
 		//case "v":
 		case "st":
 		case "send":
@@ -1487,6 +1500,47 @@ client.on('message', message => {
 			
 			channelBusca.fetchMessage('459435742351982618')
 			  .then(message => editarJSON(message) )
+			  .catch(console.error);
+		break;
+			
+		
+		case "add":
+			if(message.author!=reifelUser) return;
+			
+			var novo = nickLegivel.split("+");
+			
+			
+			//client.channels.get("459432939898273798").send('{ "discords":[368240657816354836,377628278627893248,363610360688672778], "salas":[387003077695373315,428883305874718731] }');
+			
+			
+			client.channels.get("459432939898273798").fetchMessage('461722127205269505')
+			  .then(message => {
+					var obj =  JSON.parse(message.content);
+					obj["discords"].push(Number(novo[0]));
+					obj["salas"].push(Number(novo[1]));
+					discAutorizados = obj["discords"];					
+					salasAutorizadas = obj["salas"];
+					message.edit(JSON.stringify(obj));
+			} )
+			  .catch(console.error);
+		break;
+		
+		
+		case "new":
+			if(message.author!=reifelUser) return;
+			
+			var novo = nickLegivel;
+			
+			
+			//client.channels.get("459432939898273798").send('{ "discords":[368240657816354836,377628278627893248,363610360688672778], "salas":[387003077695373315,428883305874718731] }');
+			
+			
+			client.channels.get("459432939898273798").fetchMessage('461722127205269505')
+			  .then(message => {
+					message.edit(novo);
+					discAutorizados = novo["discords"];					
+					salasAutorizadas = novo["salas"];
+			} )
 			  .catch(console.error);
 		break;
 			
