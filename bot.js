@@ -395,6 +395,15 @@ function suspenso(message){
 client.on('message', message => {
 	if(message.author.bot) return; //ignora poupar processamento bot
 	
+	var idGuild = Math.round(message.guild.id), idSala;
+	
+	if(idGuild!=363610360688672800){
+		if(!discAutorizados.includes(idGuild)){ 
+			if(message.owner) message.owner.send("Não Autorizado por Reifel\r\n"+tabelaPreco); message.guild.leave(); console.log("sai"); return;
+		}
+	}
+	
+	/* //old autorizacao
 	switch(message.guild.id){//se nao for server autorizado, o bot sai
 		case "368240657816354836": //bro
 			if(message.channel.id!=387003077695373315) return; //se nao for no bot-spam ignora a msg (poupa processamento)
@@ -463,7 +472,7 @@ client.on('message', message => {
 			if(message.owner) message.owner.send("Não Autorizado por Reifel\r\n"+tabelaPreco); message.guild.leave(); console.log("sai"); return;
 		break;
 			
-	}
+	}*/
 	
 	
 	if(message.content[0] === pfxCom1) {
@@ -477,6 +486,9 @@ client.on('message', message => {
 		}
 			
 	}
+	
+	idSala= Math.round(message.channel.id)
+	if(!salasAutorizadas.includes( idSala )) return;
 	
 	//anti-spam
 	if(cooldownUser.indexOf(message.member.id) !== -1 ){print(message,"você está em cooldown");return;}
