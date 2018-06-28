@@ -1497,7 +1497,7 @@ client.on('message', message => {
 			}
 
 			//removendo as roles
-			var roles = parametroUsado.split("%20-%20");
+			var roles = nickLegivel.split(", ");
 			for(role of roles){
 				message.guild.roles.find("id",role).delete();
 			}
