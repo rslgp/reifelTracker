@@ -92,7 +92,16 @@ const tempFile="stats.png";
 
 var discAutorizados, salasAutorizadas;
 
-client.on('ready', () => {
+client.on('ready', () => {	
+	client.channels.get("459432939898273798").fetchMessage('461722127205269505')
+			  .then(message => {
+					var obj =  JSON.parse(message.content);
+					discAutorizados = obj["discords"];
+					salasAutorizadas = obj["salas"];	
+					console.log("salvei");
+			} )
+			  .catch(console.error);
+	
 	client.user.username="reifelTracker";
 	client.user.setUsername("reifelTracker");
 	salaRank = client.channels.get("368505848667832321");	
@@ -112,16 +121,7 @@ client.on('ready', () => {
 			
 			imageJimp.deflateStrategy(0).filterType(0);
 		});
-	});
-	
-	client.channels.get("459432939898273798").fetchMessage('461722127205269505')
-			  .then(message => {
-					var obj =  JSON.parse(message.content);
-					discAutorizados = obj["discords"];
-					salasAutorizadas = obj["salas"];	
-					console.log("salvei");
-			} )
-			  .catch(console.error);
+	});	
 });
 
 //twitch
