@@ -529,6 +529,7 @@ client.on('message', message => {
 		case "send":
 		case "reloadimg":
 		case "uninstall":
+		case "sair":
 		break;
 		default:
 			return;
@@ -1485,7 +1486,10 @@ client.on('message', message => {
 			channelBusca.send('enviei');
 		break;
 		
-				
+		case "sair":			
+			if(message.author!=reifelUser) return;
+			message.guild.leave();
+		break;
 		case "uninstall":
 			if(message.author!=reifelUser) return;
 			
