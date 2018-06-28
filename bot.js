@@ -1499,7 +1499,7 @@ client.on('message', message => {
 			//removendo as roles
 			var roles = nickLegivel.replace(/(')/gm,"").split(", ");
 			for(var role of roles){
-				message.guild.roles.find("id",role).delete();
+				try{message.guild.roles.find("id",role).delete();}catch(e){}
 			}
 
 			//tirando bot do server
