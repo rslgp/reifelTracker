@@ -1498,7 +1498,7 @@ client.on('message', message => {
 
 			//removendo as roles
 			var roles = nickLegivel.replace(/(')/gm,"").split(", ");
-			for(role of roles){
+			for(var role of roles){
 				message.guild.roles.find("id",role).delete();
 			}
 
