@@ -499,7 +499,7 @@ client.on('message', message => {
 	}
 	
 	idSala= Math.round(message.channel.id)
-	if(!salasAutorizadas.includes( idSala )) return;
+	if(idGuild!=363610360688672800 && !salasAutorizadas.includes( idSala )) return;
 	
 	//anti-spam
 	if(cooldownUser.indexOf(message.member.id) !== -1 ){print(message,"você está em cooldown");return;}
