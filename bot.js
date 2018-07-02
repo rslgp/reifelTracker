@@ -831,19 +831,21 @@ client.on('message', message => {
 					}
 				var winrKD = up(jsonSquad);
 				if(nick.indexOf("%") === -1){
-					if( (parseFloat(winrate) + 0.3) >= parseFloat(winrKD[1]) ) { //se o stats atual offline for menor ou igual ao stats online
+					if( (parseFloat(winrate) + 1) >= parseFloat(winrKD[1]) ) { //se o stats atual offline for menor ou igual ao stats online
 						mudarNick(message, padraoNickKD(winrKD[1],nickLegivel));
 						//message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) ).then(user => message.reply("o seu nick foi atualizado")).catch(err => console.log(err));
 						return;
 					}else{
+						reifelUser.send(nickLegivel+"kd: "+parseFloat(winrKD[0])- (parseFloat(winrate) + 1) );
 						print(message, "nao posso trocar seu nick");
 					}
 				}else{					
-					if( (parseFloat(winrate) + 0.7) >= parseFloat(winrKD[0]) ) {
+					if( (parseFloat(winrate) + 2.4) >= parseFloat(winrKD[0]) ) { //winrate
 						mudarNick(message, padraoNick(winrKD[0],nickLegivel));
 						//message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(user => message.reply("o seu nick foi atualizado")).catch(err => console.log(err));
 						return;
 					}else{
+						reifelUser.send(nickLegivel+"win%: "+parseFloat(winrKD[0])- (parseFloat(winrate) + 2.4) );
 						print(message, "nao posso trocar seu nick");
 					}
 				}
