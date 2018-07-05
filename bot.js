@@ -310,6 +310,7 @@ clientTwitch.on('chat', function(channel, user, message, self){
 			}
 		break;
 		*/
+		case "queroessebot":
 		case "discord":
 			msgTwitch("discord dos Followers - discord.gg/RyZNvbe");				
 			//if(followers.includes(user.username)){} //verifica se eh follower
