@@ -1322,8 +1322,8 @@ client.on('message', message => {
 							padraoRankWin(message, message.member, nickLegivel, winrKD, '456170372392419328', '456170373055250454', '456170373743116288');
 						break;
 							
-						case '459163523650551830': //gabriel-rng
-							padraoRankWin(message, message.member, nickLegivel, winrKD, '461903645647044610', '461903646213275688', '461903646658134016');
+						case '308334202158579714': //scream
+							padraoRankWin(message, message.member, nickLegivel, winrKD, '464536409773178880', '464536410485948416', '464536410624360471');
 						break;
 						
 					}
