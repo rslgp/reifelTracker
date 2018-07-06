@@ -1327,7 +1327,7 @@ client.on('message', message => {
 						break;
 						
 						case '401211618240888833':
-							padraoRankWin(message, message.member, nickLegivel, winrKD, '464610157696122891', '464610158178467840', '464610158312423436');
+							padraoRankKD(message, message.member, nickLegivel, winrKD, '464610157696122891', '464610158178467840', '464610158312423436');
 						break;
 						
 					}
@@ -2345,6 +2345,7 @@ function padraoAtualizarNome(message,nickLegivel,text,site){
 		case "398566083101196298"://depressaum
 		case "377628278627893248"://mwd
 		case "385896642429321216"://colosso
+		case "401211618240888833"://fortmito
 		
 			if(!userNick){ //eh dono
 				mudarNick(message, padraoNickKD(winrKD[1],nickLegivel), txt1MudarNick+winrKD[0]+txt3MudarNick);
