@@ -1330,6 +1330,10 @@ client.on('message', message => {
 							padraoRankKD(message, message.member, nickLegivel, winrKD, '464623293576511519', '464623293820043276', '464623294574886922');
 						break;
 						
+						case '396432582897827840': //xirus
+							padraoRankWin(message, message.member, nickLegivel, winrKD, '466787845076549647', '466787845328207882', '466787845596512266');
+						break;
+						
 					}
 					
 				}catch(e){					
