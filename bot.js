@@ -121,7 +121,14 @@ client.on('ready', () => {
 			
 			imageJimp.deflateStrategy(0).filterType(0);
 		});
-	});	
+	});
+	
+	/*
+	var guildsRegistradas = client.guilds.array();
+	for(var a of guildsRegistradas){
+		console.log(a.name+quebraLinha+a.id+quebraLinha+"<@"+a.ownerID+">"+quebraLinha+"https://cdn.discordapp.com/icons/"+a.id+"/"+a.icon+".png"+quebraLinha);
+	}
+	*/
 });
 
 //twitch
