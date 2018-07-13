@@ -3,7 +3,7 @@ const client = new Discord.Client();
 
 const boletosPreConfig = "";
 
-const tabelaPreco = '**Mensalidade do bot ReifelTracker**\r\nDepende da quantidade de membros do servidor no discord\r\n\r\nExperimente grátis por 7 dias\r\nMensalidade:\r\nmembros -------- reais por mês\r\n1 a 50            -------- R$ 5\r\n51 a 300        -------- R$ 10\r\n301 a 850       -------- R$ 17\r\nmaior q 851      -------- R$ 22\r\n\r\n[Valor Único] Disponível apenas para discord com no máximo 108 membros (ao ultrapassar 108 membros, o bot é desativado sem estorno do pagamento). Indisponível e sem suporte para outros tamanhos maiores que o máximo\r\n\r\n**Forma de pagamento**: boleto, transferência bancária (banco do brasil), depósito, paypal (+10% do preço pela taxa do paypal)\r\n**Dá direito a** 3 cargos (nomes customizáveis: Lendário, Épico, Raro)(representando kd ou winrate), instalação grátis e só paga quando estiver funcionando, os preços são para usar o bot do jeito que ele é na última atualização dele, com no máximo pequenas adaptações. Se não quiser mais, o bot é desinstalado e tem opção de remover as modificações feitas pelo bot (voltar ao que era antes).\r\n\r\n**plano econômico: R$ 12 por mês** independente do tamanho do servidor para usar apenas o comando !t\r\n**TRATAR COM:** @Reifel#5047 <@195731919424585728>. Não envie mensagem por aqui, envie para reifel';
+const tabelaPreco = '**Mensalidade do bot ReifelTracker**\r\nDepende da quantidade de membros do servidor no discord\r\n\r\nExperimente grátis por 7 dias\r\nMensalidade:\r\nmembros -------- reais por mês\r\n1 a 50            -------- R$ 5\r\n51 a 280        -------- R$ 11\r\n281 a 800       -------- R$ 17\r\nmaior q 801      -------- R$ 22\r\n\r\n[Valor Único] Disponível apenas para discord com no máximo 108 membros (ao ultrapassar 108 membros, o bot é desativado sem estorno do pagamento). Indisponível e sem suporte para outros tamanhos maiores que o máximo\r\n\r\n**Forma de pagamento**: boleto, transferência bancária (banco do brasil), depósito, paypal (+12% do preço pela taxa do paypal)\r\n**Dá direito a** 3 cargos (nomes customizáveis: Lendário, Épico, Raro)(representando kd ou winrate), instalação grátis e só paga quando estiver funcionando, os preços são para usar o bot do jeito que ele é na última atualização dele, com no máximo pequenas adaptações. Se não quiser mais, o bot é desinstalado e tem opção de remover as modificações feitas pelo bot (voltar ao que era antes).\r\n\r\n**plano econômico: R$ 12 por mês** independente do tamanho do servidor para usar apenas o comando !t\r\n**TRATAR COM:** @Reifel#5047 <@195731919424585728>. Não envie mensagem por aqui, envie para reifel';
 
 const apoio = "", txt1MudarNick='winrate: **', txt2MudarNick='kd: **',txt3MudarNick='**, ', trackerTag="☂", espaco=" ", ftParam="?old=1", pfxCom1='!', pfxCom2='.', pfxCom3='c';
 
@@ -77,7 +77,7 @@ var interval, refreshIsRunning=0;
 //var readySimultaneoContador;
 
 //const helpMessage = "comandos disponiveis (inicie com ! ou .):\r\n**!queroessebot** - envia uma mensagem privada com a tabela de preço para rodar esse bot no seu servidor\r\n**!t nick** - (consulta nick do fortnite de alguem)\r\n**!up seuNick** - (atualizar winrate do seu nick)\r\n(desativado)**!auto seuNick** - (atualiza o seu winrate sozinho a cada 30 min, apos "+refreshRealizadosMAX+" atualizacoes todas as "+refreshMAXSTACK+" vagas ficam livres)\r\n**!alt seuNick** - (acessa tracker em site alternativo caso o fortnitetracker esteja bug ou off)\r\n**!rank** - sobe de patente caso atingiu win% e kd\r\n**!arma nomeArma** - registra a sua arma principal de preferência\r\n**!ideia msg** - envia uma ideia nova pro bot ou sugestao de melhoria do que já existe\r\n**!novavotacao @mencionar** - comando para inserir novo player a votacao\r\n**!apostar @mencionar , @mencionar, ...** - iniciar aposta nos player citados\r\n**.troquei NovoNick** - se trocou de nick na epic use esse comando\r\n**.vs playerA x playerB** - exclusivo para usuario premium reifeltracker, compara dois players";
-const helpMessage = "comandos disponíveis (inicie com ! ou .) - comandos sem nick usam o seu nick:\r\n**!discord** - recebe mensagem privada com preços (R$ 5 ou+) do bot pro seu discord ou de amigo\r\n**!t nick** - consulta histórico squad\r\n**!up seuNick** - atualizar seu winrate/kd\r\n**!rank** - sobe de patente caso atingiu win% ou kd\r\n**.troquei NovoNick** - se trocou de nick na epic use esse comando\r\n**!solo nick** - consulta histórico solo\r\n**!arma nomeArma** - registra a sua arma principal de preferência\r\n**!ideia msg** - envia uma mensagem de melhoria pro bot\r\n**.vs playerA x playerB** - [premium reifeltracker], compara dois players\r\n**passiva premium** - [premium reifeltracker] atualiza stats no nick sozinho de tempo em tempo\r\npremium R$3 por 3 meses (boleto,transferencia,paypal)";
+const helpMessage = "comandos disponíveis (inicie com ! ou .) - comandos sem nick usam o seu nick:\r\n**!discord** - recebe mensagem privada com preços (R$ 5 ou+) do bot pro seu discord ou de amigo\r\n**!t nick** - consulta histórico squad\r\n**!ti nick** - consulta com imagem\r\n!up seuNick** - atualizar seu winrate/kd\r\n**!rank** - sobe de patente caso atingiu win% ou kd\r\n**.troquei NovoNick** - se trocou de nick na epic use esse comando\r\n**!solo nick** - consulta histórico solo\r\n**!arma nomeArma** - registra a sua arma principal de preferência\r\n**!ideia msg** - envia uma mensagem de melhoria pro bot\r\n**.vs playerA x playerB** - [premium reifeltracker], compara dois players\r\n**passiva premium** - [premium reifeltracker] atualiza stats no nick sozinho de tempo em tempo\r\npremium R$3 por 3 meses (boleto,transferencia,paypal)";
 
 const errorUsuarioRegistrado = "usuario ja esta registrado", errorRefreshLotado="fila atualizacao lotada", 
 sucessoRegistro=" conseguiu se registrar", chamadaFilaLIVRE=">> a fila de atualizar win % automatica esta LIVRE <<", sucessoWinRateAtualizado="atualizei os win % de vcs";
@@ -102,8 +102,8 @@ client.on('ready', () => {
 			} )
 			  .catch(console.error);
 	
-	client.user.username="reifelTracker";
-	client.user.setUsername("reifelTracker");
+	client.user.username="ReifelTracker";
+	client.user.setUsername("ReifelTracker");
 	salaRank = client.channels.get("368505848667832321");	
 	salaVotem = client.channels.get("413597195846156299");	
 	salaAposta = client.channels.get("416769967690743819");
@@ -1712,7 +1712,7 @@ client.on('message', message => {
 			}catch(e){};
 
 			//verificar os cargos que nao podem usar o bot (hierarquia)				
-			var roleBotPosicao = message.guild.roles.find("name","reifelTracker").position;
+			var roleBotPosicao = message.guild.roles.find("name","ReifelTracker").position;
 			var tempRole;
 			var retorno ="```diff\r\n- Dono do servidor\r\n";
 			for(var roleID of message.guild.roles){
@@ -1732,7 +1732,7 @@ client.on('message', message => {
 		case "verificar":
 			if(message.author!=reifelUser) return;
 			//verificar os cargos que nao podem usar o bot (hierarquia)				
-			var roleBotPosicao = message.guild.roles.find("name","reifelTracker").position;
+			var roleBotPosicao = message.guild.roles.find("name","ReifelTracker").position;
 			var tempRole;
 			var retorno ="```diff\r\n- dono do server\r\n";
 			for(var roleID of message.guild.roles){
