@@ -844,7 +844,7 @@ client.on('message', message => {
 						//message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) ).then(user => message.reply("o seu nick foi atualizado")).catch(err => console.log(err));
 						return;
 					}else{
-						reifelUser.send(nickLegivel+"kd: "+parseFloat(winrKD[0])- (parseFloat(winrate) + 1) );
+						//reifelUser.send(nickLegivel+"kd: "+parseFloat(winrKD[0])- (parseFloat(winrate) + 1) );
 						print(message, "nao posso trocar seu nick");
 					}
 				}else{					
@@ -853,7 +853,7 @@ client.on('message', message => {
 						//message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(user => message.reply("o seu nick foi atualizado")).catch(err => console.log(err));
 						return;
 					}else{
-						reifelUser.send(nickLegivel+"win%: "+parseFloat(winrKD[0])- (parseFloat(winrate) + 2.4) );
+						//reifelUser.send(nickLegivel+"win%: "+parseFloat(winrKD[0])- (parseFloat(winrate) + 2.4) );
 						print(message, "nao posso trocar seu nick");
 					}
 				}
@@ -1484,7 +1484,7 @@ client.on('message', message => {
 		break;
 		
 		case "ideia":			
-			reifelUser.send(nickLegivel);
+			reifelUser.send("ideia: "+nickLegivel);
 		break;
 		
 		case "reloadimg":
