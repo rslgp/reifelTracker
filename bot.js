@@ -77,7 +77,7 @@ var interval, refreshIsRunning=0;
 //var readySimultaneoContador;
 
 //const helpMessage = "comandos disponiveis (inicie com ! ou .):\r\n**!queroessebot** - envia uma mensagem privada com a tabela de preço para rodar esse bot no seu servidor\r\n**!t nick** - (consulta nick do fortnite de alguem)\r\n**!up seuNick** - (atualizar winrate do seu nick)\r\n(desativado)**!auto seuNick** - (atualiza o seu winrate sozinho a cada 30 min, apos "+refreshRealizadosMAX+" atualizacoes todas as "+refreshMAXSTACK+" vagas ficam livres)\r\n**!alt seuNick** - (acessa tracker em site alternativo caso o fortnitetracker esteja bug ou off)\r\n**!rank** - sobe de patente caso atingiu win% e kd\r\n**!arma nomeArma** - registra a sua arma principal de preferência\r\n**!ideia msg** - envia uma ideia nova pro bot ou sugestao de melhoria do que já existe\r\n**!novavotacao @mencionar** - comando para inserir novo player a votacao\r\n**!apostar @mencionar , @mencionar, ...** - iniciar aposta nos player citados\r\n**.troquei NovoNick** - se trocou de nick na epic use esse comando\r\n**.vs playerA x playerB** - exclusivo para usuario premium reifeltracker, compara dois players";
-const helpMessage = "comandos disponíveis (inicie com ! ou .) - comandos sem nick usam o seu nick:\r\n**!discord** - recebe mensagem privada com preços (R$ 5 ou+) do bot pro seu discord ou de amigo\r\n**!t nick** - consulta histórico squad\r\n**!ti nick** - consulta com imagem\r\n**!up seuNick** - atualizar seu winrate/kd\r\n**!rank** - sobe de patente caso atingiu win% ou kd\r\n**.troquei NovoNick** - se trocou de nick na epic use esse comando\r\n**!solo nick** - consulta histórico solo\r\n**!arma nomeArma** - registra a sua arma principal de preferência\r\n**!ideia msg** - envia uma mensagem de melhoria pro bot\r\n**.vs playerA x playerB** - [premium reifeltracker], compara dois players\r\n**passiva premium** - [premium reifeltracker] atualiza stats no nick sozinho de tempo em tempo\r\npremium R$3 por 4 meses (boleto,transferencia,paypal)";
+const helpMessage = "comandos disponíveis (inicie com ! ou .) - comandos sem nick usam o seu nick:\r\n**!discord** - recebe mensagem privada com preços (R$ 5 ou+) do bot pro seu discord ou de amigo\r\n**!t nick** - consulta histórico squad\r\n**!ti nick** - consulta com imagem\r\n**!up seuNick** - atualizar seu winrate/kd\r\n**!rank** - sobe de patente caso atingiu win% ou kd\r\n**.troquei NovoNick** - se trocou de nick na epic use esse comando\r\n**!solo nick** - consulta histórico solo\r\n**!modificar @menção=Nick** - se for admin, altera o usuario mencionado com os stats de Nick, coloque kd antes da menção se for kd\r\n**!arma nomeArma** - registra a sua arma principal de preferência\r\n**!ideia msg** - envia uma mensagem de melhoria pro bot\r\n**.vs playerA x playerB** - [premium reifeltracker], compara dois players\r\n**passiva premium** - [premium reifeltracker] atualiza stats no nick sozinho de tempo em tempo\r\npremium R$3 por 4 meses (boleto,transferencia,paypal)";
 
 const errorUsuarioRegistrado = "usuario ja esta registrado", errorRefreshLotado="fila atualizacao lotada", 
 sucessoRegistro=" conseguiu se registrar", chamadaFilaLIVRE=">> a fila de atualizar win % automatica esta LIVRE <<", sucessoWinRateAtualizado="atualizei os win % de vcs";
@@ -554,6 +554,7 @@ client.on('message', message => {
 		case "tbquero":
 		case "novavotacao":
 		case "apostar":
+		case "modificar":
 		case "prefab":
 		case "verificar":
 		case "debug":			
@@ -867,6 +868,39 @@ client.on('message', message => {
 				}catch(e){}
 			});
 			variavelVisita=null;
+		break;
+			
+		case "modificar":
+		if(!message.channel.permissionsFor(message.member).has("ADMINISTRATOR")) {print(message,"Sem permissão");return;}
+		
+		var nick = parametroUsado.substring(parametroUsado.indexOf("=")+1);
+		site = siteFortniteTracker+nick+ftParam;
+			try{
+				var variavelVisita = Browser.visit(site, function (e, browser) {				
+					var text = browser.html();
+						
+					var jsonSquad;
+					try{
+						jsonSquad = getJsonSquad(text);
+						//console.log(jsonSquad);
+						text=null;
+					}catch(e){		
+						console.log("error search");
+						throw false;
+					}
+					
+					var indiceEscolhido=0;
+					if(parametroUsado.indexOf("kd")!==-1){
+						indiceEscolhido=1;
+					}
+					var winrkd = up(jsonSquad);
+					
+					var user = message.mentions.users.array()[0].id;
+					message.guild.members.find('id',user).setNickname(winrkd[indiceEscolhido]+" ☂ "+nick).catch(e=>{});
+				});	
+				variavelVisita=null;
+			}catch(e){}
+		
 		break;
 
 		case "vs":
