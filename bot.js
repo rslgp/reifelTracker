@@ -871,7 +871,7 @@ client.on('message', message => {
 		break;
 			
 		case "modificar":
-		if(message.author!=reifelUser||!message.channel.permissionsFor(message.member).has("ADMINISTRATOR")) {print(message,"Sem permissão");return;}
+		if(message.author==reifelUser){}else {if(!message.channel.permissionsFor(message.member).has("ADMINISTRATOR")) {print(message,"Sem permissão");return;}}
 		
 		var nick = parametroUsado.substring(parametroUsado.indexOf("=")+1);
 		site = siteFortniteTracker+nick+ftParam;
