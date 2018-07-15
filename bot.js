@@ -896,7 +896,7 @@ client.on('message', message => {
 					var winrkd = up(jsonSquad);
 					
 					var user = message.mentions.users.array()[0].id;
-					message.guild.members.find('id',user).setNickname(winrkd[indiceEscolhido]+" ☂ "+nick).catch(e=>{});
+					message.guild.members.find('id',user).setNickname(winrkd[indiceEscolhido]+" ☂ "+nickLegivel.substring(parametroUsado.indexOf("=")+1);).catch(e=>{});
 				});	
 				variavelVisita=null;
 			}catch(e){}
