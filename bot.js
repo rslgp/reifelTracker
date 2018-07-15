@@ -64,7 +64,7 @@ const winsStormShieldPath="body > div.container.pvp > div:nth-child(3) > div.col
 
 const comandoErrado = "comando inválido";
 //const AnunciarNovosPlanos="\r\n```md\r\n\r\n#22/05 agr +barato e para discord menores\r\n```";
-const AnunciarNovosPlanos="\r\n```fix\r\n\r\nSó esse mês: use o bot 7 dias grátis\r\nno seu servidor ou de amigo(!semana)\r\n```";
+const AnunciarNovosPlanos="\r\n```fix\r\n\r\teste 7 dias = $0 !semana\r\n```";
 
 var refreshAuto = [];
 var refreshTamanho = 0;
