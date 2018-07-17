@@ -113,8 +113,8 @@ client.on('ready', () => {
 			name: "com "+client.guilds.array().length +" |.discord"
 		}
 	}); 
-	
-	Jimp.read("http://snip.li/reifelbackground1", function (err, imagemBackground) {
+	//http://snip.li/reifelbackground1
+	Jimp.read("https://i.imgur.com/IiwIFC0.png", function (err, imagemBackground) {
 		Jimp.loadFont(Jimp.FONT_SANS_16_WHITE).then(function (fontCarregada) {
 			imageJimp=imagemBackground;
 			fontJimp=fontCarregada;
