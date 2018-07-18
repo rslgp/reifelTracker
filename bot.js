@@ -92,6 +92,8 @@ const tempFile="stats.png";
 
 var discAutorizados, salasAutorizadas;
 
+client.on('disconnect', () => {reifelUser.send("AVISO: bot CAIU");});
+
 client.on('ready', () => {	
 	client.channels.get("459432939898273798").fetchMessage('461722127205269505')
 			  .then(message => {
