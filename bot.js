@@ -1659,7 +1659,7 @@ client.on('message', message => {
 			
 		break;
 			
-		case "st":
+		case "s":
 			switch(parametroUsado){
 				case "id":
 					print(message,"A contagem de times por partida começou! (ex. 73e)\r\n(digite os 3 primeiros digitos do código da partida)");
