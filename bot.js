@@ -92,6 +92,8 @@ const tempFile="stats.png";
 
 var discAutorizados, salasAutorizadas;
 
+var mempeak=0;
+
 client.on('disconnect', () => {reifelUser.send("AVISO: bot CAIU");});
 
 client.on('ready', () => {	
@@ -1539,8 +1541,12 @@ client.on('message', message => {
 			if(message.author!=reifelUser) return;
 			switch(parametroUsado){
 				case "mem":
-					var used = process.memoryUsage().heapUsed / 1024 / 1024;
+					var used = process.memoryUsage().heapUsed / 1048576; // /1024 /1024
 					print(message,`The script uses approximately ${Math.round(used * 100) / 100} MB`);
+				break;
+				
+				case "peak":
+					print(message,mempeak+" MB");
 				break;
 			}
 			//print(message,"ok");
@@ -2554,7 +2560,7 @@ function randomDonate(){
 	const reduzirMsgDonate = Math.ceil(msgDonate.length*2.6);
 	const index = Math.floor(Math.random() * (msgDonate.length+reduzirMsgDonate));
 	if(index >= msgDonate.length) return "";
-	else {anuncieiRecente=true; return AnunciarNovosPlanos/*+quebraLinha+msgDonate[index]+doacao*/};
+	else {anuncieiRecente=true; {var used = process.memoryUsage().heapUsed / 1048576; if(mempeak < used) mempeak = used; return AnunciarNovosPlanos/*+quebraLinha+msgDonate[index]+doacao*/};}
 }
 
 //[para Valor Único] e no máximo 130 membros: R$ 45, pague uma vez e use sem mensalidade enquanto tiver no total 130 membros ou menos no servidor. Ao ultrapassar 130 membros o bot será desativado. */
