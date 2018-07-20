@@ -565,7 +565,7 @@ client.on('message', message => {
 		case "new":		
 		case "rem":
 		//case "v":
-		case "st":
+		case "s":
 		case "send":
 		case "reloadimg":
 		case "uninstall":
