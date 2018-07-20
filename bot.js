@@ -2560,7 +2560,7 @@ function randomDonate(){
 	const reduzirMsgDonate = Math.ceil(msgDonate.length*2.6);
 	const index = Math.floor(Math.random() * (msgDonate.length+reduzirMsgDonate));
 	if(index >= msgDonate.length) return "";
-	else {anuncieiRecente=true; {var used = process.memoryUsage().heapUsed / 1048576; if(mempeak < used) mempeak = used; return AnunciarNovosPlanos/*+quebraLinha+msgDonate[index]+doacao*/};}
+	else {anuncieiRecente=true; {var used = Math.round(process.memoryUsage().heapUsed / 1048576); if(mempeak < used) mempeak = used; return AnunciarNovosPlanos/*+quebraLinha+msgDonate[index]+doacao*/};}
 }
 
 //[para Valor Único] e no máximo 130 membros: R$ 45, pague uma vez e use sem mensalidade enquanto tiver no total 130 membros ou menos no servidor. Ao ultrapassar 130 membros o bot será desativado. */
