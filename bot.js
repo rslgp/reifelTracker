@@ -51,7 +51,7 @@ Browser.waitDuration='6s'; //cloudflare
 
 var Jimp = require("jimp");
 //[apoia.se/reifel](https://apoia.se/reifel) - (*boleto | cartão de crédito - qlqr valor*)
-const rodape = "dono:Reifel#5047 !comandos| !discord", /*separador=" | ",*/ quebraLinha="\r\n", doacao=": use em outro !discord"+apoio;
+const rodape = "dono:Reifel#5047 !comandos| !discord| !semana", /*separador=" | ",*/ quebraLinha="\r\n", doacao=": use em outro !discord"+apoio;
 
 //tratando casos de erro
 const errorNickNaoEncontrado="nick não encontrado",
@@ -64,7 +64,8 @@ const winsStormShieldPath="body > div.container.pvp > div:nth-child(3) > div.col
 
 const comandoErrado = "comando inválido";
 //const AnunciarNovosPlanos="\r\n```md\r\n\r\n#22/05 agr +barato e para discord menores\r\n```";
-const AnunciarNovosPlanos="\r\n```fix\r\n\r\n!semana grátis do bot\r\n```";
+//const AnunciarNovosPlanos="\r\n```fix\r\n\r\n!semana grátis do bot\r\n```";
+const AnunciarNovosPlanos="";
 
 var refreshAuto = [];
 var refreshTamanho = 0;
