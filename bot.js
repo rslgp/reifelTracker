@@ -567,6 +567,7 @@ client.on('message', message => {
 		case "add":		
 		case "new":		
 		case "rem":
+		case "clientes":
 		//case "v":
 		case "s":
 		case "send":
@@ -1628,6 +1629,15 @@ client.on('message', message => {
 					salasAutorizadas = novo["salas"];
 			} )
 			  .catch(console.error);
+		break;
+			
+		case "clientes":
+			if(message.author!=reifelUser) return;
+			
+			var guildsRegistradas = client.guilds.array();
+			for(var a of guildsRegistradas){
+				console.log(a.name+quebraLinha+a.id+quebraLinha+"<@"+a.ownerID+">"+quebraLinha+"https://cdn.discordapp.com/icons/"+a.id+"/"+a.icon+".png"+quebraLinha);
+			}
 		break;
 			
 		
