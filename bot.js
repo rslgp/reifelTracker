@@ -1636,7 +1636,7 @@ client.on('message', message => {
 			
 			var guildsRegistradas = client.guilds.array();
 			for(var a of guildsRegistradas){
-				console.log(a.name+quebraLinha+a.id+quebraLinha+"<@"+a.ownerID+">"+quebraLinha+"https://cdn.discordapp.com/icons/"+a.id+"/"+a.icon+".png"+quebraLinha);
+				print(a.name+quebraLinha+a.id+quebraLinha+"<@"+a.ownerID+">"+quebraLinha+"https://cdn.discordapp.com/icons/"+a.id+"/"+a.icon+".png"+quebraLinha);
 			}
 		break;
 			
