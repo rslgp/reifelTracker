@@ -555,6 +555,7 @@ client.on('message', message => {
 		case "arma":
 		case "ideia":
 		case "semana":
+		case "queroessebot":
 		case "discord":
 		case "tbquero":
 		case "novavotacao":
