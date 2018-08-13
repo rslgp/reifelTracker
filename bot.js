@@ -51,7 +51,7 @@ Browser.waitDuration='6s'; //cloudflare
 
 var Jimp = require("jimp");
 //[apoia.se/reifel](https://apoia.se/reifel) - (*boleto | cartão de crédito - qlqr valor*)
-const rodape = "dono:Reifel#5047 !comandos| !discord| !semana", /*separador=" | ",*/ quebraLinha="\r\n", doacao=": use em outro !discord"+apoio;
+const rodape = "dono:Reifel#5047 !comandos| !queroessebot", /*separador=" | ",*/ quebraLinha="\r\n", doacao=": use em outro !discord"+apoio;
 
 //tratando casos de erro
 const errorNickNaoEncontrado="nick não encontrado",
