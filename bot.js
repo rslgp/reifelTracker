@@ -94,6 +94,8 @@ const tempFile="stats.png";
 var discAutorizados, salasAutorizadas;
 
 var mempeak=0;
+var boolsuspender;
+var suspensos = [];
 
 client.on('disconnect', () => {reifelUser.send("AVISO: bot CAIU");});
 
@@ -427,6 +429,10 @@ client.on('message', message => {
 		}
 	}
 	
+	if(ativarsuspender){
+		if(suspender.includes(message.guild.id)) suspenso(message);return;
+	}
+	
 	/* //old autorizacao
 	switch(message.guild.id){//se nao for server autorizado, o bot sai
 		case "368240657816354836": //bro
@@ -575,6 +581,9 @@ client.on('message', message => {
 		case "reloadimg":
 		case "uninstall":
 		case "sair":
+		case "togglesuspender":
+		case "suspender":
+		case "dessuspender":
 		break;
 		default:
 			return;
@@ -1105,6 +1114,7 @@ client.on('message', message => {
 			message.author.send("Certo! avisei ao Reifel que vc quer semana gratis, ele vai mandar msg pra vc jaja pra comecar a instalação, se quiser adiantar: cria uma sala reifeltracker no discord q vai usar e manda um convite pro @Reifel#5047 <@195731919424585728> que ele instala");
 			reifelUser.send(message.author+" quer semana gratis");
 		break;
+		case "queroessebot":
 		case "discord":
 		case "tbquero":
 			message.author.send(tabelaPreco);
@@ -1805,7 +1815,18 @@ client.on('message', message => {
 			print(message,"cargos que reifeltracker não tem permissão de alterar o nick:\r\n"+retorno+"\r\npara permitir pra esses cargos,\r\nconfigurações do servidor >> cargos >> arraste reifeltracker pra cima\r\ne coloque acima dos cargos que vão utilizar o bot");
 
 		break;
-		
+			
+			
+		case "togglesuspender":
+			ativarsuspender != ativarsuspender;
+		break;
+		case "suspender":
+			suspensos.push(nickLegivel);
+		break;
+		case "dessuspender":
+			for( i=0; i < suspensos.length; i++ ){
+				if(suspensos[i]==nicklegivel) suspensos.splice(i,1);
+			}
 		default:
 			print( message, comandoErrado);
 		break;
