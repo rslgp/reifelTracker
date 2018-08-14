@@ -1818,15 +1818,22 @@ client.on('message', message => {
 			
 			
 		case "togglesuspender":
+			if(message.author!=reifelUser) return;
 			ativarsuspender != ativarsuspender;
+			print(message,"ok");
 		break;
 		case "suspender":
+			if(message.author!=reifelUser) return;
 			suspensos.push(nickLegivel);
+			print(message,"ok");
 		break;
 		case "dessuspender":
+			if(message.author!=reifelUser) return;
 			for( i=0; i < suspensos.length; i++ ){
 				if(suspensos[i]==nicklegivel) suspensos.splice(i,1);
 			}
+			print(message,"ok");
+		break;
 		default:
 			print( message, comandoErrado);
 		break;
