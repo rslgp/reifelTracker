@@ -430,7 +430,7 @@ client.on('message', message => {
 	}
 	
 	if(ativarsuspender){
-		if(suspensos.includes(message.guild.id)) suspenso(message);return;
+		if(suspensos.includes(message.guild.id)) {suspenso(message);return;}
 	}
 	
 	/* //old autorizacao
