@@ -584,6 +584,7 @@ client.on('message', message => {
 		case "togglesuspender":
 		case "suspender":
 		case "dessuspender":
+		case "testesuspender":
 		break;
 		default:
 			return;
@@ -1833,6 +1834,14 @@ client.on('message', message => {
 				if(suspensos[i]==nicklegivel) suspensos.splice(i,1);
 			}
 			print(message,"ok");
+		break;
+		case "testesuspender":
+			print(message,ativarsuspender);
+			var resultado="";
+			for(var k of suspensos){
+				resultado+=k+", ";
+			}
+			print(message,resultado);
 		break;
 		default:
 			print( message, comandoErrado);
