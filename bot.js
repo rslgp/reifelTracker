@@ -1820,7 +1820,7 @@ client.on('message', message => {
 			
 		case "togglesuspender":
 			if(message.author!=reifelUser) return;
-			ativarsuspender != ativarsuspender;
+			ativarsuspender = !ativarsuspender;
 			print(message,"ok");
 		break;
 		case "suspender":
