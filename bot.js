@@ -94,7 +94,7 @@ const tempFile="stats.png";
 var discAutorizados, salasAutorizadas;
 
 var mempeak=0;
-var boolsuspender;
+var ativarsuspender=false;
 var suspensos = [];
 
 client.on('disconnect', () => {reifelUser.send("AVISO: bot CAIU");});
