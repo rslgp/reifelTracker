@@ -429,9 +429,7 @@ client.on('message', message => {
 		}
 	}
 	
-	if(ativarsuspender){
-		if(suspensos.includes(message.guild.id)) {suspenso(message);return;}
-	}
+	
 	
 	/* //old autorizacao
 	switch(message.guild.id){//se nao for server autorizado, o bot sai
@@ -589,7 +587,11 @@ client.on('message', message => {
 		default:
 			return;
 		break;
-	}	
+	}
+	
+	if(ativarsuspender){
+		if(suspensos.includes(message.guild.id)) {suspenso(message);return;}
+	}
 	
 	//se tiver espaco no nick
 	var parametroUsado = "", nickLegivel="", site="";
