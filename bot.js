@@ -99,13 +99,20 @@ var suspensos = [];
 
 client.on('disconnect', () => {reifelUser.send("AVISO: bot CAIU");});
 
-client.on('ready', () => {	
+client.on('ready', () => {
+	client.channels.get("459432939898273798").fetchMessage('479842842899120134')
+			  .then(message => {
+					var obj =  JSON.parse(message.content);
+					suspensos = obj["suspenso"];
+					if(suspensos.length!=0)ativarsuspender=true;
+			} )
+			  .catch(console.error);
+	
 	client.channels.get("459432939898273798").fetchMessage('461722127205269505')
 			  .then(message => {
 					var obj =  JSON.parse(message.content);
 					discAutorizados = obj["discords"];
-					salasAutorizadas = obj["salas"];	
-					console.log("salvei");
+					salasAutorizadas = obj["salas"];
 			} )
 			  .catch(console.error);
 	
@@ -580,8 +587,8 @@ client.on('message', message => {
 		case "uninstall":
 		case "sair":
 		case "togglesuspender":
-		case "suspender":
-		case "dessuspender":
+		//case "suspender":
+		//case "dessuspender":
 		case "testesuspender":
 		break;
 		default:
@@ -590,7 +597,7 @@ client.on('message', message => {
 	}
 	
 	if(ativarsuspender){
-		if(suspensos.includes(message.guild.id)) {suspenso(message);return;}
+		if(suspensos.includes(idGuild)) {suspenso(message);return;}
 	}
 	
 	//se tiver espaco no nick
