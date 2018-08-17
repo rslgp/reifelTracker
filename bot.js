@@ -97,8 +97,6 @@ var mempeak=0;
 var ativarsuspender=false;
 var suspensos = [];
 
-client.on('disconnect', () => {reifelUser.send("AVISO: bot CAIU");});
-
 client.on('ready', () => {
 	client.channels.get("459432939898273798").fetchMessage('479842842899120134')
 			  .then(message => {
