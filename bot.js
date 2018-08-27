@@ -102,11 +102,11 @@ var todosDias, diaHoje, liberarDiaExtra, barraApoio;
 //var 3dias = [primeiroDia+86400, primeiroDia+345600, primeiroDia+604800]; //domingo, quarta, sabado (insere posicao 0 - 1535241600, e as outras sao [0]+3*86400 e [0]+6*86400
 
 client.on('ready', () => {
-	client.channels.get("459432939898273798").fetchMessage('479842842899120134')
+	client.channels.get("459432939898273798").fetchMessage('483646835710361622')
 			  .then(message => {
 					var obj =  JSON.parse(message.content);
 					todosDias = obj["todosDias"];
-					liberarDiaExtra = obj["liberarDiaExtra"];
+					liberarDiaExtra= obj["liberarDiaExtra"];
 					atualizarBarraApoio(obj["progresso"]);
 			} )
 			  .catch(console.error);
