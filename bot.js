@@ -445,6 +445,14 @@ client.on('message', message => {
 	
 	if(idGuild!=363610360688672800){
 		if(!discAutorizados.includes(idGuild)){ //se cliente nao aplica
+			if(message.content.includes("apoio")){
+				if(message.content.length == 6) {
+					message.author.send("Obrigado pelo interesse de apoiar, envie o comando apoio seguido de qualquer valor em reais (.apoio 5) ou envie msg privada para (@Reifel#5047 <@195731919424585728>),\r\ntem disponivel essas formas de pagamento: boleto, transferência bancária (banco do brasil), depósito, paypal");
+					reifelUser.send(message.author+" quer apoiar");
+				}else{
+					reifelUser.send(message.author+" quer apoiar "+message.content);
+				}				
+			}
 			
 			//aplicar limitante modo free
 			horaAtual = message.createdTimestamp;			
@@ -479,21 +487,6 @@ client.on('message', message => {
 			if(!liberarDiaExtra) return;
 	}
 	*/
-	horaAtual = message.createdTimestamp;
-	//mais simples
-	if(!todosDias){
-		diaHoje = new Date(horaAtual*1000).getDay();
-		switch(diaHoje){
-			case 0: if(!liberarDiaExtra) return;
-			case 3:
-			case 6:
-			break;
-			default:
-				print(message,"modo free, funciona nas quartas e sábados. inclui domingos com 50% da meta de apoios no mês; 100% de apoio libera todos dias no mês. apoio para custear funcionamento [.apoio]");
-				return;
-			break;
-		}		
-	}
 	
 	
 	/* //old autorizacao
