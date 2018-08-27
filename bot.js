@@ -449,8 +449,10 @@ client.on('message', message => {
 				if(message.content.length == 6) {
 					message.author.send("Obrigado pelo interesse de apoiar, envie o comando apoio seguido de qualquer valor em reais (.apoio 5) ou envie msg privada para (@Reifel#5047 <@195731919424585728>),\r\ntem disponivel essas formas de pagamento: boleto, transferência bancária (banco do brasil), depósito, paypal");
 					reifelUser.send(message.author+" quer apoiar");
+					return;
 				}else{
 					reifelUser.send(message.author+" quer apoiar "+message.content);
+					return;
 				}				
 			}
 			
