@@ -456,7 +456,7 @@ client.on('message', message => {
 					case 6:
 					break;
 					default:
-						print(message,"modo free, funciona nas quartas e sábados. inclui domingos com 50% da meta de apoios no mês; 100% de apoio libera todos dias no mês. apoio para custear funcionamento [.apoio] ou seja cliente\r\n"+barraApoio);
+						print(message,"modo free, funciona nas quartas e sábados.\r\ninclui domingos se atingir 50% da meta de apoios no mês; 100% de apoio libera todos dias no mês.\r\ncomando para apoio para custear funcionamento [.apoio] ou seja cliente\r\n"+barraApoio);
 						return;
 					break;
 				}		
