@@ -2702,37 +2702,37 @@ function randomDonate(){
 function atualizarBarraApoio(progresso){
 	switch(progresso){
 		case 0:
-		barraApoio="\r\n```diff\r\n\r\n+[-----|-----] 0% apoios no mês [.apoio]\r\n```";
+		barraApoio="\r\n```diff\r\n\r\n+[-----|-----] 0% apoios no mês [.apoio][R$3 vale 10%]\r\n```";
 		break;
 		case 1:
-		barraApoio="\r\n```diff\r\n\r\n+[#----|-----] 10% apoios no mês [.apoio]\r\n```";
+		barraApoio="\r\n```diff\r\n\r\n+[#----|-----] 10% apoios no mês [.apoio][R$3 vale 10%]\r\n```";
 		break;
 		case 2:
-		barraApoio="\r\n```diff\r\n\r\n+[##---|-----] 20% apoios no mês [.apoio]\r\n```";
+		barraApoio="\r\n```diff\r\n\r\n+[##---|-----] 20% apoios no mês [.apoio][R$3 vale 10%]\r\n```";
 		break;
 		case 3:
-		barraApoio="\r\n```diff\r\n\r\n+[###--|-----] 30% apoios no mês [.apoio]\r\n```";
+		barraApoio="\r\n```diff\r\n\r\n+[###--|-----] 30% apoios no mês [.apoio][R$3 vale 10%]\r\n```";
 		break;
 		case 4:
-		barraApoio="\r\n```diff\r\n\r\n+[####-|-----] 40% apoios no mês [.apoio]\r\n```";
+		barraApoio="\r\n```diff\r\n\r\n+[####-|-----] 40% apoios no mês [.apoio][R$3 vale 10%]\r\n```";
 		break;
 		case 5:
-		barraApoio="\r\n```diff\r\n\r\n+[#####|-----] 50% apoios no mês (domingos open) [.apoio]\r\n```";
+		barraApoio="\r\n```diff\r\n\r\n+[#####|-----] 50% apoios no mês (domingos open) [.apoio][R$3 vale 10%]\r\n```";
 		break;
 		case 6:
-		barraApoio="\r\n```diff\r\n\r\n+[#####|#----] 60% apoios no mês [.apoio]\r\n```";
+		barraApoio="\r\n```diff\r\n\r\n+[#####|#----] 60% apoios no mês [.apoio][R$3 vale 10%]\r\n```";
 		break;
 		case 7:
-		barraApoio="\r\n```diff\r\n\r\n+[#####|##---] 70% apoios no mês [.apoio]\r\n```";
+		barraApoio="\r\n```diff\r\n\r\n+[#####|##---] 70% apoios no mês [.apoio][R$3 vale 10%]\r\n```";
 		break;
 		case 8:
-		barraApoio="\r\n```diff\r\n\r\n+[#####|###--] 80% apoios no mês [.apoio]\r\n```";
+		barraApoio="\r\n```diff\r\n\r\n+[#####|###--] 80% apoios no mês [.apoio][R$3 vale 10%]\r\n```";
 		break;
 		case 9:
-		barraApoio="\r\n```diff\r\n\r\n+[#####|####-] 90% apoios no mês [.apoio]\r\n```";
+		barraApoio="\r\n```diff\r\n\r\n+[#####|####-] 90% apoios no mês [.apoio][R$3 vale 10%]\r\n```";
 		break;
 		case 10:
-		barraApoio="\r\n```diff\r\n\r\n+[#####|#####] 100% apoios no mês (todos os dias) [.apoio]\r\n```";
+		barraApoio="\r\n```diff\r\n\r\n+[#####|#####] 100% apoios no mês (todos os dias) [.apoio][R$3 vale 10%]\r\n```";
 		break;
 	}
 }
