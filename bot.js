@@ -457,6 +457,11 @@ client.on('message', message => {
 				}				
 			}
 			
+			if(message.content.includes("convitegratis")){
+				message.author.send(conviteFreeLink);
+				reifelUser.send(message.author+" ta usando free");
+			}
+			
 			//aplicar limitante modo free
 			horaAtual = message.createdTimestamp;			
 			//mais simples (porem mais custoso)
@@ -469,7 +474,7 @@ client.on('message', message => {
 					case 6:
 					break;
 					default:
-						print(message,"modo free, funciona nas quartas e sábados.\r\ninclui domingos se atingir 50% da meta de apoios no mês; 100% de apoio libera todos dias no mês.\r\ncomando para apoio para custear funcionamento [.apoio] ou seja cliente\r\n"+barraApoio);
+						print(message,"modo free, funciona nas quartas e sábados.\r\ninclui domingos se atingir 50% da meta de apoios no mês; 100% de apoio libera todos dias no mês.\r\ncomando para apoio para custear funcionamento [.apoio] ou seja cliente, [.convitegratis] para usar gratis no seu servidor\r\n"+barraApoio);
 						return;
 					break;
 				}		
