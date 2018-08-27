@@ -440,12 +440,13 @@ function suspenso(message){
 
 client.on('message', message => {
 	if(message.author.bot) return; //ignora poupar processamento bot
+	if(!(message.content[0] === pfxCom1 || message.content[0] === pfxCom2)) return; //filtrar pfx bot
 	
 	var idGuild = Math.round(message.guild.id), idSala;
 	
 	if(idGuild!=363610360688672800){
 		if(!discAutorizados.includes(idGuild)){ //se cliente nao aplica
-			if(message.content[0] === pfxCom1 || message.content[0] === pfxCom2 && message.content.includes("apoio")){
+			if(message.content.includes("apoio")){
 				if(message.content.length == 6) {
 					message.author.send("Obrigado pelo interesse de apoiar, envie o comando apoio seguido de qualquer valor em reais (.apoio 5) ou envie msg privada para (@Reifel#5047 <@195731919424585728>),\r\ntem disponivel essas formas de pagamento: boleto, transferência bancária (banco do brasil), depósito, paypal");
 					reifelUser.send(message.author+" quer apoiar");
