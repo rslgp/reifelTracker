@@ -474,7 +474,7 @@ client.on('message', message => {
 					case 6:
 					break;
 					default:
-						print(message,"modo free, funciona nas quartas e sábados.\r\ninclui domingos se atingir 50% da meta de apoios no mês; 100% de apoio libera todos dias no mês.\r\ncomando para apoio para custear funcionamento [.apoio] ou seja cliente, [.convitegratis] para usar gratis no seu servidor\r\n"+barraApoio);
+						print(message,"modo gratuito [liberado](https://discordapp.com/oauth2/authorize?client_id=373443049818161153&scope=bot&permissions=469830656) a todos, os comandos estão ativos nas quartas e sábados.\r\nos domingos ao atingir 50% de apoio no mês e 100% de apoio libera todos dias no mês [R$3 vale 10%][o progresso ao apoiar é compartilhados por todos discords e qualquer membro pode apoiar].\r\ncomando para apoio para custear funcionamento [.apoio] ou contrate um plano,\r\npegue seu [convite do bot](https://discordapp.com/oauth2/authorize?client_id=373443049818161153&scope=bot&permissions=469830656) para seu servidor e use tb o modo gratuito (quartas e sabado)\r\n"+barraApoio);
 						return;
 					break;
 				}		
