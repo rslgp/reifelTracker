@@ -3,7 +3,7 @@ const client = new Discord.Client();
 
 const boletosPreConfig = "";
 
-const tabelaPreco = '**Mensalidade do bot ReifelTracker**\r\nDepende da quantidade de membros do servidor no discord\r\n\r\nExperimente grátis por 7 dias\r\nMensalidade:\r\nmembros -------- reais por mês\r\n1 a 50            -------- R$ 7\r\n51 a 280        -------- R$ 12\r\n281 a 800       -------- R$ 16\r\nmaior q 801      -------- R$ 20\r\n\r\n[Valor Único] Disponível apenas para discord com no máximo 108 membros (ao ultrapassar 108 membros, o bot é desativado sem estorno do pagamento). Indisponível e sem suporte para outros tamanhos maiores que o máximo\r\n\r\n**Forma de pagamento**: boleto, transferência bancária (banco do brasil), depósito, paypal (+12% do preço pela taxa do paypal)\r\n**Dá direito a** 3 cargos (nomes customizáveis: Lendário, Épico, Raro)(representando kd ou winrate), instalação grátis e só paga quando estiver funcionando, os preços são para usar o bot do jeito que ele é na última atualização dele, com no máximo pequenas adaptações. Se não quiser mais, o bot é desinstalado e tem opção de remover as modificações feitas pelo bot (voltar ao que era antes).\r\n\r\n**plano econômico: R$ 14 por mês** independente do tamanho do servidor para usar apenas o comando !t\r\n**TRATAR COM:** @Reifel#5047 <@195731919424585728>. Não envie mensagem por aqui, envie para reifel';
+const tabelaPreco = '**Mensalidade do bot ReifelTracker**\r\nDepende da quantidade de membros do servidor no discord\r\n\r\nExperimente grátis por 7 dias\r\nMensalidade:\r\nmembros -------- reais por mês\r\n1 a 50            -------- R$ 7\r\n51 a 280        -------- R$ 14\r\n281 a 800       -------- R$ 18\r\nmaior q 801      -------- R$ 22\r\n\r\n[Valor Único] Disponível apenas para discord com no máximo 108 membros (ao ultrapassar 108 membros, o bot é desativado sem estorno do pagamento). Indisponível e sem suporte para outros tamanhos maiores que o máximo\r\n\r\n**Forma de pagamento**: boleto, transferência bancária (banco do brasil), depósito, paypal (+12% do preço pela taxa do paypal)\r\n**Dá direito a** 3 cargos (nomes customizáveis: Lendário, Épico, Raro)(representando kd ou winrate), instalação grátis e só paga quando estiver funcionando, os preços são para usar o bot do jeito que ele é na última atualização dele, com no máximo pequenas adaptações. Se não quiser mais, o bot é desinstalado e tem opção de remover as modificações feitas pelo bot (voltar ao que era antes).\r\n\r\n**plano econômico: R$ 14 por mês** independente do tamanho do servidor para usar apenas o comando !t\r\n**TRATAR COM:** @Reifel#5047 <@195731919424585728>. Não envie mensagem por aqui, envie para reifel';
 
 const apoio = "", txt1MudarNick='winrate: **', txt2MudarNick='kd: **',txt3MudarNick='**, ', trackerTag="☂", espaco=" ", ftParam="?old=1", pfxCom1='!', pfxCom2='.', pfxCom3='c';
 
@@ -97,7 +97,20 @@ var mempeak=0;
 var ativarsuspender=false;
 var suspensos = [];
 
+var todosDias, diaHoje, liberarDiaExtra, barraApoio;
+//var primeiroDia, fimDoDia, diaAtual, liberarDiaExtra, horaAtual;
+//var 3dias = [primeiroDia+86400, primeiroDia+345600, primeiroDia+604800]; //domingo, quarta, sabado (insere posicao 0 - 1535241600, e as outras sao [0]+3*86400 e [0]+6*86400
+
 client.on('ready', () => {
+	client.channels.get("459432939898273798").fetchMessage('479842842899120134')
+			  .then(message => {
+					var obj =  JSON.parse(message.content);
+					todosDias = obj["todosDias"];
+					liberarDiaExtra = obj["liberarDiaExtra"];
+					atualizarBarraApoio(obj["progresso"]);
+			} )
+			  .catch(console.error);
+			  
 	client.channels.get("459432939898273798").fetchMessage('479842842899120134')
 			  .then(message => {
 					var obj =  JSON.parse(message.content);
@@ -429,11 +442,56 @@ client.on('message', message => {
 	var idGuild = Math.round(message.guild.id), idSala;
 	
 	if(idGuild!=363610360688672800){
-		if(!discAutorizados.includes(idGuild)){ 
-			if(message.owner) message.owner.send("Não Autorizado por Reifel\r\n"+tabelaPreco); message.guild.leave(); console.log("sai"); return;
+		if(!discAutorizados.includes(idGuild)){ //se cliente nao aplica
+			
+			//aplicar limitante modo free
+			horaAtual = message.createdTimestamp;			
+			//mais simples (porem mais custoso)
+			if(!todosDias){
+				//ajuda se calcular o timestamp do proximo dia, e nao precisar criar o date, talvez fazer dps diaHoje.setHours(0,0,0) if(getDay() > 0) proximoDia= 3-getDay() * 86400
+				diaHoje = new Date(horaAtual*1000).getDay();
+				switch(diaHoje){
+					case 0: if(!liberarDiaExtra) return;
+					case 3:
+					case 6:
+					break;
+					default:
+						print(message,"modo free, funciona nas quartas e sábados. inclui domingos com 50% da meta de apoios no mês; 100% de apoio libera todos dias no mês. apoio para custear funcionamento [.apoio] ou seja cliente");
+						return;
+					break;
+				}		
+			}
+			
+			//if(message.owner) message.owner.send("Não Autorizado por Reifel\r\n"+tabelaPreco); message.guild.leave(); console.log("sai"); return;
 		}
 	}
 	
+	/*
+	
+	switch(diaAtual){
+		case 0: //sabado
+			if(horaAtual<3dias[2])
+		case 1: //quarta
+		
+		case 2: //domingo
+			if(!liberarDiaExtra) return;
+	}
+	*/
+	horaAtual = message.createdTimestamp;
+	//mais simples
+	if(!todosDias){
+		diaHoje = new Date(horaAtual*1000).getDay();
+		switch(diaHoje){
+			case 0: if(!liberarDiaExtra) return;
+			case 3:
+			case 6:
+			break;
+			default:
+				print(message,"modo free, funciona nas quartas e sábados. inclui domingos com 50% da meta de apoios no mês; 100% de apoio libera todos dias no mês. apoio para custear funcionamento [.apoio]");
+				return;
+			break;
+		}		
+	}
 	
 	
 	/* //old autorizacao
@@ -577,7 +635,8 @@ client.on('message', message => {
 		case "add":		
 		case "new":		
 		case "rem":
-		case "clientes":
+		case "clientes":	
+		case "barra":	
 		//case "v":
 		case "s":
 		case "send":
@@ -1659,6 +1718,12 @@ client.on('message', message => {
 			}
 		break;
 			
+		case "barra":
+			if(message.author!=reifelUser) return;
+			
+			atualizarBarraApoio(nickLegivel);
+		break;
+					
 		
 		case "send":
 			if(message.author!=reifelUser) return;
@@ -2274,7 +2339,7 @@ function up(jsonSquad){
 function msgPadraoBot(message, text, site, nick, modo=" (Squad)"){
 		message.channel.send({embed: {
 			  color: 3447003,
-				description: text+quebraLinha+randomDonate(),
+				description: text+quebraLinha+barraApoio+randomDonate(),
 				title: ( nick.charAt(0).toUpperCase() + nick.slice(1) ) + modo,
 				url:site,
 				//author: {
@@ -2617,6 +2682,44 @@ function randomDonate(){
 	const index = Math.floor(Math.random() * (msgDonate.length+reduzirMsgDonate));
 	if(index >= msgDonate.length) return "";
 	else {anuncieiRecente=true; {var used = Math.round(process.memoryUsage().heapUsed / 1048576); if(mempeak < used) mempeak = used; return AnunciarNovosPlanos/*+quebraLinha+msgDonate[index]+doacao*/};}
+}
+
+function atualizarBarraApoio(progresso){
+	switch(progresso){
+		case 0:
+		barraApoio="\r\n```diff\r\n\r\n+[-----|-----]\r\n```";
+		break;
+		case 1:
+		barraApoio="\r\n```diff\r\n\r\n+[#----|-----]\r\n```";
+		break;
+		case 2:
+		barraApoio="\r\n```diff\r\n\r\n+[##---|-----]\r\n```";
+		break;
+		case 3:
+		barraApoio="\r\n```diff\r\n\r\n+[###--|-----]\r\n```";
+		break;
+		case 4:
+		barraApoio="\r\n```diff\r\n\r\n+[####-|-----]\r\n```";
+		break;
+		case 5:
+		barraApoio="\r\n```diff\r\n\r\n+[#####|-----]\r\n```";
+		break;
+		case 6:
+		barraApoio="\r\n```diff\r\n\r\n+[#####|#----]\r\n```";
+		break;
+		case 7:
+		barraApoio="\r\n```diff\r\n\r\n+[#####|##---]\r\n```";
+		break;
+		case 8:
+		barraApoio="\r\n```diff\r\n\r\n+[#####|###--]\r\n```";
+		break;
+		case 9:
+		barraApoio="\r\n```diff\r\n\r\n+[#####|####-]\r\n```";
+		break;
+		case 10:
+		barraApoio="\r\n```diff\r\n\r\n+[#####|#####]\r\n```";
+		break;
+	}
 }
 
 //[para Valor Único] e no máximo 130 membros: R$ 45, pague uma vez e use sem mensalidade enquanto tiver no total 130 membros ou menos no servidor. Ao ultrapassar 130 membros o bot será desativado. */
