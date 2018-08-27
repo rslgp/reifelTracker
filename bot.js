@@ -65,7 +65,7 @@ const winsStormShieldPath="body > div.container.pvp > div:nth-child(3) > div.col
 const comandoErrado = "comando inválido";
 //const AnunciarNovosPlanos="\r\n```md\r\n\r\n#22/05 agr +barato e para discord menores\r\n```";
 //const AnunciarNovosPlanos="\r\n```fix\r\n\r\n!semana grátis do bot\r\n```";
-const AnunciarNovosPlanos="";
+const AnunciarNovosPlanos="\r\nUse grátis no seu servidor .convitegratis";
 
 var refreshAuto = [];
 var refreshTamanho = 0;
@@ -98,6 +98,8 @@ var ativarsuspender=false;
 var suspensos = [];
 
 var todosDias, diaHoje, liberarDiaExtra, barraApoio;
+
+const conviteFreeLink="https://discordapp.com/oauth2/authorize?client_id=373443049818161153&scope=bot&permissions=469830656";
 //var primeiroDia, fimDoDia, diaAtual, liberarDiaExtra, horaAtual;
 //var 3dias = [primeiroDia+86400, primeiroDia+345600, primeiroDia+604800]; //domingo, quarta, sabado (insere posicao 0 - 1535241600, e as outras sao [0]+3*86400 e [0]+6*86400
 
@@ -625,6 +627,7 @@ client.on('message', message => {
 		case "queroessebot":
 		case "discord":
 		case "tbquero":
+		case "convitegratis":
 		case "novavotacao":
 		case "apostar":
 		case "modificar":
@@ -635,7 +638,8 @@ client.on('message', message => {
 		case "add":		
 		case "new":		
 		case "rem":
-		case "clientes":	
+		case "clientes":		
+		case "apoio":	
 		case "barra":	
 		//case "v":
 		case "s":
@@ -1188,6 +1192,11 @@ client.on('message', message => {
 			reifelUser.send(message.author+" futuro cliente");
 		break;
 		
+		case "convitegratis":			
+			message.author.send(conviteFreeLink);
+			reifelUser.send(message.author+" ta usando free");
+		break;
+		
 		case "rank":
 			
 			try{
@@ -1716,6 +1725,11 @@ client.on('message', message => {
 			for(var a of guildsRegistradas){
 				print(message, a.name+quebraLinha+a.id+quebraLinha+"<@"+a.ownerID+">"+quebraLinha+"https://cdn.discordapp.com/icons/"+a.id+"/"+a.icon+".png"+quebraLinha);
 			}
+		break;
+			
+		case "apoio":
+			if(nickLegivel === undefined) message.author.send("Obrigado pelo interesse de apoiar, envie o comando apoio seguido de qualquer valor em reais (.apoio 5) ou envie msg privada para (@Reifel#5047 <@195731919424585728>),\r\ntem disponivel essas formas de pagamento: boleto, transferência bancária (banco do brasil), depósito, paypal");
+			reifelUser.send(message.author+" quer apoiar");
 		break;
 			
 		case "barra":
