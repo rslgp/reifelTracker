@@ -2354,7 +2354,7 @@ function up(jsonSquad){
 function msgPadraoBot(message, text, site, nick, modo=" (Squad)"){
 		message.channel.send({embed: {
 			  color: 3447003,
-				description: text+quebraLinha+barraApoio+randomDonate(),
+				description: text+quebraLinha+randomDonate(),
 				title: ( nick.charAt(0).toUpperCase() + nick.slice(1) ) + modo,
 				url:site,
 				//author: {
