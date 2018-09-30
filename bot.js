@@ -1338,8 +1338,8 @@ client.on('message', message => {
 							}
 						break;
 						
-						case '313195845761761281'://galera gamer
-							padraoRankWin(message, message.member, nickLegivel, winrKD, '410812044397379604', '410811966618337280', '410811911567835157', [30, 22], "Continua onde está,\r\Diamante - winrate >= 30\r\Ouro - winrate >= 22\r\nBronze < 22");
+						case '313195845761761281'://galera gamer (09-18 gg esport gers)
+							padraoRankWin(message, message.member, nickLegivel, winrKD, '495770249308667915', '495770249841344522', '495770250026024971', [30, 22], "Continua onde está,\r\Diamante - winrate >= 30\r\Ouro - winrate >= 22\r\nBronze < 22");
 							
 							/*
 							const galComum='410811911567835157', galEpico='410811966618337280', galLendario='410812044397379604', continuaOndeEstaGal = "continua onde está,\r\Diamante - winrate >= 30\r\Ouro - winrate >= 22\r\nBronze < 22";
