@@ -1871,7 +1871,9 @@ client.on('message', message => {
 			}catch(e){};
 
 			//verificar os cargos que nao podem usar o bot (hierarquia)				
-			var roleBotPosicao = message.guild.roles.find("name","ReifelTracker").position;
+			var roleBotPosicao;
+			try {roleBotPosicao == message.guild.roles.find("name","ReifelTracker").position;}
+			catch(e){roleBotPosicao == message.guild.roles.find("name","reifelTracker").position;}
 			var tempRole;
 			var retorno ="```diff\r\n- Dono do servidor\r\n";
 			for(var roleID of message.guild.roles){
