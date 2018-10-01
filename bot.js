@@ -1468,6 +1468,10 @@ client.on('message', message => {
 						case '396432582897827840': //xirus
 							padraoRankWin(message, message.member, nickLegivel, winrKD, '466787845076549647', '466787845328207882', '466787845596512266');
 						break;
+							
+						case '495268890750746625': //marvel
+							padraoRankWin(message, message.member, nickLegivel, winrKD, '496161210056835092', '496161210178469900', '496161210702626826');
+						break;
 						
 					}
 					
