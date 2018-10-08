@@ -651,8 +651,8 @@ client.on('message', message => {
 		case "uninstall":
 		case "sair":
 		case "togglesuspender":
-		//case "suspender":
-		//case "dessuspender":
+		case "suspender":
+		case "dessuspender":
 		case "testesuspender":
 		break;
 		default:
