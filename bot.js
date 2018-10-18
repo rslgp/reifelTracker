@@ -1,8 +1,6 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 
-const boletosPreConfig = "";
-
 const tabelaPreco = '**Mensalidade do bot ReifelTracker**\r\nDepende da quantidade de membros do servidor no discord\r\n\r\nExperimente grátis por 7 dias\r\nMensalidade:\r\nmembros -------- reais por mês\r\n1 a 50            -------- R$ 6\r\n51 a 280        -------- R$ 12\r\n281 a 800       -------- R$ 16\r\nmaior q 801      -------- R$ 20\r\n\r\n**Forma de pagamento**: boleto, transferência bancária (banco do brasil), depósito, paypal (+12% do preço pela taxa do paypal)\r\n**Dá direito a** 3 cargos (nomes customizáveis: Lendário, Épico, Raro)(representando kd ou winrate), instalação grátis e só paga quando estiver funcionando, os preços são para usar o bot do jeito que ele é na última atualização dele, com no máximo pequenas adaptações. Se não quiser mais, o bot é desinstalado e tem opção de remover as modificações feitas pelo bot (voltar ao que era antes).\r\n\r\n**plano econômico: R$ 14 por mês** independente do tamanho do servidor para usar apenas o comando !t\r\n**TRATAR COM:** @Reifel#5047 <@195731919424585728>. Não envie mensagem por aqui, envie para reifel';
 
 const apoio = "", txt1MudarNick='winrate: **', txt2MudarNick='kd: **',txt3MudarNick='**, ', trackerTag="☂", espaco=" ", ftParam="?old=1", pfxCom1='!', pfxCom2='.', pfxCom3='c';
@@ -103,6 +101,62 @@ const conviteFreeLink="https://discordapp.com/oauth2/authorize?client_id=3734430
 //var primeiroDia, fimDoDia, diaAtual, liberarDiaExtra, horaAtual;
 //var 3dias = [primeiroDia+86400, primeiroDia+345600, primeiroDia+604800]; //domingo, quarta, sabado (insere posicao 0 - 1535241600, e as outras sao [0]+3*86400 e [0]+6*86400
 
+var frees = [];
+
+function salvarFrees(id, rolesCriadas){
+	frees[id+""] = rolesCriadas;	
+	client.channels.get("459432939898273798").fetchMessage('502436327258718208')
+				  .then(message2 => {
+						var obj = JSONbig.parse(message2.content);
+						//var obj = {};
+						obj[id+""] = rolesCriadas;
+						message2.edit(JSON.stringify(obj));
+				} )
+				  .catch(console.error);	
+}
+
+//joined a server
+client.on('guildCreate', guild => {
+	client.channels.get("459432939898273798").fetchMessage('502436327258718208')
+				  .then(message2 => {
+						var obj = JSONbig.parse(message2.content);
+						//var obj = {};
+						if(obj[guild.id+""]) return;
+						var rolesCriadas = [0,0,0];
+								try{
+									guild.createRole({
+										name: 'Lendário',
+										color: 'GOLD',
+										hoist: true, 
+										managed: true,
+										mentionable: true
+
+									}).then(role => rolesCriadas[0] = role.id).catch(console.error);
+
+									guild.createRole({
+										name: 'Épico',
+										color: 'PURPLE',
+										hoist: true, 
+										managed: true,
+										mentionable: true
+									}).then(role => rolesCriadas[1] = role.id).catch(console.error);		
+
+									guild.createRole({
+										name: 'Raro',
+										color: 'BLUE',
+										hoist: true, 
+										managed: true,
+										mentionable: true
+									}).then(role => {rolesCriadas[2] = role.id; salvarFrees(guild.id,rolesCriadas);}).catch(console.error);
+								}catch(e){};
+				} )
+				  .catch(console.error);
+				  
+			
+			//client.users.get(guild.ownerID).send("para permitir cargos utilizar o bot va em:\r\nconfigurações do servidor >> cargos >> arraste reifeltracker pra cima\r\ne coloque acima dos cargos que vão utilizar o bot.\r\nvc pode renomear os cargos, se precisar de suporte, envie mensagem para Reifel#5047");
+
+});
+
 client.on('ready', () => {
 	client.channels.get("459432939898273798").fetchMessage('483646835710361622')
 			  .then(message => {
@@ -128,6 +182,13 @@ client.on('ready', () => {
 					salasAutorizadas = obj["salas"];
 			} )
 			  .catch(console.error);
+			  
+	client.channels.get("459432939898273798").fetchMessage('502436327258718208')
+				  .then(message2 => {
+						var obj = JSONbig.parse(message2.content);
+						frees = obj;
+				} )
+				  .catch(console.error);
 	
 	client.user.username="ReifelTracker";
 	client.user.setUsername("ReifelTracker");
@@ -1473,6 +1534,11 @@ client.on('message', message => {
 							
 						case '495268890750746625': //marvel
 							padraoRankWin(message, message.member, nickLegivel, winrKD, '496161210056835092', '496161210178469900', '496161210702626826');
+						break;
+												
+						default:
+							var rolesFree = frees[message.guild.id+""];
+							padraoRankWin(message, message.member, nickLegivel, winrKD, rolesFree[0], rolesFree[1], rolesFree[2]);
 						break;
 						
 					}
