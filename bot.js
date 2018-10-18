@@ -582,7 +582,7 @@ client.on('message', message => {
 		}
 			
 	}
-	
+	//31/out
 	//idSala= Math.round(message.channel.id)
 	
 	//if(idGuild!=363610360688672800){
@@ -659,10 +659,10 @@ client.on('message', message => {
 			return;
 		break;
 	}
-	
-	if(ativarsuspender){
-		if(suspensos.includes(idGuild)) {suspenso(message);return;}
-	}
+	//31/out
+	//if(ativarsuspender){
+	//	if(suspensos.includes(idGuild)) {suspenso(message);return;}
+	//}
 	
 	//se tiver espaco no nick
 	var parametroUsado = "", nickLegivel="", site="";
