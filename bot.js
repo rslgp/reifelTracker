@@ -14,7 +14,8 @@ const usersPremium=['195731919424585728', '377626570816487449'];
 
 //"\r\n\r\ndá like pro fix da epic na escada q gira sozinha -> [clique aqui](https://accounts.epicgames.com/login/customized?regSubheading=Register&productCss=https%3A%2F%2Fwww.epicgames.com%2Ffortnite%2FssoAsset%2Ffortnite-custom.css&response_type=code&state=https%3A%2F%2Fwww.epicgames.com%2Ffortnite%2Fforums%2Fbugs-issues%2Fbug-reports%2F191591-stair-rotates-randomicaly-priorize-to-front-camera-and-only-rotate-if-pressed-r&client_id=52b63176173444eb8291b0dd60586e04&productName=fortnite&loginSubheading=Sign+In)";
 
-//setting up twitch""
+/*
+//setting up twitch
 const twitch = require("tmi.js");
 const twiconf = {
 	identity: {
@@ -26,6 +27,7 @@ const twiconf = {
 const clientTwitch = new twitch.client(twiconf);
 clientTwitch.connect();
 //fim twitch
+*/
 
 //CALABOCA VUE -- comentar em caso de debug, se precisar
 console.log = function log()
@@ -155,8 +157,13 @@ client.on('guildCreate', guild => {
 				  .catch(console.error);
 				  
 			
-			//client.users.get(guild.ownerID).send("para permitir cargos utilizar o bot va em:\r\nconfigurações do servidor >> cargos >> arraste reifeltracker pra cima\r\ne coloque acima dos cargos que vão utilizar o bot.\r\nvc pode renomear os cargos, se precisar de suporte, envie mensagem para Reifel#5047");
-
+			client.users.get(guild.ownerID).send("para permitir cargos utilizar o bot va em:\r\nconfigurações do servidor >> cargos >> arraste reifeltracker pra cima\r\ne coloque acima dos cargos que vão utilizar o bot.\r\nvc pode renomear os cargos, se precisar de suporte, envie mensagem para Reifel#5047");
+			
+			client.user.setPresence({
+				game: {
+					name: "com "+client.guilds.array().length +" |.discord"
+				}
+			}); 
 });
 
 client.on('ready', () => {
@@ -221,6 +228,7 @@ client.on('ready', () => {
 	*/
 });
 
+/*
 //twitch
 function mute(channel, user, time, reason){
 	clientTwitch.timeout(channel, user.username, time, reason).catch(function(e){});
@@ -328,7 +336,7 @@ clientTwitch.on('chat', function(channel, user, message, self){
 							case 2:
 							vencedor[0]='(3)';
 							break;
-						}*/
+						}//fechar comentario
 						msgTwitch("vencedor: "+vencedor[0]+" com "+vencedor[1]+" votos - -- -- - resultado total: (1): "+poll[0]+" - (2): "+poll[1]+" - (3): "+poll[2]);
 						contagemVoto=0;
 						poll[0]=poll[1]=poll[2]=0;//zerando poll
@@ -406,7 +414,7 @@ clientTwitch.on('chat', function(channel, user, message, self){
 				msgTwitch();
 			}
 		break;
-		*/
+		//fechar comentario
 		case "queroessebot":
 		case "discord":
 			msgTwitch("discord dos Followers - discord.gg/RyZNvbe");				
@@ -497,6 +505,7 @@ clientTwitch.on('connected', function(channel, user, message, self){
 	msgTwitch( "estou vivo, reifel");
 });
 //fim-twitch
+*/
 function suspenso(message){
 	print(message,"Suspenso, aguardando admin ou responsável renovar o contrato...");
 }
@@ -505,10 +514,11 @@ client.on('message', message => {
 	if(message.author.bot) return; //ignora poupar processamento bot
 	if(!(message.content[0] === pfxCom1 || message.content[0] === pfxCom2)) return; //filtrar pfx bot
 	
-	var idGuild = Math.round(message.guild.id), idSala;
+	//liberarFree 31/out
+	//var idGuild = Math.round(message.guild.id), idSala;
 	
-	if(idGuild!=363610360688672800){
-		if(!discAutorizados.includes(idGuild)){ //se cliente nao aplica
+	//if(idGuild!=363610360688672800){
+	//	if(!discAutorizados.includes(idGuild)){ //se cliente nao aplica
 			/*
 			if(message.content.includes("apoio")){
 				if(message.content.length == 6) {
@@ -545,9 +555,9 @@ client.on('message', message => {
 			}
 			*/
 			
-			if(message.owner) message.owner.send("Não Autorizado por Reifel\r\n"+tabelaPreco); message.guild.leave(); console.log("sai"); return;
-		}
-	}
+	//		if(message.owner) message.owner.send("Não Autorizado por Reifel\r\n"+tabelaPreco); message.guild.leave(); console.log("sai"); return;
+	//	}
+	//}
 	
 	/*
 	
@@ -559,80 +569,7 @@ client.on('message', message => {
 		case 2: //domingo
 			if(!liberarDiaExtra) return;
 	}
-	*/
-	
-	
-	/* //old autorizacao
-	switch(message.guild.id){//se nao for server autorizado, o bot sai
-		case "368240657816354836": //bro
-			if(message.channel.id!=387003077695373315) return; //se nao for no bot-spam ignora a msg (poupa processamento)
-		break;
-		
-		//case "373611766737010690": //PDX
-		//break;
-			
-		case "263777831635386368": //brothers
-			if(message.channel.id!=453622337997111296) return;
-			suspenso(message);return;
-		break;
-		
-		case "385896642429321216": //colosso pagou 14.88 (abaixo do de tabela) mes 05
-			if(message.channel.id!=442862631691354112) return;
-			suspenso(message);return;
-		break;
-		
-		case "363610360688672778": //privado fortnite-reifel
-		break;
-		
-		case "398566083101196298": //fortnite da depressaum killerbr - pago 15 mes 03
-			if(message.channel.id!=419295377808818177) return;
-			suspenso(message);return;
-		break;
-		
-		//case "397143937057554433": //fps
-		//break;
-		
-		//case "325413143943577601"://pai
-		//	if(message.channel.id!=410482990091862036) return; //se nao for no tracker ignora a msg (poupa processamento)
-			//console.log(message.guild.roles);
-		//break;
-		
-		case '313195845761761281'://galera gamer - pago 20 mes 02
-			if(message.channel.id!=410811452232826892) return;
-			
-			suspenso(message);return;
-			
-			if(message.author.bot){ //batalha de bots
-				if(message.author.id==373443049818161153) return; //eh o reifeltracker
-				message.member.removeRole('313213175824777219').catch(err => console.log(err)); //remove o cargo admin
-				message.channel.overwritePermissions(message.author, {READ_MESSAGES: false, ADMINISTRATOR:false}).catch(console.error); //impede de ler futuras msgs				
-				print(message,"Este canal de texto é pequeno demais para dois bots meu chapa, vá para outro");
-			}
-		break;
-		
-		case '377628278627893248': //most wanted mwd ninja - pago 20 mes 05
-			if(message.channel.id!=428883305874718731) return;
-			
-			//suspenso(message);return;
-			//console.log(message.guild.roles);
-		break;
-			
-		case '381535199454035968': //skgaming
-			if(message.channel.id!=455283038067097602) return;
-			suspenso(message);return;
-		break;
-			
-		case '248137763050749952': //viruz-thiago
-			if(message.channel.id!=458110549251850241) return;
-			
-		break;
-		
-		default:
-			if(message.owner) message.owner.send("Não Autorizado por Reifel\r\n"+tabelaPreco); message.guild.leave(); console.log("sai"); return;
-		break;
-			
-	}*/
-	
+	*/	
 	
 	if(message.content[0] === pfxCom1) {
 		//print(message,"Opaa...\r\na v2 do reifelTracker agora inicia o comando com **.** \r\nexemplos: .t .up .help"); 
@@ -646,11 +583,11 @@ client.on('message', message => {
 			
 	}
 	
-	idSala= Math.round(message.channel.id)
+	//idSala= Math.round(message.channel.id)
 	
-	if(idGuild!=363610360688672800){
-		if(!salasAutorizadas.includes( idSala )) return;
-	}
+	//if(idGuild!=363610360688672800){
+	//	if(!salasAutorizadas.includes( idSala )) return;
+	//}
 	
 	//anti-spam
 	if(cooldownUser.indexOf(message.member.id) !== -1 ){print(message,"você está em cooldown");return;}
