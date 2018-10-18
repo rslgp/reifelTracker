@@ -67,7 +67,7 @@ const winsStormShieldPath="body > div.container.pvp > div:nth-child(3) > div.col
 const comandoErrado = "comando inválido";
 //const AnunciarNovosPlanos="\r\n```md\r\n\r\n#22/05 agr +barato e para discord menores\r\n```";
 //const AnunciarNovosPlanos="\r\n```fix\r\n\r\n!semana grátis do bot\r\n```";
-const AnunciarNovosPlanos="\r\n**ReifelTracker** completo grátis até 31/outubro, aproveitem! convite **[AQUI](https://discordapp.com/oauth2/authorize?client_id=373443049818161153&scope=bot&permissions=469830656)**";
+const AnunciarNovosPlanos="\r\n**ReifelTracker** completo grátis até 31/10 **[AQUI](https://discordapp.com/oauth2/authorize?client_id=373443049818161153&scope=bot&permissions=469830656)**";
 
 var refreshAuto = [];
 var refreshTamanho = 0;
@@ -101,7 +101,6 @@ var suspensos = [];
 
 var todosDias, diaHoje, liberarDiaExtra, barraApoio;
 
-const conviteFreeLink="https://discordapp.com/oauth2/authorize?client_id=373443049818161153&scope=bot&permissions=469830656";
 //var primeiroDia, fimDoDia, diaAtual, liberarDiaExtra, horaAtual;
 //var 3dias = [primeiroDia+86400, primeiroDia+345600, primeiroDia+604800]; //domingo, quarta, sabado (insere posicao 0 - 1535241600, e as outras sao [0]+3*86400 e [0]+6*86400
 
