@@ -67,7 +67,7 @@ const winsStormShieldPath="body > div.container.pvp > div:nth-child(3) > div.col
 const comandoErrado = "comando inválido";
 //const AnunciarNovosPlanos="\r\n```md\r\n\r\n#22/05 agr +barato e para discord menores\r\n```";
 //const AnunciarNovosPlanos="\r\n```fix\r\n\r\n!semana grátis do bot\r\n```";
-const AnunciarNovosPlanos="\r\n**ReifelTracker** completo grátis até 31/10 **[AQUI](https://discordapp.com/oauth2/authorize?client_id=373443049818161153&scope=bot&permissions=469830656)**";
+const AnunciarNovosPlanos="\r\n**[Convite](https://discordapp.com/oauth2/authorize?client_id=373443049818161153&scope=bot&permissions=469830656)** pro seu discord";
 
 var refreshAuto = [];
 var refreshTamanho = 0;
@@ -158,11 +158,11 @@ client.on('guildCreate', guild => {
 			
 			client.users.get(guild.ownerID).send("para permitir cargos utilizar o bot va em:\r\nconfigurações do servidor >> cargos >> arraste reifeltracker pra cima\r\ne coloque acima dos cargos que vão utilizar o bot.\r\nvc pode renomear os cargos, se precisar de suporte, envie mensagem para Reifel#5047");
 			
-			client.user.setPresence({
-				game: {
-					name: "com "+client.guilds.array().length +" |.discord"
-				}
-			}); 
+			//client.user.setPresence({
+			//	game: {
+			//		name: "com "+client.guilds.array().length +" |.discord"
+			//	}
+			//}); 
 });
 
 client.on('ready', () => {
