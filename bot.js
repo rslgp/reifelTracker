@@ -654,6 +654,7 @@ client.on('message', message => {
 		case "dessuspender":
 		case "testesuspender":
 		case "boleto":
+		case "recorde":
 		break;
 		default:
 			return;
