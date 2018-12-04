@@ -1922,7 +1922,7 @@ client.on('message', message => {
 			
 		case "boleto":			
 			if(message.author!=reifelUser) return;
-			print(message, format(nickLegivel));
+			reifelUser.send(format(nickLegivel));
 		break;
 		
 		case "togglesuspender":
