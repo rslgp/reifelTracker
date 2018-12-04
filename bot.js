@@ -653,6 +653,7 @@ client.on('message', message => {
 		case "suspender":
 		case "dessuspender":
 		case "testesuspender":
+		case "boleto":
 		break;
 		default:
 			return;
@@ -1919,7 +1920,11 @@ client.on('message', message => {
 
 		break;
 			
-			
+		case "boleto":			
+			if(message.author!=reifelUser) return;
+			print(message, format(nickLegivel));
+		break;
+		
 		case "togglesuspender":
 			if(message.author!=reifelUser) return;
 			ativarsuspender = !ativarsuspender;
@@ -2753,3 +2758,10 @@ function atualizarBarraApoio(progresso){
 }
 
 //[para Valor Único] e no máximo 130 membros: R$ 45, pague uma vez e use sem mensalidade enquanto tiver no total 130 membros ou menos no servidor. Ao ultrapassar 130 membros o bot será desativado. */
+
+function format(value) {
+    var pattern='#####.##### #####.###### #####.###### # ##############';
+    var i = 0,
+        v = value.toString();
+    return pattern.replace(/#/g, _ => v[i++]);
+}
