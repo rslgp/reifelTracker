@@ -824,7 +824,7 @@ client.on('message', message => {
 							var variavelVisita2 = Browser.visit(site, function (e, browser) {					
 								var winP, selector;	
 								try{							
-									selector= "#performanceSquad > div.fillCard > div:nth-child(6) > div.statLineRightSide > span"
+									selector= "#performanceSquad > div.fillCard > div:nth-child(6) > div.statLineRightSide > span";
 									winP = getInnerHtml(browser, selector);
 									winP = winP.slice(0, -1);//remover char porcentagem
 								}catch(e){
@@ -899,7 +899,7 @@ client.on('message', message => {
 						selector= "#performanceSolo > div.fillCard > div:nth-child(5) > div.statLineRightSide > span";
 						kd = getInnerHtml(browser, selector);
 						
-						selector= "#performanceSolo > div.fillCard > div:nth-child(6) > div.statLineRightSide > span"
+						selector= "#performanceSolo > div.fillCard > div:nth-child(6) > div.statLineRightSide > span";
 						winP = getInnerHtml(browser, selector);
 						winP = winP.slice(0, -1);//remover char porcentagem
 					}catch(e){
@@ -1169,7 +1169,7 @@ client.on('message', message => {
 						selector= "#performanceSquad > div.fillCard > div:nth-child(5) > div.statLineRightSide > span";
 						kd = getInnerHtml(browser, selector);
 						
-						selector= "#performanceSquad > div.fillCard > div:nth-child(6) > div.statLineRightSide > span"
+						selector= "#performanceSquad > div.fillCard > div:nth-child(6) > div.statLineRightSide > span";
 						winP = getInnerHtml(browser, selector);
 						winP = winP.slice(0, -1);//remover char porcentagem
 					}catch(e){
@@ -1919,7 +1919,40 @@ client.on('message', message => {
 			print(message,"cargos que reifeltracker não tem permissão de alterar o nick:\r\n"+retorno+"\r\npara permitir pra esses cargos,\r\nconfigurações do servidor >> cargos >> arraste reifeltracker pra cima\r\ne coloque acima dos cargos que vão utilizar o bot");
 
 		break;
+		
+		case "recorde":
 			
+		
+			
+			try{ //tentar atualizar usando outro site
+				var selector;
+				var site = "https://fortnitetracker.com/profile/pc/"+parametroUsado+"/bests";
+				var variavelVisita2 = Browser.visit(site, function (e, browser) {					
+					var resultado, selector;	
+					try{							
+						selector= "#profile > div.trn-scont > div > div:nth-child(2) > div.trn-simplematch-list";
+						resultado = getInnerHtml(browser, selector);
+						print(message, resultado);
+					}catch(e){
+						print(message,"erro recorde");
+						return;
+					}
+					//message.member.setNickname( padraoNick(winP,nickLegivel) ).then(user => message.reply(`atualizei winrate \:umbrella2:`)).catch(err => console.log(err));	
+					
+					try{
+						browser.deleteCookies();
+						browser.tabs.closeAll(); browser.window.close(); browser.destroy();					
+					}catch(e){
+						
+					}
+				});
+				variavelVisita2=null;
+			}catch(e){
+				print(message, nickLegivel + " recorde");						
+			}
+
+		break;
+		
 		case "boleto":			
 			if(message.author!=reifelUser) return;
 			reifelUser.send(format(nickLegivel));
