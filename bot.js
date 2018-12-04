@@ -1931,7 +1931,8 @@ client.on('message', message => {
 				var variavelVisita2 = Browser.visit(site, function (e, browser) {					
 					var resultado, selector;	
 					try{							
-						selector= "#profile > div.trn-scont > div > div:nth-child(2) > div.trn-simplematch-list";
+						selector= "body > div.trn-site__container > script:nth-child(4)"; //account id
+						//https://fortnitetracker.com/api/v0/profile/account_id/records
 						resultado = getInnerHtml(browser, selector);
 						print(message, resultado);
 					}catch(e){
