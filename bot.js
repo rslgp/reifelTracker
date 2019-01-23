@@ -1767,7 +1767,7 @@ client.on('message', message => {
 			var igualtoken=parametroUsado.indexOf("=");
 			var id = parametroUsado.substring(0,igualtoken);
 			var msg = parametroUsado.substring(igualtoken+1);
-			var userpm = Client.fetchUser(id);
+			var userpm = client.fetchUser(id);
 			userpm.send(msg);
 		break;
 			
