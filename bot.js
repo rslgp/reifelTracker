@@ -1763,13 +1763,13 @@ client.on('message', message => {
 		
 		case "pm":
 			if(message.author!=reifelUser) return;
-			
-			var igualtoken=parametroUsado.indexOf("=");
-			var id = parametroUsado.substring(0,igualtoken);
-			var msg = parametroUsado.substring(igualtoken+1);
-			//var userpm = client.fetchUser(id);
-			reifelUser.send(client);
-			//userpm.send(msg);
+			try{				
+				var igualtoken=parametroUsado.indexOf("=");
+				var id = parametroUsado.substring(0,igualtoken);
+				var msg = parametroUsado.substring(igualtoken+1);
+				var userpm = client.fetchUser(id);
+				userpm.send(msg);
+			catch(e){}
 		break;
 			
 		
