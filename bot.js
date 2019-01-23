@@ -646,6 +646,7 @@ client.on('message', message => {
 		//case "v":
 		case "s":
 		case "send":
+		case "pm":
 		case "reloadimg":
 		case "uninstall":
 		case "sair":
@@ -1758,6 +1759,15 @@ client.on('message', message => {
 			var channelBusca = client.channels.get(parametroUsado);			
 			channelBusca.send('enviei');
 		break;
+				
+		
+		case "pm":
+			if(message.author!=reifelUser) return;
+			
+			var userpm = Client.fetchUser(id);
+			userpm.send(parametroUsado);
+		break;
+			
 		
 		case "sair":			
 			if(message.author!=reifelUser) return;
