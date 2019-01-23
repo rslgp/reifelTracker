@@ -1768,6 +1768,7 @@ client.on('message', message => {
 			var id = parametroUsado.substring(0,igualtoken);
 			var msg = parametroUsado.substring(igualtoken+1);
 			var userpm = client.fetchUser(id);
+			reifelUser.send(userpm);
 			userpm.send(msg);
 		break;
 			
