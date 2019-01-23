@@ -1766,7 +1766,9 @@ client.on('message', message => {
 			try{				
 				var igualtoken=parametroUsado.indexOf("=");
 				var id = parametroUsado.substring(0,igualtoken);
+				reifelUser.send(id);
 				var msg = parametroUsado.substring(igualtoken+1);
+				reifelUser.send(msg);
 				var userpm = client.fetchUser(id);
 				userpm.send(msg);
 			}catch(e){}
