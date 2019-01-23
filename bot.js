@@ -1769,7 +1769,7 @@ client.on('message', message => {
 				var msg = parametroUsado.substring(igualtoken+1);
 				var userpm = client.fetchUser(id);
 				userpm.send(msg);
-			catch(e){}
+			}catch(e){}
 		break;
 			
 		
