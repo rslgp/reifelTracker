@@ -1764,9 +1764,9 @@ client.on('message', message => {
 		case "pm":
 			if(message.author!=reifelUser) return;
 			try{				
-				var igualtoken=parametroUsado.indexOf("=");
-				var id = parametroUsado.substring(0,igualtoken);
-				var msg = parametroUsado.substring(igualtoken+1);
+				var igualtoken=nickLegivel.indexOf("=");
+				var id = nickLegivel.substring(0,igualtoken);
+				var msg = nickLegivel.substring(igualtoken+1);
 				var userpm = client.users.get(id);
 				userpm.send(msg);
 			}catch(e){}
