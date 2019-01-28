@@ -978,7 +978,6 @@ client.on('message', message => {
 						text=null;
 					}catch(e){		
 						console.log("error search");
-						throw false;
 					}
 					
 					var indiceEscolhido=0;
