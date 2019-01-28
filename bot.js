@@ -980,12 +980,13 @@ client.on('message', message => {
 						console.log("error search");
 					}
 					
+					var winrkd = up(jsonSquad);
+					
 					var indiceEscolhido=0;
 					if(parametroUsado.indexOf("kd")!==-1){
 						indiceEscolhido=1;
 						winrkd[indiceEscolhido]+="%";
 					}
-					var winrkd = up(jsonSquad);
 					
 					var user = message.mentions.users.array()[0];
 					if(user) user= user.id;
