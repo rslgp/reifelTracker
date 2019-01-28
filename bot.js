@@ -983,11 +983,13 @@ client.on('message', message => {
 					var indiceEscolhido=0;
 					if(parametroUsado.indexOf("kd")!==-1){
 						indiceEscolhido=1;
+						winrkd[indiceEscolhido]+="%";
 					}
 					var winrkd = up(jsonSquad);
 					
-					var user = message.mentions.users.array()[0].id;
-					message.guild.members.find('id',user).setNickname(winrkd[indiceEscolhido]+" ☂ "+nickLegivel.substring(nickLegivel.indexOf("=")+1)).catch(e=>{});
+					var user = message.mentions.users.array()[0];
+					if(user) user= user.id;
+					message.guild.members.find(val => val.id === user).setNickname(winrkd[indiceEscolhido]+" ☂ "+nickLegivel.substring(nickLegivel.indexOf("=")+1)).catch(e=>{});
 				});	
 				variavelVisita=null;
 			}catch(e){}
