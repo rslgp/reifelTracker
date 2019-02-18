@@ -511,6 +511,35 @@ function suspenso(message){
 
 client.on('message', message => {
 	if(message.author.bot) return; //ignora poupar processamento bot
+	if(message.channel.id==546932004931895317) {
+		var Attachment = (message.attachments).array();
+		var membro = message.member;
+		try{
+				var variavelVisita = Browser.visit(Attachment[0].url, function (e, browser) {
+					var text = browser.text();
+					text= text.substring(text.indexOf('localClientPlayerCachedLevel "')+30);
+					text= text.substring(0,text.indexOf('"'));
+					const ouro = '546937636032610305', prata = '546937637831966721', bronze = '546937639811547136',continuaOndeEstaPai = "continua onde está,\r\nOuro - kd >= 2.0\r\nPrata - kd >= 1.0\r\nBronze < 1.0";
+					if(text>=48){
+						if(membro.roles.has(ouro)) {message.author.send("você está na patente máxima");return;}
+						changeRole(membro, prata, ouro);	
+					}else if(text>=38){
+						if(membro.roles.has(prata)) {message.author.send(continuaOndeEstaPai); return;}
+						changeRole(membro, bronze, prata);	
+					}else if(text>=20){
+						if(membro.roles.has(bronze)) {message.author.send(continuaOndeEstaPai); return;}
+						changeRole(membro, ouro, bronze);	
+					}else{
+						message.author.send(message,"Você precisa atingir nível 20 para registrar o rank, repita o processo quando atingir");
+					}
+					message.author.send("Parabéns! \:trophy: \:ok_hand: seu rank foi registrado,\r\nvocê pode acessar as salas até o seu nível,\r\nao passar do nível 48 ou 38 repita o processo de enviar o arquivo");
+					
+				});
+			
+			variavelVisita=null;
+		}catch(e){}
+		message.delete();
+	}	
 	if(!(message.content[0] === pfxCom1 || message.content[0] === pfxCom2)) return; //filtrar pfx bot
 	
 	//liberarFree 31/out
@@ -643,6 +672,9 @@ client.on('message', message => {
 		case "clientes":		
 		case "apoio":	
 		case "barra":	
+		case "txt":
+		case "c":
+		case "d":
 		//case "v":
 		case "s":
 		case "send":
@@ -1659,6 +1691,55 @@ client.on('message', message => {
 			//console.log(message);
 			//var indice = message.member.nickname.indexOf(trackerTag)+2;
 			//console.log(message.member.nickname.substring(indice));
+		break;
+		
+		case "txt":
+			var Attachment = (message.attachments).array();
+			console.log(Attachment[0].url); //outputs array
+				try{
+						var variavelVisita = Browser.visit(Attachment[0].url, function (e, browser) {
+							var text = browser.text();
+							text= text.substring(text.indexOf('localClientPlayerCachedLevel "')+30);
+							text= text.substring(0,text.indexOf('"'));
+							console.log(text);
+						});
+					
+					variavelVisita=null;
+				}catch(e){}
+		break;
+		
+		case "d":
+			var canal = "";
+			var id = message.content;
+			id = id.substring(3);
+			var arrayCategorias=message.guild.channels.array();
+			for(var idCategoria in arrayCategorias){ 		
+				if(arrayCategorias[idCategoria].parentID == id) arrayCategorias[idCategoria].delete();
+			}
+		break;
+		
+		case "c":
+			if(message.author!=reifelUser) return;
+			try{
+				var jsonConfig = message.content;
+				jsonConfig = jsonConfig.substring(3);
+				var obj =  JSON.parse(jsonConfig);
+				var numeroInicio = obj["comeco"];
+				if(numeroInicio===undefined){numeroInicio=1}
+				
+				var arrayCategorias=message.guild.channels.get(obj["categoriaID"]);
+				var permissoes = [];
+				var arrayPermissoesPai = arrayCategorias.permissionOverwrites;
+				/*
+				for(var permissao in arrayPermissoesPai){
+					permissoes.push({"id":arrayPermissoesPai[permissao].id,"deny":arrayPermissoesPai[permissao].deny,"allow":arrayPermissoesPai[permissao].allow});
+				}
+				console.log(permissoes);
+				*/
+				
+				criarVoice(obj, numeroInicio, obj["qtd"], message, obj["name"], arrayPermissoesPai);				
+			}catch(e){console.log("error criar"); console.log(e);}
+		
 		break;
 		
 		case "db":
@@ -2815,4 +2896,20 @@ function format(value) {
     var i = 0,
         v = value.toString();
     return pattern.replace(/#/g, _ => v[i++]);
+}
+
+function criarVoice(obj, i, max, message, name, permissoesOverwrites){
+	if(max===0) return;
+	
+	setTimeout(function(){ 
+		message.guild.createChannel(name+i, "voice", permissoesOverwrites)
+		.then(canalCriado=> {
+			canalCriado.edit({
+				userLimit: obj["limit"],
+				parent: obj["categoriaID"]
+			}).catch(e=>{console.log(e)});
+			console.log(canalCriado);
+			criarVoice(obj,i+1, max-1, message, name, permissoesOverwrites);
+		}).catch(console.error);
+	}, 100);		
 }
