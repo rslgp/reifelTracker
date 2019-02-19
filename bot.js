@@ -533,12 +533,12 @@ client.on('message', message => {
 						message.author.send(message,"Você precisa atingir nível 20 para registrar o rank, repita o processo quando atingir");
 					}
 					message.author.send("Parabéns! \:trophy: \:ok_hand: seu rank foi registrado,\r\nvocê pode acessar as salas até o seu nível,\r\nao passar do nível 48 ou 38 repita o processo de enviar o arquivo");
-					
+					message.delete();
 				});
 			
 			variavelVisita=null;
-		}catch(e){}
-		message.delete();
+		}catch(e){message.delete();}
+		
 	}	
 	if(!(message.content[0] === pfxCom1 || message.content[0] === pfxCom2)) return; //filtrar pfx bot
 	
