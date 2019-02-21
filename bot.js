@@ -1239,7 +1239,7 @@ client.on('message', message => {
 						text = "[{"+text.substring(0,text.indexOf(']'))+"]";
 						text = JSON.parse(text);	
 						level = text[0].level.value
-						print(message, level);
+						
 						level = [level, level];
 						
 						mudarNick(message, padraoNickApex(level[0],nickLegivel));
