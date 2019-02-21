@@ -3019,7 +3019,12 @@ function criarVoice(obj, i, max, message, name, permissoesOverwrites){
 }
 
 function padraoRankWinApex(message, usuario, nickLegivel, winrKD, lendario, epico, raro, tabela=[78,48,20], continuaRank="Continua onde está,\r\Lendário - winrate >= 30\r\Epico - winrate >= 22\r\nRaro < 22"){
-		if(winrKD[0]>=tabela[0]){
+		var maximo = "547963888256286732";
+		if(winrKD[0]==100){
+			if(usuario.roles.has(maximo)) {print(message,"Você está na patente máxima");return;}
+			changeRole(usuario, lendario, maximo);	
+			print(message,msg1Rank+maximo+msg2Rank);
+		}else if(winrKD[0]>=tabela[0]){
 			if(usuario.roles.has(lendario)) {print(message,"Você está na patente máxima");return;}
 			changeRole(usuario, epico, lendario);	
 			print(message,msg1Rank+lendario+msg2Rank);
@@ -3027,7 +3032,7 @@ function padraoRankWinApex(message, usuario, nickLegivel, winrKD, lendario, epic
 			if(usuario.roles.has(epico)) {print(message,continuaRank); return;}
 			changeRole(usuario, raro, epico);	
 			print(message,msg1Rank+epico+msg2Rank);
-		}else if(winrKD[0]>=tabela[1]){
+		}else if(winrKD[0]>=tabela[2]){
 			if(usuario.roles.has(raro)) {print(message,continuaRank);}
 			changeRole(usuario, lendario, raro);	
 			print(message,msg1Rank+raro+msg2Rank);
