@@ -644,6 +644,8 @@ client.on('message', message => {
 		case "alt":
 		case "alt2":
 		case "alt3":
+		case "lvl":
+		case "r":
 		case "up":
 		case "vs":
 		case "help":
@@ -1219,6 +1221,59 @@ client.on('message', message => {
 			}catch(e){}
 		break;
 		
+		case "r":
+			site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
+			try{
+				var variavelVisita = Browser.visit(site, function (e, browser) {				
+					var level;	
+					try{
+						var text = browser.html();
+						text = text.substring(text.indexOf('"playerId": "'));
+						text = "[{"+text.substring(0,text.indexOf(']'))+"]";
+						text = JSON.parse(text);	
+						level = text[0].level.value
+						print(message, level);
+						level = [level, level];
+						
+						mudarNick(message, padraoNickApex(level[0],nickLegivel));
+					}catch(e){
+						print(message,"ops: esqueceu do nick? se nao, os dados estao offline");
+						return;
+					}
+					//var resultado = formatarMsg(winP,kd,wins,kills,'--');
+					//msgPadraoBot(message, resultado, site, nickLegivel);
+				});	
+				variavelVisita=null;
+			}catch(e){}
+		break;
+			
+		case "lvl":
+			site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
+			try{
+				var variavelVisita = Browser.visit(site, function (e, browser) {				
+					//var level,wins,winP,kd,kills,selector;	
+					var level;
+					try{
+						var text = browser.html();
+						text = text.substring(text.indexOf('"playerId": "'));
+						text = "[{"+text.substring(0,text.indexOf(']'))+"]";
+						text = JSON.parse(text);	
+						level = text[0].level.value
+						print(message, level);
+						level = [level, level];
+						
+						padraoRankWinApex(message, message.member, nickLegivel, level, "546937636032610305", "546937637831966721", "546937639811547136");
+					}catch(e){
+						print(message,"ops: esqueceu do nick? se nao, os dados estao offline");
+						return;
+					}
+					//var resultado = formatarMsg(winP,kd,wins,kills,'--');
+					//msgPadraoBot(message, resultado, site, nickLegivel);
+				});	
+				variavelVisita=null;
+			}catch(e){}
+		break;
+			
 			
 		case "semana":
 			message.author.send("Certo! avisei ao Reifel que vc quer semana gratis, ele vai mandar msg pra vc jaja pra comecar a instalação, se quiser adiantar: cria uma sala reifeltracker no discord q vai usar e manda um convite pro @Reifel#5047 <@195731919424585728> que ele instala");
@@ -2613,6 +2668,10 @@ function padraoNickKD(kd, nick){
 	return kd+" ☂"+TAG+espaco+nick;
 }
 
+function padraoNickApex(level, nick){
+	return level+" ★"+TAG+espaco+nick;
+}
+
 function getJsonSquad(text){
 	/*
 	//old
@@ -2912,4 +2971,24 @@ function criarVoice(obj, i, max, message, name, permissoesOverwrites){
 			criarVoice(obj,i+1, max-1, message, name, permissoesOverwrites);
 		}).catch(console.error);
 	}, 100);		
+}
+
+function padraoRankWinApex(message, usuario, nickLegivel, winrKD, lendario, epico, raro, tabela=[48,38,20], continuaRank="Continua onde está,\r\Lendário - winrate >= 30\r\Epico - winrate >= 22\r\nRaro < 22"){
+		if(winrKD[0]>=tabela[0]){
+			if(usuario.roles.has(lendario)) {print(message,"Você está na patente máxima");return;}
+			changeRole(usuario, epico, lendario);	
+			print(message,msg1Rank+lendario+msg2Rank);
+		}else if(winrKD[0]>=tabela[1]){
+			if(usuario.roles.has(epico)) {print(message,continuaRank); return;}
+			changeRole(usuario, raro, epico);	
+			print(message,msg1Rank+epico+msg2Rank);
+		}else if(winrKD[0]>=tabela[1]){
+			if(usuario.roles.has(raro)) {print(message,continuaRank);}
+			changeRole(usuario, lendario, raro);	
+			print(message,msg1Rank+raro+msg2Rank);
+		}else{
+			print(message,"Você precisa atingir nível 20 para registrar o rank, repita o processo quando atingir");
+		}
+		mudarNick(message, padraoNickApex(winrKD[0],nickLegivel));
+		//usuario.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(usuario.setNickname( padraoNick(winrKD[0],nickLegivel) )).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));	
 }
