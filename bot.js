@@ -1222,6 +1222,13 @@ client.on('message', message => {
 		break;
 		
 		case "r":
+			try{
+				nickLegivel=parametroUsado = getNickConhecidoApex(message);
+				parametroUsado=encodeURI(parametroUsado);
+				if(args[1] !== undefined) print(message,errorNaoUsarProprioNick);
+			}catch(e){
+				//caso nao tenha guarda chuva, mantem o nick como arg
+			}
 			site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
 			try{
 				var variavelVisita = Browser.visit(site, function (e, browser) {				
@@ -2835,7 +2842,7 @@ function getInnerHtml(browser, selector){
 function getNickConhecido(message){
 	var posicaoGuardaChuva = -1;
 	try{
-		posicaoGuardaChuva = message.member.nickname.indexOf(trackerTag);		
+		posicaoGuardaChuva = message.member.nickname.indexOf("★");		
 	}catch(e){
 		
 	}
@@ -2872,6 +2879,45 @@ function getNickConhecido(message){
 	}
 }
 
+function getNickConhecidoApex(message){
+	var posicaoGuardaChuva = -1;
+	try{
+		posicaoGuardaChuva = message.member.nickname.indexOf(trackerTag);		
+	}catch(e){
+		
+	}
+	if(posicaoGuardaChuva !== -1){
+		posicaoGuardaChuva += 1;
+		/*
+		//temporario limpar tags		
+			switch(message.guild.id){		
+				case "368240657816354836": //bro
+					if(message.member.roles.find("name", "BRO Member")){
+						TAG = " BRO";						
+					}else{
+						TAG = "";
+					}
+				break;
+				
+				case "373611766737010690": //PDX
+					TAG = " PDX";
+				break;
+				
+				default:
+					TAG = "";
+				break;
+			}
+		var retorno = message.member.nickname.substring(posicaoGuardaChuva).replace(TAG,"");
+		retorno = retorno.substring(1);
+		TAG = "";
+		*/
+		var retorno = message.member.nickname.substring(posicaoGuardaChuva);
+		retorno = retorno.substring(1);
+		return retorno;
+	}else{
+		throw false;
+	}
+}
 function changeRole(member,oldRole, newRole){	
 	
 	setTimeout(function(){ 
