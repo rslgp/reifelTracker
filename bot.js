@@ -2882,7 +2882,7 @@ function getNickConhecido(message){
 function getNickConhecidoApex(message){
 	var posicaoGuardaChuva = -1;
 	try{
-		posicaoGuardaChuva = message.member.nickname.indexOf(trackerTag);		
+		posicaoGuardaChuva = message.member.nickname.indexOf("★");		
 	}catch(e){
 		
 	}
