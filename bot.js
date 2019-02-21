@@ -644,6 +644,7 @@ client.on('message', message => {
 		case "alt":
 		case "alt2":
 		case "alt3":
+		case "level":
 		case "lvl":
 		case "r":
 		case "up":
@@ -1254,6 +1255,7 @@ client.on('message', message => {
 			}catch(e){}
 		break;
 			
+		case "level":
 		case "lvl":
 			site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
 			try{
