@@ -3020,7 +3020,7 @@ function criarVoice(obj, i, max, message, name, permissoesOverwrites){
 
 function padraoRankWinApex(message, usuario, nickLegivel, winrKD, lendario, epico, raro, tabela=[78,48,26], continuaRank="Continua onde está, os niveis atuais são: 100, 78+, 48+, 26+"){
 		var maximo = "547963888256286732";
-		if(winrKD[0]==100){
+		if(winrKD[0]>=100){
 			if(usuario.roles.has(maximo)) {print(message,"Você está na patente máxima");return;}
 			changeRole(usuario, lendario, maximo);	
 			print(message,msg1Rank+maximo+msg2Rank);
