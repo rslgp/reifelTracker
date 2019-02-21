@@ -206,7 +206,7 @@ client.on('ready', () => {
 	reifelUser = client.users.get('195731919424585728');
 	client.user.setPresence({
 		game: {
-			name: "com "+client.guilds.array().length +" |.discord|dono: Reifel#5047"
+			name: "com "+client.guilds.array().length +"|dono:Reifel#5047"
 		}
 	}); 
 	//http://snip.li/reifelbackground1
@@ -530,7 +530,7 @@ client.on('message', message => {
 						if(membro.roles.has(bronze)) {message.author.send(continuaOndeEstaPai); return;}
 						changeRole(membro, ouro, bronze);	
 					}else{
-						message.author.send(message,"Você precisa atingir nível 20 para registrar o rank, repita o processo quando atingir");
+						message.author.send(message,"Você precisa atingir nível 26 para registrar o rank, repita o processo quando atingir");
 					}
 					message.author.send("Parabéns! \:trophy: \:ok_hand: seu rank foi registrado,\r\nvocê pode acessar as salas até o seu nível,\r\nao passar do nível 48 ou 38 repita o processo de enviar o arquivo");
 					message.delete();
