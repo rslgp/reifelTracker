@@ -1266,7 +1266,7 @@ client.on('message', message => {
 						text = "[{"+text.substring(0,text.indexOf(']'))+"]";
 						text = JSON.parse(text);	
 						level = text[0].level.value
-						print(message, level);
+						
 						level = [level, level];
 						padraoRankWinApex(message, message.member, nickLegivel, level, "547959283116146718", "547959283141312525", "547959283904544790");
 					}catch(e){
