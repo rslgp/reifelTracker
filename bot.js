@@ -3037,7 +3037,7 @@ function padraoRankWinApex(message, usuario, nickLegivel, winrKD, lendario, epic
 			changeRole(usuario, lendario, raro);	
 			print(message,msg1Rank+raro+msg2Rank);
 		}else{
-			print(message,"Você precisa atingir nível 20 para registrar o rank, repita o processo quando atingir");
+			print(message,"Você precisa atingir nível 26 para registrar o rank, repita o processo quando atingir");
 		}
 		mudarNick(message, padraoNickApex(winrKD[0],nickLegivel));
 		//usuario.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(usuario.setNickname( padraoNick(winrKD[0],nickLegivel) )).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));	
