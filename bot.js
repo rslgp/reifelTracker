@@ -1261,8 +1261,7 @@ client.on('message', message => {
 						level = text[0].level.value
 						print(message, level);
 						level = [level, level];
-						
-						padraoRankWinApex(message, message.member, nickLegivel, level, "546937636032610305", "546937637831966721", "546937639811547136");
+						padraoRankWinApex(message, message.member, nickLegivel, level, "547959283116146718", "547959283141312525", "547959283904544790");
 					}catch(e){
 						print(message,"ops: esqueceu do nick? se nao, os dados estao offline");
 						return;
@@ -2973,7 +2972,7 @@ function criarVoice(obj, i, max, message, name, permissoesOverwrites){
 	}, 100);		
 }
 
-function padraoRankWinApex(message, usuario, nickLegivel, winrKD, lendario, epico, raro, tabela=[48,38,20], continuaRank="Continua onde está,\r\Lendário - winrate >= 30\r\Epico - winrate >= 22\r\nRaro < 22"){
+function padraoRankWinApex(message, usuario, nickLegivel, winrKD, lendario, epico, raro, tabela=[78,48,20], continuaRank="Continua onde está,\r\Lendário - winrate >= 30\r\Epico - winrate >= 22\r\nRaro < 22"){
 		if(winrKD[0]>=tabela[0]){
 			if(usuario.roles.has(lendario)) {print(message,"Você está na patente máxima");return;}
 			changeRole(usuario, epico, lendario);	
