@@ -1244,7 +1244,7 @@ client.on('message', message => {
 						
 						mudarNick(message, padraoNickApex(level[0],nickLegivel));
 					}catch(e){
-						print(message,"ops: esqueceu do nick? se nao, os dados estao offline");
+						print(message,"ops: use o nick do APEX (origin)!");
 						return;
 					}
 					//var resultado = formatarMsg(winP,kd,wins,kills,'--');
