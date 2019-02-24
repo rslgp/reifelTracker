@@ -1949,7 +1949,7 @@ client.on('message', message => {
 							else partidas[msg.content] = 1;
 							msg.delete();
 						}
-					}, { max: 110, time: 53000, errors: ['time'] })
+					}, { max: 110, time: 30000, errors: ['time'] })
 					  .then(collected => {print(message,contagemPartidas(partidas))})
 					  .catch(collected => {print(message,contagemPartidas(partidas))});
 
