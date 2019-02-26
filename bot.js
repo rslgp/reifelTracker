@@ -1244,6 +1244,13 @@ client.on('message', message => {
 		break;
 			
 		case "lvl":
+			try{
+				nickLegivel=parametroUsado = getNickConhecidoApex(message);
+				parametroUsado=encodeURI(parametroUsado);
+				if(args[1] !== undefined) print(message,errorNaoUsarProprioNick);
+			}catch(e){
+				//caso nao tenha guarda chuva, mantem o nick como arg
+			}
 			site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
 			try{
 				var variavelVisita = Browser.visit(site, function (e, browser) {				
