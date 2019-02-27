@@ -530,7 +530,7 @@ client.on('message', message => {
 						if(membro.roles.has(bronze)) {message.author.send(continuaOndeEstaPai); return;}
 						changeRole(membro, ouro, bronze);	
 					}else{
-						message.author.send(message,"Você precisa atingir nível 26 para registrar o rank, repita o processo quando atingir");
+						message.author.send(message,"Você precisa de mais nível para registrar o rank, repita o processo quando atingir");
 					}
 					message.author.send("Parabéns! \:trophy: \:ok_hand: seu rank foi registrado,\r\nvocê pode acessar as salas até o seu nível,\r\nao passar do nível 48 ou 38 repita o processo de enviar o arquivo");
 					message.delete();
@@ -1299,12 +1299,12 @@ client.on('message', message => {
 							break;
 								
 							case '550108927698927626': //ams scrims
-								padraoRankWinApex(message, message.member, nickLegivel, level, ["550133503208062995", "550118715056848937","550118715337736210"], [150,100,60,30]);
+								padraoRankWinApex(message, message.member, nickLegivel, level, ["550133503208062995", "550118715056848937","550118715337736210"], [150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
 								mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
 							break;
 							
 							case '542501242916700181': //ams
-								padraoRankWinApex(message, message.member, nickLegivel, level, ["550118250219044874","550118250709647389","550142332025176065"], [150,100,60,30]);
+								padraoRankWinApex(message, message.member, nickLegivel, level, ["550118250219044874","550118250709647389","550142332025176065"], [150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
 								mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
 							break;
 						}
@@ -3097,7 +3097,7 @@ function padraoRankWinApex(message, usuario, nickLegivel, winrKD, ranks=[], tabe
 			changeRole(usuario, ranks[0], ranks[3]);	
 			print(message,msg1Rank+ranks[3]+msg2Rank);
 		}else{
-			print(message,"Você precisa atingir nível 26 para registrar o rank, repita o processo quando atingir");
+			print(message,"Você precisa de mais nível para registrar o rank");
 		}
 		
 		//usuario.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(usuario.setNickname( padraoNick(winrKD[0],nickLegivel) )).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));	
