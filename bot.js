@@ -3065,7 +3065,7 @@ function format(value) {
 function criarVoice(obj, i, max, message, name, permissoesOverwrites){
 	if(max===0) return;
 	
-	//setTimeout(function(){ 
+	setTimeout(function(){ 
 		message.guild.createChannel(name+i, "voice", permissoesOverwrites)
 		.then(canalCriado=> {
 			canalCriado.edit({
@@ -3075,7 +3075,7 @@ function criarVoice(obj, i, max, message, name, permissoesOverwrites){
 			console.log(canalCriado);
 			criarVoice(obj,i+1, max-1, message, name, permissoesOverwrites);
 		}).catch(console.error);
-	//}, 100);		
+	}, 300);		
 }
 
 function padraoRankWinApex(message, usuario, nickLegivel, winrKD, ranks=[], tabela=[100,78,48,26], continuaRank="Continua onde está, os niveis atuais são: 100+, 78+, 48+, 26+"){
