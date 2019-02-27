@@ -634,6 +634,7 @@ client.on('message', message => {
 		case "alt2":
 		case "alt3":
 		case "lvl":
+		case "att":
 		case "r":
 		case "up":
 		case "vs":
@@ -1209,7 +1210,8 @@ client.on('message', message => {
 				variavelVisita=null;
 			}catch(e){}
 		break;
-		
+			
+		case "att":
 		case "r":
 			try{
 				nickLegivel=parametroUsado = getNickConhecidoApex(message);
@@ -1231,7 +1233,22 @@ client.on('message', message => {
 						
 						level = [level, level];
 						
-						mudarNick(message, padraoNickApex(level[0],nickLegivel));
+						switch(message.guild.id){
+							case '542501711860727848':
+								padraoRankWinApex(message, message.member, nickLegivel, level, "547959283116146718", "547959283141312525", "547959283904544790");
+								mudarNick(message, padraoNickApex(level[0],nickLegivel));
+							break;
+								
+							case '550108927698927626':
+								padraoRankWinApex(message, message.member, nickLegivel, level, "550118715056848937","550118715337736210","550118715727806465",[150,100,60]);
+								mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
+							break;
+							
+							case '542501242916700181':
+								padraoRankWinApex(message, message.member, nickLegivel, level, "550118250219044874","550118250709647389","550118250894196747",[150,100,60]);
+								mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
+							break;
+						}
 					}catch(e){
 						print(message,"ops: use o nick do APEX (origin)!");
 						return;
