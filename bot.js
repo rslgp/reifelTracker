@@ -1235,17 +1235,17 @@ client.on('message', message => {
 						
 						switch(message.guild.id){
 							case '542501711860727848':
-								padraoRankWinApex(message, message.member, nickLegivel, level, "547959283116146718", "547959283141312525", "547959283904544790");
+								padraoRankWinApex(message, message.member, nickLegivel, level, ["547963888256286732","547959283116146718", "547959283141312525", "547959283904544790"]);
 								mudarNick(message, padraoNickApex(level[0],nickLegivel));
 							break;
 								
 							case '550108927698927626':
-								padraoRankWinApex(message, message.member, nickLegivel, level, "550118715056848937","550118715337736210","550118715727806465",[150,100,60]);
+								padraoRankWinApex(message, message.member, nickLegivel, level, ["550133503208062995", "550118715056848937","550118715337736210","550118715727806465"], [200,150,100,60]);
 								mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
 							break;
 							
 							case '542501242916700181':
-								padraoRankWinApex(message, message.member, nickLegivel, level, "550118250219044874","550118250709647389","550118250894196747",[150,100,60]);
+								padraoRankWinApex(message, message.member, nickLegivel, level, ["550118250219044874","550118250709647389","550118250894196747"], [150,100,60]);
 								mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
 							break;
 						}
@@ -3053,24 +3053,24 @@ function criarVoice(obj, i, max, message, name, permissoesOverwrites){
 	}, 100);		
 }
 
-function padraoRankWinApex(message, usuario, nickLegivel, winrKD, lendario, epico, raro, tabela=[78,48,26], continuaRank="Continua onde está, os niveis atuais são: 100+, 78+, 48+, 26+"){
-		var maximo = "547963888256286732";
-		if(winrKD[0]>=100){
-			if(usuario.roles.has(maximo)) {print(message,"Você está na patente máxima");return;}
-			changeRole(usuario, lendario, maximo);	
-			print(message,msg1Rank+maximo+msg2Rank);
-		}else if(winrKD[0]>=tabela[0]){
-			if(usuario.roles.has(lendario)) {print(message,"Você está na patente máxima");return;}
-			changeRole(usuario, epico, lendario);	
-			print(message,msg1Rank+lendario+msg2Rank);
+function padraoRankWinApex(message, usuario, nickLegivel, winrKD, ranks=[], tabela=[100,78,48,26], continuaRank="Continua onde está, os niveis atuais são: 100+, 78+, 48+, 26+"){
+		
+		if(winrKD[0]>=tabela[0]){
+			if(usuario.roles.has(ranks[0])) {print(message,"Você está na patente máxima");return;}
+			changeRole(usuario, ranks[1], ranks[0]);	
+			print(message,msg1Rank+ranks[0]+msg2Rank);
 		}else if(winrKD[0]>=tabela[1]){
-			if(usuario.roles.has(epico)) {print(message,continuaRank); return;}
-			changeRole(usuario, raro, epico);	
-			print(message,msg1Rank+epico+msg2Rank);
+			if(usuario.roles.has(ranks[1])) {print(message,continuaRank); return;}
+			changeRole(usuario, ranks[2], ranks[1]);	
+			print(message,msg1Rank+ranks[1]+msg2Rank);
 		}else if(winrKD[0]>=tabela[2]){
-			if(usuario.roles.has(raro)) {print(message,continuaRank);}
-			changeRole(usuario, lendario, raro);	
-			print(message,msg1Rank+raro+msg2Rank);
+			if(usuario.roles.has(ranks[2])) {print(message,continuaRank); return;}
+			changeRole(usuario, ranks[3], ranks[2]);	
+			print(message,msg1Rank+ranks[2]+msg2Rank);
+		}else if(winrKD[0]>=tabela[3]){
+			if(usuario.roles.has(ranks[3])) {print(message,continuaRank);}
+			changeRole(usuario, ranks[0], ranks[3]);	
+			print(message,msg1Rank+ranks[3]+msg2Rank);
 		}else{
 			print(message,"Você precisa atingir nível 26 para registrar o rank, repita o processo quando atingir");
 		}
