@@ -1309,7 +1309,7 @@ client.on('message', message => {
 							break;
 						}
 					}catch(e){
-						print(message,"ops: esqueceu do nick? se nao, os dados estao offline");
+						print(message,"ops: esqueceu do nick ou trocou? se nao, os dados estao offline");
 						return;
 					}
 					//var resultado = formatarMsg(winP,kd,wins,kills,'--');
