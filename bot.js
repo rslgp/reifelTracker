@@ -2020,7 +2020,7 @@ client.on('message', message => {
 		
 		case "help":
 		case "comandos":
-			print(message, helpMessage);
+			//print(message, helpMessage);
 		break;
 		
 		case "prefab":
