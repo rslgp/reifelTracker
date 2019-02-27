@@ -1273,7 +1273,7 @@ client.on('message', message => {
 							case '550108927698927626':
 								padraoRankWinApex(message, message.member, nickLegivel, level, "550118715056848937","550118715337736210","550118715727806465");
 							break;
-								
+						}
 					}catch(e){
 						print(message,"ops: esqueceu do nick? se nao, os dados estao offline");
 						return;
