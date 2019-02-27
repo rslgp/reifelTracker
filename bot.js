@@ -665,7 +665,7 @@ client.on('message', message => {
 		case "apoio":	
 		case "barra":	
 		case "txt":
-		case "c":
+		//case "c":
 		case "d":
 		//case "v":
 		case "s":
