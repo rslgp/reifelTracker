@@ -1272,11 +1272,11 @@ client.on('message', message => {
 							break;
 								
 							case '550108927698927626':
-								padraoRankWinApex(message, message.member, nickLegivel, level, "550118715056848937","550118715337736210","550118715727806465");
+								padraoRankWinApex(message, message.member, nickLegivel, level, "550118715056848937","550118715337736210","550118715727806465",[150,100,60]);
 							break;
 							
 							case '542501242916700181':
-								padraoRankWinApex(message, message.member, nickLegivel, level, "550118250219044874","550118250709647389","550118250894196747");
+								padraoRankWinApex(message, message.member, nickLegivel, level, "550118250219044874","550118250709647389","550118250894196747",[150,100,60]);
 							break;
 						}
 					}catch(e){
