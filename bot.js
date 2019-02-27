@@ -1271,7 +1271,7 @@ client.on('message', message => {
 			
 		case "lvl":
 			try{
-				nickLegivel=parametroUsado = getNickConhecidoApex(message);
+				nickLegivel=parametroUsado = getNickConhecidoApexAMS(message);
 				parametroUsado=encodeURI(parametroUsado);
 				if(args[1] !== undefined) print(message,errorNaoUsarProprioNick);
 			}catch(e){
