@@ -1270,8 +1270,13 @@ client.on('message', message => {
 							case '542501711860727848':
 								padraoRankWinApex(message, message.member, nickLegivel, level, "547959283116146718", "547959283141312525", "547959283904544790");
 							break;
+								
 							case '550108927698927626':
 								padraoRankWinApex(message, message.member, nickLegivel, level, "550118715056848937","550118715337736210","550118715727806465");
+							break;
+							
+							case '542501242916700181':
+								padraoRankWinApex(message, message.member, nickLegivel, level, "550118250219044874","550118250709647389","550118250894196747");
 							break;
 						}
 					}catch(e){
