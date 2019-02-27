@@ -1264,7 +1264,16 @@ client.on('message', message => {
 						level = text[0].level.value
 						
 						level = [level, level];
-						padraoRankWinApex(message, message.member, nickLegivel, level, "547959283116146718", "547959283141312525", "547959283904544790");
+						
+						
+						switch(message.guild.id){
+							case '542501711860727848':
+								padraoRankWinApex(message, message.member, nickLegivel, level, "547959283116146718", "547959283141312525", "547959283904544790");
+							break;
+							case '550108927698927626':
+								padraoRankWinApex(message, message.member, nickLegivel, level, "550118715056848937","550118715337736210","550118715727806465");
+							break;
+								
 					}catch(e){
 						print(message,"ops: esqueceu do nick? se nao, os dados estao offline");
 						return;
