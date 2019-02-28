@@ -1361,7 +1361,7 @@ client.on('message', message => {
 											}
 
 										}catch(e){
-											print(message,errorNickNaoEncontrado);
+											//print(message,errorNickNaoEncontrado);
 											return;
 										}			
 
@@ -1379,7 +1379,7 @@ client.on('message', message => {
 
 
 							}catch(e){
-								print(message,errorNickNaoEncontrado);
+								//print(message,errorNickNaoEncontrado);
 								return;
 							}	
 							try{
@@ -1391,7 +1391,7 @@ client.on('message', message => {
 						});
 						variavelVisita2=null;
 					}catch(e){
-						print(message, "erro");						
+						//print(message, "erro");						
 					}
 						//fim site alternativo
 						
