@@ -1270,8 +1270,21 @@ client.on('message', message => {
 		break;
 			
 		case "lvl":
+			
 			try{
-				nickLegivel=parametroUsado = getNickConhecidoApexAMS(message);
+				switch(message.guild.id){								
+					case '550108927698927626':
+						nickLegivel=parametroUsado = getNickConhecidoApexAMS(message);
+					break;
+
+					case '542501242916700181':
+						nickLegivel=parametroUsado = getNickConhecidoApexAMS(message);
+					break;
+					default:								
+						nickLegivel=parametroUsado = getNickConhecidoApex(message);
+					break;
+				}
+				
 				parametroUsado=encodeURI(parametroUsado);
 				if(args[1] !== undefined) print(message,errorNaoUsarProprioNick);
 			}catch(e){
