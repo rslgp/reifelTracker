@@ -1259,7 +1259,7 @@ client.on('message', message => {
 							break;
 						}
 					}catch(e){
-						print(message,"ops: use o nick do APEX (origin)!");
+						print(message,"erro: dados do apex tá offline, tente dps de 30s");
 						return;
 					}
 					//var resultado = formatarMsg(winP,kd,wins,kills,'--');
@@ -1322,7 +1322,7 @@ client.on('message', message => {
 							break;
 						}
 					}catch(e){
-						print(message,"ops: esqueceu do nick ou trocou? se nao, os dados estao offline");
+						print(message,"ops: esqueceu do nick ou trocou? se nao, os dados estao offline, tente dps de 30s");
 						return;
 					}
 					//var resultado = formatarMsg(winP,kd,wins,kills,'--');
