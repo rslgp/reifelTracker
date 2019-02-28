@@ -1322,7 +1322,81 @@ client.on('message', message => {
 							break;
 						}
 					}catch(e){
-						print(message,"ops: esqueceu do nick ou trocou? se nao, os dados estao offline, tente dps de 30s");
+						//site alternativo
+						site = "https://apextab.com/search-"+parametroUsado;
+						try{ //tentar atualizar usando outro site
+						var variavelVisita2 = Browser.visit(site, function (e, browser) {					
+							var winP, selector;	
+							try{
+								var text = browser.html(); //pega o id profile
+								site = browser.queryAll("#wrapper > div > div > div.row.justify-content-center.no-gutters > div.col-lg-8.smpadding > div > div.content.nopadding > div > table > tbody > tr > td.nameinfo > div > a");
+								site = site[0].href;
+									//acessar pagina
+									try{ //tentar atualizar usando outro site
+									var variavelVisita3 = Browser.visit(site, function (e, browser) {					
+										var winP, selector;	
+										try{
+											var text = browser.html();
+
+											selector= "#pid > div.col-lg-12.smpadding > div > table > tbody > tr > td > table > tbody > tr > td.playerinfo > div:nth-child(2) > u:nth-child(3)";
+											level = getInnerHtml(browser, selector);
+											level = [level, level];
+						
+						
+											switch(message.guild.id){
+												case '542501711860727848':
+													padraoRankWinApex(message, message.member, nickLegivel, level, ["550497864023932943","547963888256286732","547959283116146718", "547959283141312525"],[150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
+													mudarNick(message, padraoNickApex(level[0],nickLegivel));
+												break;
+
+												case '550108927698927626': //ams scrims
+													padraoRankWinApex(message, message.member, nickLegivel, level, ["550133503208062995", "550118715056848937","550118715337736210"], [150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
+													mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
+												break;
+
+												case '542501242916700181': //ams
+													padraoRankWinApex(message, message.member, nickLegivel, level, ["550153057653227541", "550153058030583820", "550153058613723156","550153494045261837"], [150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
+													mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
+												break;
+											}
+
+										}catch(e){
+											print(message,errorNickNaoEncontrado);
+											return;
+										}			
+
+										try{
+											browser.deleteCookies();
+											browser.tabs.closeAll(); browser.window.close(); browser.destroy();					
+										}catch(e){
+
+										}
+									});
+									variavelVisita3=null;
+									}catch(e){
+										print(message, nickLegivel + errorFortnitetracker);						
+									}
+
+
+							}catch(e){
+								print(message,errorNickNaoEncontrado);
+								return;
+							}	
+							try{
+								browser.deleteCookies();
+								browser.tabs.closeAll(); browser.window.close(); browser.destroy();					
+							}catch(e){
+
+							}
+						});
+						variavelVisita2=null;
+					}catch(e){
+						print(message, "erro");						
+					}
+						//fim site alternativo
+						
+						
+						//print(message,"ops: esqueceu do nick ou trocou? se nao, os dados estao offline, tente dps de 30s");
 						return;
 					}
 					//var resultado = formatarMsg(winP,kd,wins,kills,'--');
