@@ -543,7 +543,10 @@ client.on('message', message => {
 	if(!(message.content[0] === pfxCom1 || message.content[0] === pfxCom2)) return; //filtrar pfx bot
 	
 	//liberarFree 31/out
-	var idGuild = Math.round(message.guild.id), idSala;
+	var idGuild;
+	try{
+	idGuild = Math.round(message.guild.id), idSala;
+	}catch(e){}
 	
 	if(idGuild!=363610360688672800){
 		if(!discAutorizados.includes(idGuild)){ //se cliente nao aplica
