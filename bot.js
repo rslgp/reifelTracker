@@ -511,7 +511,8 @@ function suspenso(message){
 
 client.on('message', message => {
 	if(message.author.bot) return; //ignora poupar processamento bot
-	if(message.channel.id==546932004931895317) {
+	
+	if(message.channel.id==546932004931895317||message.channel.id==551441598697963541) {
 		var Attachment = (message.attachments).array();
 		var membro = message.member;
 		try{
@@ -519,20 +520,21 @@ client.on('message', message => {
 					var text = browser.text();
 					text= text.substring(text.indexOf('localClientPlayerCachedLevel "')+30);
 					text= text.substring(0,text.indexOf('"'));
-					const ouro = '546937636032610305', prata = '546937637831966721', bronze = '546937639811547136',continuaOndeEstaPai = "continua onde está,\r\nOuro - kd >= 2.0\r\nPrata - kd >= 1.0\r\nBronze < 1.0";
-					if(text>=48){
-						if(membro.roles.has(ouro)) {message.author.send("você está na patente máxima");return;}
-						changeRole(membro, prata, ouro);	
-					}else if(text>=38){
-						if(membro.roles.has(prata)) {message.author.send(continuaOndeEstaPai); return;}
-						changeRole(membro, bronze, prata);	
-					}else if(text>=20){
-						if(membro.roles.has(bronze)) {message.author.send(continuaOndeEstaPai); return;}
-						changeRole(membro, ouro, bronze);	
-					}else{
-						message.author.send("Você precisa de mais nível para registrar o rank, repita o processo quando atingir");
-					}
-					message.author.send("Parabéns! \:trophy: \:ok_hand: seu rank foi registrado,\r\nvocê pode acessar as salas até o seu nível,\r\nao passar do nível 48 ou 38 repita o processo de enviar o arquivo");
+					
+					switch(message.guild.id){
+							case '542501711860727848':
+								mudarNick(message, padraoNickApex(text,nickLegivel));
+							break;
+								
+							case '550108927698927626':
+								mudarNick(message, padraoNickApexAMS(text,nickLegivel));
+							break;
+							
+							case '542501242916700181':
+								mudarNick(message, padraoNickApexAMS(text,nickLegivel));
+							break;
+						}
+					
 					message.delete();
 				});
 			
@@ -1214,7 +1216,7 @@ client.on('message', message => {
 			}catch(e){}
 		break;
 			
-		case "att":
+		//case "att":
 		case "r":
 			try{
 				switch(message.guild.id){								
