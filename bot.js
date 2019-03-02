@@ -1231,7 +1231,7 @@ client.on('message', message => {
 				}
 				
 				parametroUsado=encodeURI(parametroUsado);
-				if(args[1] !== undefined) print(message,errorNaoUsarProprioNick);
+				if(args[1] !== undefined) message.author(errorNaoUsarProprioNick);
 			}catch(e){
 				//caso nao tenha guarda chuva, mantem o nick como arg
 			}
@@ -1289,7 +1289,7 @@ client.on('message', message => {
 				}
 				
 				parametroUsado=encodeURI(parametroUsado);
-				if(args[1] !== undefined) print(message,errorNaoUsarProprioNick);
+				if(args[1] !== undefined) message.author(errorNaoUsarProprioNick);
 			}catch(e){
 				//caso nao tenha guarda chuva, mantem o nick como arg
 			}
@@ -3171,23 +3171,23 @@ function criarVoice(obj, i, max, message, name, permissoesOverwrites){
 function padraoRankWinApex(message, usuario, nickLegivel, winrKD, ranks=[], tabela=[100,78,48,26], continuaRank="Continua onde está, os niveis atuais são: 100+, 78+, 48+, 26+"){
 		
 		if(winrKD[0]>=tabela[0]){
-			if(usuario.roles.has(ranks[0])) {print(message,"Você está na patente máxima");return;}
+			if(usuario.roles.has(ranks[0])) {message.author("Você está na patente máxima");return;}
 			changeRole(usuario, ranks[1], ranks[0]);	
 			print(message,msg1Rank+ranks[0]+msg2Rank);
 		}else if(winrKD[0]>=tabela[1]){
-			if(usuario.roles.has(ranks[1])) {print(message,continuaRank); return;}
+			if(usuario.roles.has(ranks[1])) {message.author(continuaRank); return;}
 			changeRole(usuario, ranks[2], ranks[1]);	
 			print(message,msg1Rank+ranks[1]+msg2Rank);
 		}else if(winrKD[0]>=tabela[2]){
-			if(usuario.roles.has(ranks[2])) {print(message,continuaRank); return;}
+			if(usuario.roles.has(ranks[2])) {message.author(continuaRank); return;}
 			changeRole(usuario, ranks[3], ranks[2]);	
 			print(message,msg1Rank+ranks[2]+msg2Rank);
 		}else if(winrKD[0]>=tabela[3]){
-			if(usuario.roles.has(ranks[3])) {print(message,continuaRank);}
+			if(usuario.roles.has(ranks[3])) {message.author(continuaRank);}
 			changeRole(usuario, ranks[0], ranks[3]);	
 			print(message,msg1Rank+ranks[3]+msg2Rank);
 		}else{
-			print(message,"Você precisa de mais nível para registrar o rank");
+			message.author(Você precisa de mais nível para registrar o rank");
 		}
 		
 		//usuario.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(usuario.setNickname( padraoNick(winrKD[0],nickLegivel) )).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));	
