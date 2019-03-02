@@ -535,6 +535,7 @@ client.on('message', message => {
 				if(args[1] !== undefined) message.author(errorNaoUsarProprioNick);
 			}catch(e){
 				//caso nao tenha guarda chuva, mantem o nick como arg
+				message.delete();
 				message.author("Você precisa usar o comando .lvl antes");
 				return;
 				
