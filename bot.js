@@ -514,7 +514,6 @@ client.on('message', message => {
 	
 	var parametroUsado = "", nickLegivel="", site="";
 	if(message.channel.id==546932004931895317||message.channel.id==551441598697963541) {
-		if(message.member.nickname.indexOf("★") == -1) return;
 		var Attachment = (message.attachments).array();
 		var membro = message.member;
 		var copia = message;
