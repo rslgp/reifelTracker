@@ -1341,17 +1341,17 @@ client.on('message', message => {
 						switch(message.guild.id){
 							case '542501711860727848':
 								padraoRankWinApex(message, message.member, nickLegivel, level, ["550497864023932943","547963888256286732","547959283116146718", "547959283141312525"],[150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
-								mudarNick(message, padraoNickApex(level[0],nickLegivel));
+								//mudarNick(message, padraoNickApex(level[0],nickLegivel));
 							break;
 								
 							case '550108927698927626': //ams scrims
 								padraoRankWinApex(message, message.member, nickLegivel, level, ["550133503208062995", "550118715056848937","550118715337736210"], [150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
-								mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
+								//mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
 							break;
 							
 							case '542501242916700181': //ams
 								padraoRankWinApex(message, message.member, nickLegivel, level, ["550153057653227541", "550153058030583820", "550153058613723156","550153494045261837"], [150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
-								mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
+								//mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
 							break;
 						}
 					}catch(e){
@@ -1379,17 +1379,17 @@ client.on('message', message => {
 											switch(message.guild.id){
 												case '542501711860727848':
 													padraoRankWinApex(message, message.member, nickLegivel, level, ["550497864023932943","547963888256286732","547959283116146718", "547959283141312525"],[150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
-													mudarNick(message, padraoNickApex(level[0],nickLegivel));
+													//mudarNick(message, padraoNickApex(level[0],nickLegivel));
 												break;
 
 												case '550108927698927626': //ams scrims
 													padraoRankWinApex(message, message.member, nickLegivel, level, ["550133503208062995", "550118715056848937","550118715337736210"], [150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
-													mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
+													//mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
 												break;
 
 												case '542501242916700181': //ams
 													padraoRankWinApex(message, message.member, nickLegivel, level, ["550153057653227541", "550153058030583820", "550153058613723156","550153494045261837"], [150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
-													mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
+													//mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
 												break;
 											}
 
