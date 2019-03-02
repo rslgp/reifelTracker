@@ -1368,7 +1368,8 @@ client.on('message', message => {
 
 												case '542501242916700181': //ams
 													padraoRankWinApex(message, message.member, nickLegivel, level, ["550153057653227541", "550153058030583820", "550153058613723156","550153494045261837"], [150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
-													//mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
+													if(message.member.nickname.indexOf("★")!== -1) return; 
+													mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
 												break;
 											}
 
