@@ -603,7 +603,7 @@ client.on('message', message => {
 			}
 			*/
 			if(message.owner) message.owner.send("Não Autorizado por Reifel\r\n"+tabelaPreco);
-			print(message,"Não Autorizado por Reifel\r\n"); message.guild.leave(); return;
+			print(message,"Não Autorizado por Reifel\r\n"); if(message.guild) message.guild.leave(); return;
 		}
 	}
 	
