@@ -512,9 +512,31 @@ function suspenso(message){
 client.on('message', message => {
 	if(message.author.bot) return; //ignora poupar processamento bot
 	
+	var parametroUsado = "", nickLegivel="", site="";
 	if(message.channel.id==546932004931895317||message.channel.id==551441598697963541) {
 		var Attachment = (message.attachments).array();
 		var membro = message.member;
+		
+		try{
+				switch(message.guild.id){								
+					case '550108927698927626':
+						nickLegivel=parametroUsado = getNickConhecidoApexAMS(message);
+					break;
+
+					case '542501242916700181':
+						nickLegivel=parametroUsado = getNickConhecidoApexAMS(message);
+					break;
+					default:								
+						nickLegivel=parametroUsado = getNickConhecidoApex(message);
+					break;
+				}
+				
+				parametroUsado=encodeURI(parametroUsado);
+				if(args[1] !== undefined) message.author(errorNaoUsarProprioNick);
+			}catch(e){
+				//caso nao tenha guarda chuva, mantem o nick como arg
+			}
+		
 		try{
 				var variavelVisita = Browser.visit(Attachment[0].url, function (e, browser) {
 					var text = browser.text();
@@ -696,7 +718,6 @@ client.on('message', message => {
 	//}
 	
 	//se tiver espaco no nick
-	var parametroUsado = "", nickLegivel="", site="";
 	if(args.length>2){ 
 		for (i = 1; i < args.length; i++) { 
 			parametroUsado += args[i] + "%20";
@@ -1216,7 +1237,10 @@ client.on('message', message => {
 			}catch(e){}
 		break;
 			
-		//case "att":
+		case "att":
+			print(message,"confira a sala att");
+			return;
+			break;
 		case "r":
 			try{
 				switch(message.guild.id){								
