@@ -1341,7 +1341,7 @@ client.on('message', message => {
 						switch(message.guild.id){
 							case '542501711860727848':
 								padraoRankWinApex(message, message.member, nickLegivel, level, ["550497864023932943","547963888256286732","547959283116146718", "547959283141312525"],[150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
-								//mudarNick(message, padraoNickApex(level[0],nickLegivel));
+								mudarNick(message, padraoNickApex(level[0],nickLegivel));
 							break;
 								
 							case '550108927698927626': //ams scrims
