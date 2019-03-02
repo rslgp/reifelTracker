@@ -1224,6 +1224,9 @@ client.on('message', message => {
 			return;
 			break;
 		case "r":
+			message.author.send("devido a sobrecarga na origin o comando r foi desativado, solicite sala no servidor para atualizar com arquivo");
+			return;
+			break;
 			try{
 				switch(message.guild.id){								
 					case '550108927698927626':
