@@ -1242,7 +1242,7 @@ client.on('message', message => {
 		break;
 			
 		case "att":
-			print(message,"confira a sala att");
+			print(message,"o comando att foi desativado, confira a sala att para atualizar o nick");
 			return;
 			break;
 		case "r":
