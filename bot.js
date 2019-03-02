@@ -518,7 +518,7 @@ client.on('message', message => {
 		var membro = message.member;
 		var copia = message;
 		try{
-				switch(message.guild.id){								
+				switch(copia.guild.id){								
 					case '550108927698927626':
 						nickLegivel=parametroUsado = getNickConhecidoApexAMS(copia);
 					break;
