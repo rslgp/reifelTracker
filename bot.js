@@ -516,27 +516,27 @@ client.on('message', message => {
 	if(message.channel.id==546932004931895317||message.channel.id==551441598697963541) {
 		var Attachment = (message.attachments).array();
 		var membro = message.member;
-		
+		var copia = message;
 		try{
 				switch(message.guild.id){								
 					case '550108927698927626':
-						nickLegivel=parametroUsado = getNickConhecidoApexAMS(message);
+						nickLegivel=parametroUsado = getNickConhecidoApexAMS(copia);
 					break;
 
 					case '542501242916700181':
-						nickLegivel=parametroUsado = getNickConhecidoApexAMS(message);
+						nickLegivel=parametroUsado = getNickConhecidoApexAMS(copia);
 					break;
 					default:								
-						nickLegivel=parametroUsado = getNickConhecidoApex(message);
+						nickLegivel=parametroUsado = getNickConhecidoApex(copia);
 					break;
 				}
 				
 				parametroUsado=encodeURI(parametroUsado);
-				if(args[1] !== undefined) message.author.send(errorNaoUsarProprioNick);
+				if(args[1] !== undefined) copia.author.send(errorNaoUsarProprioNick);
 			}catch(e){
 				//caso nao tenha guarda chuva, mantem o nick como arg
 				message.delete();
-				message.author.send("Você precisa usar o comando .lvl antes");
+				copia.author.send("Você precisa usar o comando .lvl antes");
 				return;
 				
 			}
