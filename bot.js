@@ -3275,13 +3275,16 @@ function padraoRankWinApex(message, usuario, nickLegivel, winrKD, ranks=[], tabe
 const capLevel=3;
 function capUpdate(message, level){
 	try{
+		var levelSite = parseInt(level);
+		if(levelSite==60 || levelSite==61 || levelSite==100 || levelSite==101 ) return true;
+		
 		var nome = message.member.nickname;
 		var levelatual;
 		if(nome.indexOf('★') == (nome.length-1))
 			levelatual = nome.substring(nome.lastIndexOf(' ',nome.length-3)+1,nome.length-2);
 		else
 			levelatual = nome.substring(0,nome.indexOf(' '));
-		var levelSite = parseInt(level), atual = parseInt(levelatual);
+		var atual = parseInt(levelatual);
 		if( (levelSite - atual) < capLevel) {message.author.send("aguarde sem atualizar até o level:"+(atual+capLevel)); return true;}
 		return false;
 	}catch(e){//novos
