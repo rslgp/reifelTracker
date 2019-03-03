@@ -517,9 +517,9 @@ client.on('message', message => {
 		var Attachment = (message.attachments).array();
 		var membro = message.member;
 		var copia = message;
-		nickLegivel=parametroUsado = getNickConhecidoApexAMS(copia);
 		
 		try{
+		nickLegivel=parametroUsado = getNickConhecidoApexAMS(copia);
 				var variavelVisita = Browser.visit(Attachment[0].url, function (e, browser) {
 					var text = browser.text();
 					text= text.substring(text.indexOf('localClientPlayerCachedLevel "')+30);
@@ -1220,7 +1220,7 @@ client.on('message', message => {
 		break;
 			
 		case "att":
-			print(message,"o comando att foi desativado, confira a sala att para atualizar o nick");
+			print(message,"o comando att foi desativado, confira a sala att-level para atualizar o nick");
 			return;
 			break;
 		case "r":
@@ -1316,6 +1316,8 @@ client.on('message', message => {
 						text = JSON.parse(text);	
 						level = text[0].level.value
 						
+						if(capUpdate(message, level)) return;
+						
 						level = [level, level];
 						
 						
@@ -1345,51 +1347,42 @@ client.on('message', message => {
 						}
 					}catch(e){
 						//site alternativo
-						site = "https://apextab.com/search-"+parametroUsado;
+						site = "https://apextab.com/api/search.php?platform=pc&search="+parametroUsado;
 						try{ //tentar atualizar usando outro site
-						var variavelVisita2 = Browser.visit(site, function (e, browser) {					
-							var winP, selector;	
-							try{
-								var text = browser.html(); //pega o id profile
-								site = browser.queryAll("#wrapper > div > div > div.row.justify-content-center.no-gutters > div.col-lg-8.smpadding > div > div.content.nopadding > div > table > tbody > tr > td.nameinfo > div > a");
-								site = site[0].href;
-									//acessar pagina
-									try{ //tentar atualizar usando outro site
-									var variavelVisita3 = Browser.visit(site, function (e, browser) {					
-										var winP, selector;	
-										try{
-											var text = browser.html();
+							var variavelVisita2 = Browser.visit(site, function (e, browser) {					
+								var winP, selector;	
+								try{
+									var text = browser.html(); //pega o id profile
+									var level = JSON.parse(text.substring(text.indexOf('[')+1, text.lastIndexOf(']')));
+									level = [level, level];
+									
+									if(capUpdate(message, level)) return;
+									
+									switch(message.guild.id){
+										case '542501711860727848':
+											padraoRankWinApex(message, message.member, nickLegivel, level, ["550497864023932943","547963888256286732","547959283116146718", "547959283141312525"],[150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
+											//mudarNick(message, padraoNickApex(level[0],nickLegivel));
+										break;
 
-											selector= "#pid > div.col-lg-12.smpadding > div > table > tbody > tr > td > table > tbody > tr > td.playerinfo > div:nth-child(2) > u:nth-child(3)";
-											level = getInnerHtml(browser, selector);
-											level = [level, level];
-						
-						
-											switch(message.guild.id){
-												case '542501711860727848':
-													padraoRankWinApex(message, message.member, nickLegivel, level, ["550497864023932943","547963888256286732","547959283116146718", "547959283141312525"],[150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
-													//mudarNick(message, padraoNickApex(level[0],nickLegivel));
-												break;
+										case '550108927698927626': //ams scrims
+											padraoRankWinApex(message, message.member, nickLegivel, level, ["550133503208062995", "550118715056848937","550118715337736210"], [150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
+											//mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
+										break;
 
-												case '550108927698927626': //ams scrims
-													padraoRankWinApex(message, message.member, nickLegivel, level, ["550133503208062995", "550118715056848937","550118715337736210"], [150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
-													//mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
-												break;
+										case '542501242916700181': //ams
+											padraoRankWinApex(message, message.member, nickLegivel, level, ["550153057653227541", "550153058030583820", "550153058613723156","550153494045261837"], [150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
 
-												case '542501242916700181': //ams
-													padraoRankWinApex(message, message.member, nickLegivel, level, ["550153057653227541", "550153058030583820", "550153058613723156","550153494045261837"], [150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
-													
-													var posicaoGuardaChuva = -1;
-													try{
-														posicaoGuardaChuva = message.member.nickname.indexOf("★");		
-													}catch(e){
+											var posicaoGuardaChuva = -1;
+											try{
+												posicaoGuardaChuva = message.member.nickname.indexOf("★");		
+											}catch(e){
 
-													}
-													if(posicaoGuardaChuva!==-1)return;
-													
-													mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
-												break;
 											}
+											if(posicaoGuardaChuva!==-1)return;
+
+											mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
+										break;
+									}
 
 										}catch(e){
 											//print(message,errorNickNaoEncontrado);
@@ -3004,7 +2997,7 @@ function getInnerHtml(browser, selector){
 function getNickConhecido(message){
 	var posicaoGuardaChuva = -1;
 	try{
-		posicaoGuardaChuva = message.member.nickname.indexOf("★");		
+		posicaoGuardaChuva = message.member.nickname.indexOf("☂");		
 	}catch(e){
 		
 	}
@@ -3219,4 +3212,15 @@ function padraoRankWinApex(message, usuario, nickLegivel, winrKD, ranks=[], tabe
 		}
 		
 		//usuario.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(usuario.setNickname( padraoNick(winrKD[0],nickLegivel) )).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));	
+}
+
+function capUpdate(message, level){
+	try{
+		var nome = message.member.nickname;
+		var levelatual = nome.substring(nome.indexOf('★')+2);
+		levelatual = parseInt(levelatual);
+		var levelSite = parseInt(level);
+		if( (levelSite - levelatual) < 5) {message.author.send("aguarde upar 5 nível ou mais do atual"); return true;}
+		return false;
+	}catch(e){//novos}
 }
