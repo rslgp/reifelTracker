@@ -527,15 +527,15 @@ client.on('message', message => {
 					
 					switch(message.guild.id){
 							case '542501711860727848':
-								mudarNick(message, padraoNickApex(text,nickLegivel));
+								mudarNickSilencioso(message, padraoNickApex(text,nickLegivel));
 							break;
 								
 							case '550108927698927626':
-								mudarNick(message, padraoNickApexAMS(text,nickLegivel));
+								mudarNickSilencioso(message, padraoNickApexAMS(text,nickLegivel));
 							break;
 							
 							case '542501242916700181':
-								mudarNick(message, padraoNickApexAMS(text,nickLegivel));
+								mudarNickSilencioso(message, padraoNickApexAMS(text,nickLegivel));
 							break;
 						}
 					
@@ -2796,6 +2796,10 @@ function runAutoUpdateWinRate(message){
 
 function mudarNick(message, novoNick, extra=""){
 	message.member.setNickname( novoNick ).then(user => message.reply(extra+`atualizei`)).catch(err => message.reply(`Não consegui atualizar, mas seria: `+novoNick));
+}
+
+function mudarNickSilencioso(message, novoNick, extra=""){
+	message.member.setNickname( novoNick ).then(user => message.member.send(extra+`atualizei`)).catch(err => message.reply(`Não consegui atualizar, mas seria: `+novoNick));
 }
 
 //"☂ "
