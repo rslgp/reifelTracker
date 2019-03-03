@@ -3209,7 +3209,7 @@ function capUpdate(message, level){
 		else
 			levelatual = nome.substring(0,nome.indexOf(' '));
 		var levelSite = parseInt(level), atual = parseInt(levelatual);
-		if( (levelSite - levelatual) < 5) {message.author.send("aguarde sem atualizar até o level:"+(levelatual+5)); return true;}
+		if( (levelSite - atual) < 5) {message.author.send("aguarde sem atualizar até o level:"+(atual+5)); return true;}
 		return false;
 	}catch(e){//novos
 	console.log(e);
