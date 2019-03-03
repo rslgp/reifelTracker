@@ -1344,7 +1344,7 @@ client.on('message', message => {
 								}catch(e){
 
 								}
-								if(posicaoGuardaChuva!==-1)return;
+								//if(posicaoGuardaChuva!==-1)return;
 								mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
 							break;
 						}
@@ -3272,6 +3272,7 @@ function padraoRankWinApex(message, usuario, nickLegivel, winrKD, ranks=[], tabe
 		//usuario.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(usuario.setNickname( padraoNick(winrKD[0],nickLegivel) )).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));	
 }
 
+const capLevel=4;
 function capUpdate(message, level){
 	try{
 		var nome = message.member.nickname;
@@ -3281,7 +3282,7 @@ function capUpdate(message, level){
 		else
 			levelatual = nome.substring(0,nome.indexOf(' '));
 		var levelSite = parseInt(level), atual = parseInt(levelatual);
-		if( (levelSite - atual) < 3) {message.author.send("aguarde sem atualizar até o level:"+(atual+3)); return true;}
+		if( (levelSite - atual) < capLevel) {message.author.send("aguarde sem atualizar até o level:"+(atual+capLevel)); return true;}
 		return false;
 	}catch(e){//novos
 	console.log(e);
