@@ -1225,7 +1225,8 @@ client.on('message', message => {
 			return;
 			break;
 		case "r":
-			message.author.send("devido a sobrecarga na origin o comando r foi desativado, solicite sala no servidor para atualizar com arquivo");
+			//message.author.send("devido a sobrecarga na origin o comando r foi desativado, solicite sala no servidor para atualizar com arquivo");
+			message.author.send("devido a sobrecarga na origin o comando r foi desativado, use o comando .lvl a cada 3 níveis");
 			return;
 			break;
 			try{
