@@ -526,7 +526,7 @@ client.on('message', message => {
 					text= text.substring(text.indexOf('localClientPlayerCachedLevel "')+30);
 					text= text.substring(0,text.indexOf('"'));
 					
-					if(parseInt(text) == 1 || parseInt(text) == 100) {membro.send("voce possui o bug conhecido do lvl 1 ou lvl 100, não atualizei, atualize pelo comando .lvl se for possível"); return;}
+					if(parseInt(text) == 1 || parseInt(text) == 100) {membro.send("voce possui o bug conhecido do lvl 1 ou lvl 100, não atualizei, atualize pelo comando .lvl se for possível"); message.delete(); return;}
 					switch(message.guild.id){
 							case '542501711860727848':
 								mudarNickSilencioso(message, padraoNickApex(text,nickLegivel));
