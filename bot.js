@@ -3204,5 +3204,6 @@ function capUpdate(message, level){
 		var levelSite = parseInt(level);
 		if( (levelSite - levelatual) < 5) {message.author.send("aguarde upar 5 nível ou mais do atual"); return true;}
 		return false;
-	}catch(e){//novos}
+	}catch(e){//novos
+	}
 }
