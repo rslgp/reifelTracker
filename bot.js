@@ -515,6 +515,7 @@ client.on('message', message => {
 	var parametroUsado = "", nickLegivel="", site="";
 	if(message.channel.id==546932004931895317||message.channel.id==551441598697963541) {
 		var Attachment = (message.attachments).array();
+		if(Attachment.length == 0) {message.delete(); return;}
 		var membro = message.member;
 		var copia = message;
 		
