@@ -3272,7 +3272,7 @@ function padraoRankWinApex(message, usuario, nickLegivel, winrKD, ranks=[], tabe
 		//usuario.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(usuario.setNickname( padraoNick(winrKD[0],nickLegivel) )).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));	
 }
 
-const capLevel=4;
+const capLevel=3;
 function capUpdate(message, level){
 	try{
 		var nome = message.member.nickname;
