@@ -3203,11 +3203,15 @@ function padraoRankWinApex(message, usuario, nickLegivel, winrKD, ranks=[], tabe
 function capUpdate(message, level){
 	try{
 		var nome = message.member.nickname;
-		var levelatual = nome.substring(nome.indexOf('★')+2);
-		levelatual = parseInt(levelatual);
-		var levelSite = parseInt(level);
-		if( (levelSite - levelatual) < 5) {message.author.send("aguarde upar 5 níveis a mais do atual"); return true;}
+		var levelatual;
+		if(nome.indexOf('★') == (nome.length-1))
+			levelatual = nome.substring(nome.lastIndexOf(' ',nome.length-3)+1,nome.length-2);
+		else
+			levelatual = nome.substring(0,nome.indexOf(' '));
+		var levelSite = parseInt(level), atual = parseInt(levelatual);
+		if( (levelSite - levelatual) < 5) {message.author.send("aguarde sem atualizar até o level:"+(levelatual+5)); return true;}
 		return false;
 	}catch(e){//novos
+	console.log(e);
 	}
 }
