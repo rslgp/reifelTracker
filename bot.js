@@ -3276,7 +3276,7 @@ const capLevel=3;
 function capUpdate(message, level){
 	try{
 		var levelSite = parseInt(level);
-		if(levelSite==60 || levelSite==61 || levelSite==100 || levelSite==101 ) return true;
+		if(levelSite==60 || levelSite==61 || levelSite==100 || levelSite==101 ) return false; //liberar se tiver esses niveis
 		
 		var nome = message.member.nickname;
 		var levelatual;
