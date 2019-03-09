@@ -3250,23 +3250,23 @@ function criarVoice(obj, i, max, message, name, permissoesOverwrites){
 function padraoRankWinApex(message, usuario, nickLegivel, winrKD, ranks=[], tabela=[100,78,48,26], continuaRank="Continua onde está, os niveis atuais são: 100+, 78+, 48+, 26+"){
 		
 		if(winrKD[0]>=tabela[0]){
-			if(usuario.roles.has(ranks[0])) {message.author.send("Você está na patente máxima");return;}
+			if(usuario.roles.has(ranks[0])) {message.react('🚩');return;}
 			changeRole(usuario, ranks[1], ranks[0]);	
 			print(message,msg1Rank+ranks[0]+msg2Rank);
 		}else if(winrKD[0]>=tabela[1]){
-			if(usuario.roles.has(ranks[1])) {message.author.send(continuaRank); return;}
+			if(usuario.roles.has(ranks[1])) {message.react('🚩'); return;}
 			changeRole(usuario, ranks[2], ranks[1]);	
 			print(message,msg1Rank+ranks[1]+msg2Rank);
 		}else if(winrKD[0]>=tabela[2]){
-			if(usuario.roles.has(ranks[2])) {message.author.send(continuaRank); return;}
+			if(usuario.roles.has(ranks[2])) {message.react('🚩'); return;}
 			changeRole(usuario, ranks[3], ranks[2]);	
 			print(message,msg1Rank+ranks[2]+msg2Rank);
 		}else if(winrKD[0]>=tabela[3]){
-			if(usuario.roles.has(ranks[3])) {message.author.send(continuaRank);}
+			if(usuario.roles.has(ranks[3])) {message.react('🚩');}
 			changeRole(usuario, ranks[0], ranks[3]);	
 			print(message,msg1Rank+ranks[3]+msg2Rank);
 		}else{
-			message.author.send("Você precisa de mais nível para registrar o rank");
+			message.author.send("Você precisa de mais nível para registrar o rank (26+)");
 		}
 		
 		//usuario.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(usuario.setNickname( padraoNick(winrKD[0],nickLegivel) )).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));	
