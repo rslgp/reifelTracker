@@ -3275,6 +3275,7 @@ function padraoRankWinApex(message, usuario, nickLegivel, winrKD, ranks=[], tabe
 const capLevel=3;
 function capUpdate(message, level){
 	try{
+		try{message.react('🚩');}catch(e){}
 		var levelSite = parseInt(level);
 		if(levelSite==60 || levelSite==61 || levelSite==100 || levelSite==101 ) return false; //liberar se tiver esses niveis
 		
