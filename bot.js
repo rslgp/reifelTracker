@@ -5,7 +5,7 @@ const JSONbig = require('json-bigint');
 
 const tabelaPreco = '**Mensalidade do bot ReifelTracker**\r\nDepende da quantidade de membros do servidor no discord\r\n\r\nExperimente grátis por 7 dias\r\nMensalidade:\r\nmembros -------- reais por mês\r\n1 a 85            -------- R$ 6\r\n86 a 250        -------- R$ 15\r\n251 a 650       -------- R$ 18\r\nmaior que 650      -------- R$ 22\r\n\r\n**Forma de pagamento**: boleto, transferência bancária (banco do brasil), depósito, paypal (+12% do preço pela taxa do paypal)\r\n**Dá direito a** 3 cargos (nomes customizáveis: Lendário, Épico, Raro)(representando kd ou winrate), instalação grátis e só paga quando estiver funcionando, os preços são para usar o bot do jeito que ele é na última atualização dele, com no máximo pequenas adaptações. Se não quiser mais, o bot é desinstalado e tem opção de remover as modificações feitas pelo bot (voltar ao que era antes).\r\n\r\n**plano econômico: R$ 16 por mês** independente do tamanho do servidor para usar apenas o comando !t\r\n**TRATAR COM:** @Reifel#5047 <@195731919424585728>. Não envie mensagem por aqui, envie para reifel';
 
-const apoio = "", txt1MudarNick='winrate: **', txt2MudarNick='kd: **',txt3MudarNick='**, ', trackerTag="☂", espaco=" ", ftParam="?old=1", pfxCom1='!', pfxCom2='.', pfxCom3='c';
+const apoio = "", txt1MudarNick='winrate: **', txt2MudarNick='kd: **',txt3MudarNick='**, ', trackerTag="☂", espaco=" ", ftParam="?old=1", pfxCom1='!', pfxCom2='.', pfxCom3='c', reactEmoji='📍';
 
 const usersPremium=['195731919424585728', '377626570816487449'];
 
@@ -3250,19 +3250,19 @@ function criarVoice(obj, i, max, message, name, permissoesOverwrites){
 function padraoRankWinApex(message, usuario, nickLegivel, winrKD, ranks=[], tabela=[100,78,48,26], continuaRank="Continua onde está, os niveis atuais são: 100+, 78+, 48+, 26+"){
 		
 		if(winrKD[0]>=tabela[0]){
-			if(usuario.roles.has(ranks[0])) {message.react('🚩');return;}
+			if(usuario.roles.has(ranks[0])) {return;}
 			changeRole(usuario, ranks[1], ranks[0]);	
 			print(message,msg1Rank+ranks[0]+msg2Rank);
 		}else if(winrKD[0]>=tabela[1]){
-			if(usuario.roles.has(ranks[1])) {message.react('🚩'); return;}
+			if(usuario.roles.has(ranks[1])) {return;}
 			changeRole(usuario, ranks[2], ranks[1]);	
 			print(message,msg1Rank+ranks[1]+msg2Rank);
 		}else if(winrKD[0]>=tabela[2]){
-			if(usuario.roles.has(ranks[2])) {message.react('🚩'); return;}
+			if(usuario.roles.has(ranks[2])) {return;}
 			changeRole(usuario, ranks[3], ranks[2]);	
 			print(message,msg1Rank+ranks[2]+msg2Rank);
 		}else if(winrKD[0]>=tabela[3]){
-			if(usuario.roles.has(ranks[3])) {message.react('🚩');}
+			if(usuario.roles.has(ranks[3])) {return;}
 			changeRole(usuario, ranks[0], ranks[3]);	
 			print(message,msg1Rank+ranks[3]+msg2Rank);
 		}else{
@@ -3275,7 +3275,7 @@ function padraoRankWinApex(message, usuario, nickLegivel, winrKD, ranks=[], tabe
 const capLevel=3;
 function capUpdate(message, level){
 	try{
-		try{message.react('🚩');}catch(e){}
+		try{message.react(reactEmoji);}catch(e){}
 		var levelSite = parseInt(level);
 		if(levelSite==60 || levelSite==61 || levelSite==100 || levelSite==101 ) return false; //liberar se tiver esses niveis
 		
