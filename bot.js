@@ -1304,7 +1304,7 @@ client.on('message', message => {
 							levelatual = nome.substring(0,nome.indexOf(' '));
 						
 						if( (parseInt(levelatual) + 3) >= parseInt(level) ) { 
-							mudarNick(message, padraoNickApex([levelatual,levelatual],nickLegivel));
+							mudarNick(message, padraoNickApex(levelatual,nickLegivel));
 						}else{
 							//reifelUser.send(nickLegivel+"win%: "+parseFloat(winrKD[0])- (parseFloat(winrate) + 2.4) );
 							print(message, "nao posso trocar seu nick");
