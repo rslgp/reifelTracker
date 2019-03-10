@@ -1288,35 +1288,14 @@ client.on('message', message => {
 		break;
 			
 		case "mudei":
+			site = "https://www.apexlegendsapi.com/api/v1/player?platform=pc&name="+parametroUsado;
 			try{
-				switch(message.guild.id){								
-					case '550108927698927626':
-						nickLegivel=parametroUsado = getNickConhecidoApexAMS(message);
-					break;
-
-					case '542501242916700181':
-						nickLegivel=parametroUsado = getNickConhecidoApexAMS(message);
-					break;
-					default:								
-						nickLegivel=parametroUsado = getNickConhecidoApex(message);
-					break;
-				}
-				
-				parametroUsado=encodeURI(parametroUsado);
-				if(args[1] !== undefined) message.author.send(errorNaoUsarProprioNick);
-			}catch(e){
-				//caso nao tenha guarda chuva, mantem o nick como arg
-			}
-			site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
-			try{
-				var variavelVisita = Browser.visit(site, function (e, browser) {				
+				var variavelVisita3 = Browser.visit(site, function (e, browser) {				
 					var level;	
 					try{
-						var text = browser.html();
-						text = text.substring(text.indexOf('"playerId": "'));
-						text = "[{"+text.substring(0,text.indexOf(']'))+"]";
-						text = JSON.parse(text);	
-						level = text[0].level.value
+						var text = browser.html(); //pega o id profile
+						var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
+						level = data["level"];
 						var levelatual;
 						var nome = message.member.nickname;
 						if(nome.indexOf('★') == (nome.length-1))
