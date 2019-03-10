@@ -1302,7 +1302,7 @@ client.on('message', message => {
 							levelatual = nome.substring(nome.lastIndexOf(' ',nome.length-3)+1,nome.length-2);
 						else
 							levelatual = nome.substring(0,nome.indexOf(' '));
-						console.log(levelatual+" "+level);
+						print(message, levelatual+" "+level);
 						if( (parseInt(levelatual) + 3) >= parseInt(level) ) { 
 							switch(message.guild.id){
 							case '542501711860727848':
