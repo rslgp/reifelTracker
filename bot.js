@@ -655,6 +655,7 @@ client.on('message', message => {
 		case "ranking":
 		case "rank":
 		case "troquei":
+		case "mudei":
 		case "arma":
 		case "ideia":
 		case "semana":
@@ -948,7 +949,7 @@ client.on('message', message => {
 				variavelVisita=null;
 			}catch(e){}
 		break;
-		
+			
 		case "troquei":
 			var nick = message.member.nickname;
 			var winrate = nick.substring(0,nick.indexOf(trackerTag)-1);
@@ -1278,6 +1279,59 @@ client.on('message', message => {
 					}catch(e){
 						print(message,"erro: dados do apex tá offline, tente dps de 30s");
 						return;
+					}
+					//var resultado = formatarMsg(winP,kd,wins,kills,'--');
+					//msgPadraoBot(message, resultado, site, nickLegivel);
+				});	
+				variavelVisita=null;
+			}catch(e){}
+		break;
+			
+		case "mudei":
+			try{
+				switch(message.guild.id){								
+					case '550108927698927626':
+						nickLegivel=parametroUsado = getNickConhecidoApexAMS(message);
+					break;
+
+					case '542501242916700181':
+						nickLegivel=parametroUsado = getNickConhecidoApexAMS(message);
+					break;
+					default:								
+						nickLegivel=parametroUsado = getNickConhecidoApex(message);
+					break;
+				}
+				
+				parametroUsado=encodeURI(parametroUsado);
+				if(args[1] !== undefined) message.author.send(errorNaoUsarProprioNick);
+			}catch(e){
+				//caso nao tenha guarda chuva, mantem o nick como arg
+			}
+			site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
+			try{
+				var variavelVisita = Browser.visit(site, function (e, browser) {				
+					var level;	
+					try{
+						var text = browser.html();
+						text = text.substring(text.indexOf('"playerId": "'));
+						text = "[{"+text.substring(0,text.indexOf(']'))+"]";
+						text = JSON.parse(text);	
+						level = text[0].level.value
+						var levelatual;
+						var nome = message.member.nickname;
+						if(nome.indexOf('★') == (nome.length-1))
+							levelatual = nome.substring(nome.lastIndexOf(' ',nome.length-3)+1,nome.length-2);
+						else
+							levelatual = nome.substring(0,nome.indexOf(' '));
+						
+						if( (parseInt(levelatual) + 3) >= parseInt(level) ) { 
+							mudarNick(message, padraoNick(level,nickLegivel));
+						}else{
+							//reifelUser.send(nickLegivel+"win%: "+parseFloat(winrKD[0])- (parseFloat(winrate) + 2.4) );
+							print(message, "nao posso trocar seu nick");
+						}
+					}catch(e){
+						print(message,"erro: dados do apex tá offline, tente dps de 30s");
 					}
 					//var resultado = formatarMsg(winP,kd,wins,kills,'--');
 					//msgPadraoBot(message, resultado, site, nickLegivel);
