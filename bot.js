@@ -50,6 +50,7 @@ const message = new Discord.Message();
 const Browser = require('zombie');
 Browser.silent = true;
 Browser.waitDuration='6s'; //cloudflare
+Browser.headers = {"Authorization":"1bx8rK3kQ_RAlyUv0jKN4NA3cEv7nAeQmDr5htoHDxg"}; //ativar backup 3
 
 var Jimp = require("jimp");
 //[apoia.se/reifel](https://apoia.se/reifel) - (*boleto | cartão de crédito - qlqr valor*)
