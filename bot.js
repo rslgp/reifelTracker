@@ -1288,14 +1288,17 @@ client.on('message', message => {
 		break;
 			
 		case "mudei":
-			site = "https://www.apexlegendsapi.com/api/v1/player?platform=pc&name="+parametroUsado;
+			site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
 			try{
-				var variavelVisita3 = Browser.visit(site, function (e, browser) {				
-					var level;	
+				var variavelVisita = Browser.visit(site, function (e, browser) {				
+					//var level,wins,winP,kd,kills,selector;	
+					var level;
 					try{
-						var text = browser.html(); //pega o id profile
-						var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
-						level = data["level"];
+						var text = browser.html();
+						text = text.substring(text.indexOf('"playerId": "'));
+						text = "[{"+text.substring(0,text.indexOf(']'))+"]";
+						text = JSON.parse(text);	
+						level = text[0].level.value
 						var levelatual;
 						var nome = message.member.nickname;
 						if(nome.indexOf('★') == (nome.length-1))
@@ -1327,7 +1330,7 @@ client.on('message', message => {
 					//var resultado = formatarMsg(winP,kd,wins,kills,'--');
 					//msgPadraoBot(message, resultado, site, nickLegivel);
 				});	
-				variavelVisita3=null;
+				variavelVisita=null;
 			}catch(e){}
 		break;
 			
