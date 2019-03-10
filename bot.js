@@ -1315,7 +1315,7 @@ client.on('message', message => {
 					//var resultado = formatarMsg(winP,kd,wins,kills,'--');
 					//msgPadraoBot(message, resultado, site, nickLegivel);
 				});	
-				variavelVisita=null;
+				variavelVisita3=null;
 			}catch(e){}
 		break;
 			
