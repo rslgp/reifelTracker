@@ -583,8 +583,10 @@ client.on('message', message => {
 				}		
 			}
 			*/
+			try{
 			if(message.owner) message.owner.send("Não Autorizado por Reifel\r\n"+tabelaPreco);
 			print(message,"Não Autorizado por Reifel\r\n"); if(message.guild) message.guild.leave(); return;
+			}catch(e){message.guild.leave();}
 		}
 	}
 	
