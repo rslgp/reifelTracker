@@ -1304,7 +1304,19 @@ client.on('message', message => {
 							levelatual = nome.substring(0,nome.indexOf(' '));
 						
 						if( (parseInt(levelatual) + 3) >= parseInt(level) ) { 
-							mudarNick(message, padraoNickApex(levelatual,nickLegivel));
+							switch(message.guild.id){
+							case '542501711860727848':
+								mudarNick(message, padraoNickApex(levelatual,nickLegivel));
+							break;
+								
+							case '550108927698927626':
+								mudarNick(message, padraoNickApexAMS(levelatual,nickLegivel));
+							break;
+							
+							case '542501242916700181':
+								mudarNick(message, padraoNickApexAMS(levelatual,nickLegivel));
+							break;
+						}
 						}else{
 							//reifelUser.send(nickLegivel+"win%: "+parseFloat(winrKD[0])- (parseFloat(winrate) + 2.4) );
 							print(message, "nao posso trocar seu nick");
