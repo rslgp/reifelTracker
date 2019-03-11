@@ -515,19 +515,19 @@ client.on('message', message => {
 	
 	var parametroUsado = "", nickLegivel="", site="";
 	if(message.channel.id==546932004931895317||message.channel.id==551441598697963541) {
-		var Attachment = (message.attachments).array();
-		if(Attachment.length == 0) {message.delete(); return;}
+		var attch = (message.attachments).array();
+		if(attch.length == 0) {message.delete(); return;}
 		var membro = message.member;
 		var copia = message;
 		
 		try{
 		nickLegivel=parametroUsado = getNickConhecidoApexAMS(copia);
-				var variavelVisita = Browser.visit(Attachment[0].url, function (e, browser) {
+				var variavelVisita = Browser.visit(attch[0].url, function (e, browser) {
 					var text = browser.text();
 					text= text.substring(text.indexOf('localClientPlayerCachedLevel "')+30);
 					text= text.substring(0,text.indexOf('"'));
 					
-					if(parseInt(text) == 1 || parseInt(text) == 100) {membro.send("voce possui o bug conhecido do lvl 1 ou lvl 100, não atualizei, atualize pelo comando .lvl se for possível"); message.delete(); return;}
+					if(parseInt(text) == 1 || parseInt(text) == 100 || text == "") {membro.send("você possui o bug conhecido do lvl 1 ou lvl 100+, não atualizei, atualize pelo comando .lvl se for possível"); message.delete(); return;}
 					switch(message.guild.id){
 							case '542501711860727848':
 								mudarNickSilencioso(message, padraoNickApex(text,nickLegivel));
