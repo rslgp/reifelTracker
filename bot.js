@@ -2206,28 +2206,27 @@ client.on('message', message => {
 					print(message,"A contagem de times por partida começou! (ex. 73e)\r\n(digite os 3 primeiros digitos do código da partida)");
 
 					var partidas={};
+					var usuariosPartidas = {};
+					
 									// Await !vote messages
 					const filter = m => m.content;
 					// Errors: ['time'] treats ending because of the time limit as an error
 					message.channel.awaitMessages(msg => {
-						if(msg.content.length===3){
-							if(partidas[msg.content]) partidas[msg.content]++;
-							else partidas[msg.content] = 1;
-							msg.delete();
-						}
+						var codigo = msg.content;
+						if(codigo.length > 3) codigo = codigo.substring(0,3);
+						
+						if(partidas[codigo]) partidas[codigo]++;
+						else partidas[codigo] = 1;
+
+						usuariosPartidas[codigo] += " / "+msg.author;
+
+						msg.delete();
 					}, { max: 110, time: 30000, errors: ['time'] })
-					  .then(collected => {print(message,contagemPartidas(partidas))})
-					  .catch(collected => {print(message,contagemPartidas(partidas))});
+					  .then(collected => {print(message,contagemPartidas(partidas)); message.author.send(contagemUsuarioPartidas(usuariosPartidas);})
+					  .catch(collected => {print(message,contagemPartidas(partidas)); message.author.send(contagemUsuarioPartidas(usuariosPartidas);});
 
 				break;
 			}
-			//if(nickLegivel) client.channels.find("name",nickLegivel).join();
-			//message.channel.send("m!play https://www.youtube.com/watch?v=4xk0o09O7XM").then(message => message.delete());
-
-			//const filter = m => m.content.length===0; //msg do bot medalbot embed eh vazio
-			//message.channel.awaitMessages(filter, { max: 1, time: 5000, errors: ['time'] })
-			//  .then(collected => collected.first().delete() ) //message.channel.fetchMessage().delete()
-			 // .catch(collected => console.log(`fail`));
 		break;
 		/*
 		case "v":			
@@ -2403,7 +2402,7 @@ client.on('message', message => {
 		break;
 	}
 });
-
+const topPartidas = 6;
 function contagemPartidas(dict){
 	// Create items array
 	var items = Object.keys(dict).map(function(key) {
@@ -2415,11 +2414,33 @@ function contagemPartidas(dict){
 	  return second[1] - first[1];
 	});
 	
-	items = items.slice(0, 6);
+	items = items.slice(0, topPartidas);
 	
 	var retorno="Times por partida:\r\n";
 	for(var i of items){
 		retorno+=i[1]+"\t-\t"+i[0]+quebraLinha;
+	}
+	
+	return retorno;
+}
+
+function contagemUsuarioPartidas(dict){
+	// Create items array
+	var items = Object.keys(dict).map(function(key) {
+	  return [key, dict[key]];
+	});
+	
+	// Sort the array based on the second element
+	items.sort(function(first, second) {
+	  return second[1].length - first[1].length;
+	});
+	
+	
+	items = items.slice(0, topPartidas);
+	
+	var retorno="Usuarios por partida:\r\n";
+	for(var i of items){
+		retorno+=i[0]+"\t-\t"+i[1]+"\r\n";
 	}
 	
 	return retorno;
