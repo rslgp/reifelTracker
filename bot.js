@@ -1504,23 +1504,7 @@ client.on('message', message => {
 								}
 							});	
 							variavelVisita3=null;
-						}catch(e){}
-						
-						
-						try{ //tentar atualizar usando outro site
-							var variavelVisita3 = Browser.visit(site, function (e, browser) {					
-								var winP, selector;	
-								try{
-									var text = browser.html(); //pega o id profile
-									var a = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
-								}catch(e){
-								//crash dps visitar
-								}
-							});
-						}catch(e){
-							//crash antes de visitar
-						}
-						
+						}catch(e){}						
 						
 					}
 						//fim site alternativo
