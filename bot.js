@@ -3373,5 +3373,5 @@ function capUpdate(message, level){
 
 function contagemRegressiva(message, segundos){
 	if(segundos==0) {message.delete(); return;}
-	setTimeout(function(){ message.edit(segundos).then( edited => contagemRegressiva(edited, segundos-1)); }, 1000);
+	setTimeout(function(){ message.edit(segundos).then( edited => contagemRegressiva(edited, segundos-1)); }, 800);
 }
