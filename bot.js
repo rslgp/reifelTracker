@@ -2219,6 +2219,7 @@ client.on('message', message => {
 							if(partidas[codigo]) partidas[codigo]++;
 							else partidas[codigo] = 1;
 
+							if(!usuariosPartidas[codigo]) usuariosPartidas[codigo] = ""; //inicializar 
 							usuariosPartidas[codigo] += " / "+msg.author;
 
 							msg.delete();
