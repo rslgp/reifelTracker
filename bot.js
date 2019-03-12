@@ -2212,7 +2212,7 @@ client.on('message', message => {
 					const filter = m => m.content;
 					// Errors: ['time'] treats ending because of the time limit as an error
 					message.channel.awaitMessages(msg => {
-						if(!message.author.bot){
+						if(!msg.author.bot){
 							var codigo = msg.content;
 							if(codigo.length > 3) codigo = codigo.substring(0,3);
 
