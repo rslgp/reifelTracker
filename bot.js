@@ -2204,7 +2204,11 @@ client.on('message', message => {
 			switch(parametroUsado){
 				case "id":
 					print(message,"A contagem de times por partida começou! (ex. 73e)\r\n(digite os 3 primeiros digitos do código da partida)");
-
+					
+					message.channel.send('30s')
+					  .then(msg => contagemRegressiva(msg,29))
+					  .catch(console.error);
+					
 					var partidas={};
 					var usuariosPartidas = {};
 					
@@ -3365,4 +3369,9 @@ function capUpdate(message, level){
 	}catch(e){//novos
 	console.log(e);
 	}
+}
+
+function contagemRegressiva(message, segundos){
+	if(segundos==0) {message.delete(); return;}
+	setTimeout(function(){ message.edit(segundos).then( edited => contagemRegressiva(edited, segundos-1)); }, 1000);
 }
