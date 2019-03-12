@@ -2212,15 +2212,17 @@ client.on('message', message => {
 					const filter = m => m.content;
 					// Errors: ['time'] treats ending because of the time limit as an error
 					message.channel.awaitMessages(msg => {
-						var codigo = msg.content;
-						if(codigo.length > 3) codigo = codigo.substring(0,3);
-						
-						if(partidas[codigo]) partidas[codigo]++;
-						else partidas[codigo] = 1;
+						if(!message.author.bot){
+							var codigo = msg.content;
+							if(codigo.length > 3) codigo = codigo.substring(0,3);
 
-						usuariosPartidas[codigo] += " / "+msg.author;
+							if(partidas[codigo]) partidas[codigo]++;
+							else partidas[codigo] = 1;
 
-						msg.delete();
+							usuariosPartidas[codigo] += " / "+msg.author;
+
+							msg.delete();
+						}
 					}, { max: 110, time: 30000, errors: ['time'] })
 					  .then(collected => {print(message,contagemPartidas(partidas)); message.author.send(contagemUsuarioPartidas(usuariosPartidas));})
 					  .catch(collected => {print(message,contagemPartidas(partidas)); message.author.send(contagemUsuarioPartidas(usuariosPartidas));});
