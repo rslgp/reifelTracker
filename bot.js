@@ -1406,8 +1406,10 @@ client.on('message', message => {
 								var winP, selector;	
 								try{
 									var text = browser.html(); //pega o id profile
-									var level = JSON.parse(text.substring(text.indexOf('[')+1, text.lastIndexOf(']')));
-																										
+									var a = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}')+1));										
+									var level = a.results[0].level;	
+									a = null;
+									
 									if(capUpdate(message, level)) return;
 									
 									level = [level, level];
