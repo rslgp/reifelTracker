@@ -220,6 +220,16 @@ client.on('ready', () => {
 		});
 	});
 	
+	
+	Jimp.read("https://i.imgur.com/tdsP9PU.png", function (err, imagemBackground) {
+		//Jimp.loadFont(Jimp.FONT_SANS_16_WHITE).then(function (fontCarregada) {
+			imageJimpApex=imagemBackground;
+			//fontJimp=fontCarregada;
+			
+			imageJimpApex.deflateStrategy(0).filterType(0);
+		//});
+	});
+	
 	/*
 	var guildsRegistradas = client.guilds.array();
 	for(var a of guildsRegistradas){
@@ -648,6 +658,7 @@ client.on('message', message => {
 		case "alt2":
 		case "alt3":
 		case "lvl":
+		case "ci":
 		case "att":
 		case "r":
 		case "up":
@@ -1335,7 +1346,42 @@ client.on('message', message => {
 				variavelVisita=null;
 			}catch(e){}
 		break;
-			
+		
+		case "ci":
+			site = "https://www.apexlegendsapi.com/api/v1/player?platform=pc&name="+parametroUsado;
+			try{
+				var variavelVisita3 = Browser.visit(site, function (e, browser) {				
+					var kills=-1, dano=-1;	
+					try{
+						var text = browser.html();
+						var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
+
+						for(var heroi of data.legends){
+							for(var i of heroi.stats){
+								if(i.kills && i.kills > kills) kills = i.kills;
+								if(i.damage_done && i.damage_done > dano) dano = i.damage_done;
+
+							}
+
+						}
+						if(dano===-1) dano = "---";
+						if(kills===-1) kills = "---";
+						msgImgApex(message, [dano+"", kills+"", nickLegivel+""]);
+
+					}catch(e){
+						console.log(e);
+					}
+					try{
+						browser.deleteCookies();
+						browser.tabs.closeAll(); browser.window.close(); browser.destroy();					
+					}catch(e){
+
+					}
+				});	
+				variavelVisita3=null;
+			}catch(e){}	
+		break;
+		
 		case "lvl":
 			
 			try{
@@ -1460,7 +1506,7 @@ client.on('message', message => {
 							var variavelVisita3 = Browser.visit(site, function (e, browser) {				
 								var level;	
 								try{
-									var text = browser.html(); //pega o id profile
+									var text = browser.html();
 									var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
 									level = data["level"];
 									
@@ -3360,4 +3406,21 @@ function capUpdate(message, level){
 function contagemRegressiva(message, segundos){
 	if(segundos==0) {message.delete(); return;}
 	setTimeout(function(){ message.edit("resultado em "+segundos).then( edited => contagemRegressiva(edited, segundos-1)); }, 800);
+}
+
+function msgImgApex(message, valoresJimp=["---","---","---"]){//winrate, kd, wins, kills, trn
+	
+	var copiaJimp = imageJimpApex.clone();
+	const linha1=35,linha2=67, linha3=95;
+	copiaJimp.print(fontJimp, 12,linha1, valoresJimp[0])	
+		.print(fontJimp, 69,linha2, valoresJimp[1])	
+		.print(fontJimp, 5,linha3, valoresJimp[2])
+		.write(tempFile, function(){
+		
+			// Create the attachment using MessageAttachment
+			const attachment = new Discord.Attachment(tempFile);
+			// Send the attachment in the message channel with a content
+			message.channel.send(attachment);
+		});
+	copiaJimp=null;
 }
