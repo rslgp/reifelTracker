@@ -1393,7 +1393,7 @@ client.on('message', message => {
 		
 		case "vitoria":
 			var att = (message.attachments).array();
-			if(att[0].filesize > 1000000) {message.author.send("limite de 1 MB do arquivo ultrapassado, use um desses sites para reduzir o tamanho e envie o resultado do site:\r\n http://tinypng.com (.PNG) | http://tinyjpg.com (.JPG) | https://png2jpg.com"); return;};
+			if(att[0].filesize > 1000000) {message.author.send("**limite ultrapassado (>1MB)**,\r\n use um desses sites para reduzir o tamanho e envie a imagem gerada no site:\r\n http://tinypng.com (.PNG) | http://tinyjpg.com (.JPG) | png2jpg.com"); return;};
 			var formato = att[0].url;
 			formato = formato.substring(formato.lastIndexOf(".")+1);
 			options.imageFormat = "image/"+formato;
