@@ -1411,7 +1411,7 @@ client.on('message', message => {
 					if(posKills !== -1) kills = i.substr(0,2);
 					if(posLugar !== -1) lugar = i.substr(8,2);
 				  }
-				  print(message, lugar.replace("DE","1").replace("#","")+" "+kills.replace("B","8"));
+				  print(message, lugar.replace("DE","1").replace("#","").replace("I","1")+" "+kills.replace("B","8"));
 			  }).catch(function (err) {
 				console.log('ERROR:', err);
 			  });
