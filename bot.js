@@ -1393,6 +1393,7 @@ client.on('message', message => {
 		
 		case "vitoria":
 			var att = (message.attachments).array();
+			if(att.filesize > 1000000) {message.author.send("limite de 1 MB do arquivo ultrapassado, use um desses sites para reduzir o tamanho e envie o resultado do site:\r\n http://tinypng.com (.PNG) | http://tinyjpg.com (.JPG) | https://png2jpg.com"); return;};
 			var formato = att[0].url;
 			formato = formato.substring(formato.lastIndexOf(".")+1);
 			options.imageFormat = "image/"+formato;
@@ -1404,7 +1405,7 @@ client.on('message', message => {
 				  var kills="", lugar="";
 				  var posKills, posLugar;
 				  for(var i of leitura){
-					  console.log(i);
+					  //console.log(i);
 					posKills = i.indexOf("SQUAD KILLS");
 					if(posKills===-1) posKills = i.indexOf(" ELIMINA");
 
