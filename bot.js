@@ -1393,6 +1393,9 @@ client.on('message', message => {
 		
 		case "vitoria":
 			var att = (message.attachments).array();
+			var formato = att[0].url;
+			formato = formato.substring(formato.lastIndexOf(".")+1);
+			options.imageFormat = "image/"+formato;
 			parseImageFromUrl(att[0].url, options)
 			  .then(function (parsedResult) {
 				  var a = JSON.parse(parsedResult);
