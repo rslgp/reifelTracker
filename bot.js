@@ -12,6 +12,14 @@ const usersPremium=['195731919424585728', '377626570816487449'];
 //var voiceChannel;
 //var ytdl = require('ytdl-core');
 
+//img r
+const request = require('request');
+var options =  { 
+    apikey: '16c04b131188957',
+    language: 'eng', // Português
+    imageFormat: 'image/jpg', // Image Type (Only png ou gif is acceptable at the moment i wrote this)
+  };
+
 //"\r\n\r\ndá like pro fix da epic na escada q gira sozinha -> [clique aqui](https://accounts.epicgames.com/login/customized?regSubheading=Register&productCss=https%3A%2F%2Fwww.epicgames.com%2Ffortnite%2FssoAsset%2Ffortnite-custom.css&response_type=code&state=https%3A%2F%2Fwww.epicgames.com%2Ffortnite%2Fforums%2Fbugs-issues%2Fbug-reports%2F191591-stair-rotates-randomicaly-priorize-to-front-camera-and-only-rotate-if-pressed-r&client_id=52b63176173444eb8291b0dd60586e04&productName=fortnite&loginSubheading=Sign+In)";
 
 /*
@@ -658,6 +666,7 @@ client.on('message', message => {
 		case "alt2":
 		case "alt3":
 		case "lvl":
+		case "vitoria":
 		case "ci":
 		case "att":
 		case "r":
@@ -1380,6 +1389,28 @@ client.on('message', message => {
 				});	
 				variavelVisita3=null;
 			}catch(e){}	
+		break;
+		
+		case "vitoria":
+			var att = (message.attachments).array();
+			parseImageFromUrl(att[0].url, options)
+			  .then(function (parsedResult) {
+				  var a = JSON.parse(parsedResult);
+				  //parsedResult = parsedResult.ParsedResults[0].ParsedText;
+				  var leitura = sort_unique(a.ParsedResults[0].ParsedText.split("\r\n"));
+				  var kills, lugar;
+				  var posKills, posLugar;
+				  for(var i of leitura){
+					  console.log(i);
+					posKills = i.indexOf("SQUAD KILLS");
+					posLugar = i.indexOf("PLACED");
+					if(posKills !== -1) kills = i.substr(0,2);
+					if(posLugar !== -1) lugar = i.substr(8,2);
+				  }
+				  print(message, lugar+" "+kills.replace("B","8"));
+			  }).catch(function (err) {
+				console.log('ERROR:', err);
+			  });
 		break;
 		
 		case "lvl":
@@ -3424,3 +3455,49 @@ function msgImgApex(message, valoresJimp=["---","---","---"]){//winrate, kd, win
 		});
 	copiaJimp=null;
 }
+
+//img r
+function sort_unique(arr) {
+	var ret = [];
+  for(var i of arr){	  
+	if(i.indexOf("SQUAD KILLS") !== -1) ret.push(i);
+	if(i.indexOf("PLACED") !== -1) ret.push(i);
+  }
+  return ret;
+}
+
+function parseImageFromUrl(imageUrl, options) {
+  return _sendRequestToOcrSpace(undefined, imageUrl, options);
+}
+
+// Set default data
+const _defaultOcrSpaceUrl = 'https://api.ocr.space/parse/image';
+const _base64ImagePattern = 'data:%s;base64,%s';
+const _defaultImageType = 'image/jpg';
+const _defaultLanguade = 'eng';
+const _isOverlayRequired = 'false';
+
+var _sendRequestToOcrSpace = function(localFile, url, options) {
+  return new Promise(function(resolve, reject) { 
+    if (!options.apikey)
+      reject("API key required");
+
+    let req = request.post(_defaultOcrSpaceUrl, (error, response) => {
+      if (error) 
+        reject(error);
+
+      let data = response.toJSON();
+      if (data.statusCode === 200)
+        resolve(data.body);
+      else
+        reject({error: { statusCode: data.statusCode, name: "Error", message: data.body}});
+    });
+
+    let form = req.form();
+    form.append('language', options.language || _defaultLanguade);
+    form.append('isOverlayRequired', 'false');
+    form.append('apikey', options.apikey);
+    form.append('url', url);
+  });
+}
+//fim img r
