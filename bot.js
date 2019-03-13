@@ -1398,16 +1398,20 @@ client.on('message', message => {
 				  var a = JSON.parse(parsedResult);
 				  //parsedResult = parsedResult.ParsedResults[0].ParsedText;
 				  var leitura = sort_unique(a.ParsedResults[0].ParsedText.split("\r\n"));
-				  var kills, lugar;
+				  var kills="", lugar="";
 				  var posKills, posLugar;
 				  for(var i of leitura){
 					  console.log(i);
 					posKills = i.indexOf("SQUAD KILLS");
+					if(posKills===-1) posKills = i.indexOf(" ELIMINA");
+
 					posLugar = i.indexOf("PLACED");
+					if(posLugar===-1) posLugar = i.indexOf("POSI");
+
 					if(posKills !== -1) kills = i.substr(0,2);
 					if(posLugar !== -1) lugar = i.substr(8,2);
 				  }
-				  print(message, lugar+" "+kills.replace("B","8"));
+				  print(message, lugar.replace("DE","1")+" "+kills.replace("B","8"));
 			  }).catch(function (err) {
 				console.log('ERROR:', err);
 			  });
@@ -3460,8 +3464,8 @@ function msgImgApex(message, valoresJimp=["---","---","---"]){//winrate, kd, win
 function sort_unique(arr) {
 	var ret = [];
   for(var i of arr){	  
-	if(i.indexOf("SQUAD KILLS") !== -1) ret.push(i);
-	if(i.indexOf("PLACED") !== -1) ret.push(i);
+	if(i.indexOf("SQUAD KILLS") !== -1 || i.indexOf(" ELIMINA") !== -1) ret.push(i);
+	if(i.indexOf("PLACED") !== -1 || i.indexOf("POSI") !== -1) ret.push(i);
   }
   return ret;
 }
