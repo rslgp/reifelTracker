@@ -2305,9 +2305,13 @@ client.on('message', message => {
 			if(!(message.author == reifelUser || message.member.roles.has("544981841480777750") || message.member.roles.has("554332187152089088"))) return;
 			switch(parametroUsado){
 				case "id":
-					print(message,"A contagem de times por partida começou! (ex. 73e)\r\n(digite os 3 primeiros digitos do código da partida)");
+					message.channel.send({embed: {
+						  color: 3447003,
+							description: "A contagem de times por partida começou! (ex. 73e)\r\n(digite os 3 primeiros digitos do código da partida)"
+						}
+					});
 					
-					message.channel.send('resultado em 25s')
+					message.channel.send('25s')
 					  .then(msgContagem => contagemRegressiva(msgContagem,24))
 					  .catch(console.error);
 					
@@ -2318,16 +2322,18 @@ client.on('message', message => {
 					const filter = m => m.content;
 					// Errors: ['time'] treats ending because of the time limit as an error
 					message.channel.awaitMessages(msg => {
-						var codigo = msg.content;
-						if(codigo.length > 3) codigo = codigo.substring(0,3);
+						if(!msg.author.bot){
+							var codigo = msg.content;
+							if(codigo.length > 3) codigo = codigo.substring(0,3);
 
-						if(partidas[codigo]) partidas[codigo]++;
-						else partidas[codigo] = 1;
+							if(partidas[codigo]) partidas[codigo]++;
+							else partidas[codigo] = 1;
 
-						if(usuariosPartidas[codigo]) usuariosPartidas[codigo] += " / "+msg.author; //inicializar 
-						else usuariosPartidas[codigo] = msg.author;
+							if(usuariosPartidas[codigo]) usuariosPartidas[codigo] += " / "+msg.author; //inicializar 
+							else usuariosPartidas[codigo] = msg.author;
 
-						if(msg.author.bot){}else msg.delete();					
+							msg.delete();	
+						}
 					}, { max: 110, time: 30000, errors: ['time'] })
 					  .then(collected => {print(message,contagemPartidas(partidas)); message.author.send(contagemUsuarioPartidas(usuariosPartidas));})
 					  .catch(collected => {print(message,contagemPartidas(partidas)); message.author.send(contagemUsuarioPartidas(usuariosPartidas));});
