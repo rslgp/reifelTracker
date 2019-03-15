@@ -2318,7 +2318,7 @@ client.on('message', message => {
 					const filter = m => m.content;
 					// Errors: ['time'] treats ending because of the time limit as an error
 					message.channel.awaitMessages(msg => {
-						if(!msg.author.bot){
+						if(msg.author.bot) continue;
 							var codigo = msg.content;
 							if(codigo.length > 3) codigo = codigo.substring(0,3);
 
@@ -2329,7 +2329,6 @@ client.on('message', message => {
 							else usuariosPartidas[codigo] = msg.author;
 
 							msg.delete();
-						}
 					}, { max: 110, time: 30000, errors: ['time'] })
 					  .then(collected => {print(message,contagemPartidas(partidas)); message.author.send(contagemUsuarioPartidas(usuariosPartidas));})
 					  .catch(collected => {print(message,contagemPartidas(partidas)); message.author.send(contagemUsuarioPartidas(usuariosPartidas));});
