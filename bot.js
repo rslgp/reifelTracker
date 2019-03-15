@@ -669,6 +669,7 @@ client.on('message', message => {
 		case "lvl":
 		case "vitoria":
 		case "ci":
+		case "dk":
 		case "att":
 		case "r":
 		case "up":
@@ -1358,6 +1359,9 @@ client.on('message', message => {
 		break;
 		
 		case "ci":
+			message.author.send("o comando ci agora é dk");
+			return;
+		case "dk":
 			site = "https://www.apexlegendsapi.com/api/v1/player?platform=pc&name="+parametroUsado;
 			try{
 				var variavelVisita3 = Browser.visit(site, function (e, browser) {				
