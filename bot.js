@@ -2314,21 +2314,20 @@ client.on('message', message => {
 					var partidas={};
 					var usuariosPartidas = {};
 					
-									// Await !vote messages
+					// Await !vote messages
 					const filter = m => m.content;
 					// Errors: ['time'] treats ending because of the time limit as an error
 					message.channel.awaitMessages(msg => {
-						if(msg.author.bot) continue;
-							var codigo = msg.content;
-							if(codigo.length > 3) codigo = codigo.substring(0,3);
+						var codigo = msg.content;
+						if(codigo.length > 3) codigo = codigo.substring(0,3);
 
-							if(partidas[codigo]) partidas[codigo]++;
-							else partidas[codigo] = 1;
+						if(partidas[codigo]) partidas[codigo]++;
+						else partidas[codigo] = 1;
 
-							if(usuariosPartidas[codigo]) usuariosPartidas[codigo] += " / "+msg.author; //inicializar 
-							else usuariosPartidas[codigo] = msg.author;
+						if(usuariosPartidas[codigo]) usuariosPartidas[codigo] += " / "+msg.author; //inicializar 
+						else usuariosPartidas[codigo] = msg.author;
 
-							msg.delete();
+						if(!message.author.bot) msg.delete();						
 					}, { max: 110, time: 30000, errors: ['time'] })
 					  .then(collected => {print(message,contagemPartidas(partidas)); message.author.send(contagemUsuarioPartidas(usuariosPartidas));})
 					  .catch(collected => {print(message,contagemPartidas(partidas)); message.author.send(contagemUsuarioPartidas(usuariosPartidas));});
