@@ -3574,6 +3574,7 @@ function imgrResultado(parsedResult){
 
 function aprendizado(message){
 var att = (message.attachments).array();
+	if(att.length == 0) return;
 			//if(att[0].filesize > 1000000) {message.author.send("**limite ultrapassado (>1MB)**,\r\n use um desses sites para reduzir o tamanho e envie a imagem gerada no site:\r\n http://tinypng.com (.PNG) | http://tinyjpg.com (.JPG) | png2jpg.com"); return;};
 			var h = att[0].height, w = att[0].width;
 			if(h<720) {print(message, "erro: print de baixa qualidade, resoluções permitidas: 720p ou mais ( _ x 720)"); return;}
