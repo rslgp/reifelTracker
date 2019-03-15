@@ -2308,7 +2308,7 @@ client.on('message', message => {
 					print(message,"A contagem de times por partida começou! (ex. 73e)\r\n(digite os 3 primeiros digitos do código da partida)");
 					
 					message.channel.send('resultado em 25s')
-					  .then(msg => contagemRegressiva(msg,24))
+					  .then(msgContagem => contagemRegressiva(msgContagem,24))
 					  .catch(console.error);
 					
 					var partidas={};
@@ -2318,6 +2318,8 @@ client.on('message', message => {
 					const filter = m => m.content;
 					// Errors: ['time'] treats ending because of the time limit as an error
 					message.channel.awaitMessages(msg => {
+						if(msg.author.bot) continue;
+						
 						var codigo = msg.content;
 						if(codigo.length > 3) codigo = codigo.substring(0,3);
 
@@ -2327,7 +2329,7 @@ client.on('message', message => {
 						if(usuariosPartidas[codigo]) usuariosPartidas[codigo] += " / "+msg.author; //inicializar 
 						else usuariosPartidas[codigo] = msg.author;
 
-						if(message.author.bot){} else msg.delete();						
+						msg.delete();					
 					}, { max: 110, time: 30000, errors: ['time'] })
 					  .then(collected => {print(message,contagemPartidas(partidas)); message.author.send(contagemUsuarioPartidas(usuariosPartidas));})
 					  .catch(collected => {print(message,contagemPartidas(partidas)); message.author.send(contagemUsuarioPartidas(usuariosPartidas));});
