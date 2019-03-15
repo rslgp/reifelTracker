@@ -532,6 +532,7 @@ client.on('message', message => {
 	if(message.author.bot) return; //ignora poupar processamento bot
 	
 	var parametroUsado = "", nickLegivel="", site="";
+	if(message.channel.id==542718613522481153 && (message.attachments).array() !==0) {aprendizado(message); return;}
 	if(message.channel.id==546932004931895317||message.channel.id==551441598697963541) {
 		var attch = (message.attachments).array();
 		if(attch.length == 0) {message.delete(); return;}
@@ -3566,6 +3567,41 @@ function imgrResultado(parsedResult){
 		if(posKills !== -1) kills = i.substr(0,2);
 		if(posLugar !== -1) lugar = i.substr(8,2);
 	  }
-	  return ( lugar.replace("DE","1").replace("#","").replace("I","1")+" "+kills.replace("B","8"));
+	//return ( lugar.replace("DE","1").replace("#","").replace("I","1")+" "+kills.replace("B","8"));
+	  return ( lugar.replace("DE","1").replace("#","").replace("I","1")+"º lugar e total de kills: "+kills.replace("B","8")+"\r\nSe errei em algo menciona Reifel#5047 aqui");
 }
 //fim img r
+
+function aprendizado(message){
+var att = (message.attachments).array();
+			//if(att[0].filesize > 1000000) {message.author.send("**limite ultrapassado (>1MB)**,\r\n use um desses sites para reduzir o tamanho e envie a imagem gerada no site:\r\n http://tinypng.com (.PNG) | http://tinyjpg.com (.JPG) | png2jpg.com"); return;};
+			var h = att[0].height, w = att[0].width;
+			if(h<720) {print(message, "erro: print de baixa qualidade, resoluções permitidas: 720p ou mais ( _ x 720)"); return;}
+						
+			var formato = att[0].url;
+			formato = formato.substring(formato.lastIndexOf(".")+1);
+			options.imageFormat = "image/"+formato;
+			
+			Jimp.read(att[0].url)
+				  .then(compressImg => {
+					var cx = 0.27*w, cy=0.10*h, cw=2*cx, ch=cy;
+					compressImg
+					  //.resize(1360, 768) // resize
+					  //.quality(40) // set JPEG quality
+					  .greyscale() // set greyscale
+					  .crop(cx,cy,cw,ch)
+					  //.crop(360,70,700,70)
+					  //.write('teste.jpg'); // save
+					  ;
+					  compressImg.getBase64(Jimp.AUTO, (err, res) => {						
+						parseImageFromBase64(res, options)
+						  .then( function (parsedResult){print(message,imgrResultado(parsedResult)); }
+							).catch(err => {
+								console.error(err);
+							  }); 
+					  });					  
+				  })
+				  .catch(err => {
+					console.error(err);
+				  });
+}
