@@ -1393,10 +1393,35 @@ client.on('message', message => {
 		
 		case "vitoria":
 			var att = (message.attachments).array();
-			if(att[0].filesize > 1000000) {message.author.send("**limite ultrapassado (>1MB)**,\r\n use um desses sites para reduzir o tamanho e envie a imagem gerada no site:\r\n http://tinypng.com (.PNG) | http://tinyjpg.com (.JPG) | png2jpg.com"); return;};
+			//if(att[0].filesize > 1000000) {message.author.send("**limite ultrapassado (>1MB)**,\r\n use um desses sites para reduzir o tamanho e envie a imagem gerada no site:\r\n http://tinypng.com (.PNG) | http://tinyjpg.com (.JPG) | png2jpg.com"); return;};
 			var formato = att[0].url;
 			formato = formato.substring(formato.lastIndexOf(".")+1);
 			options.imageFormat = "image/"+formato;
+			
+			Jimp.read(att[0].url)
+				  .then(compressImg => {
+					compressImg
+					  .resize(1360, 768) // resize
+					  //.quality(40) // set JPEG quality
+					  .greyscale() // set greyscale
+					  .crop(360,70,700,70)
+					  //.write('teste.jpg'); // save
+					  ;
+					  compressImg.getBase64(Jimp.AUTO, (err, res) => {						
+						parseImageFromBase64(res, options)
+						  .then( function (parsedResult){print(message,imgrResultado(parsedResult)); }
+							).catch(err => {
+								console.error(err);
+							  }); 
+					  });
+
+
+					  
+				  })
+				  .catch(err => {
+					console.error(err);
+				  });
+			/*
 			parseImageFromUrl(att[0].url, options)
 			  .then(function (parsedResult) {
 				  var a = JSON.parse(parsedResult);
@@ -1418,7 +1443,7 @@ client.on('message', message => {
 				  print(message, lugar.replace("DE","1").replace("#","").replace("I","1")+" "+kills.replace("B","8"));
 			  }).catch(function (err) {
 				console.log('ERROR:', err);
-			  });
+			  });*/
 		break;
 		
 		case "lvl":
@@ -3478,6 +3503,10 @@ function parseImageFromUrl(imageUrl, options) {
   return _sendRequestToOcrSpace(undefined, imageUrl, options);
 }
 
+function parseImageFromBase64(imageUrl, options) {
+  return _sendRequestToOcrSpace( imageUrl, undefined, options);
+}
+
 // Set default data
 const _defaultOcrSpaceUrl = 'https://api.ocr.space/parse/image';
 const _base64ImagePattern = 'data:%s;base64,%s';
@@ -3505,7 +3534,33 @@ var _sendRequestToOcrSpace = function(localFile, url, options) {
     form.append('language', options.language || _defaultLanguade);
     form.append('isOverlayRequired', 'false');
     form.append('apikey', options.apikey);
-    form.append('url', url);
+    if (url) 
+      form.append('url', url);
+    else {
+      //base64
+       form.append('Base64Image', localFile);   
+      
+    }
   });
+}
+
+function imgrResultado(parsedResult){
+	  var a = JSON.parse(parsedResult);
+	  //parsedResult = parsedResult.ParsedResults[0].ParsedText;
+	  var leitura = sort_unique(a.ParsedResults[0].ParsedText.split("\r\n"));
+	  var kills="", lugar="";
+	  var posKills, posLugar;
+	  for(var i of leitura){
+		  //console.log(i);
+		posKills = i.indexOf("SQUAD KILLS");
+		if(posKills===-1) posKills = i.indexOf(" ELIMINA");
+
+		posLugar = i.indexOf("PLACED");
+		if(posLugar===-1) posLugar = i.indexOf("POSI");
+
+		if(posKills !== -1) kills = i.substr(0,2);
+		if(posLugar !== -1) lugar = i.substr(8,2);
+	  }
+	  return ( lugar.replace("DE","1").replace("#","").replace("I","1")+" "+kills.replace("B","8"));
 }
 //fim img r
