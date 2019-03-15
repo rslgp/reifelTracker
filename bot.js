@@ -2327,7 +2327,7 @@ client.on('message', message => {
 						if(usuariosPartidas[codigo]) usuariosPartidas[codigo] += " / "+msg.author; //inicializar 
 						else usuariosPartidas[codigo] = msg.author;
 
-						if(!message.author.bot) msg.delete();						
+						if(message.author.bot){} else msg.delete();						
 					}, { max: 110, time: 30000, errors: ['time'] })
 					  .then(collected => {print(message,contagemPartidas(partidas)); message.author.send(contagemUsuarioPartidas(usuariosPartidas));})
 					  .catch(collected => {print(message,contagemPartidas(partidas)); message.author.send(contagemUsuarioPartidas(usuariosPartidas));});
