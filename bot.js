@@ -3577,7 +3577,7 @@ function imgrResultado(parsedResult){
 		if(posLugar !== -1) lugar = i.substr(8,2);
 	  }
 	//return ( lugar.replace("DE","1").replace("#","").replace("I","1")+" "+kills.replace("B","8"));
-	  return ( lugar.replace(/F1|DE|#|I|F|O/,"1")+"º lugar e total de kills: "+kills.replace("B","8")+"\r\nSe errei menciona/marca @ reifel1 aqui");
+	  return ( lugar.replace(/F1|DE|#1|#|I|F|O/,"1")+"º lugar e total de kills: "+kills.replace("B","8")+"\r\nSe errei menciona/marca @ reifel1 aqui");
 }
 //fim img r
 
