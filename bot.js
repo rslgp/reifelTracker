@@ -3594,12 +3594,13 @@ var att = (message.attachments).array();
 			
 			Jimp.read(att[0].url)
 				  .then(compressImg => {
-					var cx = 0.27*w, cy=0.10*h, cw=2*cx, ch=cy;
+					var cx = 0.27*w, cy=0.10*h, cw=1.7*cx, ch=0.6*cy;
 					compressImg
 					  //.resize(1360, 768) // resize
 					  //.quality(40) // set JPEG quality
 					  .greyscale() // set greyscale
 					  .crop(cx,cy,cw,ch)
+					  .scale(2)
 					  //.crop(360,70,700,70)
 					  //.write('teste.jpg'); // save
 					  ;
