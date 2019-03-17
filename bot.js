@@ -3600,7 +3600,7 @@ var att = (message.attachments).array();
 					  //.quality(40) // set JPEG quality
 					  .greyscale() // set greyscale
 					  .crop(cx,cy,cw,ch)
-					  .contrast(0.3)
+					  .contrast(0.7)
 					  .scale(6)
 					  //.crop(360,70,700,70)
 					  //.write('teste.jpg'); // save
