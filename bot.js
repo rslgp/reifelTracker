@@ -3568,6 +3568,7 @@ function imgrResultado(parsedResult){
 		  //console.log(i);
 		posKills = i.indexOf("SQUAD KILLS");
 		if(posKills===-1) posKills = i.indexOf(" ELIMINA");
+		if(posKills===-1) posKills = i.indexOf(" ESQUA");
 
 		posLugar = i.indexOf("PLACED");
 		if(posLugar===-1) posLugar = i.indexOf("POSI");
