@@ -213,11 +213,14 @@ client.on('ready', () => {
 	salaVotem = client.channels.get("413597195846156299");	
 	salaAposta = client.channels.get("416769967690743819");
 	reifelUser = client.users.get('195731919424585728');
-	client.user.setPresence({
+	client.user.setActivity("meu dono Reifel#5047 |.queroessebot", { type: 'LISTENING' });
+	/*client.user.setPresence({
 		game: {
-			name: "com "+client.guilds.array().length +"|dono:Reifel#5047"
+			//name: "com "+client.guilds.array().length +"|dono:Reifel#5047"
+			name: "c/ meu dono Reifel#5047 |.queroessebot"
 		}
 	}); 
+	*/
 	//http://snip.li/reifelbackground1
 	Jimp.read("https://i.imgur.com/IiwIFC0.png", function (err, imagemBackground) {
 		Jimp.loadFont(Jimp.FONT_SANS_16_WHITE).then(function (fontCarregada) {
