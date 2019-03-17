@@ -3507,7 +3507,7 @@ function msgImgApex(message, valoresJimp=["---","---","---"]){//winrate, kd, win
 function sort_unique(arr) {
 	var ret = [];
   for(var i of arr){	  
-	if(i.indexOf("SQUAD KILLS") !== -1 || i.indexOf(" ELIMINA") !== -1) ret.push(i);
+	if(i.indexOf("SQUAD KILLS") !== -1 || i.indexOf(" ELIMINA") !== -1 || i.indexOf(" ESQUA") !== -1) ret.push(i);
 	if(i.indexOf("PLACED") !== -1 || i.indexOf("POSI") !== -1) ret.push(i);
   }
   return ret;
