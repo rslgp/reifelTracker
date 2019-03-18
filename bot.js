@@ -1479,7 +1479,7 @@ client.on('message', message => {
 				if(args[1] !== undefined) message.author.send(errorNaoUsarProprioNick);
 			}catch(e){
 				//caso nao tenha guarda chuva, mantem o nick como arg
-				if(args[1] !== undefined) message.author.send("faltou colocar espaço o seu nick da origin no comando .lvl");
+				if(args[1] == undefined) message.author.send("faltou colocar espaço o seu nick da origin no comando .lvl");
 			}
 			site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
 			try{
