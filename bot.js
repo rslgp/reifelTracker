@@ -3585,7 +3585,7 @@ function imgrResultado(parsedResult){
 		
 		if(posLugar !== -1) lugar = i.substr(8,2);
 	  //}
-	  //if(lugar=="") {var numbers = a.ParsedResults[0].ParsedText.match(/\d+/g).map(Number); lugar=numbers[0]+"";} //possui tamanho 3, [lugar,totalSquad,kills]
+	  if(lugar=="") {var numbers = a.ParsedResults[0].ParsedText.match(/\d+/g).map(Number); lugar=numbers[0]+"";} //possui tamanho 3, [lugar,totalSquad,kills]
 	//return ( lugar.replace("DE","1").replace("#","").replace("I","1")+" "+kills.replace("B","8"));
 	  return ( lugar.replace(/DE|I|O/,"1").replace(/F| |#/,"")+"º lugar e total de kills: "+kills.replace("B","8")+"\r\nSe errei menciona/marca @ reifel1 aqui");
 }
