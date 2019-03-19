@@ -3564,24 +3564,30 @@ var _sendRequestToOcrSpace = function(localFile, url, options) {
 
 function imgrResultado(parsedResult){
 	  var a = JSON.parse(parsedResult);
+	  //console.log(a);
 	  //parsedResult = parsedResult.ParsedResults[0].ParsedText;
 	  var leitura = sort_unique(a.ParsedResults[0].ParsedText.split("\r\n"));
 	  var kills="", lugar="";
 	  var posKills, posLugar;
-	  for(var i of leitura){
+	  //for(var i of leitura){
 		  //console.log(i);
+		//console.log(leitura);
+		var i="";
+		try{i = leitura[1];}catch(e){i=leitura[0]}
 		posKills = i.indexOf("SQUAD KILLS");
 		if(posKills===-1) posKills = i.indexOf(" ELIMINA");
 		if(posKills===-1) posKills = i.indexOf(" ESQUA");
-
+		if(posKills !== -1) {kills = i.substr(0,2);}
+		
+		i = leitura[0];
 		posLugar = i.indexOf("PLACED");
 		if(posLugar===-1) posLugar = i.indexOf("POSI");
-
-		if(posKills !== -1) kills = i.substr(0,2);
+		
 		if(posLugar !== -1) lugar = i.substr(8,2);
-	  }
+	  //}
+	  //if(lugar=="") {var numbers = a.ParsedResults[0].ParsedText.match(/\d+/g).map(Number); lugar=numbers[0]+"";} //possui tamanho 3, [lugar,totalSquad,kills]
 	//return ( lugar.replace("DE","1").replace("#","").replace("I","1")+" "+kills.replace("B","8"));
-	  return ( lugar.replace(/F1|DE|#1|#|I|F|O/,"1")+"º lugar e total de kills: "+kills.replace("B","8")+"\r\nSe errei menciona/marca @ reifel1 aqui");
+	  return ( lugar.replace(/DE|I|O/,"1").replace(/F| |#/,"")+"º lugar e total de kills: "+kills.replace("B","8")+"\r\nSe errei menciona/marca @ reifel1 aqui");
 }
 //fim img r
 
