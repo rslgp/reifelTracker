@@ -2319,8 +2319,8 @@ client.on('message', message => {
 						}
 					});
 					
-					message.channel.send('25s')
-					  .then(msgContagem => contagemRegressiva(msgContagem,24))
+					message.channel.send('55s')
+					  .then(msgContagem => contagemRegressiva(msgContagem,50))
 					  .catch(console.error);
 					
 					var partidas={};
@@ -2342,7 +2342,7 @@ client.on('message', message => {
 
 							msg.delete();	
 						}
-					}, { max: 110, time: 30000, errors: ['time'] })
+					}, { max: 110, time: 55000, errors: ['time'] })
 					  .then(collected => {print(message,contagemPartidas(partidas)); message.author.send(contagemUsuarioPartidas(usuariosPartidas));})
 					  .catch(collected => {print(message,contagemPartidas(partidas)); message.author.send(contagemUsuarioPartidas(usuariosPartidas));});
 
