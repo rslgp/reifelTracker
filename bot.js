@@ -2319,8 +2319,8 @@ client.on('message', message => {
 						}
 					});
 					
-					message.channel.send('55s')
-					  .then(msgContagem => contagemRegressiva(msgContagem,50))
+					message.channel.send('80s')
+					  .then(msgContagem => contagemRegressiva(msgContagem,75))
 					  .catch(console.error);
 					
 					var partidas={};
@@ -2333,7 +2333,9 @@ client.on('message', message => {
 						if(!msg.author.bot){
 							var codigo = msg.content;
 							if(codigo.length > 3) codigo = codigo.substring(0,3);
-
+							
+							codigo = codigo.toLowerCase();
+							
 							if(partidas[codigo]) partidas[codigo]++;
 							else partidas[codigo] = 1;
 
@@ -2342,7 +2344,7 @@ client.on('message', message => {
 
 							msg.delete();	
 						}
-					}, { max: 110, time: 55000, errors: ['time'] })
+					}, { max: 110, time: 80000, errors: ['time'] })
 					  .then(collected => {print(message,contagemPartidas(partidas)); message.author.send(contagemUsuarioPartidas(usuariosPartidas));})
 					  .catch(collected => {print(message,contagemPartidas(partidas)); message.author.send(contagemUsuarioPartidas(usuariosPartidas));});
 
