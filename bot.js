@@ -2315,7 +2315,7 @@ client.on('message', message => {
 				case "id":
 					message.channel.send({embed: {
 						  color: 3447003,
-							description: "A contagem de times por partida começou! (ex. 73e)\r\n(digite os 3 primeiros digitos do código da partida)"
+							description: "A contagem de times por partida começou! (ex. 73e)\r\n(digite os 3 digitos do código da partida APENAS UMA vez, será lido e deletado pelo bot)"
 						}
 					});
 					
