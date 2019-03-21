@@ -3590,7 +3590,7 @@ function imgrResultado(parsedResult){
 	  if(lugar=="") {var numbers = a.ParsedResults[0].ParsedText.match(/\d+/g).map(Number); lugar=numbers[0]+"";} //possui tamanho 3, [lugar,totalSquad,kills]
 	
 	var pontLugar=-1,pontKill=-1, pontTotal=0;
-	try{pontLugar = Number(lugar); pontKill=Number(kills);
+	try{pontLugar = Number(( lugar.replace(/DE|I|O/,"1").replace(/F| |#/,"")); pontKill=Number((kills.replace("B","8")));
 	   switch(pontLugar){
 		   case 1:
 			   pontTotal+=10;
