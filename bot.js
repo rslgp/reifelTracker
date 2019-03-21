@@ -3590,7 +3590,7 @@ function imgrResultado(parsedResult){
 	  if(lugar=="") {var numbers = a.ParsedResults[0].ParsedText.match(/\d+/g).map(Number); lugar=numbers[0]+"";} //possui tamanho 3, [lugar,totalSquad,kills]
 	
 	var pontLugar=-1,pontKill=-1, pontTotal=0;
-	try{pontLugar = Number( lugar.replace(/DE|I|O/,"1").replace(/F| |#/,"") ); pontKill=Number( kills.replace("B","8") );
+	try{pontLugar = Number( lugar.replace(/DE|I|O/,"1").replace(/F| |#/,"") ); pontKill=Number( kills.replace("B","8").replace("O","0") );
 	   switch(pontLugar){
 		   case 1:
 			   pontTotal+=10;
@@ -3605,7 +3605,7 @@ function imgrResultado(parsedResult){
 	    pontTotal+=pontKill;
 	   }catch(e){}
 	//return ( lugar.replace("DE","1").replace("#","").replace("I","1")+" "+kills.replace("B","8"));
-	  return ( lugar.replace(/DE|I|O/,"1").replace(/F| |#/,"")+"º lugar e total de kills: "+kills.replace("B","8")+"\r\nSe errei menciona/marca @ reifel1 aqui\r\nPontuação Total: "+pontTotal);
+	  return ( lugar.replace(/DE|I|O/,"1").replace(/F| |#/,"")+"º lugar e total de kills: "+kills.replace("B","8").replace("O","0")+"\r\nSe errei menciona/marca @ reifel1 aqui\r\nPontuação Total: "+pontTotal);
 }
 //fim img r
 
