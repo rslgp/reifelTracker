@@ -3592,13 +3592,13 @@ function imgrResultado(parsedResult){
 	var pontLugar=-1,pontKill=-1, pontTotal=0;
 	try{pontLugar = Number(lugar); pontKill=Number(kills);
 	   switch(pontLugar){
-		   case "1":
+		   case 1:
 			   pontTotal+=10;
 			   break;
-		   case "2":
+		   case 2:
 			   pontTotal+=5;
 			   break;
-		   case "3":
+		   case 3:
 			   pontTotal+=3;
 			   break;
 	   }
