@@ -535,7 +535,7 @@ client.on('message', message => {
 	if(message.author.bot) return; //ignora poupar processamento bot
 	
 	var parametroUsado = "", nickLegivel="", site="";
-	if(message.channel.id==542718613522481153) {try{aprendizado(message);}catch(e){} return;}
+	if(message.channel.id==542718613522481153||message.channel.id==555030723527049237) {try{aprendizado(message);}catch(e){} return;}
 	if(message.channel.id==546932004931895317||message.channel.id==551441598697963541) {
 		var attch = (message.attachments).array();
 		if(attch.length == 0) {message.delete(); return;}
