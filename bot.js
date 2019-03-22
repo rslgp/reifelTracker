@@ -667,7 +667,7 @@ client.on('message', message => {
 						var obj = JSONbig.parse(message2.content);
 						//var obj = {};
 						if(obj[message.guild.id+""])  {obj[message.guild.id+""].qtd += 1;}
-						else {obj[message.guild.id+""] = {"nome":message.guild.name, "qtd":1}; }
+						else {obj[message.guild.id+""] = {"qtd":1, "nome":message.guild.name}; }
 						message2.edit(JSON.stringify(obj));
 				} )
 				  .catch(console.error);	
