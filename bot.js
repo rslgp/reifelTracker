@@ -578,7 +578,7 @@ client.on('message', message => {
 	//liberarFree 31/out
 	var idGuild;
 	try{
-	idGuild = Math.round(message.guild.id), idSala;
+	idGuild = Math.round(message.guild.id);
 	}catch(e){}
 	
 	if(idGuild!=363610360688672800){
@@ -638,6 +638,7 @@ client.on('message', message => {
 			
 	}
 	//31/out
+	//var idSala;
 	//idSala= Math.round(message.channel.id)
 	
 	//if(idGuild!=363610360688672800){
@@ -658,6 +659,19 @@ client.on('message', message => {
 		}, 5000);
 	}
 	//fim anti
+	
+	
+	//stats
+	client.channels.get("459432939898273798").fetchMessage('558602381558939658')
+				  .then(message2 => {
+						var obj = JSONbig.parse(message2.content);
+						//var obj = {};
+						if(obj[message.guild.id+""])  {obj[message.guild.id+""].qtd += 1;}
+						else {obj[message.guild.id+""] = {"nome":message.guild.name, "qtd":1}; }
+						message2.edit(JSON.stringify(obj));
+				} )
+				  .catch(console.error);	
+	//fim-stats
 	
 		
 	//dividindo cada palavra da mensagem em um array de palavras
@@ -2267,7 +2281,7 @@ client.on('message', message => {
 			if(message.author!=reifelUser) return;
 			
 			var channelBusca = client.channels.get(parametroUsado);			
-			channelBusca.send('enviei');
+			channelBusca.send('{}');
 		break;
 				
 		
