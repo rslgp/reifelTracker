@@ -2320,7 +2320,7 @@ client.on('message', message => {
 					});
 					
 					message.channel.send('Resultado em breve...')
-					  .then(msgContagem => setTimeout(function(){msgContagem.delete()}, 90000) );
+					  .then(msgContagem => setTimeout(function(){msgContagem.delete()}, 90000) )
 					  .catch(console.error);
 					
 					var partidas={};
