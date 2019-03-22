@@ -207,8 +207,10 @@ client.on('ready', () => {
 				} )
 				  .catch(console.error);
 	
-	client.user.username="ReifelTracker";
-	client.user.setUsername("ReifelTracker");
+	try{
+		client.user.username="ReifelTracker";
+		client.user.setUsername("ReifelTracker");
+	}catch(e){}
 	salaRank = client.channels.get("368505848667832321");	
 	salaVotem = client.channels.get("413597195846156299");	
 	salaAposta = client.channels.get("416769967690743819");
