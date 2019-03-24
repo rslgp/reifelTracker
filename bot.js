@@ -2330,8 +2330,7 @@ client.on('message', message => {
 			if(!saoOrganizadores(message)) return;
 			site = "http://api.apexlegendsstatus.com/bridge?platform=PC&auth=0V7bLm3DwwImSEr9ruFI&player="+parametroUsado;
 			try{
-				var variavelVisita3 = Browser.visit(site, function (e, browser) {				
-					var kills=-1, dano=-1;	
+				var variavelVisita3 = Browser.visit(site, function (e, browser) {
 					try{
 						var text = browser.html();
 						var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
@@ -2341,17 +2340,19 @@ client.on('message', message => {
 							print(message,"no lobby");
 						}
 					}catch(e){
-						console.log(e);
+						print(message,e);
 					}
 					try{
 						browser.deleteCookies();
 						browser.tabs.closeAll(); browser.window.close(); browser.destroy();					
 					}catch(e){
+						print(message,e);
 
 					}
 				});	
 				variavelVisita3=null;
-			}catch(e){}	
+			}catch(e){
+						print(message,e);}	
 			break;
 		
 		case "s":
