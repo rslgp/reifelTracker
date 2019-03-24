@@ -3700,10 +3700,31 @@ function calcularPontuacao(message, arrayPosicaoKills){
 						//var obj = {};
 					   if(jsonTimes[time]) jsonTimes[time] +=pontTotal;
 					   else jsonTimes[time] = pontTotal;
+		   
+					   //ordenar
+					   jsonTimes = sortJson(jsonTimes);
+		   
 					   var jsonString = JSON.stringify(jsonTimes);
 					   jsonString= jsonString.substring(1,jsonTimes.length-1).replace("/,/g",",\r\n");
 						message2.edit(jsonString);
 				} )
 				  .catch(console.error);	
 	   
+}
+
+function sortJson(json){
+    var result = [];
+    var keys = Object.keys(json);
+    keys.forEach(function(key){
+        result.push([key,json[key]]);
+    });
+    return array2json(result.sort(function(a,b){return b[1]-a[1]}));
+}
+
+function array2json(array){
+    var result = {};
+	for(var i of array){
+		result[i[0]]=i[1];
+	}
+    return result;
 }
