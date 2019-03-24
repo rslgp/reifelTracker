@@ -3658,7 +3658,7 @@ var att = (message.attachments).array();
 							function (parsedResult){
 								//print(message,imgrResultado(parsedResult)); 
 								var lvlK = imgrResultado(parsedResult);
-								//calcularPontuacao(message,lvlK);
+								calcularPontuacao(message,lvlK);
 								print(message,"atualizei a pontuação: "+lvlK[0]+" "+lvlK[1]);
 							}
 							).catch(err => {
@@ -3674,7 +3674,7 @@ var att = (message.attachments).array();
 function saoOrganizadores(message){return (message.author == reifelUser || message.member.roles.has("544981841480777750") || message.member.roles.has("554332187152089088"))}
 
 function calcularPontuacao(message, arrayPosicaoKills){
-	var lugar = arrayPosicaoKills[0], kills=arrayPosicaoKills[1];
+	var lugar = arrayPosicaoKills[0]+"", kills=arrayPosicaoKills[1]+"";
 	var pontLugar=-1,pontKill=-1, pontTotal=0;
 	try{pontLugar = Number( lugar.replace(/DE|I|O/,"1").replace(/F| |#/,"") ); pontKill=Number( kills.replace("B","8").replace("O","0").replace("I","1") );
 	   switch(pontLugar){
