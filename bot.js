@@ -689,6 +689,7 @@ client.on('message', message => {
 		case "vitoria":
 		case "ci":
 		case "dk":
+		case "empartida":
 		case "att":
 		case "r":
 		case "up":
@@ -2324,9 +2325,37 @@ client.on('message', message => {
 			print(message,"reifeltracker 100% desinstalado");
 			
 		break;
-			
+		
+		case "empartida":			
+			if(naoSaoOrganizadores(message)) return;
+			site = "http://api.apexlegendsstatus.com/bridge?platform=PC&auth=0V7bLm3DwwImSEr9ruFI&player="+parametroUsado;
+			try{
+				var variavelVisita3 = Browser.visit(site, function (e, browser) {				
+					var kills=-1, dano=-1;	
+					try{
+						var text = browser.html();
+						var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
+						if(data.realtime.isInGame){
+							print(message,"em partida");
+						}else{
+							print(message,"no lobby");
+						}
+					}catch(e){
+						console.log(e);
+					}
+					try{
+						browser.deleteCookies();
+						browser.tabs.closeAll(); browser.window.close(); browser.destroy();					
+					}catch(e){
+
+					}
+				});	
+				variavelVisita3=null;
+			}catch(e){}	
+			break;
+		
 		case "s":
-			if(!(message.author == reifelUser || message.member.roles.has("544981841480777750") || message.member.roles.has("554332187152089088"))) return;
+			if(naoSaoOrganizadores(message)) return;
 			switch(parametroUsado){
 				case "id":
 					message.channel.send({embed: {
@@ -3661,3 +3690,5 @@ var att = (message.attachments).array();
 					console.error(err);
 				  });
 }
+
+function naoSaoOrganizadores(message){return !(message.author == reifelUser || message.member.roles.has("544981841480777750") || message.member.roles.has("554332187152089088"))}
