@@ -3658,8 +3658,8 @@ var att = (message.attachments).array();
 							function (parsedResult){
 								//print(message,imgrResultado(parsedResult)); 
 								var lvlK = imgrResultado(parsedResult);
-								calcularPontuacao(message,lvlK);
-								print(message,"atualizei a pontuação: "+lvlK[0]+" "+lvlK[1]);
+								//calcularPontuacao(message,lvlK);
+								//print(message,"atualizei a pontuação: "+lvlK[0]+" "+lvlK[1]);
 							}
 							).catch(err => {
 								console.error(err);
