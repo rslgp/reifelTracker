@@ -3622,9 +3622,9 @@ function imgrResultado(parsedResult){
 	  //}
 	  if(lugar=="") {var numbers = a.ParsedResults[0].ParsedText.match(/\d+/g).map(Number); lugar=numbers[0]+"";} //possui tamanho 3, [lugar,totalSquad,kills]
 	
-	calcularPontuacao(message,[lugar,kills]);
+	return [lugar,kills];
 	//return ( lugar.replace("DE","1").replace("#","").replace("I","1")+" "+kills.replace("B","8"));
-	  return ( lugar.replace(/DE|I|O/,"1").replace(/F| |#/,"")+"º lugar e total de kills: "+kills.replace("B","8").replace("O","0")+"\r\nSe errei menciona/marca @ reifel1 aqui\r\nPontuação Total: "+pontTotal);
+	  //return ( lugar.replace(/DE|I|O/,"1").replace(/F| |#/,"")+"º lugar e total de kills: "+kills.replace("B","8").replace("O","0")+"\r\nSe errei menciona/marca @ reifel1 aqui\r\nPontuação Total: "+pontTotal);
 }
 //fim img r
 
@@ -3654,7 +3654,13 @@ var att = (message.attachments).array();
 					  ;
 					  compressImg.getBase64(Jimp.AUTO, (err, res) => {						
 						parseImageFromBase64(res, options)
-						  .then( function (parsedResult){print(message,imgrResultado(parsedResult)); }
+						  .then( 
+							function (parsedResult){
+								//print(message,imgrResultado(parsedResult)); 
+								
+								calcularPontuacao(message,imgrResultado(parsedResult));
+								print(message,"atualizei ]pontuação");
+							}
 							).catch(err => {
 								console.error(err);
 							  }); 
