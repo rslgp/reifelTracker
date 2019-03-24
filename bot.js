@@ -3658,8 +3658,8 @@ var att = (message.attachments).array();
 							function (parsedResult){
 								//print(message,imgrResultado(parsedResult)); 
 								var lvlK = imgrResultado(parsedResult);
-								//calcularPontuacao(message,lvlK);
-								//print(message,"atualizei a pontuação: "+lvlK[0]+" "+lvlK[1]);
+								calcularPontuacao(message,lvlK);
+								print(message,"atualizei a pontuação");
 							}
 							).catch(err => {
 								console.error(err);
@@ -3675,6 +3675,7 @@ function saoOrganizadores(message){return (message.author == reifelUser || messa
 
 function calcularPontuacao(message, arrayPosicaoKills){
 	var lugar = arrayPosicaoKills[0]+"", kills=arrayPosicaoKills[1]+"";
+	console.log(lugar+" "+kills);
 	var pontLugar=-1,pontKill=-1, pontTotal=0;
 	try{pontLugar = Number( lugar.replace(/DE|I|O/,"1").replace(/F| |#/,"") ); pontKill=Number( kills.replace("B","8").replace("O","0").replace("I","1") );
 	   switch(pontLugar){
@@ -3689,7 +3690,7 @@ function calcularPontuacao(message, arrayPosicaoKills){
 			   break;
 	   }
 	    pontTotal+=pontKill;
-	   }catch(e){}
+	   }catch(e){console.log(e)}
 	   
 	   var time = message.member.nickname;
 	   time = time.substring(0,time.indexOf("-"));
@@ -3703,9 +3704,13 @@ function calcularPontuacao(message, arrayPosicaoKills){
 		   
 					   //ordenar
 					   jsonTimes = sortJson(jsonTimes);
-		   
-					   var jsonString = JSON.stringify(jsonTimes);
-					   jsonString= jsonString.substring(1,jsonTimes.length-1).replace("/,/g",",\r\n");
+					   
+					   var jsonString = "";
+					   for(var i in jsonTimes){
+						   jsonString += '"'+i+'": '+jsonTimes[i]+",\r\n";
+					   }
+					   jsonString = jsonString.substring(0,jsonString.lastIndexOf(","));
+					   
 						message2.edit(jsonString);
 				} )
 				  .catch(console.error);	
