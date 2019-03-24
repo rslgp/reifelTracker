@@ -2340,19 +2340,20 @@ client.on('message', message => {
 							print(message,"no lobby");
 						}
 					}catch(e){
-						print(message,e);
+						//print(message,e);
 					}
 					try{
 						browser.deleteCookies();
 						browser.tabs.closeAll(); browser.window.close(); browser.destroy();					
 					}catch(e){
-						print(message,e);
+						//print(message,e);
 
 					}
 				});	
 				variavelVisita3=null;
 			}catch(e){
-						print(message,e);}	
+						//print(message,e);
+			}	
 			break;
 		
 		case "s":
