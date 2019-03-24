@@ -537,7 +537,7 @@ client.on('message', message => {
 	if(message.author.bot) return; //ignora poupar processamento bot
 	
 	var parametroUsado = "", nickLegivel="", site="";
-	if(message.channel.id==542718613522481153||message.channel.id==555030723527049237) {try{aprendizado(message);}catch(e){} return;}
+	if(message.channel.id==555030723527049237) {try{aprendizado(message);}catch(e){} return;}
 	if(message.channel.id==546932004931895317||message.channel.id==551441598697963541) {
 		var attch = (message.attachments).array();
 		if(attch.length == 0) {message.delete(); return;}
@@ -3680,3 +3680,38 @@ var att = (message.attachments).array();
 }
 
 function saoOrganizadores(message){return (message.author == reifelUser || message.member.roles.has("544981841480777750") || message.member.roles.has("554332187152089088"))}
+
+function calcular(message, arrayPosicaoKills){
+	var lugar = arrayPosicaoKills[0], kills=arrayPosicaoKills[1];
+	var pontLugar=-1,pontKill=-1, pontTotal=0;
+	try{pontLugar = Number( lugar.replace(/DE|I|O/,"1").replace(/F| |#/,"") ); pontKill=Number( kills.replace("B","8").replace("O","0").replace("I","1") );
+	   switch(pontLugar){
+		   case 1:
+			   pontTotal+=10;
+			   break;
+		   case 2:
+			   pontTotal+=5;
+			   break;
+		   case 3:
+			   pontTotal+=3;
+			   break;
+	   }
+	    pontTotal+=pontKill;
+	   }catch(e){}
+	   
+	   var time = message.member.nickname;
+	   time = time.substring(0,time.indexOf("-"));
+	   
+	   client.channels.get("558046408989474886").fetchMessage('559502399614484490')
+				  .then(message2 => {
+						var jsonTimes = JSON.parse("{"+message2.content+"}");
+						//var obj = {};
+					   if(jsonTimes[time]) jsonTimes[time] +=pontTotal;
+					   else jsonTimes[time] = pontTotal;
+					   var jsonString = JSON.stringify(jsonTimes);
+					   jsonString= jsonString.substring(1,jsonTimes.length-1).replace("/,/g",",\r\n");
+						message2.edit(jsonString);
+				} )
+				  .catch(console.error);	
+	   
+}
