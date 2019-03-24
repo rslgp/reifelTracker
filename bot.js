@@ -3657,9 +3657,9 @@ var att = (message.attachments).array();
 						  .then( 
 							function (parsedResult){
 								//print(message,imgrResultado(parsedResult)); 
-								
-								calcularPontuacao(message,imgrResultado(parsedResult));
-								print(message,"atualizei a pontuação");
+								var lvlK = imgrResultado(parsedResult);
+								//calcularPontuacao(message,lvlK);
+								print(message,"atualizei a pontuação: "+lvlK[0]+" "+lvlK[1]);
 							}
 							).catch(err => {
 								console.error(err);
