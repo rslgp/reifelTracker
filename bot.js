@@ -2326,27 +2326,15 @@ client.on('message', message => {
 			if(!saoOrganizadores(message)) return;
 			site = "http://api.apexlegendsstatus.com/bridge?platform=PC&auth=0V7bLm3DwwImSEr9ruFI&player="+parametroUsado;
 			try{
-				var variavelVisita3 = Browser.visit(site, function (e, browser) {
-					try{
-						var text = browser.html();
-						var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
-						if(data.realtime.isInGame){
-							print(message,"em partida");
-						}else{
-							print(message,"no lobby");
-						}
-					}catch(e){
-						//print(message,e);
+				request(site, function (error, response, body) {
+					var text = body;
+					var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
+					if(data.realtime.isInGame){
+						print(message,"em partida");
+					}else{
+						print(message,"no lobby");
 					}
-					try{
-						browser.deleteCookies();
-						browser.tabs.closeAll(); browser.window.close(); browser.destroy();					
-					}catch(e){
-						//print(message,e);
-
-					}
-				});	
-				variavelVisita3=null;
+				});
 			}catch(e){
 						//print(message,e);
 			}	
