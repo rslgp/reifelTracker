@@ -1382,22 +1382,18 @@ client.on('message', message => {
 			message.author.send("o comando ci agora é dk");
 			return;
 		case "dk":
-			site = "https://www.apexlegendsapi.com/api/v1/player?platform=pc&name="+parametroUsado;
+			site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
 			try{
 				var variavelVisita3 = Browser.visit(site, function (e, browser) {				
 					var kills=-1, dano=-1;	
 					try{
 						var text = browser.html();
-						var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
-
-						for(var heroi of data.legends){
-							for(var i of heroi.stats){
-								if(i.kills && i.kills > kills) kills = i.kills;
-								if(i.damage_done && i.damage_done > dano) dano = i.damage_done;
-
-							}
-
-						}
+						text = text.substring(text.indexOf('imp_Overview')+15);
+						text = text.substring(0,text.indexOf('};')+1);
+						text = JSON.parse(text);
+						kills = text.kills.value;
+						dano = text.damage.value;
+						
 						if(dano===-1) dano = "---";
 						if(kills===-1) kills = "---";
 						msgImgApex(message, [dano+"", kills+"", nickLegivel+""]);
