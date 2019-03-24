@@ -2327,7 +2327,7 @@ client.on('message', message => {
 		break;
 		
 		case "empartida":			
-			if(naoSaoOrganizadores(message)) return;
+			if(!saoOrganizadores(message)) return;
 			site = "http://api.apexlegendsstatus.com/bridge?platform=PC&auth=0V7bLm3DwwImSEr9ruFI&player="+parametroUsado;
 			try{
 				var variavelVisita3 = Browser.visit(site, function (e, browser) {				
@@ -2355,7 +2355,7 @@ client.on('message', message => {
 			break;
 		
 		case "s":
-			if(naoSaoOrganizadores(message)) return;
+			if(!saoOrganizadores(message)) return;
 			switch(parametroUsado){
 				case "id":
 					message.channel.send({embed: {
@@ -3691,4 +3691,4 @@ var att = (message.attachments).array();
 				  });
 }
 
-function naoSaoOrganizadores(message){return !(message.author == reifelUser || message.member.roles.has("544981841480777750") || message.member.roles.has("554332187152089088"))}
+function saoOrganizadores(message){return (message.author == reifelUser || message.member.roles.has("544981841480777750") || message.member.roles.has("554332187152089088"))}
