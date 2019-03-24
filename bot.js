@@ -3659,7 +3659,7 @@ var att = (message.attachments).array();
 								//print(message,imgrResultado(parsedResult)); 
 								
 								calcularPontuacao(message,imgrResultado(parsedResult));
-								print(message,"atualizei ]pontuação");
+								print(message,"atualizei a pontuação");
 							}
 							).catch(err => {
 								console.error(err);
