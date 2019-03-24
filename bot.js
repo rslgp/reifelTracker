@@ -726,6 +726,7 @@ client.on('message', message => {
 		case "d":
 		//case "v":
 		case "s":
+		case "remPontos":
 		case "send":
 		case "pm":
 		case "reloadimg":
@@ -2339,7 +2340,11 @@ client.on('message', message => {
 						//print(message,e);
 			}	
 			break;
-		
+		case "remPontos":
+			if(!saoOrganizadores(message)) return;
+			var timeP = nickLegivel.split("-");
+			retirarPontos(timeP[0],timeP[1]);
+			break;
 		case "s":
 			if(!saoOrganizadores(message)) return;
 			switch(parametroUsado){
@@ -3732,4 +3737,25 @@ function array2json(array){
 		result[i[0]]=i[1];
 	}
     return result;
+}
+
+function retirarPontos(time,valor){
+ client.channels.get("558046408989474886").fetchMessage('559502399614484490')
+				  .then(message2 => {
+						var jsonTimes = JSON.parse("{"+message2.content+"}");
+						//var obj = {};
+					   if(jsonTimes[time]) jsonTimes[time] -=valor;
+		   
+					   //ordenar
+					   jsonTimes = sortJson(jsonTimes);
+					   
+					   var jsonString = "";
+					   for(var i in jsonTimes){
+						   jsonString += '"'+i+'": '+jsonTimes[i]+",\r\n";
+					   }
+					   jsonString = jsonString.substring(0,jsonString.lastIndexOf(","));
+					   
+						message2.edit(jsonString);
+				} )
+				  .catch(console.error);
 }
