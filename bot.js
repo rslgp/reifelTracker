@@ -1366,7 +1366,7 @@ client.on('message', message => {
 						}
 						}else{
 							//reifelUser.send(nickLegivel+"win%: "+parseFloat(winrKD[0])- (parseFloat(winrate) + 2.4) );
-							print(message, "nao posso trocar seu nick");
+							print(message, "não posso trocar seu nick, pois demorou muito tempo com nick desatualizado, peça a algum moderador");
 						}
 					}catch(e){
 						print(message,"erro: dados do apex tá offline, tente dps de 30s");
