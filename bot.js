@@ -3604,7 +3604,8 @@ function imgrResultado(parsedResult){
 	  var posKills, posLugar;
 	  //for(var i of leitura){
 		  //console.log(i);
-		//console.log(leitura);
+		//console.log(leitura);		
+	try{
 		var i="";
 		try{i = leitura[1];}catch(e){i=leitura[0]}
 		posKills = i.indexOf("SQUAD KILLS");
@@ -3617,6 +3618,7 @@ function imgrResultado(parsedResult){
 		if(posLugar===-1) posLugar = i.indexOf("POSI");
 		
 		if(posLugar !== -1) lugar = i.substr(8,2);
+	}catch(e){}//evitar crashar na leitura
 	  //}
 	  if(lugar=="") {var numbers = a.ParsedResults[0].ParsedText.match(/\d+/g).map(Number); lugar=numbers[0]+"";} //possui tamanho 3, [lugar,totalSquad,kills]
 	
