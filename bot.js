@@ -1335,13 +1335,12 @@ client.on('message', message => {
 			
 		case "mudei":
 			site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
+			site = "http://api.apexlegendsstatus.com/bridge?platform=PC&auth=0V7bLm3DwwImSEr9ruFI&player="+parametroUsado;
 			try{
-				var variavelVisita = Browser.visit(site, function (e, browser) {				
-					//var level,wins,winP,kd,kills,selector;	
 					var level;
-					try{
-						var text = browser.html();
-						text = text.substring(text.indexOf('"playerId": "'));
+				request(site, function (error, response, body) {
+					var text = body;
+					text = text.substring(text.indexOf('"playerId": "'));
 						text = "[{"+text.substring(0,text.indexOf(']'))+"]";
 						text = JSON.parse(text);	
 						level = text[0].level.value
@@ -1369,14 +1368,10 @@ client.on('message', message => {
 							//reifelUser.send(nickLegivel+"win%: "+parseFloat(winrKD[0])- (parseFloat(winrate) + 2.4) );
 							print(message, "não posso trocar seu nick, pois demorou muito tempo com nick desatualizado, peça a algum moderador");
 						}
-					}catch(e){
-						print(message,"erro: dados do apex tá offline, tente dps de 30s");
-					}
-					//var resultado = formatarMsg(winP,kd,wins,kills,'--');
-					//msgPadraoBot(message, resultado, site, nickLegivel);
-				});	
-				variavelVisita=null;
-			}catch(e){}
+				});
+			}catch(e){
+						//print(message,e);
+			}
 		break;
 		
 		case "ci":
