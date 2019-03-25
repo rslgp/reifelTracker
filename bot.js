@@ -3689,7 +3689,7 @@ function calcularPontuacao(message, arrayPosicaoKills){
 	    pontTotal+=pontKill;
 	   }catch(e){console.log(e)}
 	   
-	   var time = message.member.nickname;
+	   var time = message.member.nickname || message.member.user.username;
 	   time = time.substring(0,time.indexOf("-"));
 	   
 	   client.channels.get("558046408989474886").fetchMessage('559502399614484490')
