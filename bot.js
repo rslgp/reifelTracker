@@ -1335,7 +1335,6 @@ client.on('message', message => {
 			
 		case "mudei":
 			site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
-			site = "http://api.apexlegendsstatus.com/bridge?platform=PC&auth=0V7bLm3DwwImSEr9ruFI&player="+parametroUsado;
 			try{
 					var level;
 				request(site, function (error, response, body) {
