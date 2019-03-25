@@ -726,7 +726,7 @@ client.on('message', message => {
 		case "d":
 		//case "v":
 		case "s":
-		case "remPontos":
+		case "rempontos":
 		case "send":
 		case "pm":
 		case "reloadimg":
@@ -2340,7 +2340,7 @@ client.on('message', message => {
 						//print(message,e);
 			}	
 			break;
-		case "remPontos":
+		case "rempontos":
 			if(!saoOrganizadores(message)) return;
 			var timeP = nickLegivel.split("-");
 			retirarPontos(timeP[0],Number(timeP[1]));
@@ -3743,8 +3743,7 @@ function retirarPontos(time,valor){
  client.channels.get("558046408989474886").fetchMessage('559502399614484490')
 				  .then(message2 => {
 						var jsonTimes = JSON.parse("{"+message2.content+"}");
-						//var obj = {};
-					   if(jsonTimes[time]) jsonTimes[time] -=valor;
+					   jsonTimes[time] -=valor;
 		   
 					   //ordenar
 					   jsonTimes = sortJson(jsonTimes);
