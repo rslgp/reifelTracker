@@ -2343,7 +2343,7 @@ client.on('message', message => {
 		case "remPontos":
 			if(!saoOrganizadores(message)) return;
 			var timeP = nickLegivel.split("-");
-			retirarPontos(timeP[0],timeP[1]);
+			retirarPontos(timeP[0],Number(timeP[1]));
 			break;
 		case "s":
 			if(!saoOrganizadores(message)) return;
