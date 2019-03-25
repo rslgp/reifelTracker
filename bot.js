@@ -1334,15 +1334,15 @@ client.on('message', message => {
 		break;
 			
 		case "mudei":
-			site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
+			site = "http://api.apexlegendsstatus.com/bridge?platform=PC&auth=0V7bLm3DwwImSEr9ruFI&player="+parametroUsado;
 			try{
 					var level;
 				request(site, function (error, response, body) {
 					var text = body;
-					text = text.substring(text.indexOf('"playerId": "'));
-						text = "[{"+text.substring(0,text.indexOf(']'))+"]";
-						text = JSON.parse(text);	
-						level = text[0].level.value
+					
+					var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
+					level = data.global.level;
+
 						var levelatual;
 						var nome = message.member.nickname;
 						if(nome.indexOf('★') == (nome.length-1))
