@@ -1372,10 +1372,7 @@ client.on('message', message => {
 						//print(message,e);
 			}
 		break;
-		
-		case "ci":
-			message.author.send("o comando ci agora é dk");
-			return;
+			
 		case "dk":
 			site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
 			try{
@@ -1394,7 +1391,7 @@ client.on('message', message => {
 						msgImgApex(message, [dano+"", kills+"", nickLegivel+""]);
 
 					}catch(e){
-						console.log(e);
+						//console.log(e);
 					}
 					try{
 						browser.deleteCookies();
@@ -3499,7 +3496,6 @@ function padraoRankWinApex(message, usuario, nickLegivel, winrKD, ranks=[], tabe
 const capLevel=3;
 function capUpdate(message, level){
 	try{
-		try{message.react(reactEmoji);}catch(e){}
 		var levelSite = parseInt(level);
 		if(levelSite==60 || levelSite==61 || levelSite==100 || levelSite==101 ) return false; //liberar se tiver esses niveis
 		
@@ -3534,7 +3530,8 @@ function msgImgApex(message, valoresJimp=["---","---","---"]){//winrate, kd, win
 			// Create the attachment using MessageAttachment
 			const attachment = new Discord.Attachment(tempFile);
 			// Send the attachment in the message channel with a content
-			message.channel.send(attachment);
+			message.channel.send(attachment).then(msg=> msg.react("👉"));
+			message.member.send("reaja com as lendas na sequencia de mais jogado, embaixo da foto resultado de vcs (pra onde o emoji aponta)(clica reagir e busca o nome da lenda, no maximo 3)");
 		});
 	copiaJimp=null;
 }
