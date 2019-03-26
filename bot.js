@@ -210,6 +210,13 @@ client.on('ready', () => {
 				} )
 				  .catch(console.error);
 	
+	client.channels.get("459432939898273798").fetchMessage('559897722296205324')
+				  .then(message2 => {
+						if(Number(message2.content)==0) aprendizadoPausado = false;
+						else aprendizadoPausado = true;
+				} )
+				  .catch(console.error);
+	
 	try{
 		client.user.username="ReifelTracker";
 		client.user.setUsername("ReifelTracker");
@@ -2387,10 +2394,21 @@ client.on('message', message => {
 				case "ativarprints":
 					aprendizadoPausado=false;
 					print(message,"prints ativo");
+					client.channels.get("459432939898273798").fetchMessage('559897722296205324')
+					  .then(message2 => {
+							message2.edit("1");
+					} )
+					  .catch(console.error);
 				break;
 				case "pausarprints":
 					aprendizadoPausado=true;
 					print(message,"prints pausado");
+
+					client.channels.get("459432939898273798").fetchMessage('559897722296205324')
+					  .then(message2 => {
+							message2.edit("0");
+					} )
+					  .catch(console.error);
 				break;
 			}
 		break;
