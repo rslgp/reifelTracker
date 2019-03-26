@@ -22,6 +22,9 @@ var options =  {
 
 //"\r\n\r\ndá like pro fix da epic na escada q gira sozinha -> [clique aqui](https://accounts.epicgames.com/login/customized?regSubheading=Register&productCss=https%3A%2F%2Fwww.epicgames.com%2Ffortnite%2FssoAsset%2Ffortnite-custom.css&response_type=code&state=https%3A%2F%2Fwww.epicgames.com%2Ffortnite%2Fforums%2Fbugs-issues%2Fbug-reports%2F191591-stair-rotates-randomicaly-priorize-to-front-camera-and-only-rotate-if-pressed-r&client_id=52b63176173444eb8291b0dd60586e04&productName=fortnite&loginSubheading=Sign+In)";
 
+
+var aprendizadoPausado=true;
+
 /*
 //setting up twitch
 const twitch = require("tmi.js");
@@ -2376,6 +2379,12 @@ client.on('message', message => {
 					  .catch(collected => {print(message,contagemPartidas(partidas)); message.author.send(contagemUsuarioPartidas(usuariosPartidas));});
 
 				break;
+				case "ativarprints":
+					aprendizadoPausado=false;
+					break;
+				case "pausarprints":
+					aprendizadoPausado=true;
+					break;
 			}
 		break;
 		/*
@@ -3626,6 +3635,7 @@ function imgrResultado(parsedResult){
 //fim img r
 
 function aprendizado(message){
+	if(aprendizadoPausado) return;
 var att = (message.attachments).array();
 	if(att.length == 0) return;
 			//if(att[0].filesize > 1000000) {message.author.send("**limite ultrapassado (>1MB)**,\r\n use um desses sites para reduzir o tamanho e envie a imagem gerada no site:\r\n http://tinypng.com (.PNG) | http://tinyjpg.com (.JPG) | png2jpg.com"); return;};
