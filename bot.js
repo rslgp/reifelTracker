@@ -3526,10 +3526,6 @@ function padraoRankWinApex(message, usuario, nickLegivel, winrKD, ranks=[], tabe
 			if(usuario.roles.has(ranks[2])) {return;}
 			changeRole(usuario, ranks[3], ranks[2]);	
 			print(message,msg1Rank+ranks[2]+msg2Rank);
-		}else if(winrKD[0]>=tabela[3]){
-			if(usuario.roles.has(ranks[3])) {return;}
-			changeRole(usuario, ranks[0], ranks[3]);	
-			print(message,msg1Rank+ranks[3]+msg2Rank);
 		}else{
 			message.author.send("Você precisa de mais nível para registrar o rank (26+)");
 		}
