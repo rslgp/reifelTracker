@@ -225,7 +225,7 @@ client.on('ready', () => {
 	salaVotem = client.channels.get("413597195846156299");	
 	salaAposta = client.channels.get("416769967690743819");
 	reifelUser = client.users.get('195731919424585728');
-	client.user.setActivity("interessados: https://u.nu/reifelcontato |Reifel#5047 |.queroessebot", { type: 'LISTENING', url:'https://www.twitch.tv/reifel'});
+	client.user.setActivity("interessados: https://u.nu/reifelcontato |Reifel#5047 |.queroessebot", { type: 'WATCHING', url:'https://www.twitch.tv/reifel'});
 	/*client.user.setPresence({
 		game: {
 			//name: "com "+client.guilds.array().length +"|dono:Reifel#5047"
