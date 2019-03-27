@@ -558,6 +558,7 @@ client.on('message', message => {
 	
 	var parametroUsado = "", nickLegivel="", site="";
 	if(message.channel.id==555030723527049237) {try{aprendizado(message);}catch(e){} return;}
+	if(message.channel.id==559100608666271754) if(typeof message.member.voiceChannel == 'undefined') {message.member.send("apenas quem está na scrim"); message.delete(); return;} //limitar streamers em scrim ams
 	if(message.channel.id==546932004931895317||message.channel.id==551441598697963541) {
 		var attch = (message.attachments).array();
 		if(attch.length == 0) {message.delete(); return;}
