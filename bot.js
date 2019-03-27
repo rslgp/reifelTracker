@@ -3672,7 +3672,7 @@ function imgrResultado(parsedResult){
 //fim img r
 
 function aprendizado(message){
-	if(aprendizadoPausado) {print(message,"print nao esta ativo, .s ativarprints"; return;}
+	if(aprendizadoPausado) {print(message,"print nao esta ativo, .s ativarprints"); return;}
 var att = (message.attachments).array();
 	if(att.length == 0) return;
 			//if(att[0].filesize > 1000000) {message.author.send("**limite ultrapassado (>1MB)**,\r\n use um desses sites para reduzir o tamanho e envie a imagem gerada no site:\r\n http://tinypng.com (.PNG) | http://tinyjpg.com (.JPG) | png2jpg.com"); return;};
