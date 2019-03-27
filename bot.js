@@ -230,7 +230,7 @@ client.on('ready', () => {
 	client.user.setPresence({
 			game: {
 				//name: "com "+client.guilds.array().length +"|dono:Reifel#5047"
-				name: "me quer? www.u.nu/reifelcontato |Reifel#5047|ou clique assistir >>",
+				name: "me contrata: www.u.nu/reifelcontato |Reifel#5047| clica assistir >>",
 				url: "https://www.twitch.tv/reifel",
 				type: "STREAMING"
 			}
