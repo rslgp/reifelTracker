@@ -747,6 +747,7 @@ client.on('message', message => {
 		//case "v":
 		case "s":
 		case "rempontos":
+		case "addpontos":
 		case "send":
 		case "pm":
 		case "reloadimg":
@@ -2360,7 +2361,12 @@ client.on('message', message => {
 			if(!saoOrganizadores(message)) return;
 			var timeP = nickLegivel.split("-");
 			retirarPontos(timeP[0],Number(timeP[1]));
-			break;
+		break;
+		case "addpontos":
+			if(!saoOrganizadores(message)) return;
+			var timeP = nickLegivel.split("-");
+			retirarPontos(timeP[0],Number(timeP[1])*(-1));
+		break;
 		case "s":
 			if(!saoOrganizadores(message)) return;
 			switch(parametroUsado){
