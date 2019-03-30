@@ -749,6 +749,7 @@ client.on('message', message => {
 		case "s":
 		case "rempontos":
 		case "addpontos":
+		case "nanpontos":
 		case "send":
 		case "pm":
 		case "reloadimg":
@@ -2368,6 +2369,16 @@ client.on('message', message => {
 			var timeP = nickLegivel.split("-");
 			retirarPontos(timeP[0],Number(timeP[1])*(-1));
 		break;
+			
+		case "nanpontos":
+			if(!saoOrganizadores(message)) return;
+			client.channels.get("558046408989474886").fetchMessage('559502399614484490')
+				  .then(message2 => {					   
+						message2.edit(message2.content.replace("NaN",nickLegivel));
+				} )
+				  .catch(console.error);
+		break;
+			
 		case "s":
 			if(!saoOrganizadores(message)) return;
 			switch(parametroUsado){
