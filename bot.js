@@ -1554,6 +1554,11 @@ client.on('message', message => {
 								padraoRankWinApex(message, message.member, nickLegivel, level, ["559835221730525195","559835222024126476","559835222313664515"],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
 								mudarNick(message, padraoNickApex(level[0],nickLegivel));
 							break;
+								
+							case '547602272516046849': //tiago airsoft
+								padraoRankWinApex(message, message.member, nickLegivel, level, ["562034978913779712","562034979236741140","562034979534536705"],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
+								mudarNick(message, padraoNickApex(level[0],nickLegivel));
+							break;
 						}
 					}catch(e){
 						//site alternativo
