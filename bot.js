@@ -1398,6 +1398,18 @@ client.on('message', message => {
 		break;
 			
 		case "elo":
+			switch(message.guild.id){								
+					case '550108927698927626':
+						nickLegivel=parametroUsado = getNickConhecidoApexAMS(message);
+					break;
+
+					case '542501242916700181':
+						nickLegivel=parametroUsado = getNickConhecidoApexAMS(message);
+					break;
+					default:								
+						nickLegivel=parametroUsado = getNickConhecidoApex(message);
+					break;
+			}
 			site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
 			try{
 				var variavelVisita3 = Browser.visit(site, function (e, browser) {				
