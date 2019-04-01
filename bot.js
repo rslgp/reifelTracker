@@ -1440,6 +1440,9 @@ client.on('message', message => {
 								changeRole(message.member, "562135972028874762", "562135972028874762");
 								message.reply(pontos+" pontos, tierB");
 								break;
+							default:
+								message.reply(pontos+" não elegivel para tier ainda");
+								break;
 						}
 						
 					}catch(e){
