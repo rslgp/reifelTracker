@@ -3922,7 +3922,7 @@ function getElo(level, kills, dano){
 	var desvio = 0.04;
 
 	if( kills > 800){
-		c = (dano/200);
+		c = (dano/175);
 		if(c < kills * (1-desvio)){
 		    c = 60;
 		}else
