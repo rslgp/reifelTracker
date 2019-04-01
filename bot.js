@@ -819,8 +819,8 @@ client.on('message', message => {
 							//console.log(jsonSquad);
 							text=null;
 						}catch(e){		
-							console.log("error search");
-							throw false;
+							//console.log("error search");
+							//throw false;
 						}
 						
 						var d7Texto="";
@@ -1040,7 +1040,7 @@ client.on('message', message => {
 						text=null;
 					}catch(e){			
 						//console.log("error rank");
-						throw false;		
+						//throw false;		
 					}
 				var winrKD = up(jsonSquad);
 				if(nick.indexOf("%") === -1){
@@ -1140,8 +1140,8 @@ client.on('message', message => {
 														print( message, compararPlayers(jsonSquadPA, decodeURI(players[0]), jsonSquadPB, decodeURI(players[1]), message) );
 														
 													}catch(e){		
-														console.log("error search");
-														throw false;
+														//console.log("error search");
+														//throw false;
 													}
 												}catch(e){
 													console.log(e.message);
@@ -1158,8 +1158,8 @@ client.on('message', message => {
 									variavelVisita2=null;
 								}catch(e){}
 							}catch(e){		
-								console.log("error search");
-								throw false;
+								//console.log("error search");
+								//throw false;
 							}
 						}catch(e){
 							console.log(e.message);
@@ -1802,7 +1802,7 @@ client.on('message', message => {
 						text=null;
 					}catch(e){			
 						//console.log("error rank");
-						throw false;		
+						//throw false;		
 					}
 					var winrKD = up(jsonSquad);
 					
@@ -2139,8 +2139,8 @@ client.on('message', message => {
 							//console.log(jsonSquad);
 							text=null;
 						}catch(e){		
-							console.log("error search");
-							throw false;
+							//console.log("error search");
+							//throw false;
 						}
 
 						try{
@@ -3205,8 +3205,8 @@ function setWinRateNick(message, site, i){
 					jsonSquad = getJsonSquad(text);
 					text=null;
 				}catch(e){			
-					console.log("error up");
-					throw false;		
+					//console.log("error up");
+					//throw false;		
 				}
 				
 				var winrKD = up(jsonSquad);	
@@ -3290,8 +3290,8 @@ function getJsonSquad(text){
 	try{
 		jsonSquad = JSON.parse(temp);
 	}catch(e){		
-		console.log("erro getJsonSquad");
-		throw false;
+		//console.log("erro getJsonSquad");
+		//throw false;
 	}
 	text=null;
 	return jsonSquad;
@@ -3303,13 +3303,13 @@ function padraoAtualizarNome(message,nickLegivel,text,site){
 		try{
 			jsonSquad = getJsonSquad(text);
 		}catch(e){			
-			console.log("error up");
-			throw false;		
+			//console.log("error up");
+			//throw false;		
 		}
 		var winrKD = up(jsonSquad);
 	}catch(e){
-		console.log("erro padraoAtualizarNome");
-		throw false;
+		//console.log("erro padraoAtualizarNome");
+		//throw false;
 	}
 	
 	var userNick, posChuva;
@@ -3426,7 +3426,7 @@ function getInnerHtml(browser, selector){
 	elem = browser.queryAll(selector);
 	try{
 		retorno = elem[0].innerHTML;
-	}catch(e){/*retorno="";*/throw false;}
+	}catch(e){/*retorno="";throw false;*/}
 	
 	return retorno.replace(/(\r\n|\n|\r)/gm,"");
 }
@@ -3467,7 +3467,7 @@ function getNickConhecido(message){
 		retorno = retorno.substring(1);
 		return retorno;
 	}else{
-		throw false;
+		//throw false;
 	}
 }
 
@@ -3482,7 +3482,7 @@ function getNickConhecidoApexAMS(message){
 		var retorno = message.member.nickname.substring(0,  message.member.nickname.lastIndexOf(" ", posicaoGuardaChuva-2));
 		return retorno;
 	}else{
-		throw false;
+		//throw false;
 	}
 }
 
@@ -3522,7 +3522,7 @@ function getNickConhecidoApex(message){
 		retorno = retorno.substring(1);
 		return retorno;
 	}else{
-		throw false;
+		//throw false;
 	}
 }
 
