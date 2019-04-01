@@ -1431,7 +1431,7 @@ client.on('message', message => {
 						level = text.level.value;
 						partidas = text.matchesPlayed.value;
 						
-						if(partidas===undefined) {print(message,"ative partidas jogadas (games played) no banner e jogue uma partida para atualizar");}
+						if(partidas===undefined) {print(message,"ative partidas jogadas (games played) no banner e jogue uma partida para atualizar"); throw false;}
 						
 						if(dano===undefined) dano = 0;
 						if(kills===undefined) kills = 0;
