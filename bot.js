@@ -3903,6 +3903,7 @@ function getElo(level, kills, dano){
 	}else c = 0;
 	
 	var r = a+b+c;
+	if(kills==0||dano==0) r *= 0.43;
 	
 	var tierS = 55, tierA = 28, tierB = 10, tierAtual = r/10; 
 	if(tierAtual >= tierS){
