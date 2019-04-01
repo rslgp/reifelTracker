@@ -1435,7 +1435,7 @@ client.on('message', message => {
 							case "A":
 								if(message.member.roles.has("562135971517300736")){
 									setTimeout(function(){ 
-										message.member.removeRole(oldRole).catch(err => console.log(err)).then( () => 
+										message.member.removeRole("562135971517300736").catch(err => console.log(err)).then( () => 
 											{												
 												changeRole(message.member, "562135972028874762", "562135971802513408");
 												message.reply(pontos+" pontos, tierA");
