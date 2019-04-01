@@ -180,26 +180,33 @@ client.on('guildCreate', guild => {
 client.on('ready', () => {
 	client.channels.get("459432939898273798").fetchMessage('483646835710361622')
 			  .then(message => {
-					var obj =  JSON.parse(message.content);
-					todosDias = obj["todosDias"];
-					liberarDiaExtra= obj["liberarDiaExtra"];
-					atualizarBarraApoio(obj["progresso"]);
+					try{
+						var obj =  JSON.parse(message.content);
+						todosDias = obj["todosDias"];
+						liberarDiaExtra= obj["liberarDiaExtra"];
+						atualizarBarraApoio(obj["progresso"]);						
+					}catch(e){}
 			} )
 			  .catch(console.error);
 			  
 	client.channels.get("459432939898273798").fetchMessage('479842842899120134')
 			  .then(message => {
+					try{
 					var obj =  JSON.parse(message.content);
 					suspensos = obj["suspenso"];
-					if(suspensos.length!=0)ativarsuspender=true;
+					if(suspensos.length!=0)ativarsuspender=true;				
+					}catch(e){}
 			} )
 			  .catch(console.error);
 	
 	client.channels.get("459432939898273798").fetchMessage('461722127205269505')
 			  .then(message => {
+					try{
 					var obj =  JSON.parse(message.content);
 					discAutorizados = obj["discords"];
 					salasAutorizadas = obj["salas"];
+										
+					}catch(e){}
 			} )
 			  .catch(console.error);
 			  
@@ -1418,7 +1425,7 @@ client.on('message', message => {
 						var text = browser.html();
 						text = text.substring(text.indexOf('imp_Overview')+15);
 						text = text.substring(0,text.indexOf('};')+1);
-						try{text = JSON.parse(text);}catch(e){throw false;}
+						text = JSON.parse(text);
 						kills = text.kills.value;
 						dano = text.damage.value;
 						level = text.level.value;
@@ -2303,12 +2310,15 @@ client.on('message', message => {
 			
 			client.channels.get("459432939898273798").fetchMessage('461722127205269505')
 			  .then(message => {
+					try{
 					var obj =  JSON.parse(message.content);
 					obj["discords"].push(Number(novo[0]));
 					obj["salas"].push(Number(novo[1]));
 					discAutorizados = obj["discords"];					
 					salasAutorizadas = obj["salas"];
 					message.edit(JSON.stringify(obj));
+										
+					}catch(e){}
 			} )
 			  .catch(console.error);
 		break;
@@ -2324,12 +2334,15 @@ client.on('message', message => {
 			
 			client.channels.get("459432939898273798").fetchMessage('461722127205269505')
 			  .then(message => {
+					try{
 					var obj =  JSON.parse(message.content);
 					obj["discords"].splice(obj["discords"].indexOf(Number(novo[0])),1);
 					obj["salas"].splice( obj["salas"].indexOf(Number(novo[1])),1);
 					discAutorizados = obj["discords"];					
 					salasAutorizadas = obj["salas"];
 					message.edit(JSON.stringify(obj));
+										
+					}catch(e){}
 			} )
 			  .catch(console.error);
 		break;
@@ -2739,9 +2752,12 @@ function contagemUsuarioPartidas(dict){
 }
 
 function editarJSON(message){
+	try{
 	var obj =  JSON.parse(message.content);
 	obj.count += 1;
 	message.edit(JSON.stringify(obj));
+					
+	}catch(e){}
 	/*
 	para nova key, obj[NovaKey] = valores
 	*/
@@ -3731,6 +3747,7 @@ var _sendRequestToOcrSpace = function(localFile, url, options) {
 }
 
 function imgrResultado(parsedResult){
+	try{
 	  var a = JSON.parse(parsedResult);
 	  //console.log(a);
 	  //parsedResult = parsedResult.ParsedResults[0].ParsedText;
@@ -3739,8 +3756,7 @@ function imgrResultado(parsedResult){
 	  var posKills, posLugar;
 	  //for(var i of leitura){
 		  //console.log(i);
-		//console.log(leitura);		
-	try{
+		//console.log(leitura);	
 		var i="";
 		try{i = leitura[1];}catch(e){i=leitura[0]}
 		posKills = i.indexOf("SQUAD KILLS");
@@ -3833,6 +3849,7 @@ function calcularPontuacao(message, arrayPosicaoKills){
 	   
 	   client.channels.get("558046408989474886").fetchMessage('559502399614484490')
 				  .then(message2 => {
+		   			try{
 						var jsonTimes = JSON.parse("{"+message2.content+"}");
 						//var obj = {};
 					   if(jsonTimes[time]) jsonTimes[time] +=pontTotal;
@@ -3848,6 +3865,8 @@ function calcularPontuacao(message, arrayPosicaoKills){
 					   jsonString = jsonString.substring(0,jsonString.lastIndexOf(","));
 					   
 						message2.edit(jsonString);
+										
+					}catch(e){}
 				} )
 				  .catch(console.error);	
 	   
@@ -3873,6 +3892,7 @@ function array2json(array){
 function retirarPontos(time,valor){
  client.channels.get("558046408989474886").fetchMessage('559502399614484490')
 				  .then(message2 => {
+	 				try{
 						var jsonTimes = JSON.parse("{"+message2.content+"}");
 					   jsonTimes[time] -=valor;
 		   
@@ -3886,6 +3906,8 @@ function retirarPontos(time,valor){
 					   jsonString = jsonString.substring(0,jsonString.lastIndexOf(","));
 					   
 						message2.edit(jsonString);
+										
+					}catch(e){}
 				} )
 				  .catch(console.error);
 }
