@@ -1414,18 +1414,19 @@ client.on('message', message => {
 						if(dano===undefined) dano = 0;
 						if(kills===undefined) kills = 0;
 						var eloPontos = getElo(level,kills,dano);
+						var pontos = Number(eloPontos[1]).toFixed(0);
 						switch(eloPontos[0]){
 							case "S":
 								changeRole(message.member, "562135972028874762", "562135971517300736");
-								message.reply(eloPontos[1]+" pontos, tierS");
+								message.reply(pontos+" pontos, tierS");
 								break;
 							case "A":
 								changeRole(message.member, "562135972028874762", "562135971802513408");
-								message.reply(eloPontos[1]+" pontos, tierA");
+								message.reply(pontos+" pontos, tierA");
 								break;
 							case "B":
 								changeRole(message.member, "562135972028874762", "562135972028874762");
-								message.reply(eloPontos[1]+" pontos, tierB");
+								message.reply(pontos+" pontos, tierB");
 								break;
 						}
 						
