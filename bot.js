@@ -1413,16 +1413,19 @@ client.on('message', message => {
 						
 						if(dano===undefined) dano = 0;
 						if(kills===undefined) kills = 0;
-
-						switch(getElo(level,kills,dano)){
+						var eloPontos = getElo(level,kills,dano);
+						switch(eloPontos[0]){
 							case "S":
 								changeRole(message.member, "562135972028874762", "562135971517300736");
+								message.reply(eloPontos[1]+" pontos, tierS");
 								break;
 							case "A":
 								changeRole(message.member, "562135972028874762", "562135971802513408");
+								message.reply(eloPontos[1]+" pontos, tierA");
 								break;
 							case "B":
 								changeRole(message.member, "562135972028874762", "562135972028874762");
+								message.reply(eloPontos[1]+" pontos, tierB");
 								break;
 						}
 						
@@ -3888,10 +3891,10 @@ function getElo(level, kills, dano){
 	
 	var tierS = 55, tierA = 28, tierB = 10, tierAtual = r/10; 
 	if(tierAtual >= tierS){
-		return "S";
+		return ["S",r+""];
 	}else if(tierAtual >= tierA){
-		return "A";
+		return ["A",r+""];
 	}else if(tierAtual >= tierB){
-		return "B";
+		return ["B",r+""];
 	}	
 }
