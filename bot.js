@@ -3911,5 +3911,7 @@ function getElo(level, kills, dano){
 		return ["A",r+""];
 	}else if(tierAtual >= tierB){
 		return ["B",r+""];
+	}else{
+		return ["C",r+""];
 	}	
 }
