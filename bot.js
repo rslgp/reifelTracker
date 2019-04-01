@@ -707,6 +707,7 @@ client.on('message', message => {
 		case "alt2":
 		case "alt3":
 		case "lvl":
+		case "elo":
 		case "vitoria":
 		case "ci":
 		case "dk":
@@ -1394,6 +1395,49 @@ client.on('message', message => {
 			}catch(e){
 						//print(message,e);
 			}
+		break;
+			
+		case "elo":
+			site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
+			try{
+				var variavelVisita3 = Browser.visit(site, function (e, browser) {				
+					var kills=-1, dano=-1, level=-1;	
+					try{
+						var text = browser.html();
+						text = text.substring(text.indexOf('imp_Overview')+15);
+						text = text.substring(0,text.indexOf('};')+1);
+						text = JSON.parse(text);
+						kills = text.kills.value;
+						dano = text.damage.value;
+						level = text.level.value;
+						
+						if(dano===undefined) dano = 0;
+						if(kills===undefined) kills = 0;
+
+						switch(getElo(level,kills,dano)){
+							case "S":
+								changeRole(message.member, "562135972028874762", "562135971517300736");
+								break;
+							case "A":
+								changeRole(message.member, "562135972028874762", "562135971802513408");
+								break;
+							case "B":
+								changeRole(message.member, "562135972028874762", "562135972028874762");
+								break;
+						}
+						
+					}catch(e){
+						//console.log(e);
+					}
+					try{
+						browser.deleteCookies();
+						browser.tabs.closeAll(); browser.window.close(); browser.destroy();					
+					}catch(e){
+
+					}
+				});	
+				variavelVisita3=null;
+			}catch(e){}	
 		break;
 			
 		case "dk":
@@ -3813,4 +3857,41 @@ function retirarPontos(time,valor){
 						message2.edit(jsonString);
 				} )
 				  .catch(console.error);
+}
+
+function getElo(level, kills, dano){
+	var a,b,c;
+	a = (level/20)*10;
+	if(a > 100) a = 100;
+	b = (kills/150)*10;
+	if(b > 600) b = 600;
+
+	var desvio = 0.04;
+
+	if( kills > 800){
+
+		c = (dano/200);
+		if(c < kills * (1-desvio)){
+            c = 60;
+        }else
+        if(c > kills * (1+desvio)){
+			if(kills > 1300)
+            	c = 600;
+			else 
+				c = 300;
+        }else{
+            c = 300;
+        }
+	}else c = 0;
+	
+	var r = a+b+c;
+	
+	var tierS = 55, tierA = 28, tierB = 10, tierAtual = r/10; 
+	if(tierAtual >= tierS){
+		return "S";
+	}else if(tierAtual >= tierA){
+		return "A";
+	}else if(tierAtual >= tierB){
+		return "B";
+	}	
 }
