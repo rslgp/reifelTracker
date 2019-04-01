@@ -3657,7 +3657,7 @@ function msgImgApex(message, valoresJimp=["---","---","---"]){//winrate, kd, win
 			// Create the attachment using MessageAttachment
 			const attachment = new Discord.Attachment(tempFile);
 			// Send the attachment in the message channel with a content
-			//message.channel.send(attachment).then(msg=> msg.react("👉"));
+			message.channel.send(attachment);//.then(msg=> msg.react("👉"));
 			//message.member.send("[comando dk] reaja com as lendas na sequencia de mais jogado ao menos, embaixo da foto resultado (pra onde o emoji aponta)(clica reagir e busca o nome da lenda, no maximo 3)");
 		});
 	copiaJimp=null;
