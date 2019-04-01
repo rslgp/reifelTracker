@@ -1433,8 +1433,20 @@ client.on('message', message => {
 								message.reply(pontos+" pontos, tierS");
 								break;
 							case "A":
-								changeRole(message.member, "562135972028874762", "562135971802513408");
-								message.reply(pontos+" pontos, tierA");
+								if(message.member.roles.has("562135971517300736"){
+									setTimeout(function(){ 
+										message.member.removeRole(oldRole).catch(err => console.log(err)).then( () => 
+											{												
+												changeRole(message.member, "562135972028874762", "562135971802513408");
+												message.reply(pontos+" pontos, tierA");
+											}
+										);
+									}, 1700);	
+								}else{
+									changeRole(message.member, "562135972028874762", "562135971802513408");
+									message.reply(pontos+" pontos, tierA");
+								}
+								
 								break;
 							case "B":
 								changeRole(message.member, "562135972028874762", "562135972028874762");
