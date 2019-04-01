@@ -3880,7 +3880,7 @@ function getElo(level, kills, dano){
 	a = (level/20)*10;
 	if(a > 100) a = 100;
 	b = (kills/150)*10;
-	if(b > 600) b = 600;
+	if(b > 300) b = 300;
 
 	var desvio = 0.04;
 
