@@ -1433,7 +1433,7 @@ client.on('message', message => {
 								message.reply(pontos+" pontos, tierS");
 								break;
 							case "A":
-								if(message.member.roles.has("562135971517300736"){
+								if(message.member.roles.has("562135971517300736")){
 									setTimeout(function(){ 
 										message.member.removeRole(oldRole).catch(err => console.log(err)).then( () => 
 											{												
