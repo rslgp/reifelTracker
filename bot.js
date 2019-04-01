@@ -1420,16 +1420,56 @@ client.on('message', message => {
 			site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
 			try{
 				var variavelVisita3 = Browser.visit(site, function (e, browser) {				
-					var kills=-1, dano=-1, level=-1;	
+					var kills=-1, dano=-1, level=-1, partidas;	
 					try{
 						var text = browser.html();
 						text = text.substring(text.indexOf('imp_Overview')+15);
 						text = text.substring(0,text.indexOf('};')+1);
 						text = JSON.parse(text);
 						kills = text.kills.value;
-						dano = text.damage.value;
+						//dano = text.damage.value;
 						level = text.level.value;
+						partidas = text.matchesPlayed.value;
 						
+						if(partidas===undefined) {print(message,"ative partidas jogadas (games played) no banner e jogue uma partida para atualizar");}
+						
+						if(dano===undefined) dano = 0;
+						if(kills===undefined) kills = 0;
+						var eloPontos = getEloMatches(level,kills,partidas);
+						var pontos = Number(eloPontos[1]).toFixed(0);
+
+						var cargosElo = ['562423267894231072', '562423268292689920', '562423268511055892'];
+						switch(eloPontos[0]){
+							case "S":
+								changeRole(message.member, cargosElo[1], cargosElo[0]);
+								message.reply(pontos+" pontos, tierS");
+								break;
+							case "A":
+								if(message.member.roles.has(cargosElo[0])){
+									setTimeout(function(){ 
+										message.member.removeRole(cargosElo[0]).catch(err => console.log(err)).then( () => 
+											{												
+												changeRole(message.member, cargosElo[0], cargosElo[1]);
+												message.reply(pontos+" pontos, tierA");
+											}
+										);
+									}, 1700);	
+								}else{
+									changeRole(message.member, cargosElo[2], cargosElo[1]);
+									message.reply(pontos+" pontos, tierA");
+								}
+								
+								break;
+							case "B":
+								changeRole(message.member, cargosElo[1], cargosElo[2]);
+								message.reply(pontos+" pontos, tierB");
+								break;
+							default:
+								message.reply(pontos+" não elegivel para tier ainda");
+								break;
+						}
+						
+						/*
 						if(dano===undefined) dano = 0;
 						if(kills===undefined) kills = 0;
 						var eloPontos = getElo(level,kills,dano);
@@ -1462,7 +1502,7 @@ client.on('message', message => {
 							default:
 								message.reply(pontos+" não elegivel para tier ainda");
 								break;
-						}
+						}*/
 						
 					}catch(e){
 						//console.log(e);
@@ -3910,6 +3950,27 @@ function retirarPontos(time,valor){
 					}catch(e){}
 				} )
 				  .catch(console.error);
+}
+
+function getEloMatches(level,kills,matches){
+	var kpm = (kills/matches);
+	var resultado=0;
+	//var nerf = 0.58;
+	if(level/kpm > 100) kpm *= nerf;
+	/*
+	if(resultado > 4){
+		return ["S",resultado];
+	}else if(resultado > 2) {return ["A",resultado];}
+	else if(resultado > 1.6){return ["B",resultado];}
+	else return ["C",resultado];*/
+	
+	resultado = level * kpm;
+	if(resultado > 1000) resultado = 1000;
+	if(kpm > 3.7){
+		return ["S",resultado];
+	}else if(kpm > 2) {return ["A",resultado];}
+	else if(kpm > 1.6){return ["B",resultado];}
+	else return ["C",resultado];	
 }
 
 function getElo(level, kills, dano){
