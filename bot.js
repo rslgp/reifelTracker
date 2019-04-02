@@ -1681,6 +1681,12 @@ client.on('message', message => {
 								padraoRankWinApex(message, message.member, nickLegivel, level, ["562034978913779712","562034979236741140","562034979534536705"],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
 								mudarNick(message, padraoNickApex(level[0],nickLegivel));
 							break;
+								
+							case '562363572647100416': //lost spirit alms
+								padraoRankWinApex(message, message.member, nickLegivel, level, ["562416591459975168","562416591753707521","562416592106029056"],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
+								mudarNick(message, padraoNickApex(level[0],nickLegivel));
+							break;
+								
 						}
 					}catch(e){
 						//site alternativo
