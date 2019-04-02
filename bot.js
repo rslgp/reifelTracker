@@ -3593,7 +3593,7 @@ function getNickConhecidoApexAMS(message){
 		var retorno = message.member.nickname.substring(0,  message.member.nickname.lastIndexOf(" ", posicaoGuardaChuva-2));
 		return retorno;
 	}else{
-		throw false;
+		return "";
 	}
 }
 
