@@ -1418,61 +1418,71 @@ client.on('message', message => {
 						nickLegivel=parametroUsado = getNickConhecidoApex(message);
 					break;
 			}
+			
 			site = "http://api.apexlegendsstatus.com/bridge?platform=PC&auth=0V7bLm3DwwImSEr9ruFI&player="+parametroUsado;
 			try{
-				request(site, function (error, response, body) {
-					var text = body;
-					var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
-					if(data == undefined) {message.reply("tente novamente mais tarde");return;}
-					var level = data.global.level;
-					data = data.legends.selected[Object.keys(data.legends.selected)[0]];
-					
-					var partidas = data.games_played, kills = data.kills;
-		
-						if(partidas===undefined) {print(message,"ative partidas jogadas (games played) no banner e jogue uma partida para atualizar"); return;}
-						
-						if(partidas < 150) {print(message,"quantidade de partidas insuficiente, minimo 150"); throw false;}
-						
-						if(kills===undefined) kills = 0;
-						var eloPontos = getEloMatches(level,kills,partidas);
-						var pontos = Number(eloPontos[2]).toFixed(1);
+				var variavelVisita3 = Browser.visit(site, function (e, browser) {	
+					try{
+						var text = browser.html();
+						var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
+						if(data == undefined) {message.reply("tente novamente mais tarde");return;}
+						var level = data.global.level;
+						data = data.legends.selected[Object.keys(data.legends.selected)[0]];
 
-						var cargosElo = ['562423267894231072', '562423268292689920', '562423268511055892'];
-						switch(eloPontos[0]){
-							case "S":
-								changeRole(message.member, cargosElo[1], cargosElo[0]);
-								message.reply(pontos+" pontos, tierS");
-								break;
-							case "A":
-								if(message.member.roles.has(cargosElo[0])){
-									setTimeout(function(){ 
-										message.member.removeRole(cargosElo[0]).catch(err => console.log(err)).then( () => 
-											{												
-												changeRole(message.member, cargosElo[0], cargosElo[1]);
-												message.reply(pontos+" kpm, tierA");
-											}
-										);
-									}, 1700);	
-								}else{
-									changeRole(message.member, cargosElo[2], cargosElo[1]);
-									message.reply(pontos+" kpm, tierA");
-								}
-								
-								break;
-							case "B":
-								changeRole(message.member, cargosElo[1], cargosElo[2]);
-								message.reply(pontos+" kpm, tierB");
-								break;
-							default:
-								message.reply(pontos+" não elegivel para tier ainda");
-								break;
-						}
-						
-					
+						var partidas = data.games_played, kills = data.kills;
+
+							if(partidas===undefined) {print(message,"ative partidas jogadas (games played) no banner e jogue uma partida para atualizar"); return;}
+
+							if(partidas < 150) {print(message,"quantidade de partidas insuficiente, minimo 150"); throw false;}
+
+							if(kills===undefined) kills = 0;
+							var eloPontos = getEloMatches(level,kills,partidas);
+							var pontos = Number(eloPontos[2]).toFixed(1);
+
+							var cargosElo = ['562423267894231072', '562423268292689920', '562423268511055892'];
+							switch(eloPontos[0]){
+								case "S":
+									changeRole(message.member, cargosElo[1], cargosElo[0]);
+									message.reply(pontos+" pontos, tierS");
+									break;
+								case "A":
+									if(message.member.roles.has(cargosElo[0])){
+										setTimeout(function(){ 
+											message.member.removeRole(cargosElo[0]).catch(err => console.log(err)).then( () => 
+												{												
+													changeRole(message.member, cargosElo[0], cargosElo[1]);
+													message.reply(pontos+" kpm, tierA");
+												}
+											);
+										}, 1700);	
+									}else{
+										changeRole(message.member, cargosElo[2], cargosElo[1]);
+										message.reply(pontos+" kpm, tierA");
+									}
+
+									break;
+								case "B":
+									changeRole(message.member, cargosElo[1], cargosElo[2]);
+									message.reply(pontos+" kpm, tierB");
+									break;
+								default:
+									message.reply(pontos+" não elegivel para tier ainda");
+									break;
+							}
+
+					}catch(e){
+						//console.log(e);
+					}
+					try{
+						browser.deleteCookies();
+						browser.tabs.closeAll(); browser.window.close(); browser.destroy();					
+					}catch(e){
+
+					}
 				});	
-			}catch(e){
-						//print(message,e);
-			}	
+				variavelVisita3=null;
+			}catch(e){}
+			
 						
 						/*
 						if(dano===undefined) dano = 0;
