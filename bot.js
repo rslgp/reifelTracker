@@ -1506,7 +1506,7 @@ client.on('message', message => {
 							default:
 								message.reply(pontos+" não elegivel para tier ainda");
 								break;
-						}*/
+						}
 						
 					}catch(e){
 						//console.log(e);
@@ -1519,7 +1519,7 @@ client.on('message', message => {
 					}
 				});	
 				variavelVisita3=null;
-			}catch(e){}	
+			}catch(e){}	*/
 		break;
 			
 		case "dk":
