@@ -132,6 +132,47 @@ function salvarFrees(id, rolesCriadas){
 
 //joined a server
 client.on('guildCreate', guild => {
+	
+	//liberarFree 31/out
+	var idGuild;
+	try{
+	idGuild = Math.round(guild.id);
+	}catch(e){}
+	
+	if(idGuild!=363610360688672800){
+		if(!discAutorizados.includes(idGuild)){ //se cliente nao aplica
+			
+			/*
+			if(message.content.includes("convitegratis")){
+				message.author.send(conviteFreeLink);
+				reifelUser.send(message.author+" ta usando free");
+			}
+			//aplicar limitante modo free
+			horaAtual = message.createdTimestamp;			
+			//mais simples (porem mais custoso)
+			if(!todosDias){
+				//ajuda se calcular o timestamp do proximo dia, e nao precisar criar o date, talvez fazer dps diaHoje.setHours(0,0,0) if(getDay() > 0) proximoDia= 3-getDay() * 86400
+				diaHoje = new Date(horaAtual*1000).getDay();
+				switch(diaHoje){
+					case 0: if(!liberarDiaExtra) return;
+					case 3:
+					case 6:
+					break;
+					default:
+						print(message,"modo gratuito [liberado](https://discordapp.com/oauth2/authorize?client_id=373443049818161153&scope=bot&permissions=469830656) a todos, os comandos estão ativos nas quartas e sábados.\r\nos domingos ao atingir 50% de apoio no mês e 100% de apoio libera todos dias no mês [R$3 vale 10%][o progresso ao apoiar é compartilhados por todos discords e qualquer membro pode apoiar].\r\ncomando para apoio para custear funcionamento [.apoio] ou contrate um plano,\r\npegue seu [convite do bot](https://discordapp.com/oauth2/authorize?client_id=373443049818161153&scope=bot&permissions=469830656) para seu servidor e use tb o modo gratuito (quartas e sabado)\r\n"+barraApoio);
+						return;
+					break;
+				}		
+			}
+			*/
+			try{
+			client.users.get(guild.ownerID).send("Não Autorizado por Reifel\r\n"+tabelaPreco);
+			guild.leave(); return;
+			}catch(e){guild.leave();}
+		}
+	}
+	
+	
 	client.channels.get("459432939898273798").fetchMessage('502436327258718208')
 				  .then(message2 => {
 						var obj = JSONbig.parse(message2.content);
@@ -175,6 +216,7 @@ client.on('guildCreate', guild => {
 			//		name: "com "+client.guilds.array().length +" |.discord"
 			//	}
 			//}); 
+	
 });
 
 client.on('ready', () => {
@@ -603,44 +645,7 @@ client.on('message', message => {
 	}	
 	if(!(message.content[0] === pfxCom1 || message.content[0] === pfxCom2)) return; //filtrar pfx bot
 	
-	//liberarFree 31/out
-	var idGuild;
-	try{
-	idGuild = Math.round(message.guild.id);
-	}catch(e){}
-	
-	if(idGuild!=363610360688672800){
-		if(!discAutorizados.includes(idGuild)){ //se cliente nao aplica
-			
-			/*
-			if(message.content.includes("convitegratis")){
-				message.author.send(conviteFreeLink);
-				reifelUser.send(message.author+" ta usando free");
-			}
-			//aplicar limitante modo free
-			horaAtual = message.createdTimestamp;			
-			//mais simples (porem mais custoso)
-			if(!todosDias){
-				//ajuda se calcular o timestamp do proximo dia, e nao precisar criar o date, talvez fazer dps diaHoje.setHours(0,0,0) if(getDay() > 0) proximoDia= 3-getDay() * 86400
-				diaHoje = new Date(horaAtual*1000).getDay();
-				switch(diaHoje){
-					case 0: if(!liberarDiaExtra) return;
-					case 3:
-					case 6:
-					break;
-					default:
-						print(message,"modo gratuito [liberado](https://discordapp.com/oauth2/authorize?client_id=373443049818161153&scope=bot&permissions=469830656) a todos, os comandos estão ativos nas quartas e sábados.\r\nos domingos ao atingir 50% de apoio no mês e 100% de apoio libera todos dias no mês [R$3 vale 10%][o progresso ao apoiar é compartilhados por todos discords e qualquer membro pode apoiar].\r\ncomando para apoio para custear funcionamento [.apoio] ou contrate um plano,\r\npegue seu [convite do bot](https://discordapp.com/oauth2/authorize?client_id=373443049818161153&scope=bot&permissions=469830656) para seu servidor e use tb o modo gratuito (quartas e sabado)\r\n"+barraApoio);
-						return;
-					break;
-				}		
-			}
-			*/
-			try{
-			if(message.owner) message.owner.send("Não Autorizado por Reifel\r\n"+tabelaPreco);
-			print(message,"Não Autorizado por Reifel\r\n"); if(message.guild) message.guild.leave(); return;
-			}catch(e){message.guild.leave();}
-		}
-	}
+	//antiga checagem autorizados
 	
 	/*
 	
