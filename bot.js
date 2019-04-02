@@ -1434,7 +1434,7 @@ client.on('message', message => {
 						
 						if(partidas===undefined) {print(message,"ative partidas jogadas (games played) no banner e jogue uma partida para atualizar"); throw false;}
 						
-						if(partidas < 150) {print(message,"quantidade de partidas insuficientes, minimo 150"); throw false;}
+						if(partidas < 150) {print(message,"quantidade de partidas insuficiente, minimo 150"); throw false;}
 						
 						if(dano===undefined) dano = 0;
 						if(kills===undefined) kills = 0;
