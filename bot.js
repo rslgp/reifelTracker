@@ -1638,6 +1638,7 @@ client.on('message', message => {
 				request(site, function (error, response, body) {
 					var text = body;
 					var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
+					if(data == undefined) throw false;
 					var level = data.global.level;
 					if(capUpdate(message, level)) return;
 					level = [level, level];
