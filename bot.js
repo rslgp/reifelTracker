@@ -714,6 +714,7 @@ client.on('message', message => {
 		case "alt2":
 		case "alt3":
 		case "lvl":
+		case "lvl2":
 		case "elo":
 		case "vitoria":
 		case "ci":
@@ -1607,6 +1608,45 @@ client.on('message', message => {
 			  }).catch(function (err) {
 				console.log('ERROR:', err);
 			  });*/
+		break;
+			
+		case "lvl2":
+			try{
+				switch(message.guild.id){								
+					case '550108927698927626':
+						nickLegivel=parametroUsado = getNickConhecidoApexAMS(message);
+					break;
+
+					case '542501242916700181':
+						nickLegivel=parametroUsado = getNickConhecidoApexAMS(message);
+					break;
+					default:								
+						nickLegivel=parametroUsado = getNickConhecidoApex(message);
+					break;
+				}
+				
+				parametroUsado=encodeURI(parametroUsado);
+				if(args[1] !== undefined) message.author.send(errorNaoUsarProprioNick);
+			}catch(e){
+				//caso nao tenha guarda chuva, mantem o nick como arg
+				if(args[1] == undefined) message.author.send("faltou colocar espaço o seu nick da origin no comando .lvl");
+			}
+			site = "http://api.apexlegendsstatus.com/bridge?platform=PC&auth=0V7bLm3DwwImSEr9ruFI&player="+parametroUsado;
+			try{
+				request(site, function (error, response, body) {
+					var text = body;
+					var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
+					var level = data.global.level;
+					switch(message.guild.id){
+						case '292028288178847744': //mago academy
+							padraoRankWinApex(message, message.member, nickLegivel, level, ["559835221730525195","559835222024126476","559835222313664515"],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
+							mudarNick(message, padraoNickApex(level[0],nickLegivel));
+						break;
+					}
+				});
+			}catch(e){
+						//print(message,e);
+			}	
 		break;
 		
 		case "lvl":
