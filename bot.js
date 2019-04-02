@@ -1434,7 +1434,7 @@ client.on('message', message => {
 						
 						if(kills===undefined) kills = 0;
 						var eloPontos = getEloMatches(level,kills,partidas);
-						var pontos = Number(eloPontos[1]).toFixed(0);
+						var pontos = Number(eloPontos[2]).toFixed(1);
 
 						var cargosElo = ['562423267894231072', '562423268292689920', '562423268511055892'];
 						switch(eloPontos[0]){
@@ -1448,19 +1448,19 @@ client.on('message', message => {
 										message.member.removeRole(cargosElo[0]).catch(err => console.log(err)).then( () => 
 											{												
 												changeRole(message.member, cargosElo[0], cargosElo[1]);
-												message.reply(pontos+" pontos, tierA");
+												message.reply(pontos+" kpm, tierA");
 											}
 										);
 									}, 1700);	
 								}else{
 									changeRole(message.member, cargosElo[2], cargosElo[1]);
-									message.reply(pontos+" pontos, tierA");
+									message.reply(pontos+" kpm, tierA");
 								}
 								
 								break;
 							case "B":
 								changeRole(message.member, cargosElo[1], cargosElo[2]);
-								message.reply(pontos+" pontos, tierB");
+								message.reply(pontos+" kpm, tierB");
 								break;
 							default:
 								message.reply(pontos+" não elegivel para tier ainda");
@@ -4039,9 +4039,9 @@ function getEloMatches(level,kills,matches){
 	if(resultado > 1000) resultado = 1000;
 	if(kpm > 4.8){
 		return ["S",resultado];
-	}else if(kpm > 2) {return ["A",resultado];}
-	else if(kpm > 1.5){return ["B",resultado];}
-	else return ["C",resultado];	
+	}else if(kpm > 2) {return ["A",resultado,kpm];}
+	else if(kpm > 1.5){return ["B",resultado,kpm];}
+	else return ["C",resultado,kpm];	
 }
 
 function getElo(level, kills, dano){
