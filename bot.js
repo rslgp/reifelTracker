@@ -171,7 +171,7 @@ client.on('guildCreate', guild => {
 			}catch(e){guild.leave();}
 		}
 	}
-	
+	return;
 	
 	client.channels.get("459432939898273798").fetchMessage('502436327258718208')
 				  .then(message2 => {
