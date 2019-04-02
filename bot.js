@@ -1424,7 +1424,7 @@ client.on('message', message => {
 					var text = body;
 					var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
 					var level = data.global.level;
-					data = data.legends.selected[Object.keys(a.legends.selected)[0]];
+					data = data.legends.selected[Object.keys(data.legends.selected)[0]];
 					
 					var partidas = data.games_played, kills = data.kills;
 		
