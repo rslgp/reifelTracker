@@ -1728,6 +1728,12 @@ client.on('message', message => {
 
 											mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
 										break;
+											
+											
+										case '292028288178847744': //mago academy
+											padraoRankWinApex(message, message.member, nickLegivel, level, ["559835221730525195","559835222024126476","559835222313664515"],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
+											mudarNick(message, padraoNickApex(level[0],nickLegivel));
+										break;
 									}
 							
 						}catch(e){
