@@ -1637,10 +1637,25 @@ client.on('message', message => {
 					var text = body;
 					var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
 					var level = data.global.level;
+					if(capUpdate(message, level)) return;
+					level = [level, level];
 					switch(message.guild.id){
 						case '292028288178847744': //mago academy
 							padraoRankWinApex(message, message.member, nickLegivel, level, ["559835221730525195","559835222024126476","559835222313664515"],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
 							mudarNick(message, padraoNickApex(level[0],nickLegivel));
+						break;
+							
+						case '542501242916700181': //ams
+							padraoRankWinApex(message, message.member, nickLegivel, level, ["550153057653227541", "550153058030583820", "550153058613723156","550153494045261837"], [150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
+
+							var posicaoGuardaChuva = -1;
+							try{
+								posicaoGuardaChuva = message.member.nickname.indexOf("★");		
+							}catch(e){
+
+							}
+							//if(posicaoGuardaChuva!==-1)return;
+							mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
 						break;
 					}
 				});
