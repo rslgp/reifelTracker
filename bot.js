@@ -1438,7 +1438,7 @@ client.on('message', message => {
 
 							if(kills===undefined) kills = 0;
 							var eloPontos = getEloMatches(level,kills,partidas);
-							var pontos = eloPontos[2].toFixed(2);
+							var pontos = Number(eloPontos[2]).toFixed(2);
 
 							var cargosElo = ['562423267894231072', '562423268292689920', '562423268511055892'];
 							switch(eloPontos[0]){
@@ -4051,9 +4051,9 @@ function getEloMatches(level,kills,matches){
 	if(resultado > 1000) resultado = 1000;
 	if(kpm > 4.8){
 		return ["S",resultado];
-	}else if(kpm > 2) {return ["A",resultado,kpm];}
-	else if(kpm > 1.5){return ["B",resultado,kpm];}
-	else return ["C",resultado,kpm];	
+	}else if(kpm > 2) {return ["A",resultado+"",kpm+""];}
+	else if(kpm > 1.5){return ["B",resultado+"",kpm+""];}
+	else return ["C",resultado+"",kpm+""];	
 }
 
 function getElo(level, kills, dano){
