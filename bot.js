@@ -1438,7 +1438,7 @@ client.on('message', message => {
 
 							if(kills===undefined) kills = 0;
 							var eloPontos = getEloMatches(level,kills,partidas);
-							var pontos = Number(eloPontos[2]).toFixed(1);
+							var pontos = eloPontos[2].toFixed(2);
 
 							var cargosElo = ['562423267894231072', '562423268292689920', '562423268511055892'];
 							switch(eloPontos[0]){
