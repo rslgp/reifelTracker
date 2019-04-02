@@ -1423,6 +1423,7 @@ client.on('message', message => {
 				request(site, function (error, response, body) {
 					var text = body;
 					var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
+					if(data == undefined) {message.reply("tente novamente mais tarde");return;}
 					var level = data.global.level;
 					data = data.legends.selected[Object.keys(data.legends.selected)[0]];
 					
