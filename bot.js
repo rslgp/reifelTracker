@@ -821,7 +821,7 @@ client.on('message', message => {
 							text=null;
 						}catch(e){		
 							//console.log("error search");
-							//throw false;
+							throw false;
 						}
 						
 						var d7Texto="";
@@ -1041,7 +1041,7 @@ client.on('message', message => {
 						text=null;
 					}catch(e){			
 						//console.log("error rank");
-						//throw false;		
+						throw false;		
 					}
 				var winrKD = up(jsonSquad);
 				if(nick.indexOf("%") === -1){
@@ -1142,7 +1142,7 @@ client.on('message', message => {
 														
 													}catch(e){		
 														//console.log("error search");
-														//throw false;
+														throw false;
 													}
 												}catch(e){
 													console.log(e.message);
@@ -1160,7 +1160,7 @@ client.on('message', message => {
 								}catch(e){}
 							}catch(e){		
 								//console.log("error search");
-								//throw false;
+								throw false;
 							}
 						}catch(e){
 							console.log(e.message);
@@ -1433,6 +1433,8 @@ client.on('message', message => {
 						partidas = text.matchesPlayed.value;
 						
 						if(partidas===undefined) {print(message,"ative partidas jogadas (games played) no banner e jogue uma partida para atualizar"); throw false;}
+						
+						if(partidas < 150) {print(message,"quantidade de partidas insuficientes, minimo 150"); throw false;}
 						
 						if(dano===undefined) dano = 0;
 						if(kills===undefined) kills = 0;
@@ -1909,7 +1911,7 @@ client.on('message', message => {
 						text=null;
 					}catch(e){			
 						//console.log("error rank");
-						//throw false;		
+						throw false;		
 					}
 					var winrKD = up(jsonSquad);
 					
@@ -2247,7 +2249,7 @@ client.on('message', message => {
 							text=null;
 						}catch(e){		
 							//console.log("error search");
-							//throw false;
+							throw false;
 						}
 
 						try{
@@ -3313,7 +3315,7 @@ function setWinRateNick(message, site, i){
 					text=null;
 				}catch(e){			
 					//console.log("error up");
-					//throw false;		
+					throw false;		
 				}
 				
 				var winrKD = up(jsonSquad);	
@@ -3398,7 +3400,7 @@ function getJsonSquad(text){
 		jsonSquad = JSON.parse(temp);
 	}catch(e){		
 		//console.log("erro getJsonSquad");
-		//throw false;
+		throw false;
 	}
 	text=null;
 	return jsonSquad;
@@ -3411,12 +3413,12 @@ function padraoAtualizarNome(message,nickLegivel,text,site){
 			jsonSquad = getJsonSquad(text);
 		}catch(e){			
 			//console.log("error up");
-			//throw false;		
+			throw false;		
 		}
 		var winrKD = up(jsonSquad);
 	}catch(e){
 		//console.log("erro padraoAtualizarNome");
-		//throw false;
+		throw false;
 	}
 	
 	var userNick, posChuva;
@@ -3533,7 +3535,7 @@ function getInnerHtml(browser, selector){
 	elem = browser.queryAll(selector);
 	try{
 		retorno = elem[0].innerHTML;
-	}catch(e){/*retorno="";throw false;*/}
+	}catch(e){/*retorno="";*/throw false;}
 	
 	return retorno.replace(/(\r\n|\n|\r)/gm,"");
 }
@@ -3574,7 +3576,7 @@ function getNickConhecido(message){
 		retorno = retorno.substring(1);
 		return retorno;
 	}else{
-		//throw false;
+		throw false;
 	}
 }
 
@@ -3589,7 +3591,7 @@ function getNickConhecidoApexAMS(message){
 		var retorno = message.member.nickname.substring(0,  message.member.nickname.lastIndexOf(" ", posicaoGuardaChuva-2));
 		return retorno;
 	}else{
-		//throw false;
+		throw false;
 	}
 }
 
@@ -3629,7 +3631,7 @@ function getNickConhecidoApex(message){
 		retorno = retorno.substring(1);
 		return retorno;
 	}else{
-		//throw false;
+		throw false;
 	}
 }
 
