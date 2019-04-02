@@ -3972,10 +3972,10 @@ function getEloMatches(level,kills,matches){
 	
 	resultado = level * kpm;
 	if(resultado > 1000) resultado = 1000;
-	if(kpm > 3.7){
+	if(kpm > 4.8){
 		return ["S",resultado];
 	}else if(kpm > 2) {return ["A",resultado];}
-	else if(kpm > 1.6){return ["B",resultado];}
+	else if(kpm > 1.5){return ["B",resultado];}
 	else return ["C",resultado];	
 }
 
