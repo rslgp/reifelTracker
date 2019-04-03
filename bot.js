@@ -1426,7 +1426,7 @@ client.on('message', message => {
 					break;
 			}
 			
-			
+		/*	
 		site = "https://www.apexlegendsapi.com/api/v1/player?platform=pc&name="+parametroUsado;
 			try{
 				var variavelVisita3 = Browser.visit(site, function (e, browser) {	
@@ -1442,16 +1442,27 @@ client.on('message', message => {
 						for(var i of a) for(var key in i) c[key] = i[key];
 						data = c;
 						
-						a=c=null;
-
+						a=c=null;						
 						var partidas = data.games_played, kills = data.kills;
+						*/
+			site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
+			try{
+				var variavelVisita3 = Browser.visit(site, function (e, browser) {				
+					var kills=-1, dano=-1, level=0;	
+					try{
+						var text = browser.html();
+						text = text.substring(text.indexOf('imp_Overview')+15);
+						text = text.substring(0,text.indexOf('};')+1);
+						text = JSON.parse(text);
+						kills = text.kills.value;
+						level = text.level.value;
 
 							//if(partidas===undefined) {print(message,"ative partidas jogadas (games played) no banner e jogue uma partida para atualizar"); return;}
 
-							if(partidas < 150) {print(message,"quantidade de partidas insuficiente, minimo 150"); throw false;}
+							//if(partidas < 150) {print(message,"quantidade de partidas insuficiente, minimo 150"); throw false;}
 							if(level < 85) {print(message,"level insuficiente, minimo 85"); throw false;}
 							//if(kills===undefined) kills = 0;
-							var eloPontos = getEloKL(level,kills,partidas);
+							var eloPontos = getEloKL(level,kills,0);
 							var pontos = Number(eloPontos[2]).toFixed(2);
 							var cargosEloP = ['562939565329874954', '562939565388726285'];
 							var cargosElo = ['562423267894231072', '562423268292689920', '562423268511055892'];
@@ -1682,7 +1693,7 @@ client.on('message', message => {
 						text = text.substring(text.indexOf('"playerId": "'));
 						text = "[{"+text.substring(0,text.indexOf(']'))+"]";
 						text = JSON.parse(text);	
-						level = text[0].level.value
+						level = text[0].level.value;
 						
 						if(capUpdate(message, level)) return;
 						
@@ -4022,14 +4033,14 @@ function retirarPontos(time,valor){
 
 function getEloKL(level,kills=0,matches=0){
 	var kl = (kills/level);
-	var kpm=0;
+	//var kpm=0;
 	if(matches!=0) kpm = (kills/matches);	
 	
 	if(kl >= 19){
-		if(kpm > 4.8) return ["S+",kl,kl+" "+kpm];
+		//if(kpm > 4.8) return ["S+",kl,kl+" "+kpm];
 		return ["S",kl,kl+""];
 	}else if(kl >= 11.8) {
-		if(kpm > 2) return ["A+",kl,kl+" "+kpm];
+		//if(kpm > 2) return ["A+",kl,kl+" "+kpm];
 		return ["A",kl+"",kl+""];
 	}
 	else if(kl >= 9.4){
