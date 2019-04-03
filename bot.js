@@ -1469,17 +1469,17 @@ client.on('message', message => {
 							switch(eloPontos[0]){
 								case "S+":
 									changeRole(message.member, cargosEloP[1], cargosEloP[0]);
-									message.reply(pontos+" pontos, tierS+");
+									message.reply(pontos+", tierS+");
 									break;
 								break;
 								case "S":
 									changeRole(message.member, cargosElo[1], cargosElo[0]);
-									message.reply(pontos+" pontos, tierS");
+									message.reply(pontos+", tierS");
 									break;
 
 								case "A+":
 									changeRole(message.member, cargosEloP[0], cargosEloP[1]);
-									message.reply(pontos+" pontos, tierA+");
+									message.reply(pontos+", tierA+");
 									break;
 								break;
 								case "A":
@@ -1488,19 +1488,19 @@ client.on('message', message => {
 											message.member.removeRole(cargosElo[0]).catch(err => console.log(err)).then( () => 
 												{												
 													changeRole(message.member, cargosElo[0], cargosElo[1]);
-													message.reply(pontos+" kpm, tierA");
+													message.reply(pontos+", tierA");
 												}
 											);
 										}, 1700);	
 									}else{
 										changeRole(message.member, cargosElo[2], cargosElo[1]);
-										message.reply(pontos+" kpm, tierA");
+										message.reply(pontos+", tierA");
 									}
 
 									break;
 								case "B":
 									changeRole(message.member, cargosElo[1], cargosElo[2]);
-									message.reply(pontos+" kpm, tierB");
+									message.reply(pontos+", tierB");
 									break;
 								default:
 									message.reply(pontos+" não elegivel para tier ainda");
@@ -4038,15 +4038,15 @@ function getEloKL(level,kills=0,matches=0){
 	
 	if(kl >= 19){
 		//if(kpm > 4.8) return ["S+",kl,kl+" "+kpm];
-		return ["S",kl,kl+""];
+		return ["S",kl,kl+" kill/lvl"];
 	}else if(kl >= 11.8) {
 		//if(kpm > 2) return ["A+",kl,kl+" "+kpm];
-		return ["A",kl+"",kl+""];
+		return ["A",kl+"",kl+" kill/lvl"];
 	}
 	else if(kl >= 9.4){
-		return ["B",kl+"",kl+""];
+		return ["B",kl+"",kl+" kill/lvl"];
 	}
-	else return ["C",kl+"",kl+""];
+	else return ["C",kl+"",kl+" kill/lvl"];
 }
 
 function getEloMatches(level,kills=0,matches){
