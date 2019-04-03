@@ -1446,20 +1446,31 @@ client.on('message', message => {
 
 						var partidas = data.games_played, kills = data.kills;
 
-							if(partidas===undefined) {print(message,"ative partidas jogadas (games played) no banner e jogue uma partida para atualizar"); return;}
+							//if(partidas===undefined) {print(message,"ative partidas jogadas (games played) no banner e jogue uma partida para atualizar"); return;}
 
 							if(partidas < 150) {print(message,"quantidade de partidas insuficiente, minimo 150"); throw false;}
-
-							if(kills===undefined) kills = 0;
-							var eloPontos = getEloMatches(level,kills,partidas);
+							if(level < 85) {print(message,"level insuficiente, minimo 85"); throw false;}
+							//if(kills===undefined) kills = 0;
+							var eloPontos = getEloKL(level,kills,partidas);
 							var pontos = Number(eloPontos[2]).toFixed(2);
-
+							var cargosEloP = ['562939565329874954', '562939565388726285'];
 							var cargosElo = ['562423267894231072', '562423268292689920', '562423268511055892'];
 							switch(eloPontos[0]){
+								case "S+":
+									changeRole(message.member, cargosEloP[1], cargosEloP[0]);
+									message.reply(pontos+" pontos, tierS+");
+									break;
+								break;
 								case "S":
 									changeRole(message.member, cargosElo[1], cargosElo[0]);
 									message.reply(pontos+" pontos, tierS");
 									break;
+
+								case "A+":
+									changeRole(message.member, cargosEloP[0], cargosEloP[1]);
+									message.reply(pontos+" pontos, tierA+");
+									break;
+								break;
 								case "A":
 									if(message.member.roles.has(cargosElo[0])){
 										setTimeout(function(){ 
@@ -4008,7 +4019,26 @@ function retirarPontos(time,valor){
 				  .catch(console.error);
 }
 
-function getEloMatches(level,kills,matches){
+
+function getEloKL(level,kills=0,matches=0){
+	var kl = (kills/level);
+	var kpm=0;
+	if(matches!=0) kpm = (kills/matches);	
+	
+	if(kl >= 19){
+		if(kpm > 4.8) return ["S+",kl,kl+" "+kpm];
+		return ["S",kl,kl+""];
+	}else if(kl >= 11.8) {
+		if(kpm > 2) return ["A+",kl,kl+" "+kpm];
+		return ["A",kl+"",kl+""];
+	}
+	else if(kl >= 9.4){
+		return ["B",kl+"",kl+""];
+	}
+	else return ["C",kl+"",kl+""];
+}
+
+function getEloMatches(level,kills=0,matches){
 	var kpm = (kills/matches);
 	var resultado=0;
 	//var nerf = 0.58;
@@ -4023,13 +4053,13 @@ function getEloMatches(level,kills,matches){
 	resultado = level * kpm;
 	if(resultado > 1000) resultado = 1000;
 	if(kpm > 4.8){
-		return ["S",resultado,kpm+""];
+		return ["S",resultado+"",kpm+""];
 	}else if(kpm > 2) {return ["A",resultado+"",kpm+""];}
 	else if(kpm > 1.5){return ["B",resultado+"",kpm+""];}
 	else return ["C",resultado+"",kpm+""];	
 }
 
-function getElo(level, kills, dano){
+function getElo(level, kills=0, dano){
 	var a,b,c;
 	a = (level/20)*10;
 	if(a > 100) a = 100;
