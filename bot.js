@@ -1505,7 +1505,7 @@ client.on('message', message => {
 									message.reply(pontos+", tierB");
 									break;
 								default:
-									message.reply(pontos+" não elegivel para tier ainda");
+									message.reply(pontos+" não elegivel para tier ainda (minimo: 33,84)");
 									break;
 							}
 
