@@ -1463,7 +1463,7 @@ client.on('message', message => {
 							if(level < 85) {print(message,"level insuficiente, minimo 85"); throw false;}
 							//if(kills===undefined) kills = 0;
 							var eloPontos = getEloKL(level,kills,0);
-							var pontos = Number(eloPontos[2]).toFixed(2);
+							var pontos = eloPontos[2];
 							var cargosEloP = ['562939565329874954', '562939565388726285'];
 							var cargosElo = ['562423267894231072', '562423268292689920', '562423268511055892'];
 							switch(eloPontos[0]){
@@ -4038,15 +4038,15 @@ function getEloKL(level,kills=0,matches=0){
 	
 	if(kl >= 19){
 		//if(kpm > 4.8) return ["S+",kl,kl+" "+kpm];
-		return ["S",kl,kl+" kill/lvl"];
+		return ["S",kl,kl.toFixed(2)+" kill/lvl"];
 	}else if(kl >= 11.8) {
 		//if(kpm > 2) return ["A+",kl,kl+" "+kpm];
-		return ["A",kl+"",kl+" kill/lvl"];
+		return ["A",kl+"",kl.toFixed(2)+" kill/lvl"];
 	}
 	else if(kl >= 9.4){
-		return ["B",kl+"",kl+" kill/lvl"];
+		return ["B",kl+"",kl.toFixed(2)+" kill/lvl"];
 	}
-	else return ["C",kl+"",kl+" kill/lvl"];
+	else return ["C",kl+"",kl.toFixed(2)+" kill/lvl"];
 }
 
 function getEloMatches(level,kills=0,matches){
