@@ -4023,7 +4023,7 @@ function getEloMatches(level,kills,matches){
 	resultado = level * kpm;
 	if(resultado > 1000) resultado = 1000;
 	if(kpm > 4.8){
-		return ["S",resultado];
+		return ["S",resultado,kpm+""];
 	}else if(kpm > 2) {return ["A",resultado+"",kpm+""];}
 	else if(kpm > 1.5){return ["B",resultado+"",kpm+""];}
 	else return ["C",resultado+"",kpm+""];	
