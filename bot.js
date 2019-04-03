@@ -4034,18 +4034,19 @@ function retirarPontos(time,valor){
 
 
 function getEloKL(level,kills=0,matches=0,dano){
+	var ratio = 3.6;
 	var kl = (((2.6*kills)+(dano/175))/level);
 	//var kpm=0;
 	if(matches!=0) kpm = (kills/matches);	
 	
-	if(kl >= 19){
+	if(kl >= 19*ratio){
 		//if(kpm > 4.8) return ["S+",kl,kl+" "+kpm];
 		return ["S",kl,kl.toFixed(2)+" kill/lvl"];
-	}else if(kl >= 11.8) {
+	}else if(kl >= 11.8*ratio) {
 		//if(kpm > 2) return ["A+",kl,kl+" "+kpm];
 		return ["A",kl+"",kl.toFixed(2)+" kill/lvl"];
 	}
-	else if(kl >= 9.4){
+	else if(kl >= 9.4*ratio){
 		return ["B",kl+"",kl.toFixed(2)+" kill/lvl"];
 	}
 	else return ["C",kl+"",kl.toFixed(2)+" kill/lvl"];
