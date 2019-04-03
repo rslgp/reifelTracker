@@ -2393,11 +2393,18 @@ client.on('message', message => {
 				
 				var arrayCategorias=message.guild.channels.get(obj["categoriaID"]);
 				var permissoes = [];
-				var arrayPermissoesPai = arrayCategorias.permissionOverwrites;
+				var arrayPermissoesPai = arrayCategorias.permissionOverwrites.array();
 				//fix permissionoverride obsoleto -> ChannelCreationOverwrites
 				//id sao roles
 				//arrayPermissoesPai = [ {id:'562812353343651840', allow: 1049600},  {id:'542501242916700181', deny: 1049600}];
-								
+				
+				for(var perm of arrayPermissoesPai){
+						var j = {};
+						j["id"] = perm["id"];
+						j["allow"] = perm["allow"];
+						j["deny"] = perm["deny"];
+						permissoes.push(j);
+				}
 				
 				/*
 				for(var permissao in arrayPermissoesPai){
@@ -2406,7 +2413,7 @@ client.on('message', message => {
 				console.log(permissoes);
 				*/
 				
-				criarVoice(obj, numeroInicio, obj["qtd"], message, obj["name"], arrayPermissoesPai);				
+				criarVoice(obj, numeroInicio, obj["qtd"], message, obj["name"], permissoes);				
 			}catch(e){console.log("error criar"); console.log(e);}
 		
 		break;
