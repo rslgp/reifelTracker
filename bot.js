@@ -758,7 +758,8 @@ client.on('message', message => {
 		case "barra":	
 		case "txt":
 		//case "c":
-		case "d":
+		//case "d":
+		//case "b":
 		//case "v":
 		case "s":
 		case "rempontos":
@@ -2382,12 +2383,25 @@ client.on('message', message => {
 		break;
 		
 		case "d":
+			if(message.author!=reifelUser) return;
 			var canal = "";
 			var id = message.content;
 			id = id.substring(3);
 			var arrayCategorias=message.guild.channels.array();
 			for(var idCategoria in arrayCategorias){ 		
 				if(arrayCategorias[idCategoria].parentID == id) arrayCategorias[idCategoria].delete();
+			}
+		break;
+			
+		case "b": 
+			if(message.author!=reifelUser) return;
+			//adiciona a role bloqueado em todas as salas
+			var canal = "";
+			var id = message.content; //role id
+			id = id.substring(3);
+			var arrayCategorias=message.guild.channels.array();
+			for(var idCategoria in arrayCategorias){				
+				arrayCategorias[idCategoria].overwritePermissions(id,{'CREATE_INSTANT_INVITE': false,'KICK_MEMBERS': false,'BAN_MEMBERS': false,'ADMINISTRATOR': false,'MANAGE_CHANNELS': false,'MANAGE_GUILD': false,'ADD_REACTIONS': false,'VIEW_AUDIT_LOG': false,'VIEW_CHANNEL': false,'SEND_MESSAGES': false,'SEND_TTS_MESSAGES': false,'MANAGE_MESSAGES': false,'EMBED_LINKS': false,'ATTACH_FILES': false,'READ_MESSAGE_HISTORY': false,'MENTION_EVERYONE': false,'USE_EXTERNAL_EMOJIS': false,'CONNECT': false,'SPEAK': false,'MUTE_MEMBERS': false,'DEAFEN_MEMBERS': false,'MOVE_MEMBERS': false,'USE_VAD': false,'PRIORITY_SPEAKER': false,'CHANGE_NICKNAME': false,'MANAGE_NICKNAMES': false,'MANAGE_ROLES': false,'MANAGE_WEBHOOKS': false,'MANAGE_EMOJIS': false});
 			}
 		break;
 		
