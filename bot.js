@@ -2394,6 +2394,11 @@ client.on('message', message => {
 				var arrayCategorias=message.guild.channels.get(obj["categoriaID"]);
 				var permissoes = [];
 				var arrayPermissoesPai = arrayCategorias.permissionOverwrites;
+				//fix permissionoverride obsoleto -> ChannelCreationOverwrites
+				//id sao roles
+				//arrayPermissoesPai = [ {id:'562812353343651840', allow: 1049600},  {id:'542501242916700181', deny: 1049600}];
+								
+				
 				/*
 				for(var permissao in arrayPermissoesPai){
 					permissoes.push({"id":arrayPermissoesPai[permissao].id,"deny":arrayPermissoesPai[permissao].deny,"allow":arrayPermissoesPai[permissao].allow});
