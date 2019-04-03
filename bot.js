@@ -1426,15 +1426,15 @@ client.on('message', message => {
 					break;
 			}
 			
-			site = "http://api.apexlegendsstatus.com/bridge?platform=PC&auth=0V7bLm3DwwImSEr9ruFI&player="+parametroUsado;
+			site = "https://www.apexlegendsapi.com/api/v1/player?platform=pc&name="+parametroUsado;
 			try{
 				var variavelVisita3 = Browser.visit(site, function (e, browser) {	
 					try{
 						var text = browser.html();
 						var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
 						if(data == undefined) {message.reply("tente novamente mais tarde");return;}
-						var level = data.global.level;
-						data = data.legends.selected[Object.keys(data.legends.selected)[0]];
+						var level = data.level;
+						data = data.legends[0].stats;
 
 						var partidas = data.games_played, kills = data.kills;
 
@@ -1629,61 +1629,6 @@ client.on('message', message => {
 			  }).catch(function (err) {
 				console.log('ERROR:', err);
 			  });*/
-		break;
-			
-		case "lvl2":
-			try{
-				switch(message.guild.id){								
-					case '550108927698927626':
-						nickLegivel=parametroUsado = getNickConhecidoApexAMS(message);
-					break;
-
-					case '542501242916700181':
-						nickLegivel=parametroUsado = getNickConhecidoApexAMS(message);
-					break;
-					default:								
-						nickLegivel=parametroUsado = getNickConhecidoApex(message);
-					break;
-				}
-				
-				parametroUsado=encodeURI(parametroUsado);
-				if(args[1] !== undefined) message.author.send(errorNaoUsarProprioNick);
-			}catch(e){
-				//caso nao tenha guarda chuva, mantem o nick como arg
-				if(args[1] == undefined) message.author.send("faltou colocar espaço o seu nick da origin no comando .lvl");
-			}
-			site = "http://api.apexlegendsstatus.com/bridge?platform=PC&auth=0V7bLm3DwwImSEr9ruFI&player="+parametroUsado;
-			try{
-				request(site, function (error, response, body) {
-					var text = body;
-					var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
-					if(data == undefined) throw false;
-					var level = data.global.level;
-					if(capUpdate(message, level)) return;
-					level = [level, level];
-					switch(message.guild.id){
-						case '292028288178847744': //mago academy
-							padraoRankWinApex(message, message.member, nickLegivel, level, ["559835221730525195","559835222024126476","559835222313664515"],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
-							mudarNick(message, padraoNickApex(level[0],nickLegivel));
-						break;
-							/*
-						case '542501242916700181': //ams
-							padraoRankWinApex(message, message.member, nickLegivel, level, ["550153057653227541", "550153058030583820", "550153058613723156","550153494045261837"], [150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
-
-							var posicaoGuardaChuva = -1;
-							try{
-								posicaoGuardaChuva = message.member.nickname.indexOf("★");		
-							}catch(e){
-
-							}
-							//if(posicaoGuardaChuva!==-1)return;
-							mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
-						break;*/
-					}
-				});
-			}catch(e){
-						//print(message,e);
-			}	
 		break;
 		
 		case "lvl":
@@ -2578,7 +2523,8 @@ client.on('message', message => {
 		break;
 		
 		case "empartida":			
-			if(!saoOrganizadores(message)) return;
+			return; //desativado
+			//if(!saoOrganizadores(message)) return;
 			site = "http://api.apexlegendsstatus.com/bridge?platform=PC&auth=0V7bLm3DwwImSEr9ruFI&player="+parametroUsado;
 			try{
 				request(site, function (error, response, body) {
