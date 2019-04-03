@@ -1433,7 +1433,7 @@ client.on('message', message => {
 					try{
 						var text = browser.html();
 						var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
-						console.log(data);
+						
 						if(data == undefined) {message.reply("tente novamente mais tarde");return;}
 						var level = data.level;
 						data = (data.legends[0]).stats;
