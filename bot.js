@@ -4045,7 +4045,7 @@ function retirarPontos(time,valor){
 }
 
 
-function getEloKL(level,kills=0,matches=0,dano){
+function getEloKL(level,kills=0,matches=0,dano=0){
 	var ratio = 3.6;
 	var kl = (((2.6*kills)+(dano/175))/level);
 	//var kpm=0;
