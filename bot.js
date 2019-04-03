@@ -1426,15 +1426,23 @@ client.on('message', message => {
 					break;
 			}
 			
-			site = "https://www.apexlegendsapi.com/api/v1/player?platform=pc&name="+parametroUsado;
+			
+		site = "https://www.apexlegendsapi.com/api/v1/player?platform=pc&name="+parametroUsado;
 			try{
 				var variavelVisita3 = Browser.visit(site, function (e, browser) {	
 					try{
 						var text = browser.html();
 						var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
+						console.log(data);
 						if(data == undefined) {message.reply("tente novamente mais tarde");return;}
 						var level = data.level;
-						data = data.legends[0].stats;
+						data = (data.legends[0]).stats;
+						var a = data;
+						var c = {};
+						for(var i of a) for(var key in i) c[key] = i[key];
+						data = c;
+						
+						a=c=null;
 
 						var partidas = data.games_played, kills = data.kills;
 
