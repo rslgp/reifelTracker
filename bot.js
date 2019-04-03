@@ -1454,6 +1454,8 @@ client.on('message', message => {
 						text = text.substring(text.indexOf('imp_Overview')+15);
 						text = text.substring(0,text.indexOf('};')+1);
 						text = JSON.parse(text);
+						
+						dano = text.damage.value;
 						kills = text.kills.value;
 						level = text.level.value;
 
@@ -1462,7 +1464,7 @@ client.on('message', message => {
 							//if(partidas < 150) {print(message,"quantidade de partidas insuficiente, minimo 150"); throw false;}
 							if(level < 85) {print(message,"level insuficiente, minimo 85"); throw false;}
 							//if(kills===undefined) kills = 0;
-							var eloPontos = getEloKL(level,kills,0);
+							var eloPontos = getEloKL(level,kills,0,dano);
 							var pontos = eloPontos[2];
 							var cargosEloP = ['562939565329874954', '562939565388726285'];
 							var cargosElo = ['562423267894231072', '562423268292689920', '562423268511055892'];
@@ -4031,8 +4033,8 @@ function retirarPontos(time,valor){
 }
 
 
-function getEloKL(level,kills=0,matches=0){
-	var kl = (kills/level);
+function getEloKL(level,kills=0,matches=0,dano){
+	var kl = (((2.6*kills)+(dano/175))/level);
 	//var kpm=0;
 	if(matches!=0) kpm = (kills/matches);	
 	
