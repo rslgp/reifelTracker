@@ -1413,6 +1413,7 @@ client.on('message', message => {
 		break;
 			
 		case "elo":
+		try{
 			switch(message.guild.id){								
 					case '550108927698927626':
 						nickLegivel=parametroUsado = getNickConhecidoApexAMS(message);
@@ -1425,7 +1426,7 @@ client.on('message', message => {
 						nickLegivel=parametroUsado = getNickConhecidoApex(message);
 					break;
 			}
-			
+		}catch(e){//nick nao conhecido}
 		/*	
 		site = "https://www.apexlegendsapi.com/api/v1/player?platform=pc&name="+parametroUsado;
 			try{
