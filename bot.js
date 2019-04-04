@@ -1426,7 +1426,7 @@ client.on('message', message => {
 						nickLegivel=parametroUsado = getNickConhecidoApex(message);
 					break;
 			}
-		}catch(e){//nick nao conhecido}
+		}catch(e){/*nick nao conhecido*/}
 		/*	
 		site = "https://www.apexlegendsapi.com/api/v1/player?platform=pc&name="+parametroUsado;
 			try{
