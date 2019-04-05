@@ -1379,7 +1379,7 @@ client.on('message', message => {
 					var text = body;
 					
 					var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
-					if(data == undefined) {message.reply("tente novamente mais tarde");return;}
+					if(data.global == undefined) {message.reply("tente novamente mais tarde");return;}
 					level = data.global.level;
 
 						var levelatual;
