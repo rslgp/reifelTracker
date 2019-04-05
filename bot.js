@@ -679,6 +679,7 @@ client.on('message', message => {
 	//}
 	
 	//anti-spam
+	if(message.member == null) return; //crash logs	
 	if(cooldownUser.indexOf(message.member.id) !== -1 ){print(message,"você está em cooldown");return;}
 	else{
 		cooldownUser.push(message.member.id);
@@ -1377,13 +1378,14 @@ client.on('message', message => {
 					var level;
 				request(site, function (error, response, body) {
 					var text = body;
-					
+					if(text == undefined) throw false; //crash logs
 					var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
 					if(data.global == undefined) {message.reply("tente novamente mais tarde");return;}
 					level = data.global.level;
 
 						var levelatual;
 						var nome = message.member.nickname;
+						if(nome == null) throw false; //crash logs
 						if(nome.indexOf('★') == (nome.length-1))
 							levelatual = nome.substring(nome.lastIndexOf(' ',nome.length-3)+1,nome.length-2);
 						else
@@ -1812,6 +1814,7 @@ client.on('message', message => {
 								var level;	
 								try{
 									var text = browser.html();
+									if(text == undefined) throw false; //crash logs
 									var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
 									level = data["level"];
 									
@@ -2574,6 +2577,7 @@ client.on('message', message => {
 			try{
 				request(site, function (error, response, body) {
 					var text = body;
+					if(text == undefined) throw false; //crash logs
 					var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
 					if(data.realtime.isInGame){
 						print(message,"em partida");
@@ -4068,7 +4072,7 @@ function getEloKL(level,kills=0,matches=0,dano=0){
 function getEloMatches(level,kills=0,matches){
 	var kpm = (kills/matches);
 	var resultado=0;
-	//var nerf = 0.58;
+	var nerf = 0.58;
 	if(level/kpm > 100) kpm *= nerf;
 	/*
 	if(resultado > 4){
