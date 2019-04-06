@@ -1379,7 +1379,8 @@ client.on('message', message => {
 				request(site, function (error, response, body) {
 					var text = body;
 					if(text == undefined) throw false; //crash logs
-					var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
+					var data;
+					try{data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));}catch(e){return;}
 					if(data.global == undefined) {message.reply("tente novamente mais tarde");return;}
 					level = data.global.level;
 
@@ -2578,7 +2579,8 @@ client.on('message', message => {
 				request(site, function (error, response, body) {
 					var text = body;
 					if(text == undefined) throw false; //crash logs
-					var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
+					var data;
+					try{data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));}catch(e){return;}
 					if(data.realtime.isInGame){
 						print(message,"em partida");
 					}else{
