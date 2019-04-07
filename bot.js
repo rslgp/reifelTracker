@@ -1377,38 +1377,40 @@ client.on('message', message => {
 			try{
 					var level;
 				request(site, function (error, response, body) {
-					var text = body;
-					if(text == undefined) throw false; //crash logs
-					var data;
-					try{data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));}catch(e){return;}
-					if(data.global == undefined) {message.reply("tente novamente mais tarde");return;}
-					level = data.global.level;
+					try{
+						var text = body;
+						if(text == undefined) throw false; //crash logs
+						var data;
+						data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
+						if(data.global == undefined) {message.reply("tente novamente mais tarde");return;}
+						level = data.global.level;
 
-						var levelatual;
-						var nome = message.member.nickname;
-						if(nome == null) throw false; //crash logs
-						if(nome.indexOf('★') == (nome.length-1))
-							levelatual = nome.substring(nome.lastIndexOf(' ',nome.length-3)+1,nome.length-2);
-						else
-							levelatual = nome.substring(0,nome.indexOf(' '));
-						if( (parseInt(levelatual) + 20) >= parseInt(level) ) { 
-							switch(message.guild.id){
-							case '542501711860727848':
-								mudarNick(message, padraoNickApex(levelatual,nickLegivel));
-							break;
-								
-							case '550108927698927626':
-								mudarNick(message, padraoNickApexAMS(levelatual,nickLegivel));
-							break;
-							
-							case '542501242916700181':
-								mudarNick(message, padraoNickApexAMS(levelatual,nickLegivel));
-							break;
-						}
-						}else{
-							//reifelUser.send(nickLegivel+"win%: "+parseFloat(winrKD[0])- (parseFloat(winrate) + 2.4) );
-							print(message, "não posso trocar seu nick, pois demorou muito tempo com nick desatualizado, peça a algum moderador");
-						}
+							var levelatual;
+							var nome = message.member.nickname;
+							if(nome == null) throw false; //crash logs
+							if(nome.indexOf('★') == (nome.length-1))
+								levelatual = nome.substring(nome.lastIndexOf(' ',nome.length-3)+1,nome.length-2);
+							else
+								levelatual = nome.substring(0,nome.indexOf(' '));
+							if( (parseInt(levelatual) + 20) >= parseInt(level) ) { 
+								switch(message.guild.id){
+								case '542501711860727848':
+									mudarNick(message, padraoNickApex(levelatual,nickLegivel));
+								break;
+
+								case '550108927698927626':
+									mudarNick(message, padraoNickApexAMS(levelatual,nickLegivel));
+								break;
+
+								case '542501242916700181':
+									mudarNick(message, padraoNickApexAMS(levelatual,nickLegivel));
+								break;
+							}
+							}else{
+								//reifelUser.send(nickLegivel+"win%: "+parseFloat(winrKD[0])- (parseFloat(winrate) + 2.4) );
+								print(message, "não posso trocar seu nick, pois demorou muito tempo com nick desatualizado, peça a algum moderador");
+							}
+					}catch(e){return;}
 				});
 			}catch(e){
 						//print(message,e);
@@ -2577,15 +2579,17 @@ client.on('message', message => {
 			site = "http://api.apexlegendsstatus.com/bridge?platform=PC&auth=0V7bLm3DwwImSEr9ruFI&player="+parametroUsado;
 			try{
 				request(site, function (error, response, body) {
-					var text = body;
-					if(text == undefined) throw false; //crash logs
-					var data;
-					try{data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));}catch(e){return;}
-					if(data.realtime.isInGame){
-						print(message,"em partida");
-					}else{
-						print(message,"no lobby");
-					}
+					try{
+						var text = body;
+						if(text == undefined) throw false; //crash logs
+						var data;
+						data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
+						if(data.realtime.isInGame){
+							print(message,"em partida");
+						}else{
+							print(message,"no lobby");
+						}
+					}catch(e){return;}
 				});
 			}catch(e){
 						//print(message,e);
