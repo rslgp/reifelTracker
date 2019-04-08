@@ -602,6 +602,8 @@ function suspenso(message){
 	print(message,"Suspenso, aguardando admin ou responsável renovar o contrato...");
 }
 
+client.on('error', return;); //handle client errors
+
 client.on('message', message => {
 	if(message.author.bot) return; //ignora poupar processamento bot
 	
