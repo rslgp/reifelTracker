@@ -1694,6 +1694,7 @@ client.on('message', message => {
 			}catch(e){
 				//caso nao tenha guarda chuva, mantem o nick como arg
 				if(args[1] == undefined) message.author.send("faltou colocar espaço o seu nick da origin no comando .lvl");
+				print(message,"ainda não registrado, envie o comando .lvl espaço seu nick da origin");
 			}
 			site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
 			try{
