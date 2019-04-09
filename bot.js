@@ -1317,7 +1317,8 @@ client.on('message', message => {
 			break;
 		case "r":
 			//message.author.send("devido a sobrecarga na origin o comando r foi desativado, solicite sala no servidor para atualizar com arquivo");
-			message.author.send("devido a sobrecarga na origin o comando r foi desativado, use o comando .lvl a cada 3 níveis");
+			//message.author.send("devido a sobrecarga na origin o comando r foi desativado, use o comando .lvl a cada 3 níveis");
+			tryPM(message.author, "devido a sobrecarga na origin o comando r foi desativado, use o comando .lvl a cada 3 níveis");
 			return;
 			break;
 			try{
@@ -1335,7 +1336,7 @@ client.on('message', message => {
 				}
 				
 				parametroUsado=encodeURI(parametroUsado);
-				if(args[1] !== undefined) message.author.send(errorNaoUsarProprioNick);
+				if(args[1] !== undefined) /*message.author.send(errorNaoUsarProprioNick);*/tryPM(message.author, errorNaoUsarProprioNick);
 			}catch(e){
 				//caso nao tenha guarda chuva, mantem o nick como arg
 			}
@@ -1690,7 +1691,7 @@ client.on('message', message => {
 				}
 				
 				parametroUsado=encodeURI(parametroUsado);
-				if(args[1] !== undefined) message.author.send(errorNaoUsarProprioNick);
+				if(args[1] !== undefined) /*message.author.send(errorNaoUsarProprioNick);*/tryPM(message.author, errorNaoUsarProprioNick);
 			}catch(e){
 				//caso nao tenha guarda chuva, mantem o nick como arg
 				if(args[1] == undefined) {print(message,"ainda não registrado, envie o comando .lvl espaço seu nick da origin");return;}
@@ -3397,7 +3398,7 @@ function mudarNick(message, novoNick, extra=""){
 }
 
 function mudarNickSilencioso(message, novoNick, extra=""){
-	message.member.setNickname( novoNick ).then(user => message.member.send(extra+`atualizei`)).catch(err => message.reply(`Não consegui atualizar, mas seria: `+novoNick));
+	message.member.setNickname( novoNick ).then(user => tryPM(message.member, extra+`atualizei`)).catch(err => message.reply(`Não consegui atualizar, mas seria: `+novoNick));
 }
 
 //"☂ "
@@ -3788,7 +3789,8 @@ function padraoRankWinApex(message, usuario, nickLegivel, winrKD, ranks=[], tabe
 			changeRole(usuario, ranks[3], ranks[2]);	
 			print(message,msg1Rank+ranks[2]+msg2Rank);
 		}else{
-			message.author.send("Você precisa de mais nível para registrar o rank (26+)");
+			//message.author.send("Você precisa de mais nível para registrar o rank (26+)");
+			tryPM(message.author, "Você precisa de mais nível para registrar o rank (26+)");
 		}
 		
 		//usuario.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(usuario.setNickname( padraoNick(winrKD[0],nickLegivel) )).then(user => message.reply("kd: **"+winrKD[1]+`**, atualizei winrate \:umbrella2:`)).catch(err => console.log(err));	
@@ -3808,7 +3810,7 @@ function capUpdate(message, level){
 		else
 			levelatual = nome.substring(0,nome.indexOf(' '));
 		var atual = parseInt(levelatual);
-		if( (levelSite - atual) < capLevel) {message.author.send("aguarde sem atualizar até o level:"+(atual+capLevel)); return true;}
+		if( (levelSite - atual) < capLevel) {tryPM(message.author,"aguarde sem atualizar até o level:"+(atual+capLevel)); return true;}
 		return false;
 	}catch(e){//novos
 	console.log(e);
@@ -4137,4 +4139,10 @@ function getElo(level, kills=0, dano){
 	}else{
 		return ["C",r+""];
 	}	
+}
+
+function tryPM(member, msg){
+	try{
+		member.send(msg);
+	}catch(e){}
 }
