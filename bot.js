@@ -4315,8 +4315,9 @@ function LinkedList() {
 			node.next = head;
 			head = node;
 		}else{
+			var posicaoLista=0;
 			while(currentNode.next){
-				if(node.element.nick == currentNode.element.nick) {currentNode.element.elo = node.element.elo; return;}
+				if(node.element.nick == currentNode.element.nick && node.element.elo !== currentNode.element.elo ) {this.removeAt(posicaoLista); this.add(node.element); return;}
 				
 				if(node.element.elo > currentNode.next.element.elo){					
 					node.next = currentNode.next;
@@ -4325,6 +4326,7 @@ function LinkedList() {
 					break;
 				}
 				currentNode  = currentNode.next;
+				posicaoLista++;
 			}
 
 			currentNode.next = node;
