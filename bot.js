@@ -784,6 +784,7 @@ client.on('message', message => {
 		case "addpontos":
 		case "nanpontos":
 		case "send":
+		case "edit":
 		case "pm":
 		case "reloadimg":
 		case "uninstall":
@@ -1597,7 +1598,7 @@ client.on('message', message => {
 								case "S":
 									changeRole(message.member, cargosElo[1], cargosElo[0]);
 									message.reply(pontos+", tierS");
-									(top10ELO[0]).add({"nick":nickLegivel,"elo":Number(eloPontos[1]).toFixed(2)});
+									(top10ELO[0]).add({"nick":nickLegivel,"elo":Number(eloPontos[1]).toFixedNumber(2)});
 									topEloDesatualizado[0] = true;
 									break;
 
@@ -1607,7 +1608,7 @@ client.on('message', message => {
 									break;
 								break;
 								case "A":
-									(top10ELO[1]).add({"nick":nickLegivel,"elo":Number(eloPontos[1]).toFixed(2)});
+									(top10ELO[1]).add({"nick":nickLegivel,"elo":Number(eloPontos[1]).toFixedNumber(2)});
 									topEloDesatualizado[1] = true;
 									
 									if(message.member.roles.has(cargosElo[0])){
@@ -2643,7 +2644,12 @@ client.on('message', message => {
 			atualizarBarraApoio(nickLegivel);
 		break;
 					
-		
+		case "edit":			
+			var idMsg = nickLegivel.split("+");
+			var channelBusca = client.channels.get(idMsg[0]);			
+			channelBusca.send(idMsg[1]);
+		break;
+			
 		case "send":
 			if(message.author!=reifelUser) return;
 			
@@ -4302,7 +4308,7 @@ function LinkedList() {
 			while(currentNode.next){
 				if(node.element.nick == currentNode.element.nick) {currentNode.element.elo = node.element.elo; break;}
 				
-				if(node.element.elo > currentNode.next.element.elo){					
+				if(Number(node.element.elo) > Number(currentNode.next.element.elo)){ //temporario					
 					node.next = currentNode.next;
 					
 					currentNode.next = node;
@@ -4365,4 +4371,9 @@ function LinkedList() {
 		if(currentNode.next !== null) resultadoJSON[posicao+1] = currentNode.next.element;
 	  return resultadoJSON;
   };
+}
+
+Number.prototype.toFixedNumber = function(x, base){
+  var pow = Math.pow(base||10,x);
+  return Math.round(this*pow) / pow;
 }
