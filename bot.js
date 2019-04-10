@@ -1433,7 +1433,7 @@ client.on('message', message => {
 			var resultadoJSON = top10ELO.toJSON();
 			var tamanho = top10ELO.size();
 			for(var i=0; i<tamanho; i++){
-				resultado += (i+1)+espaco+resultadoJSON[i+1].nick+espaco+resultadoJSON[i+1].elo+quebraLinha;
+				resultado += (i+1)+" - "+resultadoJSON[i+1].nick+espaco+resultadoJSON[i+1].elo+quebraLinha;
 			}
 			print(message,"ELO Ranking:"+quebraLinha+resultado);
 		break;
