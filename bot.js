@@ -25,7 +25,7 @@ var options =  {
 
 var aprendizadoPausado=true;
 
-var top10ELO=[], topEloDesatualizado=[true,true], topEloSalvo=["",""];
+var top10ELO, topEloDesatualizado=[true,true], topEloSalvo=["",""];
 
 /*
 //setting up twitch
@@ -223,8 +223,7 @@ client.on('guildCreate', guild => {
 
 client.on('ready', () => {
 	
-	top10ELO[0] = new LinkedList();
-	top10ELO[1] = new LinkedList();
+	top10ELO = [new LinkedList(),new LinkedList()];
 	
 	client.channels.get("459432939898273798").fetchMessage('483646835710361622')
 			  .then(message => {
@@ -1449,7 +1448,7 @@ client.on('message', message => {
 			}
 			var resultado = "";
 			if(topEloDesatualizado[indiceTop]){
-				var resultadoJSON = top10ELO[indiceTop].toJSON();
+				var resultadoJSON = (top10ELO[indiceTop]).toJSON();
 				if(resultadoJSON === undefined) return;
 				for(var i=1; i<11; i++){
 					if(resultadoJSON[i]!==undefined) resultado += (i)+" \t- \t"+resultadoJSON[i].nick+" \t"+resultadoJSON[i].elo+quebraLinha;
@@ -1480,7 +1479,7 @@ client.on('message', message => {
 			if(message.author!=reifelUser) return;
 			client.channels.get("459432939898273798").fetchMessage(msgID)
 				  .then(message2 => {
-					message2.edit(JSON.stringify(top10ELO[indiceTop].toJSON()));
+					message2.edit(JSON.stringify((top10ELO[indiceTop]).toJSON()));
 				} )
 				  .catch(console.error);
 		break;
@@ -1503,7 +1502,7 @@ client.on('message', message => {
 				  .then(message2 => {
 					var jsonCarregado = JSON.parse(message2.content);
 					for(var i = 1; i<11; i++){
-						if(jsonCarregado[i]) top10ELO[indiceTop].add(jsonCarregado[i]);
+						if(jsonCarregado[i]) (top10ELO[indiceTop]).add(jsonCarregado[i]);
 						else break;
 					}
 				} )
@@ -1578,7 +1577,7 @@ client.on('message', message => {
 								case "S":
 									changeRole(message.member, cargosElo[1], cargosElo[0]);
 									message.reply(pontos+", tierS");
-									top10ELO[0].add({"nick":nickLegivel,"elo":Number(eloPontos[1].toFixed(2))});
+									(top10ELO[0]).add({"nick":nickLegivel,"elo":Number(eloPontos[1].toFixed(2))});
 									topEloDesatualizado[0] = true;
 									break;
 
@@ -1595,7 +1594,7 @@ client.on('message', message => {
 													changeRole(message.member, cargosElo[0], cargosElo[1]);
 													message.reply(pontos+", tierA");
 													
-													top10ELO[1].add({"nick":nickLegivel,"elo":Number(eloPontos[1].toFixed(2))});
+													(top10ELO[1]).add({"nick":nickLegivel,"elo":Number(eloPontos[1].toFixed(2))});
 													topEloDesatualizado[1] = true;
 												}
 											);
@@ -1605,7 +1604,7 @@ client.on('message', message => {
 										message.reply(pontos+", tierA");
 										
 										
-										top10ELO[1].add({"nick":nickLegivel,"elo":Number(eloPontos[1].toFixed(2))});
+										(top10ELO[1]).add({"nick":nickLegivel,"elo":Number(eloPontos[1].toFixed(2))});
 										topEloDesatualizado[1] = true;
 									}
 
