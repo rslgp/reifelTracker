@@ -1432,6 +1432,7 @@ client.on('message', message => {
 			var resultado = "";
 			if(topEloDesatualizado){
 				var resultadoJSON = top10ELO.toJSON();
+				if(resultadoJSON === undefined) return;
 				for(var i=1; i<11; i++){
 					if(resultadoJSON[i]!==undefined) resultado += (i+1)+"\t-\t"+resultadoJSON[i+1].nick+espaco+resultadoJSON[i+1].elo+quebraLinha;
 					else break;
