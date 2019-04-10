@@ -4298,7 +4298,7 @@ function LinkedList() {
   };
 
   this.add = function(element){	
-    if(tail!==null && length === MAX && element.elo < tail.element.elo) return;
+    if(tail!==null && (length === MAX || element.elo < tail.element.elo)) return;
 	
     var node = new Node(element);
     if(head === null){
@@ -4312,7 +4312,7 @@ function LinkedList() {
 			while(currentNode.next){
 				if(node.element.nick == currentNode.element.nick) {currentNode.element.elo = node.element.elo; break;}
 				
-				if(Number(node.element.elo) > Number(currentNode.next.element.elo)){ //temporario					
+				if(node.element.elo > currentNode.next.element.elo){					
 					node.next = currentNode.next;
 					
 					currentNode.next = node;
