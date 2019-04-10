@@ -4298,7 +4298,7 @@ function LinkedList() {
   };
 
   this.add = function(element){	
-    if(tail!==null && (length === MAX || element.elo < tail.element.elo)) return;
+    if(tail!==null && (length === MAX && element.elo < tail.element.elo)) return;
 	
     var node = new Node(element);
     if(head === null){
