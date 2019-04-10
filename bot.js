@@ -1436,7 +1436,7 @@ client.on('message', message => {
 				var resultadoJSON = top10ELO.toJSON();
 				if(resultadoJSON === undefined) return;
 				for(var i=1; i<11; i++){
-					if(resultadoJSON[i]!==undefined) resultado += (i)+"\t-\t"+resultadoJSON[i].nick+espaco+resultadoJSON[i].elo+quebraLinha;
+					if(resultadoJSON[i]!==undefined) resultado += (i)+" \t- \t"+resultadoJSON[i].nick+" \t"+resultadoJSON[i].elo+quebraLinha;
 					else break;
 				}
 				topEloSalvo = resultado;
@@ -1452,7 +1452,7 @@ client.on('message', message => {
 			if(message.author!=reifelUser) return;
 			client.channels.get("459432939898273798").fetchMessage('565299781119770637')
 				  .then(message2 => {
-					message2.edit(top10ELO.toJSON());
+					message2.edit(JSON.stringfy(top10ELO.toJSON()));
 				} )
 				  .catch(console.error);
 		break;
@@ -1461,7 +1461,7 @@ client.on('message', message => {
 			if(message.author!=reifelUser) return;
 			client.channels.get("459432939898273798").fetchMessage('565299781119770637')
 				  .then(message2 => {
-					var jsonCarregado = message2.content;
+					var jsonCarregado = JSON.parse(message2.content);
 					for(var i = 1; i<11; i++){
 						if(jsonCarregado[i]) top10ELO.add(jsonCarregado[i]);
 						else break;
