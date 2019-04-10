@@ -732,6 +732,8 @@ client.on('message', message => {
 		case "lvl2":
 		case "elo":
 		case "elotop":
+		case "salvartabelaelo":
+		case "carregartabelaelo":
 		case "vitoria":
 		case "ci":
 		case "dk":
@@ -4223,7 +4225,7 @@ function LinkedList() {
   };
 
   this.add = function(element){	
-    if(tail!==null && length !== MAX && element.elo < tail.element.elo) return;
+    if(tail!==null && length === MAX && element.elo < tail.element.elo) return;
 	
     var node = new Node(element);
     if(head === null){
