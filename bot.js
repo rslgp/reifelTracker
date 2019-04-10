@@ -733,9 +733,11 @@ client.on('message', message => {
 		case "lvl2":
 		case "elo":
 		case "elotop":
-		case "elotopA":
+		case "elotopa":
 		case "salvartabelaelo":
+		case "salvartabelaeloa":
 		case "carregartabelaelo":
+		case "carregartabelaeloa":
 		case "vitoria":
 		case "ci":
 		case "dk":
