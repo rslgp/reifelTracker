@@ -25,7 +25,7 @@ var options =  {
 
 var aprendizadoPausado=true;
 
-var top10ELO;
+var top10ELO, topEloDesatualizado=true, topEloSalvo;
 
 /*
 //setting up twitch
@@ -1430,11 +1430,18 @@ client.on('message', message => {
 			
 		case "elotop":
 			var resultado = "";
-			var resultadoJSON = top10ELO.toJSON();
-			var tamanho = top10ELO.size();
-			for(var i=0; i<tamanho; i++){
-				resultado += (i+1)+" - "+resultadoJSON[i+1].nick+espaco+resultadoJSON[i+1].elo+quebraLinha;
+			if(topEloDesatualizado){
+				var resultadoJSON = top10ELO.toJSON();
+				var tamanho = top10ELO.size();
+				for(var i=0; i<tamanho; i++){
+					resultado += (i+1)+" - "+resultadoJSON[i+1].nick+espaco+resultadoJSON[i+1].elo+quebraLinha;
+				}
+				topEloSalvo = resultado;
+				topEloDesatualizado=false;
+			}else{
+				resultado = topEloSalvo;
 			}
+			
 			print(message,"ELO Ranking:"+quebraLinha+resultado);
 		break;
 			
@@ -1528,6 +1535,7 @@ client.on('message', message => {
 									changeRole(message.member, cargosElo[1], cargosElo[0]);
 									message.reply(pontos+", tierS");
 									top10ELO.add({"nick":nickLegivel,"elo":Number(eloPontos[1].toFixed(2))});
+									topEloDesatualizado = true;
 									break;
 
 								case "A+":
