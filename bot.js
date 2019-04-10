@@ -731,6 +731,7 @@ client.on('message', message => {
 		case "lvl":
 		case "lvl2":
 		case "elo":
+		case "elotops":
 		case "elotop":
 		case "elotopa":
 		case "removertabelaa":
@@ -1437,9 +1438,11 @@ client.on('message', message => {
 		break;
 			
 		case "elotopa":
+		case "elotops":
 		case "elotop":
 			var indiceTop, msgPrefix;
 			switch(comando){
+				case "elotops":	
 				case "elotop":
 					indiceTop=0;
 					msgPrefix="Tier S ";
