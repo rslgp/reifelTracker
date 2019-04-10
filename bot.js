@@ -1499,6 +1499,8 @@ client.on('message', message => {
 					indiceTop=1;
 				break;
 			}
+			
+			topEloDesatualizado[indiceTop] = true;
 			(top10ELO[indiceTop]).removeAt(Number(nickLegivel)-1);
 		break;
 
