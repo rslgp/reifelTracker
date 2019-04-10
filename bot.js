@@ -1431,7 +1431,7 @@ client.on('message', message => {
 			}
 		break;
 			
-		case "elotopA":
+		case "elotopa":
 		case "elotop":
 			var indiceTop, msgPrefix;
 			switch(comando){
@@ -1439,7 +1439,7 @@ client.on('message', message => {
 					indiceTop=0;
 					msgPrefix="Tier S ";
 				break;
-				case "elotopA":
+				case "elotopa":
 					indiceTop=1;
 					msgPrefix="Tier A ";
 				break;
@@ -1461,38 +1461,42 @@ client.on('message', message => {
 			print(message,msgPrefix+"ELO Ranking:"+quebraLinha+resultado);
 		break;
 			
-		case "salvartabelaeloA":
+		case "salvartabelaeloa":
 		case "salvartabelaelo":
-			var indiceTop;
+			var indiceTop, msgID;
 			switch(comando){
 				case "salvartabelaelo":
 					indiceTop=0;
+					msgID = '565299781119770637';
 				break;
 				case "salvartabelaeloA":
 					indiceTop=1;
+					msgID = '565439920215425034';
 				break;
 			}
 			if(message.author!=reifelUser) return;
-			client.channels.get("459432939898273798").fetchMessage('565299781119770637')
+			client.channels.get("459432939898273798").fetchMessage(msgID)
 				  .then(message2 => {
 					message2.edit(JSON.stringify(top10ELO[indiceTop].toJSON()));
 				} )
 				  .catch(console.error);
 		break;
 
-		case "carregartabelaeloA":
+		case "carregartabelaeloa":
 		case "carregartabelaelo":
-			var indiceTop;
+			var indiceTop, msgID;
 			switch(comando){
 				case "carregartabelaelo":
 					indiceTop=0;
+					msgID = '565299781119770637';
 				break;
 				case "carregartabelaeloA":
 					indiceTop=1;
+					msgID = '565439920215425034';
 				break;
 			}
 			if(message.author!=reifelUser) return;
-			client.channels.get("459432939898273798").fetchMessage('565299781119770637')
+			client.channels.get("459432939898273798").fetchMessage(msgID)
 				  .then(message2 => {
 					var jsonCarregado = JSON.parse(message2.content);
 					for(var i = 1; i<11; i++){
