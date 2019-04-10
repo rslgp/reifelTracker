@@ -4254,7 +4254,7 @@ function LinkedList() {
     }
 
     length++;
-	if(length == MAX) this.removeAt(MAX-1);
+	if(length == MAX) this.removeAt(MAX);
   };
 
   this.elementAt = function(index) {
