@@ -1452,7 +1452,7 @@ client.on('message', message => {
 			if(message.author!=reifelUser) return;
 			client.channels.get("459432939898273798").fetchMessage('565299781119770637')
 				  .then(message2 => {
-					message2.edit(JSON.stringfy(top10ELO.toJSON()));
+					message2.edit(JSON.stringify(top10ELO.toJSON()));
 				} )
 				  .catch(console.error);
 		break;
