@@ -1587,6 +1587,10 @@ client.on('message', message => {
 									break;
 								break;
 								case "A":
+									
+									(top10ELO[1]).add({"nick":nickLegivel,"elo":Number(eloPontos[1].toFixed(2))});
+									topEloDesatualizado[1] = true;
+									
 									if(message.member.roles.has(cargosElo[0])){
 										setTimeout(function(){ 
 											message.member.removeRole(cargosElo[0]).catch(err => console.log(err)).then( () => 
@@ -1601,10 +1605,6 @@ client.on('message', message => {
 										changeRole(message.member, cargosElo[2], cargosElo[1]);
 										message.reply(pontos+", tierA");
 									}
-									
-									(top10ELO[1]).add({"nick":nickLegivel,"elo":Number(eloPontos[1].toFixed(2))});
-									topEloDesatualizado[1] = true;
-
 									break;
 								case "B":
 									changeRole(message.member, cargosElo[1], cargosElo[2]);
