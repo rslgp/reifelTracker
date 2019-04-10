@@ -222,6 +222,9 @@ client.on('guildCreate', guild => {
 });
 
 client.on('ready', () => {
+	
+	top10ELO = new LinkedList();
+	
 	client.channels.get("459432939898273798").fetchMessage('483646835710361622')
 			  .then(message => {
 					try{
@@ -4288,4 +4291,3 @@ function LinkedList() {
 	  return resultadoJSON;
   };
 }
-top10ELO = new LinkedList();
