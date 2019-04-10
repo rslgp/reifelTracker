@@ -1471,6 +1471,7 @@ client.on('message', message => {
 			
 		case "salvartabelaeloa":
 		case "salvartabelaelo":
+			if(message.author!=reifelUser) return;
 			var indiceTop, msgID;
 			switch(comando){
 				case "salvartabelaelo":
@@ -1482,7 +1483,7 @@ client.on('message', message => {
 					msgID = '565439920215425034';
 				break;
 			}
-			if(message.author!=reifelUser) return;
+			
 			client.channels.get("459432939898273798").fetchMessage(msgID)
 				  .then(message2 => {
 					message2.edit(JSON.stringify((top10ELO[indiceTop]).toJSON()));
@@ -1510,6 +1511,7 @@ client.on('message', message => {
 
 		case "carregartabelaeloa":
 		case "carregartabelaelo":
+			if(message.author!=reifelUser) return;
 			var indiceTop, msgID;
 			switch(comando){
 				case "carregartabelaelo":
@@ -1521,7 +1523,7 @@ client.on('message', message => {
 					msgID = '565439920215425034';
 				break;
 			}
-			if(message.author!=reifelUser) return;
+			
 			client.channels.get("459432939898273798").fetchMessage(msgID)
 				  .then(message2 => {
 					var jsonCarregado = JSON.parse(message2.content);
@@ -1531,6 +1533,7 @@ client.on('message', message => {
 					}
 				} )
 				  .catch(console.error);
+			topEloDesatualizado[indiceTop] = true;
 		break;
 			
 			
