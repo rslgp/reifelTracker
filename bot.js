@@ -1587,9 +1587,10 @@ client.on('message', message => {
 									break;
 								break;
 								case "A":
-									
+									try{
 									(top10ELO[1]).add({"nick":nickLegivel,"elo":Number(eloPontos[1].toFixed(2))});
 									topEloDesatualizado[1] = true;
+									}catch(e){print(message,e.message);}
 									
 									if(message.member.roles.has(cargosElo[0])){
 										setTimeout(function(){ 
