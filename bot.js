@@ -4237,7 +4237,7 @@ function LinkedList() {
 			head = node;
 		}else{
 			while(currentNode.next){
-				if(node.element.nick == currentNode.next.element.nick) break;
+				if(node.element.nick == currentNode.element.nick) {currentNode.element.elo = node.element.elo; break;}
 				
 				if(node.element.elo > currentNode.next.element.elo){					
 					node.next = currentNode.next;
