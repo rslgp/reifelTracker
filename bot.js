@@ -4223,12 +4223,11 @@ function LinkedList() {
   };
 
   this.add = function(element){	
-	if(tail!==null && element.elo < tail.element.elo) return;
+    if(tail!==null && length !== MAX && element.elo < tail.element.elo) return;
 	
     var node = new Node(element);
     if(head === null){
         head = node;
-	tail = node;
     } else {
         var currentNode = head;
 		if(node.element.elo > head.element.elo){
