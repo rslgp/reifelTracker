@@ -1433,7 +1433,7 @@ client.on('message', message => {
 			if(topEloDesatualizado){
 				var resultadoJSON = top10ELO.toJSON();
 				for(var i=0; i<10; i++){
-					if(resultadoJSON[i+1]) resultado += (i+1)+" - "+resultadoJSON[i+1].nick+espaco+resultadoJSON[i+1].elo+quebraLinha;
+					if(resultadoJSON[i+1]) resultado += (i+1)+"\t-\t"+resultadoJSON[i+1].nick+espaco+resultadoJSON[i+1].elo+quebraLinha;
 					else break;
 				}
 				topEloSalvo = resultado;
