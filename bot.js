@@ -733,6 +733,8 @@ client.on('message', message => {
 		case "elo":
 		case "elotop":
 		case "elotopa":
+		case "removertabelaa":
+		case "removertabela":
 		case "salvartabelaelo":
 		case "salvartabelaeloa":
 		case "carregartabelaelo":
@@ -1482,6 +1484,22 @@ client.on('message', message => {
 					message2.edit(JSON.stringify((top10ELO[indiceTop]).toJSON()));
 				} )
 				  .catch(console.error);
+		break;
+		
+		
+		case "removertabelaa":
+		case "removertabela":
+			if(message.author!=reifelUser) return;
+			var indiceTop;
+			switch(comando){
+				case "removertabela":
+					indiceTop=0;
+				break;
+				case "removertabelaa":
+					indiceTop=1;
+				break;
+			}
+			(top10ELO[indiceTop]).removeAt(Number(nickLegivel)-1);
 		break;
 
 		case "carregartabelaeloa":
