@@ -25,6 +25,8 @@ var options =  {
 
 var aprendizadoPausado=true;
 
+var top10ELO;
+
 /*
 //setting up twitch
 const twitch = require("tmi.js");
@@ -726,6 +728,7 @@ client.on('message', message => {
 		case "lvl":
 		case "lvl2":
 		case "elo":
+		case "elotop":
 		case "vitoria":
 		case "ci":
 		case "dk":
@@ -1422,6 +1425,39 @@ client.on('message', message => {
 			}
 		break;
 			
+		case "elotop":
+			var resultado = "";
+			var resultadoJSON = top10ELO.toJSON();
+			var tamanho = top10ELO.size();
+			for(var i=0; i<tamanho; i++){
+				resultado += (i+1)+espaco+resultadoJSON[i+1].nick+espaco+resultadoJSON[i+1].elo+quebralinha;
+			}
+			print(message,"ELO Ranking:"+quebralinha+resultado);
+		break;
+			
+		case "salvartabelaelo":
+			if(message.author!=reifelUser) return;
+			client.channels.get("459432939898273798").fetchMessage('565299781119770637')
+				  .then(message2 => {
+					message2.edit(top10ELO.toJSON());
+				} )
+				  .catch(console.error);
+		break;
+			
+		case "carregartabelaelo":
+			if(message.author!=reifelUser) return;
+			client.channels.get("459432939898273798").fetchMessage('565299781119770637')
+				  .then(message2 => {
+					var jsonCarregado = message2.content;
+					for(var i = 1; i<11; i++){
+						if(jsonCarregado[i]) top10ELO.add(jsonCarregado[i]);
+						else break;
+					}
+				} )
+				  .catch(console.error);
+		break;
+			
+			
 		case "elo":
 		try{
 			switch(message.guild.id){								
@@ -1488,6 +1524,7 @@ client.on('message', message => {
 								case "S":
 									changeRole(message.member, cargosElo[1], cargosElo[0]);
 									message.reply(pontos+", tierS");
+									top10ELO.add({"nick":nickLegivel,"elo":Number(eloPontos[2].toFixed(2))});
 									break;
 
 								case "A+":
@@ -4146,3 +4183,109 @@ function tryPM(member, msg){
 		member.send(msg);
 	}catch(e){}
 }
+
+//lista simples linked list https://codepen.io/beaucarnes/pen/ybOvBq?editors=0012
+/* LinkedList */
+function LinkedList() { 
+  var length = 0;
+  var MAX = 10;
+
+  var head = null;
+  var tail = null;
+
+  var Node = function(element){
+    this.element = element; 
+    this.next = null; 
+  }; 
+
+  this.size = function(){
+    return length;
+  };
+
+  this.head = function(){
+    return head;
+  };
+  
+  this.tail = function(){
+    return tail;
+  };
+
+  this.add = function(element){	
+	if(tail!==null && element.elo < tail.element.elo) return;
+	
+    var node = new Node(element);
+    if(head === null){
+        head = node;
+        tail = node;
+    } else {
+        var currentNode = head;
+		if(node.element.elo > head.element.elo){
+			node.next = head;
+			head = node;
+		}else{
+			while(currentNode.next){
+				if(node.element.elo > currentNode.next.element.elo){					
+					node.next = currentNode.next;
+					
+					currentNode.next = node;
+					break;
+				}
+				currentNode  = currentNode.next;
+			}
+
+			currentNode.next = node;
+			tail = node;
+		}
+    }
+
+    length++;
+	console.log(tail.element.elo);
+	if(length == MAX) this.removeAt(MAX-1);
+  };
+
+  this.elementAt = function(index) {
+    var currentNode = head;
+    var count = 0;
+    while (count < index){
+        count ++;
+        currentNode = currentNode.next
+    }
+    return currentNode.element;
+  };
+  
+  this.removeAt = function(index) {
+    var currentNode = head;
+    var previousNode;
+    var currentIndex = 0;
+    if (index < 0 || index >= length){
+        return null
+    }
+    if(index === 0){
+        head = currentNode.next;
+    } else {
+        while(currentIndex < index) {
+            currentIndex ++;
+            previousNode = currentNode;
+            currentNode = currentNode.next;
+        }
+        previousNode.next = currentNode.next
+		tail = currentNode;
+    }
+    length--;
+    return currentNode.element;
+  };
+
+  this.toJSON = function(){
+	  var currentNode = head;
+	  var resultadoJSON = {};
+	  var posicao = 1;
+	  while(currentNode.next){
+		resultadoJSON[posicao++] = currentNode.element;
+		currentNode = currentNode.next;
+	  }
+		resultadoJSON[posicao] = currentNode.element;
+		resultadoJSON[posicao+1] = tail.element;
+	  return resultadoJSON;
+  };
+}
+top10ELO = new LinkedList();
