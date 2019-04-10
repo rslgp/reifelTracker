@@ -25,7 +25,7 @@ var options =  {
 
 var aprendizadoPausado=true;
 
-var top10ELO, topEloDesatualizado=true, topEloSalvo;
+var top10ELO, topEloDesatualizado=true, topEloSalvo="";
 
 /*
 //setting up twitch
@@ -1432,8 +1432,8 @@ client.on('message', message => {
 			var resultado = "";
 			if(topEloDesatualizado){
 				var resultadoJSON = top10ELO.toJSON();
-				for(var i=0; i<10; i++){
-					if(resultadoJSON[i+1]) resultado += (i+1)+"\t-\t"+resultadoJSON[i+1].nick+espaco+resultadoJSON[i+1].elo+quebraLinha;
+				for(var i=1; i<11; i++){
+					if(resultadoJSON[i]!==undefined) resultado += (i+1)+"\t-\t"+resultadoJSON[i+1].nick+espaco+resultadoJSON[i+1].elo+quebraLinha;
 					else break;
 				}
 				topEloSalvo = resultado;
