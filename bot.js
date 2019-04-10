@@ -4228,7 +4228,6 @@ function LinkedList() {
     var node = new Node(element);
     if(head === null){
         head = node;
-        tail = node;
     } else {
         var currentNode = head;
 		if(node.element.elo > head.element.elo){
