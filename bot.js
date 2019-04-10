@@ -1577,7 +1577,7 @@ client.on('message', message => {
 								case "S":
 									changeRole(message.member, cargosElo[1], cargosElo[0]);
 									message.reply(pontos+", tierS");
-									(top10ELO[0]).add({"nick":nickLegivel,"elo":Number(eloPontos[1].toFixed(2))});
+									(top10ELO[0]).add({"nick":nickLegivel,"elo":Number(eloPontos[1]).toFixed(2)});
 									topEloDesatualizado[0] = true;
 									break;
 
@@ -1587,10 +1587,8 @@ client.on('message', message => {
 									break;
 								break;
 								case "A":
-									try{
-									(top10ELO[1]).add({"nick":nickLegivel,"elo":Number(eloPontos[1].toFixed(2))});
+									(top10ELO[1]).add({"nick":nickLegivel,"elo":Number(eloPontos[1]).toFixed(2)});
 									topEloDesatualizado[1] = true;
-									}catch(e){print(message,e.message);}
 									
 									if(message.member.roles.has(cargosElo[0])){
 										setTimeout(function(){ 
@@ -4166,7 +4164,7 @@ function getEloKL(level,kills=0,matches=0,dano=0){
 	var msgComplemento = " kill+KillDano/lvl";
 	if(kl >= 19*ratio){
 		//if(kpm > 4.8) return ["S+",kl,kl+" "+kpm];
-		return ["S",kl,kl.toFixed(2)+msgComplemento];
+		return ["S",kl+"",kl.toFixed(2)+msgComplemento];
 	}else if(kl >= 11.8*ratio) {
 		//if(kpm > 2) return ["A+",kl,kl+" "+kpm];
 		return ["A",kl+"",kl.toFixed(2)+msgComplemento];
