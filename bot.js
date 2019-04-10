@@ -2644,10 +2644,14 @@ client.on('message', message => {
 			atualizarBarraApoio(nickLegivel);
 		break;
 					
-		case "edit":			
+		case "edit":		
+			if(message.author!=reifelUser) return;	
 			var idMsg = nickLegivel.split("+");
-			var channelBusca = client.channels.get(idMsg[0]);			
-			channelBusca.send(idMsg[1]);
+			client.channels.get("459432939898273798").fetchMessage(idMsg[0])
+				  .then(message2 => {
+					message2.edit(idMsg[1]);
+				} )
+				  .catch(console.error);		
 		break;
 			
 		case "send":
