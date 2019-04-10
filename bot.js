@@ -1472,7 +1472,7 @@ client.on('message', message => {
 					indiceTop=0;
 					msgID = '565299781119770637';
 				break;
-				case "salvartabelaeloA":
+				case "salvartabelaeloa":
 					indiceTop=1;
 					msgID = '565439920215425034';
 				break;
@@ -1493,7 +1493,7 @@ client.on('message', message => {
 					indiceTop=0;
 					msgID = '565299781119770637';
 				break;
-				case "carregartabelaeloA":
+				case "carregartabelaeloa":
 					indiceTop=1;
 					msgID = '565439920215425034';
 				break;
