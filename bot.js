@@ -4235,6 +4235,8 @@ function LinkedList() {
 			head = node;
 		}else{
 			while(currentNode.next){
+				if(node.element.nick == currentNode.next.element.nick) break;
+				
 				if(node.element.elo > currentNode.next.element.elo){					
 					node.next = currentNode.next;
 					
@@ -4250,7 +4252,6 @@ function LinkedList() {
     }
 
     length++;
-	console.log(tail.element.elo);
 	if(length == MAX) this.removeAt(MAX-1);
   };
 
@@ -4296,7 +4297,7 @@ function LinkedList() {
 		currentNode = currentNode.next;
 	  }
 		resultadoJSON[posicao] = currentNode.element;
-		if(tail!==null) resultadoJSON[posicao+1] = tail.element;
+		if(currentNode.next !== null) resultadoJSON[posicao+1] = currentNode.next.element;
 	  return resultadoJSON;
   };
 }
