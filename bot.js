@@ -1594,19 +1594,16 @@ client.on('message', message => {
 													changeRole(message.member, cargosElo[0], cargosElo[1]);
 													message.reply(pontos+", tierA");
 													
-													(top10ELO[1]).add({"nick":nickLegivel,"elo":Number(eloPontos[1].toFixed(2))});
-													topEloDesatualizado[1] = true;
 												}
 											);
 										}, 1700);	
 									}else{
 										changeRole(message.member, cargosElo[2], cargosElo[1]);
 										message.reply(pontos+", tierA");
-										
-										
-										(top10ELO[1]).add({"nick":nickLegivel,"elo":Number(eloPontos[1].toFixed(2))});
-										topEloDesatualizado[1] = true;
 									}
+									
+									(top10ELO[1]).add({"nick":nickLegivel,"elo":Number(eloPontos[1].toFixed(2))});
+									topEloDesatualizado[1] = true;
 
 									break;
 								case "B":
