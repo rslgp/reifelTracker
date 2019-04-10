@@ -1527,7 +1527,7 @@ client.on('message', message => {
 								case "S":
 									changeRole(message.member, cargosElo[1], cargosElo[0]);
 									message.reply(pontos+", tierS");
-									top10ELO.add({"nick":nickLegivel,"elo":Number(eloPontos[2].toFixed(2))});
+									top10ELO.add({"nick":nickLegivel,"elo":Number(eloPontos[1].toFixed(2))});
 									break;
 
 								case "A+":
