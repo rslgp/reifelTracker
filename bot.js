@@ -4287,7 +4287,7 @@ function LinkedList() {
   };
 
   this.toJSON = function(){
-	  if(head == null) return {};
+	  if(head == null) return undefined;
 	  var currentNode = head;
 	  var resultadoJSON = {};
 	  var posicao = 1;
