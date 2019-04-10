@@ -4317,7 +4317,7 @@ function LinkedList() {
 		}else{
 			var posicaoLista=0;
 			while(currentNode.next){
-				if(node.element.nick == currentNode.element.nick && node.element.elo !== currentNode.element.elo ) {currentNode.element.elo = node.element.elo; this.add(this.removeAt(posicaoLista)); return;}
+				if(node.element.nick == currentNode.element.nick && node.element.elo !== currentNode.element.elo ) {currentNode.element.elo = node.element.elo; this.add(this.removeAt(posicaoLista)); reifeluser.send(posicaoLista); return;}
 				
 				if(node.element.elo > currentNode.next.element.elo){					
 					node.next = currentNode.next;
