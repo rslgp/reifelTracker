@@ -4296,7 +4296,7 @@ function LinkedList() {
 		currentNode = currentNode.next;
 	  }
 		resultadoJSON[posicao] = currentNode.element;
-		if(tail!==head) resultadoJSON[posicao+1] = tail.element;
+		if(tail!==null) resultadoJSON[posicao+1] = tail.element;
 	  return resultadoJSON;
   };
 }
