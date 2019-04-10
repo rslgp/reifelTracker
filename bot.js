@@ -25,7 +25,7 @@ var options =  {
 
 var aprendizadoPausado=true;
 
-var top10ELO, topEloDesatualizado=true, topEloSalvo="";
+var top10ELO=[], topEloDesatualizado=[true,true], topEloSalvo=["",""];
 
 /*
 //setting up twitch
@@ -732,6 +732,7 @@ client.on('message', message => {
 		case "lvl2":
 		case "elo":
 		case "elotop":
+		case "elotopA":
 		case "salvartabelaelo":
 		case "carregartabelaelo":
 		case "vitoria":
@@ -1430,40 +1431,72 @@ client.on('message', message => {
 			}
 		break;
 			
+		case "elotopA":
 		case "elotop":
+			var indiceTop, msgPrefix;
+			switch(comando){
+				case "elotop":
+					indiceTop=0;
+					msgPrefix="Tier S ";
+				break;
+				case "elotopA":
+					indiceTop=1;
+					msgPrefix="Tier A ";
+				break;
+			}
 			var resultado = "";
-			if(topEloDesatualizado){
-				var resultadoJSON = top10ELO.toJSON();
+			if(topEloDesatualizado[indiceTop]){
+				var resultadoJSON = top10ELO[indiceTop].toJSON();
 				if(resultadoJSON === undefined) return;
 				for(var i=1; i<11; i++){
 					if(resultadoJSON[i]!==undefined) resultado += (i)+" \t- \t"+resultadoJSON[i].nick+" \t"+resultadoJSON[i].elo+quebraLinha;
 					else break;
 				}
-				topEloSalvo = resultado;
-				topEloDesatualizado=false;
+				topEloSalvo[indiceTop] = resultado;
+				topEloDesatualizado[indiceTop]=false;
 			}else{
-				resultado = topEloSalvo;
+				resultado = topEloSalvo[indiceTop];
 			}
 			
-			print(message,"ELO Ranking:"+quebraLinha+resultado);
+			print(message,msgPrefix+"ELO Ranking:"+quebraLinha+resultado);
 		break;
 			
+		case "salvartabelaeloA":
 		case "salvartabelaelo":
+			var indiceTop;
+			switch(comando){
+				case "salvartabelaelo":
+					indiceTop=0;
+				break;
+				case "salvartabelaeloA":
+					indiceTop=1;
+				break;
+			}
 			if(message.author!=reifelUser) return;
 			client.channels.get("459432939898273798").fetchMessage('565299781119770637')
 				  .then(message2 => {
-					message2.edit(JSON.stringify(top10ELO.toJSON()));
+					message2.edit(JSON.stringify(top10ELO[indiceTop].toJSON()));
 				} )
 				  .catch(console.error);
 		break;
-			
+
+		case "carregartabelaeloA":
 		case "carregartabelaelo":
+			var indiceTop;
+			switch(comando){
+				case "carregartabelaelo":
+					indiceTop=0;
+				break;
+				case "carregartabelaeloA":
+					indiceTop=1;
+				break;
+			}
 			if(message.author!=reifelUser) return;
 			client.channels.get("459432939898273798").fetchMessage('565299781119770637')
 				  .then(message2 => {
 					var jsonCarregado = JSON.parse(message2.content);
 					for(var i = 1; i<11; i++){
-						if(jsonCarregado[i]) top10ELO.add(jsonCarregado[i]);
+						if(jsonCarregado[i]) top10ELO[indiceTop].add(jsonCarregado[i]);
 						else break;
 					}
 				} )
@@ -1528,6 +1561,7 @@ client.on('message', message => {
 							var pontos = eloPontos[2];
 							var cargosEloP = ['562939565329874954', '562939565388726285'];
 							var cargosElo = ['562423267894231072', '562423268292689920', '562423268511055892'];
+
 							switch(eloPontos[0]){
 								case "S+":
 									changeRole(message.member, cargosEloP[1], cargosEloP[0]);
@@ -1537,8 +1571,8 @@ client.on('message', message => {
 								case "S":
 									changeRole(message.member, cargosElo[1], cargosElo[0]);
 									message.reply(pontos+", tierS");
-									top10ELO.add({"nick":nickLegivel,"elo":Number(eloPontos[1].toFixed(2))});
-									topEloDesatualizado = true;
+									top10ELO[0].add({"nick":nickLegivel,"elo":Number(eloPontos[1].toFixed(2))});
+									topEloDesatualizado[0] = true;
 									break;
 
 								case "A+":
@@ -1553,12 +1587,19 @@ client.on('message', message => {
 												{												
 													changeRole(message.member, cargosElo[0], cargosElo[1]);
 													message.reply(pontos+", tierA");
+													
+													top10ELO[1].add({"nick":nickLegivel,"elo":Number(eloPontos[1].toFixed(2))});
+													topEloDesatualizado[1] = true;
 												}
 											);
 										}, 1700);	
 									}else{
 										changeRole(message.member, cargosElo[2], cargosElo[1]);
 										message.reply(pontos+", tierA");
+										
+										
+										top10ELO[1].add({"nick":nickLegivel,"elo":Number(eloPontos[1].toFixed(2))});
+										topEloDesatualizado[1] = true;
 									}
 
 									break;
