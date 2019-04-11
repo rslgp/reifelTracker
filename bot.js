@@ -4281,7 +4281,7 @@ function tryPM(member, msg){
 /* LinkedList */
 function LinkedList() { 
   var length = 0;
-  var MAX = 10;
+  var MAX = 8;
 
   var head = null;
   var tail = null;
