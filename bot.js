@@ -1440,16 +1440,18 @@ client.on('message', message => {
 		case "elotopa":
 		case "elotops":
 		case "elotop":
-			var indiceTop, msgPrefix;
+			var indiceTop, msgPrefix, msgID;
 			switch(comando){
 				case "elotops":	
 				case "elotop":
 					indiceTop=0;
 					msgPrefix="Tier S ";
+					msgID='565785184595607552';
 				break;
 				case "elotopa":
 					indiceTop=1;
 					msgPrefix="Tier A ";
+					msgID='565785214308319242';
 				break;
 			}
 			var resultado = "";
@@ -1460,13 +1462,21 @@ client.on('message', message => {
 					if(resultadoJSON[i]!==undefined) resultado += (i)+" \t- \t"+resultadoJSON[i].nick+" \t"+resultadoJSON[i].elo+quebraLinha;
 					else break;
 				}
-				topEloSalvo[indiceTop] = resultado;
+				//topEloSalvo[indiceTop] = resultado;
+				client.channels.get("542501242916700181").fetchMessage(msgID)
+				  .then(message2 => {
+					message2.edit(resultado);
+				} )
+				  .catch(console.error);
 				topEloDesatualizado[indiceTop]=false;
-			}else{
+			}
+			
+			/*else{
 				resultado = topEloSalvo[indiceTop];
 			}
 			
-			print(message,msgPrefix+"ELO Ranking:"+quebraLinha+resultado);
+			print(message,msgPrefix+"ELO Ranking:"+quebraLinha+resultado);*/
+			print(message,"confira a sala ranking, na categoria elos");
 		break;
 			
 		case "salvartabelaeloa":
@@ -4281,7 +4291,7 @@ function tryPM(member, msg){
 /* LinkedList */
 function LinkedList() { 
   var length = 0;
-  var MAX = 8;
+  var MAX = 10;
 
   var head = null;
   var tail = null;
@@ -4303,7 +4313,8 @@ function LinkedList() {
     return tail;
   };
 
-  this.add = function(element){	
+  this.add = function(element){
+	  if(length > MAX) this.remove(length-1);
     if(tail!==null && (length === MAX && element.elo < tail.element.elo)) return;
 	
     var node = new Node(element);
