@@ -25,7 +25,7 @@ var options =  {
 
 var aprendizadoPausado=true;
 
-var top10ELO, topEloDesatualizado=[true,true], topEloSalvo=["",""];
+var top10ELO, topEloDesatualizado=[true,true];
 
 /*
 //setting up twitch
