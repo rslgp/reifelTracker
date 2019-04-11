@@ -1463,7 +1463,7 @@ client.on('message', message => {
 					else break;
 				}
 				//topEloSalvo[indiceTop] = resultado;
-				client.channels.get("542501242916700181").fetchMessage(msgID)
+				client.channels.get("565784766901649409").fetchMessage(msgID)
 				  .then(message2 => {
 					message2.edit(resultado);
 				} )
