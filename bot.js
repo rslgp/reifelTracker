@@ -1446,12 +1446,12 @@ client.on('message', message => {
 				case "elotop":
 					indiceTop=0;
 					msgPrefix="Tier S ";
-					msgID='565785184595607552';
+					msgID='565792106036199434';
 				break;
 				case "elotopa":
 					indiceTop=1;
 					msgPrefix="Tier A ";
-					msgID='565785214308319242';
+					msgID='565792170108518400';
 				break;
 			}
 			var resultado = "";
