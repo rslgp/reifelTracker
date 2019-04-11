@@ -4322,11 +4322,13 @@ function LinkedList() {
         head = node;
     } else {
         var currentNode = head;
+	var posicaoLista=0;
 		if(node.element.elo > head.element.elo){
+			if(node.element.nick == currentNode.element.nick && node.element.elo !== currentNode.element.elo ) {currentNode.element.elo = node.element.elo; this.add(this.removeAt(posicaoLista)); return;}
 			node.next = head;
 			head = node;
+			
 		}else{
-			var posicaoLista=0;
 			while(currentNode.next){
 				if(node.element.nick == currentNode.element.nick && node.element.elo !== currentNode.element.elo ) {currentNode.element.elo = node.element.elo; this.add(this.removeAt(posicaoLista)); return;}
 				
