@@ -223,7 +223,8 @@ client.on('guildCreate', guild => {
 
 client.on('ready', () => {
 	
-	top10ELO = [new LinkedList(),new LinkedList()];
+	//mem overflow
+	//top10ELO = [new LinkedList(),new LinkedList()];
 	
 	client.channels.get("459432939898273798").fetchMessage('483646835710361622')
 			  .then(message => {
@@ -1437,7 +1438,7 @@ client.on('message', message => {
 			}
 		break;
 			
-		case "elotopa":
+		/*case "elotopa":
 		case "elotops":
 		case "elotop":
 			var indiceTop, msgPrefix, msgID;
@@ -1476,8 +1477,8 @@ client.on('message', message => {
 			}
 			
 			print(message,msgPrefix+"ELO Ranking:"+quebraLinha+resultado);*/
-			print(message,"confira a sala ranking, na categoria elos");
-		break;
+			//print(message,"confira a sala ranking, na categoria elos");
+		//break;
 			
 		case "salvartabelaeloa":
 		case "salvartabelaelo":
@@ -1614,8 +1615,8 @@ client.on('message', message => {
 								case "S":
 									changeRole(message.member, cargosElo[1], cargosElo[0]);
 									message.reply(pontos+", tierS");
-									(top10ELO[0]).add({"nick":nickLegivel,"elo":Number(eloPontos[1]).toFixedNumber(2)});
-									topEloDesatualizado[0] = true;
+									//(top10ELO[0]).add({"nick":nickLegivel,"elo":Number(eloPontos[1]).toFixedNumber(2)});
+									//topEloDesatualizado[0] = true;
 									break;
 
 								case "A+":
@@ -1624,8 +1625,8 @@ client.on('message', message => {
 									break;
 								break;
 								case "A":
-									(top10ELO[1]).add({"nick":nickLegivel,"elo":Number(eloPontos[1]).toFixedNumber(2)});
-									topEloDesatualizado[1] = true;
+									//(top10ELO[1]).add({"nick":nickLegivel,"elo":Number(eloPontos[1]).toFixedNumber(2)});
+									//topEloDesatualizado[1] = true;
 									
 									if(message.member.roles.has(cargosElo[0])){
 										setTimeout(function(){ 
