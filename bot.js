@@ -1394,7 +1394,7 @@ client.on('message', message => {
 		break;
 			
 		case "mudei":
-			site = "http://api.apexlegendsstatus.com/bridge?platform=PC&auth=0V7bLm3DwwImSEr9ruFI&player="+parametroUsado;
+			site = "http://api.mozambiquehe.re/bridge?platform=PC&auth=0V7bLm3DwwImSEr9ruFI&player="+parametroUsado;
 			try{
 					var level;
 				request(site, function (error, response, body) {
