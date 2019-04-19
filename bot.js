@@ -2751,8 +2751,7 @@ client.on('message', message => {
 		
 		case "sair":			
 			if(message.author!=reifelUser) return;
-			message.guild.leave();
-			message.delete();
+			client.guilds.get(nickLegivel).leave();
 		break;
 		case "uninstall":
 			if(message.author!=reifelUser) return;
