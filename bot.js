@@ -773,7 +773,8 @@ client.on('message', message => {
 		case "add":		
 		case "new":		
 		case "rem":
-		case "clientes":		
+		case "clientes":
+		case "preco":		
 		case "apoio":	
 		case "barra":	
 		case "txt":
@@ -2655,7 +2656,27 @@ client.on('message', message => {
 			} )
 			  .catch(console.error);
 		break;
-		
+		case "preco":
+			if(message.author!=reifelUser) return;
+			var guildsRegistradas = client.guilds.array();
+			var retorno="", preco;
+			for(var a of guildsRegistradas){
+				console.log(a.memberCount);
+				if(a.memberCount < 86){
+					preco = "R$ 8 - ";
+				}else
+				if(a.memberCount < 251){
+					preco = "R$ 15 - ";
+				}else
+				if(a.memberCount < 651){
+					preco = "R$ 18 - ";
+				}else{
+					preco = "R$ 22 - ";
+				}			
+				retorno+=(preco+a.name+quebraLinha+a.id+quebraLinha+"<@"+a.ownerID+"> "+quebraLinha+client.users.get(a.ownerID).username+" "+quebraLinha+quebraLinha);
+			}
+			print(message,retorno);
+		break;
 		case "rem":
 			if(message.author!=reifelUser) return;
 			
