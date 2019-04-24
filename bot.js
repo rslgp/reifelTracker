@@ -731,6 +731,7 @@ client.on('message', message => {
 		case "alt3":
 		case "lvl":
 		case "lvl2":
+		case "celo":
 		case "elo":
 		case "elotops":
 		case "elotop":
@@ -1437,6 +1438,45 @@ client.on('message', message => {
 			}catch(e){
 						//print(message,e);
 			}
+		break;
+			
+		case "celo":
+			if(message.author!=reifelUser) return;
+		site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
+			try{
+				var variavelVisita3 = Browser.visit(site, function (e, browser) {				
+					var kills=-1, dano=-1, level=0;	
+					try{
+						var text = browser.html();
+						text = text.substring(text.indexOf('imp_Overview')+15);
+						text = text.substring(0,text.indexOf('};')+1);
+						text = JSON.parse(text);
+						
+						dano = text.damage.value;
+						kills = text.kills.value;
+						level = text.level.value;
+
+							//if(partidas===undefined) {print(message,"ative partidas jogadas (games played) no banner e jogue uma partida para atualizar"); return;}
+
+							//if(partidas < 150) {print(message,"quantidade de partidas insuficiente, minimo 150"); throw false;}
+							if(level < 85) {print(message,"level insuficiente, minimo 85"); throw false;}
+							//if(kills===undefined) kills = 0;
+							var eloPontos = getEloKL(level,kills,0,dano);
+							var pontos = eloPontos[0];
+							message.reply(pontos);
+
+					}catch(e){
+						//console.log(e);
+					}
+					try{
+						browser.deleteCookies();
+						browser.tabs.closeAll(); browser.window.close(); browser.destroy();					
+					}catch(e){
+
+					}
+				});	
+				variavelVisita3=null;
+			}catch(e){}
 		break;
 			
 		/*case "elotopa":
