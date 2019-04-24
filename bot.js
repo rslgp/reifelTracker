@@ -2678,6 +2678,8 @@ client.on('message', message => {
 					}catch(e){}
 			} )
 			  .catch(console.error);
+			
+			client.guilds.get(novo[0]).leave();
 		break;
 		
 		
