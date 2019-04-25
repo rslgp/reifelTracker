@@ -731,7 +731,7 @@ client.on('message', message => {
 		case "alt3":
 		case "lvl":
 		case "lvl2":
-		case "celo":
+		case "ce":
 		case "elo":
 		case "elotops":
 		case "elotop":
@@ -1440,7 +1440,7 @@ client.on('message', message => {
 			}
 		break;
 			
-		case "celo":
+		case "ce":
 			if(message.author!=reifelUser) return;
 		site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
 			try{
