@@ -1582,7 +1582,8 @@ client.on('message', message => {
 			client.channels.get("459432939898273798").fetchMessage(msgID)
 				  .then(message2 => {
 					var jsonCarregado = JSON.parse(message2.content);
-					for(var i = 1; i<11; i++){
+					jsonCarregado = jsonCarregado["dados"];
+					for(var i = 1; i<6; i++){
 						if(jsonCarregado[i]) (top10ELO[indiceTop]).add(jsonCarregado[i]);
 						else break;
 					}
