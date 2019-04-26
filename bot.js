@@ -1495,15 +1495,18 @@ client.on('message', message => {
 					msgID='565792170108518400';
 				break;
 			}
-			var resultado = "";
 			if(topEloDesatualizado[indiceTop]){
-				var resultadoJSON = (top10ELO[indiceTop]).toJSON();
+			var resultado = "";
+				
+				/*var resultadoJSON = (top10ELO[indiceTop]).toJSON();
 				if(resultadoJSON === undefined) return;
 				for(var i=1; i<11; i++){
 					if(resultadoJSON[i]!==undefined) resultado += (i)+" \t- \t"+resultadoJSON[i].nick+" \t"+resultadoJSON[i].elo+quebraLinha;
 					else break;
-				}
+				}*/
+				
 				//topEloSalvo[indiceTop] = resultado;
+				resultado=(top10ELO[indiceTop]).print();
 				client.channels.get("565784766901649409").fetchMessage(msgID)
 				  .then(message2 => {
 					message2.edit(resultado);
@@ -1518,7 +1521,7 @@ client.on('message', message => {
 			
 			print(message,msgPrefix+"ELO Ranking:"+quebraLinha+resultado);*/
 			//print(message,"confira a sala ranking, na categoria elos");
-		//break;
+		break;
 			
 		case "salvartabelaeloa":
 		case "salvartabelaelo":
