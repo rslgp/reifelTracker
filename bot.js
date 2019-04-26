@@ -1583,7 +1583,7 @@ client.on('message', message => {
 				  .then(message2 => {
 					var jsonCarregado = JSON.parse(message2.content);
 					jsonCarregado = jsonCarregado["dados"];
-					top10ELO[indiceTop]).create(jsonCarregado);
+					(top10ELO[indiceTop]).create(jsonCarregado);
 					/*for(var i = 1; i<6; i++){
 						if(jsonCarregado[i]) (top10ELO[indiceTop]).add(jsonCarregado[i]);
 						else break;
