@@ -1583,10 +1583,11 @@ client.on('message', message => {
 				  .then(message2 => {
 					var jsonCarregado = JSON.parse(message2.content);
 					jsonCarregado = jsonCarregado["dados"];
-					for(var i = 1; i<6; i++){
+					top10ELO[indiceTop]).create(jsonCarregado);
+					/*for(var i = 1; i<6; i++){
 						if(jsonCarregado[i]) (top10ELO[indiceTop]).add(jsonCarregado[i]);
 						else break;
-					}
+					}*/
 				} )
 				  .catch(console.error);
 			topEloDesatualizado[indiceTop] = true;
@@ -4445,6 +4446,8 @@ function DoubleLinkedListJSON(){
 		} 
 		console.log(r);
 	}*/
+	
+	this.create = function(c){a=c;}
 
 	//function inserirRankElo(a, dado){
 	this.add = function(dado){
