@@ -4418,27 +4418,25 @@ Number.prototype.toFixedNumber = function(x, base){
 
 function DoubleLinkedListJSON(){
 	var a = 
-	{
-	"t":2,
-	0:{"n":"vazio","p":0,"next":2, "prev":3},
-	1:{"n":"vazio","p":0,"next":4, "prev":-1},
-	2:{"n":"vazio","p":0,"next":-1, "prev":0},
-	3:{"n":"vazio","p":0,"next":0, "prev":4},
-	4:{"n":"vazio","p":0,"next":3, "prev":1}
-
-	};
+	[
+	{"t":2},
+	{"n":"vazio","p":0,"next":4, "prev":-1},
+	{"n":"vazio","p":0,"next":-1, "prev":5},
+	{"n":"vazio","p":0,"next":0, "prev":4},
+	{"n":"vazio","p":0,"next":3, "prev":1},
+	{"n":"vazio","p":0,"next":2, "prev":3}
+	];
 	
 	this.root = function(){return a};
-
 	this.print=function(){
-			var r = "";
-			var pos = 5;
-			for(var k = a.t; k!=-1; k = a[k].prev){
-				r= "\r\n"+ pos--+"\t - \t"+a[k].n+" "+a[k].p + r;
-			} 
-			return r;
+		var r = "";
+		var pos = 5;
+		for(var k = a[0].t; k!=-1; k = a[k].prev){
+			r= "\r\n"+ pos--+"\t - \t"+a[k].n+" "+a[k].p + r;
+		} 
+		console.log(r);
 	}
-	/*
+/*
 	function printR(){
 		var r = "";
 		for(var k = 1; k!=-1; k = a[k].next){
@@ -4449,47 +4447,47 @@ function DoubleLinkedListJSON(){
 
 	//function inserirRankElo(a, dado){
 	this.add = function(dado){
-		if(a[a.t].p > dado.p) return;
-		for(var k = a.t; k!=-1; k = a[k].prev){
+		if(a[a[0].t].p > dado.p) return;
+		for(var k = a[0].t; k!=-1; k = a[k].prev){
 			if(a[k].n == dado.n && a[k].p != dado.p) {remover(a[k].p,k);break;}
 		}
 		var temp;
 		
 		var head;
 		//inserir no meio
-		for(var k = a.t; k!=-1; k = a[k].prev){
+		for(var k = a[0].t; k!=-1; k = a[k].prev){
 			if(dado.p <= a[k].p){
 				//remover tail
-				a[(a[a.t].prev)].next = -1;
+				a[(a[a[0].t].prev)].next = -1;
 				
 				//novo dado.p inserido no slot vazio
-				a[a.t].p = dado.p;
-				a[a.t].n = dado.n;
-				temp = a[a.t].prev;
-				a[a.t].prev = k;
-				a[a.t].next = a[k].next;
+				a[a[0].t].p = dado.p;
+				a[a[0].t].n = dado.n;
+				temp = a[a[0].t].prev;
+				a[a[0].t].prev = k;
+				a[a[0].t].next = a[k].next;
 				
-				a[a[k].next].prev = a.t;
-				a[k].next = a.t;
-				a.t=temp;
+				a[a[k].next].prev = a[0].t;
+				a[k].next = a[0].t;
+				a[0].t=temp;
 				return;
 			}
 			head = k;
 		}
 
 		//remover tail
-		a[(a[a.t].prev)].next = -1;
+		a[(a[a[0].t].prev)].next = -1;
 
 		//inserir no head    
-		a[head].prev = a.t;
-		a[a.t].p = dado.p;
-		a[a.t].n = dado.n;
-		temp = a[a.t].prev;
+		a[head].prev = a[0].t;
+		a[a[0].t].p = dado.p;
+		a[a[0].t].n = dado.n;
+		temp = a[a[0].t].prev;
 
-		a[a.t].prev = -1;
-		a[a.t].next = head;
+		a[a[0].t].prev = -1;
+		a[a[0].t].next = head;
 		
-		a.t = temp;
+		a[0].t = temp;
 	}
 
 	this.remover = function(dado,posicao){
@@ -4501,27 +4499,27 @@ function DoubleLinkedListJSON(){
 				a[a[k].prev].next = a[k].next;
 				a[a[k].next].prev = a[k].prev;			
 				a[k].next = -1;
-				a[k].prev = a.t;
+				a[k].prev = a[0].t;
 
-				a[a.t].next = k;
+				a[a[0].t].next = k;
 				
-				a.t=k;
+				a[0].t=k;
 				console.log(a);
 				return;
 		}
 		
-		 for(var k = a.t; k!=-1; k = a[k].prev){
+		 for(var k = a[0].t; k!=-1; k = a[k].prev){
 			if(dado == a[k].p){
 				a[k].n = "vazio";
 				a[k].p = 0;
 				a[a[k].prev].next = a[k].next;
 				a[a[k].next].prev = a[k].prev;			
 				a[k].next = -1;
-				a[k].prev = a.t;
+				a[k].prev = a[0].t;
 
-				a[a.t].next = k;
+				a[a[0].t].next = k;
 				
-				a.t=k;
+				a[0].t=k;
 				return;
 			}
 		}
