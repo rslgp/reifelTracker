@@ -1537,10 +1537,13 @@ client.on('message', message => {
 					msgID = '565439920215425034';
 				break;
 			}
+			var r="";
+			for(var d of (top10ELO[indiceTop])) r+=JSON.stringify(d)+",";
+			r='{"dados":['+r.substring(0,r.length-1)+']}';
 			
 			client.channels.get("459432939898273798").fetchMessage(msgID)
 				  .then(message2 => {
-					message2.edit(JSON.stringify((top10ELO[indiceTop]).toJSON()));
+					message2.edit(r);
 				} )
 				  .catch(console.error);
 		break;
