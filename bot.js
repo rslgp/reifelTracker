@@ -4439,7 +4439,7 @@ function DoubleLinkedListJSON(){
 		for(var k = a[0].t; k!=-1; k = a[k].prev){
 			r= "\r\n"+ pos--+"\t - \t"+a[k].n+" "+a[k].p + r;
 		} 
-		console.log(r);
+		return r;
 	}
 /*
 	function printR(){
