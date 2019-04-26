@@ -1495,7 +1495,7 @@ client.on('message', message => {
 					msgID='565792170108518400';
 				break;
 			}
-			if(topEloDesatualizado[indiceTop]){
+			//if(topEloDesatualizado[indiceTop]){
 			var resultado = "";
 				
 				/*var resultadoJSON = (top10ELO[indiceTop]).toJSON();
@@ -1512,8 +1512,8 @@ client.on('message', message => {
 					message2.edit(resultado);
 				} )
 				  .catch(console.error);
-				topEloDesatualizado[indiceTop]=false;
-			}
+				//topEloDesatualizado[indiceTop]=false;
+			//}
 			
 			/*else{
 				resultado = topEloSalvo[indiceTop];
@@ -1593,7 +1593,7 @@ client.on('message', message => {
 					}*/
 				} )
 				  .catch(console.error);
-			topEloDesatualizado[indiceTop] = true;
+			//topEloDesatualizado[indiceTop] = true;
 		break;
 			
 			
@@ -1665,7 +1665,7 @@ client.on('message', message => {
 									changeRole(message.member, cargosElo[1], cargosElo[0]);
 									message.reply(pontos+", tierS");
 									(top10ELO[0]).add({"n":nickLegivel,"p":Number(eloPontos[1]).toFixedNumber(2)});
-									topEloDesatualizado[0] = true;
+									//topEloDesatualizado[0] = true;
 									break;
 
 								case "A+":
@@ -1675,7 +1675,7 @@ client.on('message', message => {
 								break;
 								case "A":
 									(top10ELO[1]).add({"n":nickLegivel,"p":Number(eloPontos[1]).toFixedNumber(2)});
-									topEloDesatualizado[1] = true;
+									//topEloDesatualizado[1] = true;
 									
 									if(message.member.roles.has(cargosElo[0])){
 										setTimeout(function(){ 
