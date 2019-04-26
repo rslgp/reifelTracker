@@ -1,1 +1,1 @@
-worker: node --max-old-space-size=438 bot.js
+worker: node --max-old-space-size=436 bot.js
