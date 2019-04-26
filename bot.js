@@ -1657,7 +1657,7 @@ client.on('message', message => {
 									changeRole(message.member, cargosElo[1], cargosElo[0]);
 									message.reply(pontos+", tierS");
 									(top10ELO[0]).add({"n":nickLegivel,"p":Number(eloPontos[1]).toFixedNumber(2)});
-									//topEloDesatualizado[0] = true;
+									topEloDesatualizado[0] = true;
 									break;
 
 								case "A+":
@@ -1667,7 +1667,7 @@ client.on('message', message => {
 								break;
 								case "A":
 									(top10ELO[1]).add({"n":nickLegivel,"p":Number(eloPontos[1]).toFixedNumber(2)});
-									//topEloDesatualizado[1] = true;
+									topEloDesatualizado[1] = true;
 									
 									if(message.member.roles.has(cargosElo[0])){
 										setTimeout(function(){ 
