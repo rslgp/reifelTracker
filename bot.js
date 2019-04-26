@@ -223,8 +223,7 @@ client.on('guildCreate', guild => {
 
 client.on('ready', () => {
 	
-	//mem overflow
-	//top10ELO = [new LinkedList(),new LinkedList()];
+	top10ELO = [new DoubleLinkedListJSON(),new DoubleLinkedListJSON()];
 	
 	client.channels.get("459432939898273798").fetchMessage('483646835710361622')
 			  .then(message => {
@@ -1479,7 +1478,7 @@ client.on('message', message => {
 			}catch(e){}
 		break;
 			
-		/*case "elotopa":
+		case "elotopa":
 		case "elotops":
 		case "elotop":
 			var indiceTop, msgPrefix, msgID;
@@ -1544,7 +1543,7 @@ client.on('message', message => {
 		break;
 		
 		
-		case "removertabelaa":
+		/*case "removertabelaa":
 		case "removertabela":
 			if(message.author!=reifelUser) return;
 			var indiceTop;
@@ -1560,6 +1559,7 @@ client.on('message', message => {
 			topEloDesatualizado[indiceTop] = true;
 			(top10ELO[indiceTop]).removeAt(Number(nickLegivel)-1);
 		break;
+		*/
 
 		case "carregartabelaeloa":
 		case "carregartabelaelo":
@@ -1656,7 +1656,7 @@ client.on('message', message => {
 								case "S":
 									changeRole(message.member, cargosElo[1], cargosElo[0]);
 									message.reply(pontos+", tierS");
-									//(top10ELO[0]).add({"nick":nickLegivel,"elo":Number(eloPontos[1]).toFixedNumber(2)});
+									(top10ELO[0]).add({"n":nickLegivel,"p":Number(eloPontos[1]).toFixedNumber(2)});
 									//topEloDesatualizado[0] = true;
 									break;
 
@@ -1666,7 +1666,7 @@ client.on('message', message => {
 									break;
 								break;
 								case "A":
-									//(top10ELO[1]).add({"nick":nickLegivel,"elo":Number(eloPontos[1]).toFixedNumber(2)});
+									(top10ELO[1]).add({"n":nickLegivel,"p":Number(eloPontos[1]).toFixedNumber(2)});
 									//topEloDesatualizado[1] = true;
 									
 									if(message.member.roles.has(cargosElo[0])){
@@ -4408,118 +4408,119 @@ function tryPM(member, msg){
 	}catch(e){}
 }
 
-//lista simples linked list https://codepen.io/beaucarnes/pen/ybOvBq?editors=0012
-/* LinkedList */
-function LinkedList() { 
-  var length = 0;
-  var MAX = 10;
-
-  var head = null;
-  var tail = null;
-
-  var Node = function(element){
-    this.element = element; 
-    this.next = null; 
-  }; 
-
-  this.size = function(){
-    return length;
-  };
-
-  this.head = function(){
-    return head;
-  };
-  
-  this.tail = function(){
-    return tail;
-  };
-
-  this.add = function(element){
-	  if(length > MAX) this.remove(length-1);
-    if(tail!==null && (length === MAX && element.elo < tail.element.elo)) return;
-	
-    var node = new Node(element);
-    if(head === null){
-        head = node;
-    } else {
-        var currentNode = head;
-	var posicaoLista=0;
-		if(node.element.elo > head.element.elo){
-			if(node.element.nick == currentNode.element.nick && node.element.elo !== currentNode.element.elo ) {currentNode.element.elo = node.element.elo; this.add(this.removeAt(posicaoLista)); return;}
-			node.next = head;
-			head = node;
-			
-		}else{
-			while(currentNode.next){
-				if(node.element.nick == currentNode.element.nick && node.element.elo !== currentNode.element.elo ) {currentNode.element.elo = node.element.elo; this.add(this.removeAt(posicaoLista)); return;}
-				
-				if(node.element.elo > currentNode.next.element.elo){					
-					node.next = currentNode.next;
-					
-					currentNode.next = node;
-					break;
-				}
-				currentNode  = currentNode.next;
-				posicaoLista++;
-			}
-
-			currentNode.next = node;
-			tail = node;
-		}
-    }
-
-    length++;
-	if(length == MAX) this.removeAt(MAX);
-  };
-
-  this.elementAt = function(index) {
-    var currentNode = head;
-    var count = 0;
-    while (count < index){
-        count ++;
-        currentNode = currentNode.next
-    }
-    return currentNode.element;
-  };
-  
-  this.removeAt = function(index) {
-    var currentNode = head;
-    var previousNode;
-    var currentIndex = 0;
-    if (index < 0 || index >= length){
-        return null
-    }
-    if(index === 0){
-        head = currentNode.next;
-    } else {
-        while(currentIndex < index) {
-            currentIndex ++;
-            previousNode = currentNode;
-            currentNode = currentNode.next;
-        }
-        previousNode.next = currentNode.next
-		tail = currentNode;
-    }
-    length--;
-    return currentNode.element;
-  };
-
-  this.toJSON = function(){
-	  if(head == null) return undefined;
-	  var currentNode = head;
-	  var resultadoJSON = {};
-	  var posicao = 1;
-	  while(currentNode.next){
-		resultadoJSON[posicao++] = currentNode.element;
-		currentNode = currentNode.next;
-	  }
-		resultadoJSON[posicao] = currentNode.element;
-		if(currentNode.next !== null) resultadoJSON[posicao+1] = currentNode.next.element;
-	  return resultadoJSON;
-  };
-}
-
 Number.prototype.toFixedNumber = function(x, base){
   var pow = Math.pow(base||10,x);
   return Math.round(this*pow) / pow;
+}
+
+function DoubleLinkedListJSON(){
+	var a = 
+	{
+	"t":2,
+	0:{"n":"vazio","p":0,"next":2, "prev":3},
+	1:{"n":"vazio","p":0,"next":4, "prev":-1},
+	2:{"n":"vazio","p":0,"next":-1, "prev":0},
+	3:{"n":"vazio","p":0,"next":0, "prev":4},
+	4:{"n":"vazio","p":0,"next":3, "prev":1}
+
+	};
+	
+	this.root = function(){return a};
+
+	this.print=function(){
+			var r = "";
+			var pos = 5;
+			for(var k = a.t; k!=-1; k = a[k].prev){
+				r= "\r\n"+ pos--+"\t - \t"+a[k].n+" "+a[k].p + r;
+			} 
+			return r;
+	}
+	/*
+	function printR(){
+		var r = "";
+		for(var k = 1; k!=-1; k = a[k].next){
+			r+=a[k].p+" ";
+		} 
+		console.log(r);
+	}*/
+
+	//function inserirRankElo(a, dado){
+	this.add = function(dado){
+		if(a[a.t].p > dado.p) return;
+		for(var k = a.t; k!=-1; k = a[k].prev){
+			if(a[k].n == dado.n && a[k].p != dado.p) {remover(a[k].p,k);break;}
+		}
+		var temp;
+		
+		var head;
+		//inserir no meio
+		for(var k = a.t; k!=-1; k = a[k].prev){
+			if(dado.p <= a[k].p){
+				//remover tail
+				a[(a[a.t].prev)].next = -1;
+				
+				//novo dado.p inserido no slot vazio
+				a[a.t].p = dado.p;
+				a[a.t].n = dado.n;
+				temp = a[a.t].prev;
+				a[a.t].prev = k;
+				a[a.t].next = a[k].next;
+				
+				a[a[k].next].prev = a.t;
+				a[k].next = a.t;
+				a.t=temp;
+				return;
+			}
+			head = k;
+		}
+
+		//remover tail
+		a[(a[a.t].prev)].next = -1;
+
+		//inserir no head    
+		a[head].prev = a.t;
+		a[a.t].p = dado.p;
+		a[a.t].n = dado.n;
+		temp = a[a.t].prev;
+
+		a[a.t].prev = -1;
+		a[a.t].next = head;
+		
+		a.t = temp;
+	}
+
+	this.remover = function(dado,posicao){
+		if(posicao!=undefined){
+			var k = posicao;
+			console.log(k);
+			a[k].n = "vazio";
+				a[k].p = 0;
+				a[a[k].prev].next = a[k].next;
+				a[a[k].next].prev = a[k].prev;			
+				a[k].next = -1;
+				a[k].prev = a.t;
+
+				a[a.t].next = k;
+				
+				a.t=k;
+				console.log(a);
+				return;
+		}
+		
+		 for(var k = a.t; k!=-1; k = a[k].prev){
+			if(dado == a[k].p){
+				a[k].n = "vazio";
+				a[k].p = 0;
+				a[a[k].prev].next = a[k].next;
+				a[a[k].next].prev = a[k].prev;			
+				a[k].next = -1;
+				a[k].prev = a.t;
+
+				a[a.t].next = k;
+				
+				a.t=k;
+				return;
+			}
+		}
+}
 }
