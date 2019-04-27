@@ -1538,7 +1538,7 @@ client.on('message', message => {
 				break;
 			}
 			var r="";
-			for(var d of (top10ELO[indiceTop])) r+=JSON.stringify(d)+",";
+			for(var d of (top10ELO[indiceTop].root())) r+=JSON.stringify(d)+",";
 			r='{"dados":['+r.substring(0,r.length-1)+']}';
 			
 			client.channels.get("459432939898273798").fetchMessage(msgID)
