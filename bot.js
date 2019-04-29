@@ -717,7 +717,7 @@ client.on('message', message => {
 	//fim-stats
 	
 	//garbage collector
-	if( (process.memoryUsage().heapUsed / 1048576) > 430){global.gc(); tryPM(reifelUser, "GC executado "+(process.memoryUsage().heapUsed / 1048576);};
+	if( (process.memoryUsage().heapUsed / 1048576) > 430){global.gc(); tryPM(reifelUser, "GC executado "+(process.memoryUsage().heapUsed / 1048576));};
 	//fim gc
 	
 		
