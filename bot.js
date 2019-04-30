@@ -716,10 +716,6 @@ client.on('message', message => {
 				  .catch(console.error);	
 	//fim-stats
 	
-	//garbage collector
-	if( (process.memoryUsage().heapUsed / 1048576) > 430){global.gc(); tryPM(reifelUser, "GC executado "+(process.memoryUsage().heapUsed / 1048576));};
-	//fim gc
-	
 		
 	//dividindo cada palavra da mensagem em um array de palavras
 	var args = message.content.slice(1).trim().split(/ +/g);
