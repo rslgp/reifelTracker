@@ -1647,7 +1647,7 @@ client.on('message', message => {
 						dano = text.damage.value;
 						kills = text.kills.value;
 						level = text.level.value;
-
+						text=null;
 							//if(partidas===undefined) {print(message,"ative partidas jogadas (games played) no banner e jogue uma partida para atualizar"); return;}
 
 							//if(partidas < 150) {print(message,"quantidade de partidas insuficiente, minimo 150"); throw false;}
@@ -1707,12 +1707,14 @@ client.on('message', message => {
 					}catch(e){
 						//console.log(e);
 					}
-					try{
-						browser.deleteCookies();
-						browser.tabs.closeAll(); browser.window.close(); browser.destroy();					
-					}catch(e){
-
-					}
+					try{browser.deleteCookies();				
+					}catch(e){}
+					try{ browser.tabs.closeAll(); 				
+					}catch(e){}
+					try{ browser.window.close(); 				
+					}catch(e){}
+					try{ browser.destroy();	
+					}catch(e){}
 				});	
 				variavelVisita3=null;
 			}catch(e){}
@@ -1890,10 +1892,11 @@ client.on('message', message => {
 						text = text.substring(text.indexOf('imp_Overview')+15);
 						text = text.substring(0,text.indexOf('};')+1);
 						text = JSON.parse(text);
-						
 						dano = text.damage.value;
 						kills = text.kills.value;
 						level = text.level.value;
+						
+						text = null;
 						
 						if(capUpdate(message, level)) return;
 						
