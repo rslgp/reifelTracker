@@ -1656,7 +1656,7 @@ client.on('message', message => {
 							var eloPontos = getEloKL(level,kills,0,dano);
 							var pontos = eloPontos[2];
 							var cargosEloP = ['562939565329874954', '562939565388726285'];
-							var cargosElo = ['562423267894231072', '562423268292689920', '562423268511055892'];
+							var cargosElo = ['562423267894231072', '562423268292689920', '562423268511055892', '581226705612701700'];
 
 							switch(eloPontos[0]){
 								case "S+":
@@ -1698,6 +1698,10 @@ client.on('message', message => {
 								case "B":
 									changeRole(message.member, cargosElo[1], cargosElo[2]);
 									message.reply(pontos+", tierB");
+									break;
+								case "C":
+									changeRole(message.member, cargosElo[2], cargosElo[3]);
+									message.reply(pontos+", tierC");
 									break;
 								default:
 									message.reply(pontos+" não elegivel para tier ainda (minimo: 33,84)");
@@ -4297,8 +4301,10 @@ function getEloKL(level,kills=0,matches=0,dano=0){
 	}
 	else if(kl >= 9.4*ratio){
 		return ["B",kl+"",kl.toFixed(2)+msgComplemento];
+	}else if(kl >= 15){
+		return ["C",kl+"",kl.toFixed(2)+msgComplemento];
 	}
-	else return ["C",kl+"",kl.toFixed(2)+msgComplemento];
+	else return ["D",kl+"",kl.toFixed(2)+msgComplemento];
 }
 
 function getEloMatches(level,kills=0,matches){
