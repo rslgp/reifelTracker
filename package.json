@@ -10,6 +10,6 @@
     "zombie": "^5.0.7"
   },
   "scripts": {
-    "start": "node --max-old-space-size=425 bot.js" 
+    "start": "node bot.js" 
   }
 }
