@@ -703,7 +703,7 @@ client.on('message', message => {
 	}
 	//fim anti
 	
-	
+	/*
 	//stats
 	client.channels.get("459432939898273798").fetchMessage('558602381558939658')
 				  .then(message2 => {
@@ -715,7 +715,7 @@ client.on('message', message => {
 				} )
 				  .catch(console.error);	
 	//fim-stats
-	
+	*/
 		
 	//dividindo cada palavra da mensagem em um array de palavras
 	var args = message.content.slice(1).trim().split(/ +/g);
