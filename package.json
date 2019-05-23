@@ -4,13 +4,12 @@
   "main": "bot.js",
   "dependencies": {
     "discord.js": "^11.2.1",
-    "tmi.js": "^1.2.1",
     "jimp": "^0.2.28",
     "json-bigint": "^0.3.0",
     "request": "^2.88.0",
     "zombie": "^5.0.7"
   },
   "scripts": {
-    "start": "node bot.js" 
+    "start": "node --max-old-space-size=425 bot.js" 
   }
 }
