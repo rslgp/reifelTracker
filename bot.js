@@ -1949,7 +1949,7 @@ client.on('message', message => {
 						}
 						
 						//elo merged
-							if(level < 85) {print(message,"level insuficiente, minimo 85"); throw false;}
+							if(level < 85) {throw false;}
 							//if(kills===undefined) kills = 0;
 							var eloPontos = getEloKL(level,kills,0,dano);
 							var pontos = eloPontos[2];
@@ -1959,50 +1959,38 @@ client.on('message', message => {
 							switch(eloPontos[0]){
 								case "S+":
 									changeRole(message.member, cargosEloP[1], cargosEloP[0]);
-									message.reply(pontos+", tierS+");
+									//message.reply(pontos+", tierS+");
 									break;
 								break;
 								case "S":
 									changeRole(message.member, cargosElo[1], cargosElo[0]);
-									message.reply(pontos+", tierS");
+									//message.reply(pontos+", tierS");
 									//(top10ELO[0]).add({"n":nickLegivel,"p":Number(eloPontos[1]).toFixedNumber(2)});
 									//topEloDesatualizado[0] = true;
 									break;
 
 								case "A+":
 									changeRole(message.member, cargosEloP[0], cargosEloP[1]);
-									message.reply(pontos+", tierA+");
+									//message.reply(pontos+", tierA+");
 									break;
 								break;
-								case "A":									
-									if(message.member.roles.has(cargosElo[0])){
-										setTimeout(function(){ 
-											message.member.removeRole(cargosElo[0]).catch(err => console.log(err)).then( () => 
-												{												
-													changeRole(message.member, cargosElo[0], cargosElo[1]);
-													message.reply(pontos+", tierA");
-													
-												}
-											);
-										}, 1700);	
-									}else{
+								case "A":	
 										changeRole(message.member, cargosElo[2], cargosElo[1]);
 										message.reply(pontos+", tierA");
-									}
 									
 									//(top10ELO[1]).add({"n":nickLegivel,"p":Number(eloPontos[1]).toFixedNumber(2)});
 									//topEloDesatualizado[1] = true;
 									break;
 								case "B":
 									changeRole(message.member, cargosElo[1], cargosElo[2]);
-									message.reply(pontos+", tierB");
+									//message.reply(pontos+", tierB");
 									break;
 								case "C":
 									changeRole(message.member, cargosElo[2], cargosElo[3]);
-									message.reply(pontos+", tierC");
+									//message.reply(pontos+", tierC");
 									break;
 								default:
-									message.reply(pontos+" não elegivel para tier ainda (minimo: 33,84)");
+									//message.reply(pontos+" não elegivel para tier ainda (minimo: 33,84)");
 									break;
 							}
 						//fim elo merged
