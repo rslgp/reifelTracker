@@ -1465,7 +1465,7 @@ client.on('message', message => {
 							//if(kills===undefined) kills = 0;
 							var eloPontos = getEloKL(level,kills,0,dano);
 							var pontos = eloPontos[0];
-							message.reply(pontos);
+							message.reply(pontos+": "+eloPontos[1]);
 
 					}catch(e){
 						//console.log(e);
