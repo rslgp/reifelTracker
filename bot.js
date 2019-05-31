@@ -2131,7 +2131,7 @@ client.on('message', message => {
 		case "queroessebot":
 		case "discord":
 		case "tbquero":
-			message.author.send(tabelaPreco);
+			message.author.send("Agradeço pelo interesse "+message.author+"\r\n"+tabelaPreco);
 			reifelUser.send(message.author+" futuro cliente");
 		break;
 		
