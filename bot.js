@@ -223,7 +223,7 @@ client.on('guildCreate', guild => {
 
 client.on('ready', () => {
 	
-	//top10ELO = [new DoubleLinkedListJSON(),new DoubleLinkedListJSON()];
+	top10ELO = [new DoubleLinkedListJSON(),null];
 	
 	client.channels.get("459432939898273798").fetchMessage('483646835710361622')
 			  .then(message => {
@@ -1481,7 +1481,7 @@ client.on('message', message => {
 			}catch(e){}
 		break;
 			
-		case "elotopa":
+		//case "elotopa":
 		case "elotops":
 		case "elotop":
 			var indiceTop, msgPrefix, msgID;
@@ -1501,12 +1501,12 @@ client.on('message', message => {
 			//if(topEloDesatualizado[indiceTop]){
 			var resultado = "";
 				
-				/*var resultadoJSON = (top10ELO[indiceTop]).toJSON();
+				var resultadoJSON = (top10ELO[indiceTop]).toJSON();
 				if(resultadoJSON === undefined) return;
 				for(var i=1; i<11; i++){
 					if(resultadoJSON[i]!==undefined) resultado += (i)+" \t- \t"+resultadoJSON[i].nick+" \t"+resultadoJSON[i].elo+quebraLinha;
 					else break;
-				}*/
+				}
 				
 				//topEloSalvo[indiceTop] = resultado;
 				resultado=(top10ELO[indiceTop]).print();
@@ -1667,8 +1667,8 @@ client.on('message', message => {
 								case "S":
 									changeRole(message.member, cargosElo[1], cargosElo[0]);
 									message.reply(pontos+", tierS");
-									//(top10ELO[0]).add({"n":nickLegivel,"p":Number(eloPontos[1]).toFixedNumber(2)});
-									//topEloDesatualizado[0] = true;
+									(top10ELO[0]).add({"n":nickLegivel,"p":Number(eloPontos[1]).toFixedNumber(2)});
+									topEloDesatualizado[0] = true;
 									break;
 
 								case "A+":
