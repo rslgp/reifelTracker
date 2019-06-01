@@ -732,16 +732,16 @@ client.on('message', message => {
 		case "lvl2":
 		case "ce":
 		case "elo":
-		/*
 		//no memory
 		case "elotops":
 		case "elotop":
+		case "carregartabelaelo":
+		/*
 		case "elotopa":
 		case "removertabeloa":
 		case "removertabeloa":
 		case "salvartabelaelo":
 		case "salvartabelaeloa":
-		case "carregartabelaelo":
 		case "carregartabelaeloa":
 		*/
 		case "vitoria":
