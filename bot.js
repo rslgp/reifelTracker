@@ -1500,14 +1500,15 @@ client.on('message', message => {
 			}
 			//if(topEloDesatualizado[indiceTop]){
 			var resultado = "";
-				
+				/*
+				//old
 				var resultadoJSON = (top10ELO[indiceTop]).toJSON();
 				if(resultadoJSON === undefined) return;
 				for(var i=1; i<11; i++){
 					if(resultadoJSON[i]!==undefined) resultado += (i)+" \t- \t"+resultadoJSON[i].nick+" \t"+resultadoJSON[i].elo+quebraLinha;
 					else break;
 				}
-				
+				*/
 				//topEloSalvo[indiceTop] = resultado;
 				resultado=(top10ELO[indiceTop]).print();
 				client.channels.get("565784766901649409").fetchMessage(msgID)
