@@ -916,12 +916,7 @@ client.on('message', message => {
 						print(message, nickLegivel + errorFortnitetracker);
 					}
 					
-					try{
-						browser.deleteCookies();
-						browser.tabs.closeAll(); browser.window.close(); browser.destroy();					
-					}catch(e){
-						
-					}
+					limparMemoria(browser);
 				});
 				variavelVisita=null;
 			}catch(e){}			
@@ -980,24 +975,16 @@ client.on('message', message => {
 								mudarNick(message, padraoNick(winP,nickLegivel));
 								//message.member.setNickname( padraoNick(winP,nickLegivel) ).then(user => message.reply(`atualizei winrate \:umbrella2:`)).catch(err => console.log(err));	
 								
-								try{
-									browser.deleteCookies();
-									browser.tabs.closeAll(); browser.window.close(); browser.destroy();					
-								}catch(e){
-									
-								}
+								
+								limparMemoria(browser);
 							});
 							variavelVisita2=null;
 						}catch(e){
 							print(message, nickLegivel + errorFortnitetracker);						
 						}
 					}
-					try{
-						browser.deleteCookies();
-						browser.tabs.closeAll(); browser.window.close(); browser.destroy();					
-					}catch(e){
-						
-					}
+					
+					limparMemoria(browser);
 				});	
 				variavelVisita=null;
 			}catch(e){}
@@ -1074,33 +1061,28 @@ client.on('message', message => {
 						//console.log("error rank");
 						throw false;		
 					}
-				var winrKD = up(jsonSquad);
-				if(nick.indexOf("%") === -1){
-					if( (parseFloat(winrate) + 1) >= parseFloat(winrKD[1]) ) { //se o stats atual offline for menor ou igual ao stats online
-						mudarNick(message, padraoNickKD(winrKD[1],nickLegivel));
-						//message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) ).then(user => message.reply("o seu nick foi atualizado")).catch(err => console.log(err));
-						return;
-					}else{
-						//reifelUser.send(nickLegivel+"kd: "+parseFloat(winrKD[0])- (parseFloat(winrate) + 1) );
-						print(message, "nao posso trocar seu nick");
-					}
-				}else{					
-					if( (parseFloat(winrate) + 2.4) >= parseFloat(winrKD[0]) ) { //winrate
-						mudarNick(message, padraoNick(winrKD[0],nickLegivel));
-						//message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(user => message.reply("o seu nick foi atualizado")).catch(err => console.log(err));
-						return;
-					}else{
-						//reifelUser.send(nickLegivel+"win%: "+parseFloat(winrKD[0])- (parseFloat(winrate) + 2.4) );
-						print(message, "nao posso trocar seu nick");
-					}
-				}
-						
-				try{
-					browser.deleteCookies();
-					browser.tabs.closeAll(); browser.window.close(); browser.destroy();					
-				}catch(e){
+					var winrKD = up(jsonSquad);
+					if(nick.indexOf("%") === -1){
+						if( (parseFloat(winrate) + 1) >= parseFloat(winrKD[1]) ) { //se o stats atual offline for menor ou igual ao stats online
+							mudarNick(message, padraoNickKD(winrKD[1],nickLegivel));
+							//message.member.setNickname( padraoNickKD(winrKD[1],nickLegivel) ).then(user => message.reply("o seu nick foi atualizado")).catch(err => console.log(err));
+							return;
+						}else{
+							//reifelUser.send(nickLegivel+"kd: "+parseFloat(winrKD[0])- (parseFloat(winrate) + 1) );
+							print(message, "nao posso trocar seu nick");
+						}
+					}else{					
+						if( (parseFloat(winrate) + 2.4) >= parseFloat(winrKD[0]) ) { //winrate
+							mudarNick(message, padraoNick(winrKD[0],nickLegivel));
+							//message.member.setNickname( padraoNick(winrKD[0],nickLegivel) ).then(user => message.reply("o seu nick foi atualizado")).catch(err => console.log(err));
+							return;
+						}else{
+							//reifelUser.send(nickLegivel+"win%: "+parseFloat(winrKD[0])- (parseFloat(winrate) + 2.4) );
+							print(message, "nao posso trocar seu nick");
+						}
+					}					
 					
-				}
+					limparMemoria(browser);
 				}catch(e){}
 			});
 			variavelVisita=null;
@@ -1179,13 +1161,8 @@ client.on('message', message => {
 													console.log(e.message);
 													print(message, nickLegivel + errorFortnitetracker);
 												}
-												
-												try{
-													browser2.deleteCookies();
-													browser2.destroy();					
-												}catch(e){
-													
-												}
+																								
+												limparMemoria(browser2);
 									});
 									variavelVisita2=null;
 								}catch(e){}
@@ -1197,13 +1174,8 @@ client.on('message', message => {
 							console.log(e.message);
 							print(message, nickLegivel + errorFortnitetracker);
 						}
-						
-						try{
-							browser.deleteCookies();
-							browser.tabs.closeAll(); browser.window.close(); browser.destroy();					
-						}catch(e){
-							
-						}
+												
+						limparMemoria(browser);
 			});
 			variavelVisita=null;
 		}catch(e){}
@@ -1470,12 +1442,8 @@ client.on('message', message => {
 					}catch(e){
 						//console.log(e);
 					}
-					try{
-						browser.deleteCookies();
-						browser.tabs.closeAll(); browser.window.close(); browser.destroy();					
-					}catch(e){
-
-					}
+					
+					limparMemoria(browser);
 				});	
 				variavelVisita3=null;
 			}catch(e){}
@@ -1712,14 +1680,8 @@ client.on('message', message => {
 					}catch(e){
 						//console.log(e);
 					}
-					try{browser.deleteCookies();				
-					}catch(e){}
-					try{ browser.tabs.closeAll(); 				
-					}catch(e){}
-					try{ browser.window.close(); 				
-					}catch(e){}
-					try{ browser.destroy();	
-					}catch(e){}
+					
+					limparMemoria(browser);
 				});	
 				variavelVisita3=null;
 			}catch(e){}
@@ -1763,12 +1725,8 @@ client.on('message', message => {
 					}catch(e){
 						//console.log(e);
 					}
-					try{
-						browser.deleteCookies();
-						browser.tabs.closeAll(); browser.window.close(); browser.destroy();					
-					}catch(e){
-
-					}
+					
+					limparMemoria(browser);
 				});	
 				variavelVisita3=null;
 			}catch(e){}	*/
@@ -1794,12 +1752,8 @@ client.on('message', message => {
 					}catch(e){
 						//console.log(e);
 					}
-					try{
-						browser.deleteCookies();
-						browser.tabs.closeAll(); browser.window.close(); browser.destroy();					
-					}catch(e){
-
-					}
+					
+					limparMemoria(browser);
 				});	
 				variavelVisita3=null;
 			}catch(e){}	
@@ -2043,16 +1997,12 @@ client.on('message', message => {
 										break;
 									}
 							
-						}catch(e){
-							//print(message,errorNickNaoEncontrado);
-							//return;
-						}	
-						try{
-							browser.deleteCookies();
-							browser.tabs.closeAll(); browser.window.close(); browser.destroy();					
-						}catch(e){
-
-						}
+								}catch(e){
+									//print(message,errorNickNaoEncontrado);
+									//return;
+								}	
+						
+								limparMemoria(browser);
 						});
 						variavelVisita2=null;
 					}catch(e){
@@ -2100,12 +2050,8 @@ client.on('message', message => {
 								}catch(e){
 									
 								}
-								try{
-									browser.deleteCookies();
-									browser.tabs.closeAll(); browser.window.close(); browser.destroy();					
-								}catch(e){
-
-								}
+								
+								limparMemoria(browser);
 							});	
 							variavelVisita3=null;
 						}catch(e){}						
@@ -2540,12 +2486,8 @@ client.on('message', message => {
 						print(message, nickLegivel + errorFortnitetracker);
 					}
 
-					try{
-						browser.deleteCookies();
-						browser.tabs.closeAll(); browser.window.close(); browser.destroy();					
-					}catch(e){
-
-					}
+					
+					limparMemoria(browser);
 				});
 				variavelVisita=null;
 			}catch(e){}
@@ -3078,12 +3020,8 @@ client.on('message', message => {
 					}
 					//message.member.setNickname( padraoNick(winP,nickLegivel) ).then(user => message.reply(`atualizei winrate \:umbrella2:`)).catch(err => console.log(err));	
 					
-					try{
-						browser.deleteCookies();
-						browser.tabs.closeAll(); browser.window.close(); browser.destroy();					
-					}catch(e){
-						
-					}
+					
+					limparMemoria(browser);
 				});
 				variavelVisita2=null;
 			}catch(e){
@@ -4536,4 +4474,22 @@ function DoubleLinkedListJSON(){
 			}
 		}
 }
+}
+
+async function limparMemoria(browser){
+	try{ 
+		delete browser.cookies;
+		browser.cookies = new browser.cookies.constructor();
+		browser.deleteCookies();				
+	}catch(e){}	
+	try{ browser.tabs.closeAll(); 
+	}catch(e){}
+	try{ 
+		browser.window.close();
+	    	browser.close();
+	}catch(e){}
+	try{ 
+		browser.destroy();
+	    	delete browser;
+	}catch(e){}
 }
