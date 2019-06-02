@@ -4476,20 +4476,26 @@ function DoubleLinkedListJSON(){
 }
 }
 
-async function limparMemoria(browser){
-	try{ 
-		delete browser.cookies;
-		browser.cookies = new browser.cookies.constructor();
-		browser.deleteCookies();				
-	}catch(e){}	
-	try{ browser.tabs.closeAll(); 
-	}catch(e){}
-	try{ 
-		browser.window.close();
-	    	browser.close();
-	}catch(e){}
-	try{ 
-		browser.destroy();
-	    	delete browser;
-	}catch(e){}
+function limparMemoria(browser){
+	setTimeout(function(){ //executa sem parar o bloco de execucao
+		try{ 
+			delete browser.cookies;
+			browser.cookies = new browser.cookies.constructor();
+			browser.deleteCookies();				
+		}catch(e){}	
+		try{ browser.tabs.closeAll(); 
+		}catch(e){}
+		try{ 
+			browser.window.close();
+			browser.close();
+		}catch(e){}
+		try{ 
+			browser.destroy();
+			delete browser;
+		}catch(e){}
+	},0);
+}
+
+function callAsync(func) {
+    setTimeout(func, 0);
 }
