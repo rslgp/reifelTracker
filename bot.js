@@ -284,7 +284,7 @@ client.on('ready', () => {
 	client.user.setPresence({
 			game: {
 				//name: "com "+client.guilds.array().length +"|dono:Reifel#5047"
-				name: "dono:Reifel#5047 criado:2017.2 +info em assistir >>",
+				name: "dono:Reifel#5047 criado:2017.2 jogos:fortnite,apex +info em assistir >>",
 				url: "https://www.twitch.tv/reifel",
 				type: "STREAMING"
 			}
