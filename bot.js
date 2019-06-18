@@ -4479,8 +4479,8 @@ function DoubleLinkedListJSON(){
 function limparMemoria(browser){
 	setTimeout(function(){ //executa sem parar o bloco de execucao
 		try{ 
-			delete browser.cookies;
-			browser.cookies = new browser.cookies.constructor();
+			//delete browser.cookies;
+			//browser.cookies = new browser.cookies.constructor();
 			browser.deleteCookies();
 			
 			//fix crash cookies undefined
