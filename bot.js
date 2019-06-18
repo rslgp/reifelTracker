@@ -4481,7 +4481,11 @@ function limparMemoria(browser){
 		try{ 
 			delete browser.cookies;
 			browser.cookies = new browser.cookies.constructor();
-			browser.deleteCookies();				
+			browser.deleteCookies();
+			
+			//fix crash cookies undefined
+			browser.cookies = new browser.cookies.constructor();
+			browser.setCookie({ name: '', domain: '', value: '' }); //smallest dummy cookie
 		}catch(e){}	
 		try{ browser.tabs.closeAll(); 
 		}catch(e){}
