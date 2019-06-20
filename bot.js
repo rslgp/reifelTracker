@@ -1584,6 +1584,17 @@ client.on('message', message => {
 					break;
 			}
 		}catch(e){/*nick nao conhecido*/}
+			var cargosElo;
+			
+			switch(message.guild.id){
+				case '566666902748004363': //FNT
+					cargosElo = ['591235793335484437', '591235793390010370', '591235793817829376', '0'];
+				break;
+					
+				default:
+					cargosElo = ['562423267894231072', '562423268292689920', '562423268511055892', '581226705612701700']
+				break;
+			}
 		/*	
 		site = "https://www.apexlegendsapi.com/api/v1/player?platform=pc&name="+parametroUsado;
 			try{
@@ -1625,7 +1636,7 @@ client.on('message', message => {
 							var eloPontos = getEloKL(level,kills,0,dano);
 							var pontos = eloPontos[2];
 							var cargosEloP = ['562939565329874954', '562939565388726285'];
-							var cargosElo = ['562423267894231072', '562423268292689920', '562423268511055892', '581226705612701700'];
+							//var cargosElo = ['562423267894231072', '562423268292689920', '562423268511055892', '581226705612701700'];
 
 							switch(eloPontos[0]){
 								case "S+":
@@ -1884,53 +1895,7 @@ client.on('message', message => {
 								}
 								//if(posicaoGuardaChuva!==-1)return;
 								mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
-								
-								//elo merged
-							if(level < 85) {throw false;}
-							//if(kills===undefined) kills = 0;
-							var eloPontos = getEloKL(level,kills,0,dano);
-							var pontos = eloPontos[2];
-							var cargosEloP = ['562939565329874954', '562939565388726285'];
-							var cargosElo = ['562423267894231072', '562423268292689920', '562423268511055892', '581226705612701700'];
-
-							switch(eloPontos[0]){
-								case "S+":
-									changeRole(message.member, cargosEloP[1], cargosEloP[0]);
-									//message.reply(pontos+", tierS+");
-									break;
-								break;
-								case "S":
-									changeRole(message.member, cargosElo[1], cargosElo[0]);
-									//message.reply(pontos+", tierS");
-									//(top10ELO[0]).add({"n":nickLegivel,"p":Number(eloPontos[1]).toFixedNumber(2)});
-									//topEloDesatualizado[0] = true;
-									break;
-
-								case "A+":
-									changeRole(message.member, cargosEloP[0], cargosEloP[1]);
-									//message.reply(pontos+", tierA+");
-									break;
-								break;
-								case "A":	
-										changeRole(message.member, cargosElo[2], cargosElo[1]);
-										message.reply(pontos+", tierA");
-									
-									//(top10ELO[1]).add({"n":nickLegivel,"p":Number(eloPontos[1]).toFixedNumber(2)});
-									//topEloDesatualizado[1] = true;
-									break;
-								case "B":
-									changeRole(message.member, cargosElo[1], cargosElo[2]);
-									//message.reply(pontos+", tierB");
-									break;
-								case "C":
-									changeRole(message.member, cargosElo[2], cargosElo[3]);
-									//message.reply(pontos+", tierC");
-									break;
-								default:
-									//message.reply(pontos+" não elegivel para tier ainda (minimo: 33,84)");
-									break;
-							}
-						//fim elo merged
+								elomerged(message, level, kills, dano, ['562423267894231072', '562423268292689920', '562423268511055892', '581226705612701700']);
 							break;
 								
 							case '292028288178847744': //mago academy
@@ -1949,7 +1914,7 @@ client.on('message', message => {
 							break;
 								
 							case '566666902748004363': //FNT-
-								padraoRankWinApex(message, message.member, nickLegivel, level, ['591235793335484437', '591235793390010370', '591235793817829376'],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
+								padraoRankWinApex(message, message.member, nickLegivel, level, ['0', '0', '0'],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
 								mudarNick(message, padraoNickApex(level[0],nickLegivel));
 							break;
 								
@@ -4510,4 +4475,53 @@ function limparMemoria(browser){
 
 function callAsync(func) {
     setTimeout(func, 0);
+}
+
+function elomerged(message, level, kills, dano, cargosElo){
+		//elo merged
+	if(level < 85) {throw false;}
+	//if(kills===undefined) kills = 0;
+	var eloPontos = getEloKL(level,kills,0,dano);
+	var pontos = eloPontos[2];
+	var cargosEloP = ['562939565329874954', '562939565388726285'];
+	//var cargosElo = ['562423267894231072', '562423268292689920', '562423268511055892', '581226705612701700'];
+
+	switch(eloPontos[0]){
+		case "S+":
+			changeRole(message.member, cargosEloP[1], cargosEloP[0]);
+			//message.reply(pontos+", tierS+");
+			break;
+		break;
+		case "S":
+			changeRole(message.member, cargosElo[1], cargosElo[0]);
+			//message.reply(pontos+", tierS");
+			//(top10ELO[0]).add({"n":nickLegivel,"p":Number(eloPontos[1]).toFixedNumber(2)});
+			//topEloDesatualizado[0] = true;
+			break;
+
+		case "A+":
+			changeRole(message.member, cargosEloP[0], cargosEloP[1]);
+			//message.reply(pontos+", tierA+");
+			break;
+		break;
+		case "A":	
+				changeRole(message.member, cargosElo[2], cargosElo[1]);
+				message.reply(pontos+", tierA");
+
+			//(top10ELO[1]).add({"n":nickLegivel,"p":Number(eloPontos[1]).toFixedNumber(2)});
+			//topEloDesatualizado[1] = true;
+			break;
+		case "B":
+			changeRole(message.member, cargosElo[1], cargosElo[2]);
+			//message.reply(pontos+", tierB");
+			break;
+		case "C":
+			changeRole(message.member, cargosElo[2], cargosElo[3]);
+			//message.reply(pontos+", tierC");
+			break;
+		default:
+			//message.reply(pontos+" não elegivel para tier ainda (minimo: 33,84)");
+			break;
+	}
+//fim elo merged
 }
