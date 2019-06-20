@@ -1914,7 +1914,7 @@ client.on('message', message => {
 							break;
 								
 							case '566666902748004363': //FNT-
-								padraoRankWinApex(message, message.member, nickLegivel, level, ['0', '0', '0'],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
+								//padraoRankWinApex(message, message.member, nickLegivel, level, ['0', '0', '0'],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
 								mudarNick(message, padraoNickApex(level[0],nickLegivel));
 							break;
 								
