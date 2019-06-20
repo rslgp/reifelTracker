@@ -1583,7 +1583,10 @@ client.on('message', message => {
 						nickLegivel=parametroUsado = getNickConhecidoApex(message);
 					break;
 			}
-		}catch(e){/*nick nao conhecido*/}
+		}catch(e){/*nick nao conhecido*/
+			message.reply("Nick não registrado, envie o seu nick da origin no comando lvl (exemplo: .lvl nick)");
+			return;
+		}
 			var cargosElo;
 			
 			switch(message.guild.id){
