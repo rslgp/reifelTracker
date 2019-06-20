@@ -1884,26 +1884,8 @@ client.on('message', message => {
 								}
 								//if(posicaoGuardaChuva!==-1)return;
 								mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
-							break;
 								
-							case '292028288178847744': //mago academy
-								padraoRankWinApex(message, message.member, nickLegivel, level, ["559835221730525195","559835222024126476","559835222313664515"],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
-								mudarNick(message, padraoNickApex(level[0],nickLegivel));
-							break;
-								
-							case '547602272516046849': //tiago airsoft
-								padraoRankWinApex(message, message.member, nickLegivel, level, ["562034978913779712","562034979236741140","562034979534536705"],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
-								mudarNick(message, padraoNickApex(level[0],nickLegivel));
-							break;
-								
-							case '562363572647100416': //lost spirit alms
-								padraoRankWinApex(message, message.member, nickLegivel, level, ["562416591459975168","562416591753707521","562416592106029056"],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
-								mudarNick(message, padraoNickApex(level[0],nickLegivel));
-							break;
-								
-						}
-						
-						//elo merged
+								//elo merged
 							if(level < 85) {throw false;}
 							//if(kills===undefined) kills = 0;
 							var eloPontos = getEloKL(level,kills,0,dano);
@@ -1949,6 +1931,32 @@ client.on('message', message => {
 									break;
 							}
 						//fim elo merged
+							break;
+								
+							case '292028288178847744': //mago academy
+								padraoRankWinApex(message, message.member, nickLegivel, level, ["559835221730525195","559835222024126476","559835222313664515"],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
+								mudarNick(message, padraoNickApex(level[0],nickLegivel));
+							break;
+								
+							case '547602272516046849': //tiago airsoft
+								padraoRankWinApex(message, message.member, nickLegivel, level, ["562034978913779712","562034979236741140","562034979534536705"],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
+								mudarNick(message, padraoNickApex(level[0],nickLegivel));
+							break;
+								
+							case '562363572647100416': //lost spirit alms
+								padraoRankWinApex(message, message.member, nickLegivel, level, ["562416591459975168","562416591753707521","562416592106029056"],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
+								mudarNick(message, padraoNickApex(level[0],nickLegivel));
+							break;
+								
+							case '566666902748004363': //FNT-
+								padraoRankWinApex(message, message.member, nickLegivel, level, ['591235793335484437', '591235793390010370', '591235793817829376'],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
+								mudarNick(message, padraoNickApex(level[0],nickLegivel));
+							break;
+								
+								
+						}
+						
+						
 					}catch(e){
 						//site alternativo
 						site = "https://apextab.com/api/search.php?platform=pc&search="+parametroUsado;
