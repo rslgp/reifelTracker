@@ -615,6 +615,7 @@ client.on('message', message => {
 	if(message.author.bot) return; //ignora poupar processamento bot
 	
 	var parametroUsado = "", nickLegivel="", site="";
+	/*//leitura de imagem ams-scrim
 	if(message.channel.id==555030723527049237) {try{aprendizado(message);}catch(e){} return;}
 	if(message.channel.id==559100608666271754) if(typeof message.member.voiceChannel == 'undefined') {message.member.send("apenas quem está na scrim"); message.delete(); return;} //limitar streamers em scrim ams
 	if(message.channel.id==546932004931895317||message.channel.id==551441598697963541) {
@@ -651,7 +652,8 @@ client.on('message', message => {
 			variavelVisita=null;
 		}catch(e){message.delete();}
 		
-	}	
+	}
+	*/
 	if(!(message.content[0] === pfxCom1 || message.content[0] === pfxCom2)) return; //filtrar pfx bot
 	
 	//antiga checagem autorizados
