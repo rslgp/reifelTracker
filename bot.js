@@ -2032,7 +2032,68 @@ client.on('message', message => {
 								limparMemoria(browser);
 							});	
 							variavelVisita3=null;
-						}catch(e){}						
+						}catch(e){
+							//site alternativo
+							site = "https://www.apexlegendshut.com/free-api?platform=PC&title="+parametroUsado;
+							try{ //tentar atualizar usando outro site
+								var variavelVisita4 = Browser.visit(site, function (e, browser) {					
+									var winP, selector;	
+									try{
+										var text = browser.html(); //pega o id profile
+										var a = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}')+1));										
+										var level = a.results[0].level;	
+										a = null;
+
+										if(capUpdate(message, level)) return;
+
+										level = [level, level];
+
+										switch(message.guild.id){
+											case '542501711860727848':
+												padraoRankWinApex(message, message.member, nickLegivel, level, ["550497864023932943","547963888256286732","547959283116146718", "547959283141312525"],[150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
+												//mudarNick(message, padraoNickApex(level[0],nickLegivel));
+											break;
+
+											case '550108927698927626': //ams scrims
+												padraoRankWinApex(message, message.member, nickLegivel, level, ["550133503208062995", "550118715056848937","550118715337736210"], [150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
+												//mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
+											break;
+
+											case '542501242916700181': //ams
+												padraoRankWinApex(message, message.member, nickLegivel, level, ["550153057653227541", "550153058030583820", "550153058613723156","550153494045261837"], [150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
+
+												var posicaoGuardaChuva = -1;
+												try{
+													posicaoGuardaChuva = message.member.nickname.indexOf("★");		
+												}catch(e){
+
+												}
+												if(posicaoGuardaChuva!==-1)return;
+
+												mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
+											break;
+
+
+											case '292028288178847744': //mago academy
+												padraoRankWinApex(message, message.member, nickLegivel, level, ["559835221730525195","559835222024126476","559835222313664515"],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
+												mudarNick(message, padraoNickApex(level[0],nickLegivel));
+											break;
+										}
+
+									}catch(e){
+										//print(message,errorNickNaoEncontrado);
+										//return;
+									}	
+
+									limparMemoria(browser);
+								});
+								variavelVisita4=null;
+							}catch(e){
+								//site alt
+
+							}
+						
+						}						
 						
 					}
 						//fim site alternativo
