@@ -168,7 +168,7 @@ client.on('guildCreate', guild => {
 			}
 			*/
 			try{
-			client.users.get(guild.ownerID).send("Não Autorizado por Reifel\r\n"+tabelaPreco);
+			client.users.get(guild.ownerID).send("Não Autorizado por Reifel\r\n"+tabelaPreco).catch(console.error);
 			guild.leave(); return;
 			}catch(e){guild.leave();}
 		}
@@ -211,7 +211,7 @@ client.on('guildCreate', guild => {
 				  .catch(console.error);
 				  
 			
-			client.users.get(guild.ownerID).send("para permitir cargos utilizar o bot va em:\r\nconfigurações do servidor >> cargos >> arraste reifeltracker pra cima\r\ne coloque acima dos cargos que vão utilizar o bot.\r\nvc pode renomear os cargos, se precisar de suporte, envie mensagem para Reifel#5047");
+			client.users.get(guild.ownerID).send("para permitir cargos utilizar o bot va em:\r\nconfigurações do servidor >> cargos >> arraste reifeltracker pra cima\r\ne coloque acima dos cargos que vão utilizar o bot.\r\nvc pode renomear os cargos, se precisar de suporte, envie mensagem para Reifel#5047").catch(console.error);
 			
 			//client.user.setPresence({
 			//	game: {
@@ -2056,7 +2056,7 @@ client.on('message', message => {
 		case "queroessebot":
 		case "discord":
 		case "tbquero":
-			message.author.send("Agradeço pelo interesse "+message.author+"\r\n"+tabelaPreco);
+			message.author.send("Agradeço pelo interesse "+message.author+"\r\n"+tabelaPreco).catch(console.error);
 			reifelUser.send(message.author+" futuro cliente");
 		break;
 		
