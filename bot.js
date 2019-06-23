@@ -4333,7 +4333,7 @@ function getElo(level, kills=0, dano){
 
 function tryPM(member, msg){
 	try{
-		member.send(msg).catch(console.error);
+		member.send(msg).catch(e => null);
 	}catch(e){}
 }
 
