@@ -129,7 +129,7 @@ function salvarFrees(id, rolesCriadas){
 						obj[id+""] = rolesCriadas;
 						message2.edit(JSON.stringify(obj));
 				} )
-				  .catch(console.error);	
+				  .catch(e => null);	
 }
 
 //joined a server
@@ -168,7 +168,7 @@ client.on('guildCreate', guild => {
 			}
 			*/
 			try{
-			client.users.get(guild.ownerID).send("Não Autorizado por Reifel\r\n"+tabelaPreco).catch(console.error);
+			client.users.get(guild.ownerID).send("Não Autorizado por Reifel\r\n"+tabelaPreco).catch(e => null);
 			guild.leave(); return;
 			}catch(e){guild.leave();}
 		}
@@ -189,7 +189,7 @@ client.on('guildCreate', guild => {
 										managed: true,
 										mentionable: true
 
-									}).then(role => rolesCriadas[0] = role.id).catch(console.error);
+									}).then(role => rolesCriadas[0] = role.id).catch(e => null);
 
 									guild.createRole({
 										name: 'Épico',
@@ -197,7 +197,7 @@ client.on('guildCreate', guild => {
 										hoist: true, 
 										managed: true,
 										mentionable: true
-									}).then(role => rolesCriadas[1] = role.id).catch(console.error);		
+									}).then(role => rolesCriadas[1] = role.id).catch(e => null);		
 
 									guild.createRole({
 										name: 'Raro',
@@ -205,13 +205,13 @@ client.on('guildCreate', guild => {
 										hoist: true, 
 										managed: true,
 										mentionable: true
-									}).then(role => {rolesCriadas[2] = role.id; salvarFrees(guild.id,rolesCriadas);}).catch(console.error);
+									}).then(role => {rolesCriadas[2] = role.id; salvarFrees(guild.id,rolesCriadas);}).catch(e => null);
 								}catch(e){};
 				} )
-				  .catch(console.error);
+				  .catch(e => null);
 				  
 			
-			client.users.get(guild.ownerID).send("para permitir cargos utilizar o bot va em:\r\nconfigurações do servidor >> cargos >> arraste reifeltracker pra cima\r\ne coloque acima dos cargos que vão utilizar o bot.\r\nvc pode renomear os cargos, se precisar de suporte, envie mensagem para Reifel#5047").catch(console.error);
+			client.users.get(guild.ownerID).send("para permitir cargos utilizar o bot va em:\r\nconfigurações do servidor >> cargos >> arraste reifeltracker pra cima\r\ne coloque acima dos cargos que vão utilizar o bot.\r\nvc pode renomear os cargos, se precisar de suporte, envie mensagem para Reifel#5047").catch(e => null);
 			
 			//client.user.setPresence({
 			//	game: {
@@ -234,7 +234,7 @@ client.on('ready', () => {
 						atualizarBarraApoio(obj["progresso"]);						
 					}catch(e){}
 			} )
-			  .catch(console.error);
+			  .catch(e => null);
 			  
 	client.channels.get("459432939898273798").fetchMessage('479842842899120134')
 			  .then(message => {
@@ -244,7 +244,7 @@ client.on('ready', () => {
 					if(suspensos.length!=0)ativarsuspender=true;				
 					}catch(e){}
 			} )
-			  .catch(console.error);
+			  .catch(e => null);
 	
 	client.channels.get("459432939898273798").fetchMessage('461722127205269505')
 			  .then(message => {
@@ -255,21 +255,21 @@ client.on('ready', () => {
 										
 					}catch(e){}
 			} )
-			  .catch(console.error);
+			  .catch(e => null);
 			  
 	client.channels.get("459432939898273798").fetchMessage('502436327258718208')
 				  .then(message2 => {
 						var obj = JSONbig.parse(message2.content);
 						frees = obj;
 				} )
-				  .catch(console.error);
+				  .catch(e => null);
 	
 	client.channels.get("459432939898273798").fetchMessage('559897722296205324')
 				  .then(message2 => {
 						if(Number(message2.content)==0) aprendizadoPausado = false;
 						else aprendizadoPausado = true;
 				} )
-				  .catch(console.error);
+				  .catch(e => null);
 	
 	try{
 		client.user.username="ReifelTracker";
@@ -715,7 +715,7 @@ client.on('message', message => {
 						else {obj[message.guild.id+""] = {"qtd":1, "nome":message.guild.name}; }
 						message2.edit(JSON.stringify(obj));
 				} )
-				  .catch(console.error);	
+				  .catch(e => null);	
 	//fim-stats
 	*/
 		
@@ -1485,7 +1485,7 @@ client.on('message', message => {
 				  .then(message2 => {
 					message2.edit(resultado);
 				} )
-				  .catch(console.error);
+				  .catch(e => null);
 				//topEloDesatualizado[indiceTop]=false;
 			//}
 			
@@ -1519,7 +1519,7 @@ client.on('message', message => {
 				  .then(message2 => {
 					message2.edit(r);
 				} )
-				  .catch(console.error);
+				  .catch(e => null);
 		break;
 		
 		
@@ -1566,7 +1566,7 @@ client.on('message', message => {
 						else break;
 					}*/
 				} )
-				  .catch(console.error);
+				  .catch(e => null);
 			//topEloDesatualizado[indiceTop] = true;
 		break;
 			
@@ -1800,7 +1800,7 @@ client.on('message', message => {
 						parseImageFromBase64(res, options)
 						  .then( function (parsedResult){print(message,imgrResultado(parsedResult)); }
 							).catch(err => {
-								console.error(err);
+								e => null(err);
 							  }); 
 					  });
 
@@ -1808,7 +1808,7 @@ client.on('message', message => {
 					  
 				  })
 				  .catch(err => {
-					console.error(err);
+					e => null(err);
 				  });
 			/*
 			parseImageFromUrl(att[0].url, options)
@@ -2056,7 +2056,7 @@ client.on('message', message => {
 		case "queroessebot":
 		case "discord":
 		case "tbquero":
-			message.author.send("Agradeço pelo interesse "+message.author+"\r\n"+tabelaPreco).catch(console.error);
+			message.author.send("Agradeço pelo interesse "+message.author+"\r\n"+tabelaPreco).catch(e => null);
 			reifelUser.send(message.author+" futuro cliente");
 		break;
 		
@@ -2600,7 +2600,7 @@ client.on('message', message => {
 			
 			channelBusca.fetchMessage('459435742351982618')
 			  .then(message => editarJSON(message) )
-			  .catch(console.error);
+			  .catch(e => null);
 		break;
 			
 		
@@ -2625,7 +2625,7 @@ client.on('message', message => {
 										
 					}catch(e){}
 			} )
-			  .catch(console.error);
+			  .catch(e => null);
 		break;
 		case "preco":
 			if(message.author!=reifelUser) return;
@@ -2669,7 +2669,7 @@ client.on('message', message => {
 										
 					}catch(e){}
 			} )
-			  .catch(console.error);
+			  .catch(e => null);
 			
 			client.guilds.get(novo[0]).leave();
 		break;
@@ -2690,7 +2690,7 @@ client.on('message', message => {
 					discAutorizados = novo["discords"];					
 					salasAutorizadas = novo["salas"];
 			} )
-			  .catch(console.error);
+			  .catch(e => null);
 		break;
 			
 		case "clientes":
@@ -2720,7 +2720,7 @@ client.on('message', message => {
 				  .then(message2 => {
 					message2.edit(idMsg[1]);
 				} )
-				  .catch(console.error);		
+				  .catch(e => null);		
 		break;
 			
 		case "send":
@@ -2809,7 +2809,7 @@ client.on('message', message => {
 				  .then(message2 => {					   
 						message2.edit(message2.content.replace("NaN",nickLegivel));
 				} )
-				  .catch(console.error);
+				  .catch(e => null);
 		break;
 			
 		case "s":
@@ -2824,7 +2824,7 @@ client.on('message', message => {
 					
 					message.channel.send('Resultado em breve...')
 					  .then(msgContagem => setTimeout(function(){msgContagem.delete()}, 90000) )
-					  .catch(console.error);
+					  .catch(e => null);
 					
 					var partidas={};
 					var usuariosPartidas = {};
@@ -2859,7 +2859,7 @@ client.on('message', message => {
 					  .then(message2 => {
 							message2.edit("1");
 					} )
-					  .catch(console.error);
+					  .catch(e => null);
 				break;
 				case "pausarprints":
 					aprendizadoPausado=true;
@@ -2869,7 +2869,7 @@ client.on('message', message => {
 					  .then(message2 => {
 							message2.edit("0");
 					} )
-					  .catch(console.error);
+					  .catch(e => null);
 				break;
 			}
 		break;
@@ -2899,7 +2899,7 @@ client.on('message', message => {
 			  .then(connection => {
 				connectionGlobal = connection;
 			  })
-			  .catch(console.error);
+			  .catch(e => null);
 		break;
 		*/
 		
@@ -2920,7 +2920,7 @@ client.on('message', message => {
 					managed: true,
 					mentionable: true
 
-				}).then(role => rolesCriadas[0] = role.id).catch(console.error);
+				}).then(role => rolesCriadas[0] = role.id).catch(e => null);
 
 				message.guild.createRole({
 					name: 'Épico',
@@ -2928,7 +2928,7 @@ client.on('message', message => {
 					hoist: true, 
 					managed: true,
 					mentionable: true
-				}).then(role => rolesCriadas[1] = role.id).catch(console.error);		
+				}).then(role => rolesCriadas[1] = role.id).catch(e => null);		
 
 				message.guild.createRole({
 					name: 'Raro',
@@ -2936,7 +2936,7 @@ client.on('message', message => {
 					hoist: true, 
 					managed: true,
 					mentionable: true
-				}).then(role => print(message,"'"+rolesCriadas[0]+"', '"+rolesCriadas[1]+"', '"+role.id+"'")).catch(console.error);
+				}).then(role => print(message,"'"+rolesCriadas[0]+"', '"+rolesCriadas[1]+"', '"+role.id+"'")).catch(e => null);
 			}catch(e){};
 
 			//verificar os cargos que nao podem usar o bot (hierarquia)				
@@ -3958,7 +3958,7 @@ function criarVoice(obj, i, max, message, name, permissoesOverwrites){
 			}).catch(e=>{console.log(e)});
 			console.log(canalCriado);
 			criarVoice(obj,i+1, max-1, message, name, permissoesOverwrites);
-		}).catch(console.error);
+		}).catch(e => null);
 	}, 300);		
 }
 
@@ -3987,7 +3987,7 @@ function padraoRankWinApex(message, usuario, nickLegivel, winrKD, ranks=[], tabe
 const capLevel=3;
 function capUpdate(message, level){
 	try{
-		try{message.react(reactEmoji);}catch(e){}
+		try{message.react(reactEmoji).catch(e=>null);}catch(e){}
 		var levelSite = parseInt(level);
 		if(levelSite==60 || levelSite==61 || levelSite==100 || levelSite==101 ) return false; //liberar se tiver esses niveis
 		
@@ -4151,12 +4151,12 @@ var att = (message.attachments).array();
 								message.reply("atualizei a pontuação: "+lvlK[0]+" "+lvlK[1]);
 							}
 							).catch(err => {
-								console.error(err);
+								e => null(err);
 							  }); 
 					  });					  
 				  })
 				  .catch(err => {
-					console.error(err);
+					e => null(err);
 				  });
 }
 
@@ -4205,7 +4205,7 @@ function calcularPontuacao(message, arrayPosicaoKills){
 										
 					}catch(e){}
 				} )
-				  .catch(console.error);	
+				  .catch(e => null);	
 	   
 }
 
@@ -4246,7 +4246,7 @@ function retirarPontos(time,valor){
 										
 					}catch(e){}
 				} )
-				  .catch(console.error);
+				  .catch(e => null);
 }
 
 
