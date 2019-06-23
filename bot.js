@@ -1986,7 +1986,7 @@ client.on('message', message => {
 					}catch(e){
 						//print(message, "erro");
 						//site alternativo2
-						site = "https://www.apexlegendsapi.com/api/v1/player?platform=pc&name="+parametroUsado;
+						site = "https://www.apexlegendsapi.com/api/v2/player?platform=pc&name="+parametroUsado;
 						try{
 							var variavelVisita3 = Browser.visit(site, function (e, browser) {				
 								var level;	
