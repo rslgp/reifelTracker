@@ -1700,7 +1700,10 @@ client.on('message', message => {
 					limparMemoria(browser);
 				});	
 				variavelVisita3=null;
-			}catch(e){}
+			}catch(e){
+				//site alt
+				message.reply("elo em manutenção");
+			}
 			
 						
 						/*
