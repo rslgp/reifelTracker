@@ -1874,6 +1874,7 @@ client.on('message', message => {
 						kills = text.kills.value;
 						level = text.level.value;
 						
+						if(level=='0') throw false; //offline
 						text = null;
 						
 						if(capUpdate(message, level)) return;
@@ -1941,7 +1942,7 @@ client.on('message', message => {
 									var a = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}')+1));										
 									var level = a.results[0].level;	
 									a = null;
-									
+									if(level=='0') throw false; //offline
 									if(capUpdate(message, level)) return;
 									
 									level = [level, level];
