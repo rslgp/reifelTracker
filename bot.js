@@ -1998,10 +1998,10 @@ client.on('message', message => {
 						temp = '#profile > div:nth-child(5) > div.trn-scont__content > div:nth-child(';
 						for(var i = 1; i<4; i++){
 							selector= temp+i+') > div.trn-card__header > h2';
-							resultado = getInnerHtml(browser, selector);
+							resultado = browser.querySelector(selector).innerHTML;
 							lendas.push(resultado);
 							selector= temp+i+') > div.ap-legend-stats > div.ap-legend-stats__stats > div > div:nth-child(1) > div.trn-defstat__value';
-							resultado = getInnerHtml(browser, selector);
+							resultado = browser.querySelector(selector).innerHTML;
 							kills.push(resultado);
 							
 						}
