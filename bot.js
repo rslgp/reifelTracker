@@ -732,6 +732,7 @@ client.on('message', message => {
 		case "alt3":
 		case "lvl":
 		case "lvl2":
+		case "lendas":
 		case "ce":
 		case "elo":
 		//no memory
@@ -1984,6 +1985,42 @@ client.on('message', message => {
 			}catch(e){}
 		break;
 			
+		case "lendas":
+			var site;		
+			try{ //tentar atualizar usando outro site
+				var selector, temp;
+				site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;	
+				var variavelVisita2 = Browser.visit(site, function (e, browser) {					
+					var resultado, selector;	
+					try{
+						var lendas = [];
+						var kills = [];
+						temp = '#profile > div:nth-child(5) > div.trn-scont__content > div:nth-child(';
+						for(var i = 1; i<4; i++){
+							selector= temp+i+') > div.trn-card__header > h2';
+							resultado = getInnerHtml(browser, selector);
+							lendas.push(resultado);
+							selector= temp+i+') > div.ap-legend-stats > div.ap-legend-stats__stats > div > div:nth-child(1) > div.trn-defstat__value';
+							resultado = getInnerHtml(browser, selector);
+							kills.push(resultado);
+							
+						}
+						print(message, lendas.join(' > ') +" "+kills.join(','));
+					}catch(e){
+						//print(message,"erro lendas");
+						return;
+					}
+					//message.member.setNickname( padraoNick(winP,nickLegivel) ).then(user => message.reply(`atualizei winrate \:umbrella2:`)).catch(err => console.log(err));	
+					
+					
+					limparMemoria(browser);
+				});
+				variavelVisita2=null;
+			}catch(e){
+				//print(message, nickLegivel + " lendas");						
+			}
+			
+		break;
 			
 		case "semana":
 			message.author.send("Certo! avisei ao Reifel que vc quer semana gratis, ele vai mandar msg pra vc jaja pra comecar a instalação, se quiser adiantar: cria uma sala reifeltracker no discord q vai usar e manda um convite pro @Reifel#5047 <@195731919424585728> que ele instala");
