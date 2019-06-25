@@ -1880,8 +1880,9 @@ client.on('message', message => {
 						if(capUpdate(message, level)) return;
 						
 						level = [level, level];
-												
-						padraoLvlApex(message, nickLegivel, level);						
+						
+						var dados = {"level":level, "dano": dano, "kills": kills};												
+						padraoLvlApex(message, nickLegivel, dados);						
 						
 					}catch(e){
 						//site alternativo
@@ -1899,7 +1900,8 @@ client.on('message', message => {
 									
 									level = [level, level];
 									
-									padraoLvlApex(message, nickLegivel, level);
+									var dados = {"level":level, "dano": dano, "kills": kills};												
+									padraoLvlApex(message, nickLegivel, dados);		
 							
 								}catch(e){								
 									//print(message, "erro");
@@ -1917,8 +1919,9 @@ client.on('message', message => {
 												if(capUpdate(message, level)) return;
 												
 												level = [level,level]; //gambiarra												
-												
-												padraoLvlApex(message, nickLegivel, level);
+																								
+												var dados = {"level":level, "dano": dano, "kills": kills};												
+												padraoLvlApex(message, nickLegivel, dados);		
 											}catch(e){											
 													//site alternativo
 													site = "https://www.apexlegendshut.com/free-api?platform=PC&title="+parametroUsado;
@@ -1933,9 +1936,10 @@ client.on('message', message => {
 
 																if(capUpdate(message, level)) return;
 
-																level = [level, level];
+																level = [level, level];																
 																
-																padraoLvlApex(message, nickLegivel, level);
+																var dados = {"level":level, "dano": dano, "kills": kills};												
+																padraoLvlApex(message, nickLegivel, dados);		
 
 															}catch(e){
 																//site alt
