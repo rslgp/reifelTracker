@@ -1880,56 +1880,8 @@ client.on('message', message => {
 						if(capUpdate(message, level)) return;
 						
 						level = [level, level];
-						
-						
-						switch(message.guild.id){
-							case '542501711860727848':
-								padraoRankWinApex(message, message.member, nickLegivel, level, ["547963888256286732","547959283116146718", "547959283141312525"],[100,60,30], "Continua onde está, os niveis atuais são: 100+, 60+, 30+");
-								mudarNick(message, padraoNickApex(level[0],nickLegivel));
-							break;
-								
-							case '550108927698927626': //ams scrims
-								padraoRankWinApex(message, message.member, nickLegivel, level, ["550133503208062995", "550118715056848937","550118715337736210"], [150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
-								//mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
-							break;
-							
-							case '542501242916700181': //ams
-								padraoRankWinApex(message, message.member, nickLegivel, level, ["550153057653227541", "550153058030583820", "550153058613723156","550153494045261837"], [150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
-								
-								var posicaoGuardaChuva = -1;
-								try{
-									posicaoGuardaChuva = message.member.nickname.indexOf("★");		
-								}catch(e){
-
-								}
-								//if(posicaoGuardaChuva!==-1)return;
-								mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
-								elomerged(message, level, kills, dano, ['562423267894231072', '562423268292689920', '562423268511055892', '581226705612701700']);
-							break;
-								
-							case '292028288178847744': //mago academy
-								padraoRankWinApex(message, message.member, nickLegivel, level, ["559835221730525195","559835222024126476","559835222313664515"],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
-								mudarNick(message, padraoNickApex(level[0],nickLegivel));
-							break;
-								
-							case '547602272516046849': //tiago airsoft
-								padraoRankWinApex(message, message.member, nickLegivel, level, ["562034978913779712","562034979236741140","562034979534536705"],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
-								mudarNick(message, padraoNickApex(level[0],nickLegivel));
-							break;
-								
-							case '562363572647100416': //lost spirit alms
-								padraoRankWinApex(message, message.member, nickLegivel, level, ["562416591459975168","562416591753707521","562416592106029056"],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
-								mudarNick(message, padraoNickApex(level[0],nickLegivel));
-							break;
-								
-							case '566666902748004363': //FNT-
-								//padraoRankWinApex(message, message.member, nickLegivel, level, ['0', '0', '0'],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
-								mudarNick(message, padraoNickApex(level[0],nickLegivel));
-							break;
-								
-								
-						}
-						
+												
+						padraoLvlApex(message, nickLegivel, level);						
 						
 					}catch(e){
 						//site alternativo
@@ -1947,39 +1899,9 @@ client.on('message', message => {
 									
 									level = [level, level];
 									
-									switch(message.guild.id){
-										case '542501711860727848':
-											padraoRankWinApex(message, message.member, nickLegivel, level, ["550497864023932943","547963888256286732","547959283116146718", "547959283141312525"],[150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
-											//mudarNick(message, padraoNickApex(level[0],nickLegivel));
-										break;
-
-										case '550108927698927626': //ams scrims
-											padraoRankWinApex(message, message.member, nickLegivel, level, ["550133503208062995", "550118715056848937","550118715337736210"], [150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
-											//mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
-										break;
-
-										case '542501242916700181': //ams
-											padraoRankWinApex(message, message.member, nickLegivel, level, ["550153057653227541", "550153058030583820", "550153058613723156","550153494045261837"], [150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
-
-											var posicaoGuardaChuva = -1;
-											try{
-												posicaoGuardaChuva = message.member.nickname.indexOf("★");		
-											}catch(e){
-
-											}
-											if(posicaoGuardaChuva!==-1)return;
-
-											mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
-										break;
-											
-											
-										case '292028288178847744': //mago academy
-											padraoRankWinApex(message, message.member, nickLegivel, level, ["559835221730525195","559835222024126476","559835222313664515"],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
-											mudarNick(message, padraoNickApex(level[0],nickLegivel));
-										break;
-									}
+									padraoLvlApex(message, nickLegivel, level);
 							
-								}catch(e){									
+								}catch(e){								
 									//print(message, "erro");
 									//site alternativo2
 									site = "https://www.apexlegendsapi.com/api/v2/player?platform=pc&name="+parametroUsado;
@@ -1994,33 +1916,9 @@ client.on('message', message => {
 												
 												if(capUpdate(message, level)) return;
 												
-												level = [level,level]; //gambiarra
+												level = [level,level]; //gambiarra												
 												
-												switch(message.guild.id){
-													case '542501711860727848':
-														padraoRankWinApex(message, message.member, nickLegivel, level, ["550497864023932943","547963888256286732","547959283116146718", "547959283141312525"],[150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
-														//mudarNick(message, padraoNickApex(level[0],nickLegivel));
-													break;
-
-													case '550108927698927626': //ams scrims
-														padraoRankWinApex(message, message.member, nickLegivel, level, ["550133503208062995", "550118715056848937","550118715337736210"], [150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
-														//mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
-													break;
-
-													case '542501242916700181': //ams
-														padraoRankWinApex(message, message.member, nickLegivel, level, ["550153057653227541", "550153058030583820", "550153058613723156","550153494045261837"], [150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
-
-														var posicaoGuardaChuva = -1;
-														try{
-															posicaoGuardaChuva = message.member.nickname.indexOf("★");		
-														}catch(e){
-
-														}
-														if(posicaoGuardaChuva!==-1)return;
-
-														mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
-													break;
-												}
+												padraoLvlApex(message, nickLegivel, level);
 											}catch(e){											
 													//site alternativo
 													site = "https://www.apexlegendshut.com/free-api?platform=PC&title="+parametroUsado;
@@ -2036,38 +1934,8 @@ client.on('message', message => {
 																if(capUpdate(message, level)) return;
 
 																level = [level, level];
-
-																switch(message.guild.id){
-																	case '542501711860727848':
-																		padraoRankWinApex(message, message.member, nickLegivel, level, ["550497864023932943","547963888256286732","547959283116146718", "547959283141312525"],[150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
-																		//mudarNick(message, padraoNickApex(level[0],nickLegivel));
-																	break;
-
-																	case '550108927698927626': //ams scrims
-																		padraoRankWinApex(message, message.member, nickLegivel, level, ["550133503208062995", "550118715056848937","550118715337736210"], [150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
-																		//mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
-																	break;
-
-																	case '542501242916700181': //ams
-																		padraoRankWinApex(message, message.member, nickLegivel, level, ["550153057653227541", "550153058030583820", "550153058613723156","550153494045261837"], [150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
-
-																		var posicaoGuardaChuva = -1;
-																		try{
-																			posicaoGuardaChuva = message.member.nickname.indexOf("★");		
-																		}catch(e){
-
-																		}
-																		if(posicaoGuardaChuva!==-1)return;
-
-																		mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
-																	break;
-
-
-																	case '292028288178847744': //mago academy
-																		padraoRankWinApex(message, message.member, nickLegivel, level, ["559835221730525195","559835222024126476","559835222313664515"],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
-																		mudarNick(message, padraoNickApex(level[0],nickLegivel));
-																	break;
-																}
+																
+																padraoLvlApex(message, nickLegivel, level);
 
 															}catch(e){
 																//site alt
@@ -2105,6 +1973,8 @@ client.on('message', message => {
 					}
 					//var resultado = formatarMsg(winP,kd,wins,kills,'--');
 					//msgPadraoBot(message, resultado, site, nickLegivel);
+					
+					limparMemoria(browser);
 				});	
 				variavelVisita=null;
 			}catch(e){}
@@ -4591,4 +4461,54 @@ function elomerged(message, level, kills, dano, cargosElo){
 			break;
 	}
 //fim elo merged
+}
+
+
+function padraoLvlApex(message, nickLegivel, level){	
+	switch(message.guild.id){
+		case '542501711860727848':
+			padraoRankWinApex(message, message.member, nickLegivel, level, ["547963888256286732","547959283116146718", "547959283141312525"],[100,60,30], "Continua onde está, os niveis atuais são: 100+, 60+, 30+");
+			mudarNick(message, padraoNickApex(level[0],nickLegivel));
+		break;
+			
+		case '550108927698927626': //ams scrims
+			padraoRankWinApex(message, message.member, nickLegivel, level, ["550133503208062995", "550118715056848937","550118715337736210"], [150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
+			//mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
+		break;
+		
+		case '542501242916700181': //ams
+			padraoRankWinApex(message, message.member, nickLegivel, level, ["550153057653227541", "550153058030583820", "550153058613723156","550153494045261837"], [150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
+			
+			var posicaoGuardaChuva = -1;
+			try{
+				posicaoGuardaChuva = message.member.nickname.indexOf("★").catch(e => null);		
+			}catch(e){
+
+			}
+			//if(posicaoGuardaChuva!==-1)return;
+			mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
+			elomerged(message, level, kills, dano, ['562423267894231072', '562423268292689920', '562423268511055892', '581226705612701700']);
+		break;
+			
+		case '292028288178847744': //mago academy
+			padraoRankWinApex(message, message.member, nickLegivel, level, ["559835221730525195","559835222024126476","559835222313664515"],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
+			mudarNick(message, padraoNickApex(level[0],nickLegivel));
+		break;
+			
+		case '547602272516046849': //tiago airsoft
+			padraoRankWinApex(message, message.member, nickLegivel, level, ["562034978913779712","562034979236741140","562034979534536705"],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
+			mudarNick(message, padraoNickApex(level[0],nickLegivel));
+		break;
+			
+		case '562363572647100416': //lost spirit alms
+			padraoRankWinApex(message, message.member, nickLegivel, level, ["562416591459975168","562416591753707521","562416592106029056"],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
+			mudarNick(message, padraoNickApex(level[0],nickLegivel));
+		break;
+			
+		case '566666902748004363': //FNT-
+			//padraoRankWinApex(message, message.member, nickLegivel, level, ['0', '0', '0'],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
+			mudarNick(message, padraoNickApex(level[0],nickLegivel));
+		break;
+		
+	}	
 }
