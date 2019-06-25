@@ -4468,7 +4468,11 @@ function elomerged(message, level, kills, dano, cargosElo){
 }
 
 
-function padraoLvlApex(message, nickLegivel, level){	
+function padraoLvlApex(message, nickLegivel, dados){
+	var level = dados.level;
+	var dano = dados.dano;
+	var kills = dados.kills;
+	
 	switch(message.guild.id){
 		case '542501711860727848':
 			padraoRankWinApex(message, message.member, nickLegivel, level, ["547963888256286732","547959283116146718", "547959283141312525"],[100,60,30], "Continua onde está, os niveis atuais são: 100+, 60+, 30+");
