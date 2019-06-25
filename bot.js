@@ -2007,6 +2007,7 @@ client.on('message', message => {
 						}
 						print(message, lendas.join(' > ') +" "+kills.join(','));
 					}catch(e){
+						print(message, e.message);
 						//print(message,"erro lendas");
 						return;
 					}
@@ -2017,6 +2018,7 @@ client.on('message', message => {
 				});
 				variavelVisita2=null;
 			}catch(e){
+						print(message, e.message);
 				//print(message, nickLegivel + " lendas");						
 			}
 			
