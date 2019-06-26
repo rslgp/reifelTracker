@@ -4582,7 +4582,8 @@ function getDadosApex(message, parametroUsado, nickLegivel, callback){
 }
 
 function mudeiApex(message, nickLegivel, dados){
-	var level = dados.level[0];
+	var level = dados.level;
+	level = level[0];
 	
 	var levelatual;
 	var nome = message.member.nickname;
