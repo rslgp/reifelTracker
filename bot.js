@@ -63,7 +63,7 @@ const message = new Discord.Message();
 const Browser = require('zombie');
 Browser.silent = true;
 Browser.waitDuration='6s'; //cloudflare
-Browser.headers = {"Authorization":"1bx8rK3kQ_RAlyUv0jKN4NA3cEv7nAeQmDr5htoHDxg"}; //ativar backup 3
+Browser.headers = {"Authorization":"1bx8rK3kQ_RAlyUv0jKN4NA3cEv7nAeQmDr5htoHDxg", "TRN-Api-Key":"994198ca-b8a3-47d3-8f71-1ca1f66eaaf6"}; //ativar backup 3
 
 var Jimp = require("jimp");
 //[apoia.se/reifel](https://apoia.se/reifel) - (*boleto | cartão de crédito - qlqr valor*)
@@ -1989,30 +1989,30 @@ client.on('message', message => {
 			var site;		
 			try{ //tentar atualizar usando outro site
 				var selector, temp;
-				site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;	
-				var variavelVisita2 = Browser.visit(site, function (e, browser) {					
-					var resultado, selector;	
-					try{
-						var lendas = [];
-						var kills = [];
-						temp = '#profile > div:nth-child(5) > div.trn-scont__content > div:nth-child(';
-						for(var i = 1; i<4; i++){
-							selector= temp+i+') > div.trn-card__header > h2';
-							resultado = browser.querySelector(selector).innerHTML;
-							lendas.push(resultado);
-							selector= temp+i+') > div.ap-legend-stats > div.ap-legend-stats__stats > div > div:nth-child(1) > div.trn-defstat__value';
-							resultado = browser.querySelector(selector).innerHTML;
-							kills.push(resultado);
-							
-						}
-						print(message, lendas.join(' > ') +" "+kills.join(','));
-					}catch(e){
-						print(message, e.message);
-						//print(message,"erro lendas");
-						return;
+				site = "https://public-api.tracker.gg/apex/v1/standard/profile/5/"+parametroUsado;	
+				var variavelVisita2 = Browser.visit(site, function (e, browser) {
+					var a = JSON.parse(browser.html());
+					var ar = [];
+					for(var i=0; i<a.data.children.length; i++){
+						ar.push({"n":a.data.children[i].metadata.legend_name, "k":a.data.children[i].stats[0].value});
 					}
-					//message.member.setNickname( padraoNick(winP,nickLegivel) ).then(user => message.reply(`atualizei winrate \:umbrella2:`)).catch(err => console.log(err));	
+
+					ar.sort(function(x,y){
+						if(x.k > y.k) return -1;
+						if(x.k < y.k) return 1;
+						return 0;
+					});
 					
+					var rn = [];
+					var rk = [];
+					for(var i=0; i<4; i++){
+						if(ar[i]) {
+							rn.push(ar[i].n);
+							rk.push(ar[i].k);
+						}
+
+					}
+					print(message, rn.join(' > ')+" "+rk.join(', '));
 					
 					limparMemoria(browser);
 				});
