@@ -1823,7 +1823,7 @@ client.on('message', message => {
 		break;
 			
 		case "lendas":
-			if(args[1] !== undefined) return;
+			if(parametroUsado === "") return;
 			var site;		
 			try{ //tentar atualizar usando outro site
 				var selector, temp;
