@@ -1986,12 +1986,13 @@ client.on('message', message => {
 		break;
 			
 		case "lendas":
+			
 			var site;		
 			try{ //tentar atualizar usando outro site
 				var selector, temp;
 				site = "https://public-api.tracker.gg/apex/v1/standard/profile/5/"+parametroUsado;	
 				var variavelVisita2 = Browser.visit(site, function (e, browser) {
-					var a = JSON.parse(browser.html());
+					var a = JSON.parse(browser.text('body'));
 					var ar = [];
 					for(var i=0; i<a.data.children.length; i++){
 						ar.push({"n":a.data.children[i].metadata.legend_name, "k":a.data.children[i].stats[0].value});
@@ -2005,20 +2006,20 @@ client.on('message', message => {
 					
 					var rn = [];
 					var rk = [];
-					for(var i=0; i<4; i++){
+					for(var i=0; i<3; i++){
 						if(ar[i]) {
 							rn.push(ar[i].n);
 							rk.push(ar[i].k);
 						}
 
 					}
-					print(message, rn.join(' > ')+" "+rk.join(', '));
+					print(message, rn.join(' > ')+"\r\nkills: ( "+rk.join(', ')+" )");
 					
 					limparMemoria(browser);
 				});
 				variavelVisita2=null;
 			}catch(e){
-						print(message, e.message);
+						//print(message, e.message);
 				//print(message, nickLegivel + " lendas");						
 			}
 			
