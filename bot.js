@@ -1374,7 +1374,7 @@ client.on('message', message => {
 			
 		
 		case "mudei":
-			getDadosApex(message, parametroUsado, nickLegivel, mudeiApex);
+			getDadosApex(message, parametroUsado, nickLegivel, mudeiApex, false);
 			/*site = "http://api.mozambiquehe.re/bridge?platform=PC&auth=0V7bLm3DwwImSEr9ruFI&player="+parametroUsado;
 			try{
 					var level;
@@ -1841,7 +1841,7 @@ client.on('message', message => {
 				if(args[1] == undefined) {print(message,"ainda não registrado, envie o comando .lvl espaço seu nick da origin");return;}
 			}
 			
-			getDadosApex(message, parametroUsado, nickLegivel, padraoLvlApex);
+			getDadosApex(message, parametroUsado, nickLegivel, padraoLvlApex, true);
 			
 		break;
 			
@@ -4369,7 +4369,7 @@ function elomerged(message, level, kills, dano, cargosElo){
 
 
 function padraoLvlApex(message, nickLegivel, dados){
-	var level = dados.level;
+	var level = [dados.level,dados.level];
 	var dano = dados.dano;
 	var kills = dados.kills;
 	
@@ -4423,7 +4423,7 @@ function padraoLvlApex(message, nickLegivel, dados){
 
 
 
-function getDadosApex(message, parametroUsado, nickLegivel, callback){
+function getDadosApex(message, parametroUsado, nickLegivel, callback, isCapUpdate){
 	var site, dados = {"level":0, "dano": -1, "kills": -1};
 	site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
 	try{
@@ -4442,9 +4442,9 @@ function getDadosApex(message, parametroUsado, nickLegivel, callback){
 				if(level=='0') throw false; //offline
 				text = null;
 				
-				if(capUpdate(message, level)) return;
+				if(isCapUpdate && capUpdate(message, level)) return;
 				
-				level = [level, level];
+				//level = [level, level];
 				
 				dados.level = level;
 				dados.dano = dano;
@@ -4464,9 +4464,9 @@ function getDadosApex(message, parametroUsado, nickLegivel, callback){
 							kills = a.results[0].kills;
 							a = null;
 							if(level=='0') throw false; //offline
-							if(capUpdate(message, level)) return;
+							if(isCapUpdate && capUpdate(message, level)) return;
 							
-							level = [level, level];
+							//level = [level, level];
 							
 							dados.level = level;
 							dados.dano = dano;
@@ -4486,9 +4486,9 @@ function getDadosApex(message, parametroUsado, nickLegivel, callback){
 										var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
 										level = data["level"];
 										
-										if(capUpdate(message, level)) return;
+										if(isCapUpdate && capUpdate(message, level)) return;
 										
-										level = [level,level]; //gambiarra												
+										//level = [level,level]; //gambiarra												
 																						
 										dados.level = level;
 										dados.dano = dano;
@@ -4506,9 +4506,9 @@ function getDadosApex(message, parametroUsado, nickLegivel, callback){
 														var level = a.results[0].level;	
 														a = null;
 
-														if(capUpdate(message, level)) return;
+														if(isCapUpdate && capUpdate(message, level)) return;
 
-														level = [level, level];																
+														//level = [level, level];																
 														
 																				
 														dados.level = level;
@@ -4531,6 +4531,11 @@ function getDadosApex(message, parametroUsado, nickLegivel, callback){
 																	level = data.global.level;
 																	kills = data.total.kills;
 																	dano = data.total.damage;
+																	text = data = null;																	
+																	
+																	if(isCapUpdate && capUpdate(message, level)) return;
+
+																	//level = [level, level];	
 																											
 																	dados.level = level;
 																	dados.dano = dano;
@@ -4583,7 +4588,6 @@ function getDadosApex(message, parametroUsado, nickLegivel, callback){
 
 function mudeiApex(message, nickLegivel, dados){
 	var level = dados.level;
-	level = level[0];
 	
 	var levelatual;
 	var nome = message.member.nickname;
