@@ -1372,6 +1372,7 @@ client.on('message', message => {
 			}catch(e){}
 		break;
 			
+		
 		case "mudei":
 			site = "http://api.mozambiquehe.re/bridge?platform=PC&auth=0V7bLm3DwwImSEr9ruFI&player="+parametroUsado;
 			try{
@@ -1384,32 +1385,9 @@ client.on('message', message => {
 						data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
 						if(data.global == undefined) {message.reply("tente novamente mais tarde");return;}
 						level = data.global.level;
-
-							var levelatual;
-							var nome = message.member.nickname;
-							if(nome == null) throw false; //crash logs
-							if(nome.indexOf('★') == (nome.length-1))
-								levelatual = nome.substring(nome.lastIndexOf(' ',nome.length-3)+1,nome.length-2);
-							else
-								levelatual = nome.substring(0,nome.indexOf(' '));
-							if( (parseInt(levelatual) + 20) >= parseInt(level) ) { 
-								switch(message.guild.id){
-								case '542501711860727848':
-									mudarNick(message, padraoNickApex(levelatual,nickLegivel));
-								break;
-
-								case '550108927698927626':
-									mudarNick(message, padraoNickApexAMS(levelatual,nickLegivel));
-								break;
-
-								case '542501242916700181':
-									mudarNick(message, padraoNickApexAMS(levelatual,nickLegivel));
-								break;
-							}
-							}else{
-								//reifelUser.send(nickLegivel+"win%: "+parseFloat(winrKD[0])- (parseFloat(winrate) + 2.4) );
-								print(message, "não posso trocar seu nick, pois demorou muito tempo com nick desatualizado, peça a algum moderador");
-							}
+						
+						getDadosApex(message, parametroUsado, nickLegivel, mudeiApex);
+							
 					}catch(e){return;}
 				});
 			}catch(e){
@@ -1861,128 +1839,9 @@ client.on('message', message => {
 				//caso nao tenha guarda chuva, mantem o nick como arg
 				if(args[1] == undefined) {print(message,"ainda não registrado, envie o comando .lvl espaço seu nick da origin");return;}
 			}
-			site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
-			try{
-				var variavelVisita = Browser.visit(site, function (e, browser) {				
-					//var level,wins,winP,kd,kills,selector;	
-					var kills=-1, dano=-1, level=0;	
-					try{
-						var text = browser.html();
-						text = text.substring(text.indexOf('imp_Overview')+15);
-						text = text.substring(0,text.indexOf('};')+1);
-						text = JSON.parse(text);
-						dano = text.damage.value;
-						kills = text.kills.value;
-						level = text.level.value;
-						
-						if(level=='0') throw false; //offline
-						text = null;
-						
-						if(capUpdate(message, level)) return;
-						
-						level = [level, level];
-						
-						var dados = {"level":level, "dano": dano, "kills": kills};												
-						padraoLvlApex(message, nickLegivel, dados);						
-						
-					}catch(e){
-						//site alternativo
-						site = "https://apextab.com/api/search.php?platform=pc&search="+parametroUsado;
-						try{ //tentar atualizar usando outro site
-							var variavelVisita2 = Browser.visit(site, function (e, browser) {					
-								var winP, selector;	
-								try{
-									var text = browser.html(); //pega o id profile
-									var a = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}')+1));										
-									var level = a.results[0].level;	
-									a = null;
-									if(level=='0') throw false; //offline
-									if(capUpdate(message, level)) return;
-									
-									level = [level, level];
-									
-									var dados = {"level":level, "dano": dano, "kills": kills};												
-									padraoLvlApex(message, nickLegivel, dados);		
-							
-								}catch(e){								
-									//print(message, "erro");
-									//site alternativo2
-									site = "https://www.apexlegendsapi.com/api/v2/player?platform=pc&name="+parametroUsado;
-									try{
-										var variavelVisita3 = Browser.visit(site, function (e, browser) {				
-											var level;	
-											try{
-												var text = browser.html();
-												if(text == undefined) throw false; //crash logs
-												var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
-												level = data["level"];
-												
-												if(capUpdate(message, level)) return;
-												
-												level = [level,level]; //gambiarra												
-																								
-												var dados = {"level":level, "dano": dano, "kills": kills};												
-												padraoLvlApex(message, nickLegivel, dados);		
-											}catch(e){											
-													//site alternativo
-													site = "https://www.apexlegendshut.com/free-api?platform=PC&title="+parametroUsado;
-													try{ //tentar atualizar usando outro site
-														var variavelVisita4 = Browser.visit(site, function (e, browser) {					
-															var winP, selector;	
-															try{
-																var text = browser.html(); //pega o id profile
-																var a = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}')+1));										
-																var level = a.results[0].level;	
-																a = null;
-
-																if(capUpdate(message, level)) return;
-
-																level = [level, level];																
-																
-																var dados = {"level":level, "dano": dano, "kills": kills};												
-																padraoLvlApex(message, nickLegivel, dados);		
-
-															}catch(e){
-																//site alt
-																//print(message,errorNickNaoEncontrado);
-																//return;
-															}	
-
-															limparMemoria(browser);
-														});
-														variavelVisita4=null;
-													}catch(e){
-
-													}
-											}
-											
-											limparMemoria(browser);
-										});	
-										variavelVisita3=null;
-									}catch(e){
-									
-									}	
-								}	
-						
-								limparMemoria(browser);
-						});
-						variavelVisita2=null;
-					}catch(e){					
-						
-					}
-						//fim site alternativo
-						
-						
-						//print(message,"ops: esqueceu do nick ou trocou? se nao, os dados estao offline, tente dps de 30s");
-						
-					}
-					//var resultado = formatarMsg(winP,kd,wins,kills,'--');
-					//msgPadraoBot(message, resultado, site, nickLegivel);
-					
-					limparMemoria(browser);
-				});	
-				variavelVisita=null;
-			}catch(e){}
+			
+			getDadosApex(message, parametroUsado, nickLegivel, padraoLvlApex);
+			
 		break;
 			
 		case "lendas":
@@ -4559,4 +4418,164 @@ function padraoLvlApex(message, nickLegivel, dados){
 		break;
 		
 	}	
+}
+
+
+
+function getDadosApex(message, parametroUsado, nickLegivel, callback){
+	var site, dados = {"level":0, "dano": -1, "kills": -1};
+	site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
+	try{
+		var variavelVisita = Browser.visit(site, function (e, browser) {				
+			//var level,wins,winP,kd,kills,selector;	
+			var kills=-1, dano=-1, level=0;	
+			try{
+				var text = browser.html();
+				text = text.substring(text.indexOf('imp_Overview')+15);
+				text = text.substring(0,text.indexOf('};')+1);
+				text = JSON.parse(text);
+				dano = text.damage.value;
+				kills = text.kills.value;
+				level = text.level.value;
+				
+				if(level=='0') throw false; //offline
+				text = null;
+				
+				if(capUpdate(message, level)) return;
+				
+				level = [level, level];
+				
+				dados.level = level;
+				dados.dano = dano;
+				dados.kills = kills;											
+				callback(message, nickLegivel, dados);						
+				
+			}catch(e){
+				//site alternativo
+				site = "https://apextab.com/api/search.php?platform=pc&search="+parametroUsado;
+				try{ //tentar atualizar usando outro site
+					var variavelVisita2 = Browser.visit(site, function (e, browser) {					
+						var winP, selector;	
+						try{
+							var text = browser.html(); //pega o id profile
+							var a = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}')+1));										
+							level = a.results[0].level;	
+							kills = a.results[0].kills;
+							a = null;
+							if(level=='0') throw false; //offline
+							if(capUpdate(message, level)) return;
+							
+							level = [level, level];
+							
+							dados.level = level;
+							dados.dano = dano;
+							dados.kills = kills;								
+							callback(message, nickLegivel, dados);		
+					
+						}catch(e){								
+							//print(message, "erro");
+							//site alternativo2
+							site = "https://www.apexlegendsapi.com/api/v2/player?platform=pc&name="+parametroUsado;
+							try{
+								var variavelVisita3 = Browser.visit(site, function (e, browser) {				
+									var level;	
+									try{
+										var text = browser.html();
+										if(text == undefined) throw false; //crash logs
+										var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
+										level = data["level"];
+										
+										if(capUpdate(message, level)) return;
+										
+										level = [level,level]; //gambiarra												
+																						
+										dados.level = level;
+										dados.dano = dano;
+										dados.kills = kills;									
+										callback(message, nickLegivel, dados);		
+									}catch(e){											
+											//site alternativo
+											site = "https://www.apexlegendshut.com/free-api?platform=PC&title="+parametroUsado;
+											try{ //tentar atualizar usando outro site
+												var variavelVisita4 = Browser.visit(site, function (e, browser) {					
+													var winP, selector;	
+													try{
+														var text = browser.html(); //pega o id profile
+														var a = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}')+1));										
+														var level = a.results[0].level;	
+														a = null;
+
+														if(capUpdate(message, level)) return;
+
+														level = [level, level];																
+														
+																				
+														dados.level = level;
+														dados.dano = dano;
+														dados.kills = kills;								
+														callback(message, nickLegivel, dados);		
+
+													}catch(e){
+														//site alt
+														site = "http://api.mozambiquehe.re/bridge?platform=PC&auth=0V7bLm3DwwImSEr9ruFI&player="+parametroUsado;
+														try{
+																//var level;
+															request(site, function (error, response, body) {
+																try{
+																	var text = body;
+																	if(text == undefined) throw false; //crash logs
+																	var data;
+																	data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
+																	if(data.global == undefined) {message.reply("tente novamente mais tarde");return;}
+																	level = data.global.level;
+																	kills = data.total.kills;
+																	dano = data.total.damage;
+																											
+																	dados.level = level;
+																	dados.dano = dano;
+																	dados.kills = kills;					
+																	callback(message, nickLegivel, dados);	
+																	
+																}catch(e){return;}
+															});
+														}catch(e){
+																	//print(message,e);
+														}
+													}	
+
+													limparMemoria(browser);
+												});
+												variavelVisita4=null;
+											}catch(e){
+
+											}
+									}
+									
+									limparMemoria(browser);
+								});	
+								variavelVisita3=null;
+							}catch(e){
+							
+							}	
+						}	
+				
+						limparMemoria(browser);
+				});
+				variavelVisita2=null;
+			}catch(e){					
+				
+			}
+				//fim site alternativo
+				
+				
+				//print(message,"ops: esqueceu do nick ou trocou? se nao, os dados estao offline, tente dps de 30s");
+				
+			}
+			//var resultado = formatarMsg(winP,kd,wins,kills,'--');
+			//msgPadraoBot(message, resultado, site, nickLegivel);
+			
+			limparMemoria(browser);
+		});	
+		variavelVisita=null;
+	}catch(e){}
 }
