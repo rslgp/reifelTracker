@@ -4402,13 +4402,14 @@ function padraoLvlApex(message, nickLegivel, dados){
 
 function getDadosApex(message, parametroUsado, nickLegivel, callback, isCapUpdate){
 	var site, dados = {"level":0, "dano": -1, "kills": -1};
+	var kills=-1, dano=-1, level=0;
+	var text, data;
 	site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
 	try{
 		var variavelVisita = Browser.visit(site, function (e, browser) {				
 			//var level,wins,winP,kd,kills,selector;	
-			var kills=-1, dano=-1, level=0;	
 			try{
-				var text = browser.html();
+				text = browser.html();
 				text = text.substring(text.indexOf('imp_Overview')+15);
 				text = text.substring(0,text.indexOf('};')+1);
 				text = JSON.parse(text);
@@ -4432,10 +4433,9 @@ function getDadosApex(message, parametroUsado, nickLegivel, callback, isCapUpdat
 				//site alternativo
 				site = "https://apextab.com/api/search.php?platform=pc&search="+parametroUsado;
 				try{ //tentar atualizar usando outro site
-					var variavelVisita2 = Browser.visit(site, function (e, browser) {					
-						var winP, selector;	
+					var variavelVisita2 = Browser.visit(site, function (e, browser) {	
 						try{
-							var text = browser.html(); //pega o id profile
+							text = browser.html(); //pega o id profile
 							var a = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}')+1));										
 							level = a.results[0].level;	
 							kills = a.results[0].kills;
@@ -4456,11 +4456,11 @@ function getDadosApex(message, parametroUsado, nickLegivel, callback, isCapUpdat
 							site = "https://www.apexlegendsapi.com/api/v2/player?platform=pc&name="+parametroUsado;
 							try{
 								var variavelVisita3 = Browser.visit(site, function (e, browser) {				
-									var level;	
+									//var level;	
 									try{
-										var text = browser.html();
+										text = browser.html();
 										if(text == undefined) throw false; //crash logs
-										var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
+										data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
 										level = data["level"];
 										
 										if(isCapUpdate && capUpdate(message, level)) return;
@@ -4476,12 +4476,12 @@ function getDadosApex(message, parametroUsado, nickLegivel, callback, isCapUpdat
 											site = "https://www.apexlegendshut.com/free-api?platform=PC&title="+parametroUsado;
 											try{ //tentar atualizar usando outro site
 												var variavelVisita4 = Browser.visit(site, function (e, browser) {					
-													var winP, selector;	
+														
 													try{
-														var text = browser.html(); //pega o id profile
-														var a = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}')+1));										
-														var level = a.results[0].level;	
-														a = null;
+														text = browser.html(); //pega o id profile
+														data = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}')+1));										
+														level = data.results[0].level;	
+														data = null;
 
 														if(isCapUpdate && capUpdate(message, level)) return;
 
@@ -4500,9 +4500,8 @@ function getDadosApex(message, parametroUsado, nickLegivel, callback, isCapUpdat
 																//var level;
 															request(site, function (error, response, body) {
 																try{
-																	var text = body;
+																	text = body;
 																	if(text == undefined) throw false; //crash logs
-																	var data;
 																	data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
 																	if(data.global == undefined) {message.reply("tente novamente mais tarde");return;}
 																	level = data.global.level;
