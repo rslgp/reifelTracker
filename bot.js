@@ -1374,7 +1374,8 @@ client.on('message', message => {
 			
 		
 		case "mudei":
-			site = "http://api.mozambiquehe.re/bridge?platform=PC&auth=0V7bLm3DwwImSEr9ruFI&player="+parametroUsado;
+			getDadosApex(message, parametroUsado, nickLegivel, mudeiApex);
+			/*site = "http://api.mozambiquehe.re/bridge?platform=PC&auth=0V7bLm3DwwImSEr9ruFI&player="+parametroUsado;
 			try{
 					var level;
 				request(site, function (error, response, body) {
@@ -1386,13 +1387,13 @@ client.on('message', message => {
 						if(data.global == undefined) {message.reply("tente novamente mais tarde");return;}
 						level = data.global.level;
 						
-						getDadosApex(message, parametroUsado, nickLegivel, mudeiApex);
 							
 					}catch(e){return;}
 				});
 			}catch(e){
 						//print(message,e);
 			}
+			*/
 		break;
 			
 		case "ce":
@@ -4578,4 +4579,35 @@ function getDadosApex(message, parametroUsado, nickLegivel, callback){
 		});	
 		variavelVisita=null;
 	}catch(e){}
+}
+
+function mudeiApex(message, nickLegivel, dados){
+	var level = dados.level[0];
+	
+	var levelatual;
+	var nome = message.member.nickname;
+	if(nome == null) throw false; //crash logs
+	if(nome.indexOf('★') == (nome.length-1))
+		levelatual = nome.substring(nome.lastIndexOf(' ',nome.length-3)+1,nome.length-2);
+	else
+		levelatual = nome.substring(0,nome.indexOf(' '));
+	if( (parseInt(levelatual) + 20) >= parseInt(level) ) { 
+		switch(message.guild.id){
+
+			case '550108927698927626':
+				mudarNick(message, padraoNickApexAMS(levelatual,nickLegivel));
+			break;
+
+			case '542501242916700181':
+				mudarNick(message, padraoNickApexAMS(levelatual,nickLegivel));
+			break;
+			
+			default:
+				mudarNick(message, padraoNickApex(levelatual,nickLegivel));
+			break;
+		}
+	}else{
+		//reifelUser.send(nickLegivel+"win%: "+parseFloat(winrKD[0])- (parseFloat(winrate) + 2.4) );
+		print(message, "não posso trocar seu nick, pois demorou muito tempo com nick desatualizado, peça a algum moderador");
+	}
 }
