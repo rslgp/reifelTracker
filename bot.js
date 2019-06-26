@@ -1600,6 +1600,7 @@ client.on('message', message => {
 						var partidas = data.games_played, kills = data.kills;
 						*/
 			site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
+			var dados = {"level":0, "dano": -1, "kills": -1};
 			try{
 				var variavelVisita3 = Browser.visit(site, function (e, browser) {				
 					var kills=-1, dano=-1, level=0;	
@@ -1614,67 +1615,41 @@ client.on('message', message => {
 						level = text.level.value;
 						text=null;
 							//if(partidas===undefined) {print(message,"ative partidas jogadas (games played) no banner e jogue uma partida para atualizar"); return;}
-
-							//if(partidas < 150) {print(message,"quantidade de partidas insuficiente, minimo 150"); throw false;}
-							if(level < 85) {print(message,"level insuficiente, minimo 85"); throw false;}
-							//if(kills===undefined) kills = 0;
-							var eloPontos = getEloKL(level,kills,0,dano);
-							var pontos = eloPontos[2];
-							var cargosEloP = ['562939565329874954', '562939565388726285'];
-							//var cargosElo = ['562423267894231072', '562423268292689920', '562423268511055892', '581226705612701700'];
-
-							switch(eloPontos[0]){
-								case "S+":
-									changeRole(message.member, cargosEloP[1], cargosEloP[0]);
-									message.reply(pontos+", tierS+");
-									break;
-								break;
-								case "S":
-									changeRole(message.member, cargosElo[1], cargosElo[0]);
-									message.reply(pontos+", tierS");
-									(top10ELO[0]).add({"n":nickLegivel,"p":Number(eloPontos[1]).toFixedNumber(2)});
-									topEloDesatualizado[0] = true;
-									break;
-
-								case "A+":
-									changeRole(message.member, cargosEloP[0], cargosEloP[1]);
-									message.reply(pontos+", tierA+");
-									break;
-								break;
-								case "A":									
-									if(message.member.roles.has(cargosElo[0])){
-										setTimeout(function(){ 
-											message.member.removeRole(cargosElo[0]).catch(err => console.log(err)).then( () => 
-												{												
-													changeRole(message.member, cargosElo[0], cargosElo[1]);
-													message.reply(pontos+", tierA");
-													
-												}
-											);
-										}, 1700);	
-									}else{
-										changeRole(message.member, cargosElo[2], cargosElo[1]);
-										message.reply(pontos+", tierA");
-									}
-									
-									//(top10ELO[1]).add({"n":nickLegivel,"p":Number(eloPontos[1]).toFixedNumber(2)});
-									//topEloDesatualizado[1] = true;
-									break;
-								case "B":
-									changeRole(message.member, cargosElo[1], cargosElo[2]);
-									message.reply(pontos+", tierB");
-									break;
-								case "C":
-									changeRole(message.member, cargosElo[2], cargosElo[3]);
-									message.reply(pontos+", tierC");
-									break;
-								default:
-									message.reply(pontos+" não elegivel para tier ainda (minimo: 33,84)");
-									break;
-							}
+						
+						dados.level = level;
+						dados.dano = dano;
+						dados.kills = kills;
+						eloApex(message, cargosElo, dados);
+							
 
 					}catch(e){
-						//console.log(e);
+						site = "http://api.mozambiquehe.re/bridge?platform=PC&auth=0V7bLm3DwwImSEr9ruFI&player="+parametroUsado;
+						try{
+								//var level;
+							request(site, function (error, response, body) {
+								try{
+									var text = body;
+									if(text == undefined) throw false; //crash logs
+									var data;
+									data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
+									if(data.global == undefined) {message.reply("tente novamente mais tarde");return;}
+									level = data.global.level;
+									kills = data.total.kills;
+									dano = data.total.damage;
+									text = data = null;
+									
+
+									dados.level = level;
+									dados.dano = dano;
+									dados.kills = kills;					
+									eloApex(message, cargosElo, dados);	
+
+								}catch(e){
+								}
+							});
+						}catch(e){
+									//print(message,e);
+						}
 					}
 					
 					limparMemoria(browser);
@@ -4542,7 +4517,7 @@ function getDadosApex(message, parametroUsado, nickLegivel, callback, isCapUpdat
 																	dados.kills = kills;					
 																	callback(message, nickLegivel, dados);	
 																	
-																}catch(e){return;}
+																}catch(e){}
 															});
 														}catch(e){
 																	//print(message,e);
@@ -4614,5 +4589,69 @@ function mudeiApex(message, nickLegivel, dados){
 	}else{
 		//reifelUser.send(nickLegivel+"win%: "+parseFloat(winrKD[0])- (parseFloat(winrate) + 2.4) );
 		print(message, "não posso trocar seu nick, pois demorou muito tempo com nick desatualizado, peça a algum moderador");
+	}
+}
+
+function eloApex(message, cargosElo, dados){
+	var level = dados.level;
+	var dano = dados.dano;
+	var kills = dados.kills;
+	
+//if(partidas < 150) {print(message,"quantidade de partidas insuficiente, minimo 150"); throw false;}
+	if(level < 85) {print(message,"level insuficiente, minimo 85"); throw false;}
+	//if(kills===undefined) kills = 0;
+	var eloPontos = getEloKL(level,kills,0,dano);
+	var pontos = eloPontos[2];
+	var cargosEloP = ['562939565329874954', '562939565388726285'];
+	//var cargosElo = ['562423267894231072', '562423268292689920', '562423268511055892', '581226705612701700'];
+
+	switch(eloPontos[0]){
+		case "S+":
+			changeRole(message.member, cargosEloP[1], cargosEloP[0]);
+			message.reply(pontos+", tierS+");
+			break;
+		break;
+		case "S":
+			changeRole(message.member, cargosElo[1], cargosElo[0]);
+			message.reply(pontos+", tierS");
+			(top10ELO[0]).add({"n":nickLegivel,"p":Number(eloPontos[1]).toFixedNumber(2)});
+			topEloDesatualizado[0] = true;
+			break;
+
+		case "A+":
+			changeRole(message.member, cargosEloP[0], cargosEloP[1]);
+			message.reply(pontos+", tierA+");
+			break;
+		break;
+		case "A":									
+			if(message.member.roles.has(cargosElo[0])){
+				setTimeout(function(){ 
+					message.member.removeRole(cargosElo[0]).catch(err => console.log(err)).then( () => 
+						{												
+							changeRole(message.member, cargosElo[0], cargosElo[1]);
+							message.reply(pontos+", tierA");
+
+						}
+					);
+				}, 1700);	
+			}else{
+				changeRole(message.member, cargosElo[2], cargosElo[1]);
+				message.reply(pontos+", tierA");
+			}
+
+			//(top10ELO[1]).add({"n":nickLegivel,"p":Number(eloPontos[1]).toFixedNumber(2)});
+			//topEloDesatualizado[1] = true;
+		break;
+		case "B":
+			changeRole(message.member, cargosElo[1], cargosElo[2]);
+			message.reply(pontos+", tierB");
+		break;
+		case "C":
+			changeRole(message.member, cargosElo[2], cargosElo[3]);
+			message.reply(pontos+", tierC");
+		break;
+		default:
+			message.reply(pontos+" não elegivel para tier ainda (minimo: 33,84)");
+		break;
 	}
 }
