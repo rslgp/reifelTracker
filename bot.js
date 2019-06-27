@@ -1852,6 +1852,9 @@ client.on('message', message => {
 					}
 					print(message, rn.join(' > ')+"\r\nkills: ( "+rk.join(', ')+" )");
 					
+					//ad
+					message.channel.send(randomADS()).catch(e => null);
+					
 					limparMemoria(browser);
 				});
 				variavelVisita2=null;
