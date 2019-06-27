@@ -3716,9 +3716,10 @@ function randomDonate(){
 }
 
 const ad = '```brainfuck\r\nbot com plano de R$8~22mês\r\nmais informações: .discord```';
+const adRate = 40;
 function randomADS(){
 	if(anuncieiRecente) {anuncieiRecente=false;return "";}
-	if(Math.floor(Math.random() * (45)) > 10){
+	if(Math.floor(Math.random() * (adRate)) > 10){
 		return "";
 	}else{
 		anuncieiRecente=true;
