@@ -1832,7 +1832,7 @@ client.on('message', message => {
 					var a = JSON.parse(browser.text('body'));
 					var ar = [];
 					for(var i=0; i<a.data.children.length; i++){
-						ar.push({"n":a.data.children[i].metadata.legend_name, "k":a.data.children[i].stats[0].value});
+						if(a.data.children[i].stats[0].metadata.key=="Kills") ar.push({"n":a.data.children[i].metadata.legend_name, "k":a.data.children[i].stats[0].value});
 					}
 
 					ar.sort(function(x,y){
