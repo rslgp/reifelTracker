@@ -1829,7 +1829,12 @@ client.on('message', message => {
 				var selector, temp;
 				site = "https://public-api.tracker.gg/apex/v1/standard/profile/5/"+parametroUsado;	
 				var variavelVisita2 = Browser.visit(site, function (e, browser) {
-					var a = JSON.parse(browser.text('body'));
+					try{
+						var a = JSON.parse(browser.text('body'));
+					}catch(e){						
+						limparMemoria(browser);
+						return;
+					}
 					var ar = [];
 					for(var i=0; i<a.data.children.length; i++){
 						if(a.data.children[i].stats[0].metadata.key=="Kills") ar.push({"n":a.data.children[i].metadata.legend_name, "k":a.data.children[i].stats[0].value});
