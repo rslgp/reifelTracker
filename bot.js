@@ -1831,36 +1831,36 @@ client.on('message', message => {
 				var variavelVisita2 = Browser.visit(site, function (e, browser) {
 					try{
 						var a = JSON.parse(browser.text('body'));
+						var ar = [];
+						for(var i=0; i<a.data.children.length; i++){
+							if(a.data.children[i].stats[0].metadata.key=="Kills") ar.push({"n":a.data.children[i].metadata.legend_name, "k":a.data.children[i].stats[0].value});
+						}
+
+						ar.sort(function(x,y){
+							if(x.k > y.k) return -1;
+							if(x.k < y.k) return 1;
+							return 0;
+						});
+
+						var rn = [];
+						var rk = [];
+						for(var i=0; i<3; i++){
+							if(ar[i]) {
+								rn.push(ar[i].n);
+								rk.push(ar[i].k);
+							}
+
+						}
+						print(message, rn.join(' > ')+"\r\nkills: ( "+rk.join(', ')+" )");
+
+						//ad
+						message.channel.send(randomADS()).catch(e => null);
+
+						limparMemoria(browser);					
 					}catch(e){						
 						limparMemoria(browser);
 						return;
 					}
-					var ar = [];
-					for(var i=0; i<a.data.children.length; i++){
-						if(a.data.children[i].stats[0].metadata.key=="Kills") ar.push({"n":a.data.children[i].metadata.legend_name, "k":a.data.children[i].stats[0].value});
-					}
-
-					ar.sort(function(x,y){
-						if(x.k > y.k) return -1;
-						if(x.k < y.k) return 1;
-						return 0;
-					});
-					
-					var rn = [];
-					var rk = [];
-					for(var i=0; i<3; i++){
-						if(ar[i]) {
-							rn.push(ar[i].n);
-							rk.push(ar[i].k);
-						}
-
-					}
-					print(message, rn.join(' > ')+"\r\nkills: ( "+rk.join(', ')+" )");
-					
-					//ad
-					message.channel.send(randomADS()).catch(e => null);
-					
-					limparMemoria(browser);
 				});
 				variavelVisita2=null;
 			}catch(e){
