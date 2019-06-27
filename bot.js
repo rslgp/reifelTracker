@@ -3712,7 +3712,7 @@ function randomDonate(){
 	else {anuncieiRecente=true; {var used = Math.round(process.memoryUsage().heapUsed / 1048576); if(mempeak < used) mempeak = used; return AnunciarNovosPlanos/*+quebraLinha+msgDonate[index]+doacao*/};}
 }
 
-const ad = '```brainfuck\r\nbot com plano de R$8~22mês\r\np/ serv. +info: .discord```';
+const ad = '```brainfuck\r\nbot com plano de R$8~22mês\r\nmais informações: .discord```';
 function randomADS(){
 	if(anuncieiRecente) {anuncieiRecente=false;return "";}
 	if(Math.floor(Math.random() * (45)) > 10){
