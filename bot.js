@@ -3395,7 +3395,7 @@ function runAutoUpdateWinRate(message){
 }
 
 function mudarNick(message, novoNick, extra=""){
-	message.member.setNickname( novoNick ).then(user => message.reply(extra+`atualizei`)).catch(err => message.reply(`Não consegui atualizar, mas seria: `+novoNick));
+	message.member.setNickname( novoNick ).then(user => message.reply(extra+`atualizei` + randomADS())).catch(err => message.reply(`Não consegui atualizar, mas seria: `+novoNick));
 }
 
 function mudarNickSilencioso(message, novoNick, extra=""){
@@ -3710,6 +3710,17 @@ function randomDonate(){
 	const index = Math.floor(Math.random() * (msgDonate.length+reduzirMsgDonate));
 	if(index >= msgDonate.length) return "";
 	else {anuncieiRecente=true; {var used = Math.round(process.memoryUsage().heapUsed / 1048576); if(mempeak < used) mempeak = used; return AnunciarNovosPlanos/*+quebraLinha+msgDonate[index]+doacao*/};}
+}
+
+const ad = '```brainfuck\r\nbot com plano de R$8~22mês\r\np/ serv. +info: .discord```';
+function randomADS(){
+	if(anuncieiRecente) {anuncieiRecente=false;return "";}
+	if(Math.floor(Math.random() * (45)) > 10){
+		return "";
+	}else{
+		anuncieiRecente=true;
+		return ad;
+	}
 }
 
 function atualizarBarraApoio(progresso){
@@ -4068,7 +4079,7 @@ function getEloKL(level,kills=0,matches=0,dano=0){
 	var kl = (((2.6*kills)+(dano/175))/(0.938*level));
 	//var kpm=0;
 	//if(matches!=0) kpm = (kills/matches);	
-	var msgComplemento = " kill+KillDano/lvl";
+	var msgComplemento = " kill+KillDano/lvl" + randomADS();
 	if(kl >= 19*ratio){
 		//if(kpm > 4.8) return ["S+",kl,kl+" "+kpm];
 		return ["S",kl+"",kl.toFixed(2)+msgComplemento];
