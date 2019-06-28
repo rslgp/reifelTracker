@@ -1878,7 +1878,7 @@ client.on('message', message => {
 		case "discord":
 		case "tbquero":
 			message.author.send("Agradeço pelo interesse "+message.author+"\r\n"+tabelaPreco).catch(e => null);
-			reifelUser.send(message.author+" futuro cliente");
+			reifelUser.send(message.author+" futuro cliente https://discordapp.com/users/"+message.author.id);
 		break;
 		
 		case "convitegratis":			
