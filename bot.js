@@ -772,6 +772,7 @@ client.on('message', message => {
 		case "novavotacao":
 		case "apostar":
 		case "modificar":
+		case "ren":
 		case "prefab":
 		case "verificar":
 		case "debug":			
@@ -1089,6 +1090,13 @@ client.on('message', message => {
 				}catch(e){}
 			});
 			variavelVisita=null;
+		break;
+		
+		case "ren":
+			if(message.author!=reifelUser) return;
+			var user = message.mentions.users.array()[0];
+			if(user) user= user.id;
+			message.guild.members.find(val => val.id === user).setNickname(nickLegivel.substring(nickLegivel.indexOf("=")+1)).catch(e=>null);
 		break;
 			
 		case "modificar":
