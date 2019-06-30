@@ -4377,7 +4377,7 @@ function elomerged(message, level, kills, dano, cargosElo){
 
 function padraoLvlApex(message, nickLegivel, dados){
 	var level = [dados.level,dados.level];
-	if(level == undefined) throw false;
+	if(level[0] == undefined) throw false;
 	
 	var dano = dados.dano;
 	var kills = dados.kills;
