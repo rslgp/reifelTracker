@@ -4463,7 +4463,8 @@ function getDadosApex(message, parametroUsado, nickLegivel, callback, isCapUpdat
 				
 			}catch(e){
 				//site alternativo
-				site = "https://apextab.com/api/search.php?platform=pc&search="+parametroUsado;
+				//site = "https://apextab.com/api/search.php?platform=pc&search="+parametroUsado; //com defeito
+				site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
 				try{ //tentar atualizar usando outro site
 					var variavelVisita2 = Browser.visit(site, function (e, browser) {	
 						try{
