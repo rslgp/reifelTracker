@@ -1650,7 +1650,6 @@ client.on('message', message => {
 							
 
 					}catch(e){
-						/*
 						site = "http://api.mozambiquehe.re/bridge?platform=PC&auth=0V7bLm3DwwImSEr9ruFI&player="+parametroUsado;
 						try{
 								//var level;
@@ -1678,7 +1677,6 @@ client.on('message', message => {
 						}catch(e){
 									//print(message,e);
 						}
-						*/
 					}
 					
 					limparMemoria(browser);
