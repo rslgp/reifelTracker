@@ -4333,8 +4333,8 @@ function limparMemoria(browser){
 		}catch(e){}
 		try{ 
 			//fix this browser has been destroyed
-			browser.destroy();
-			delete browser;
+			//browser.destroy();
+			//delete browser;
 			browser = new Browser({
 			    silent: true
 			});
