@@ -1650,6 +1650,8 @@ client.on('message', message => {
 						
 						limparMemoria(browser);
 					}catch(e){
+						if(e) reifelUser.send(e);
+						if(e.message) reifelUser.send(e.message);
 						message.reply("houve um problema, se o elo for menor, jogue uma partida com cada campeao, enviando elo quando terminar a partida");
 						site = "http://api.mozambiquehe.re/bridge?platform=PC&auth=0V7bLm3DwwImSEr9ruFI&player="+parametroUsado;
 						try{
