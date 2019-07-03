@@ -1628,6 +1628,7 @@ client.on('message', message => {
 						*/
 			site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
 			var dados = {"level":0, "dano": -1, "kills": -1};
+			var sucessoAT = false;
 			try{
 				var variavelVisita3 = Browser.visit(site, function (e, browser) {				
 					var kills=-1, dano=-1, level=0;	
@@ -1647,11 +1648,12 @@ client.on('message', message => {
 						dados.dano = dano;
 						dados.kills = kills;
 						eloApex(message, cargosElo, dados, nickLegivel);							
-						
+						sucessoAT = true;
 						limparMemoria(browser);
 					}catch(e){
-						if(e) reifelUser.send(e);
-						if(e.message) reifelUser.send(e.message);
+						if(sucessoAT) return;
+						//if(e) reifelUser.send(e);
+						//if(e.message) reifelUser.send(e.message);
 						message.reply("houve um problema, se o elo for menor, jogue uma partida com cada campeao, enviando elo quando terminar a partida");
 						site = "http://api.mozambiquehe.re/bridge?platform=PC&auth=0V7bLm3DwwImSEr9ruFI&player="+parametroUsado;
 						try{
