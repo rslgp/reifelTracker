@@ -4653,7 +4653,7 @@ function eloApex(message, cargosElo, dados, nickLegivel){
 	var kills = dados.kills;
 	
 //if(partidas < 150) {print(message,"quantidade de partidas insuficiente, minimo 150"); throw false;}
-	if(level < 85) {print(message,"level insuficiente, minimo 85"); throw false;}
+	if(level < 85) {print(message,"level insuficiente, minimo 85"); return;}
 	//if(kills===undefined) kills = 0;
 	var eloPontos = getEloKL(level,kills,0,dano);
 	var pontos = eloPontos[2];
