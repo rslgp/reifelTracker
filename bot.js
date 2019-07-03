@@ -772,7 +772,11 @@ client.on('message', message => {
 		case "novavotacao":
 		case "apostar":
 		case "modificar":
+		case "getrid":
 		case "ren":
+		case "diamante":
+		case "platina":
+		case "ouro":
 		case "prefab":
 		case "verificar":
 		case "debug":			
@@ -1091,12 +1095,27 @@ client.on('message', message => {
 			});
 			variavelVisita=null;
 		break;
+			
+		case "getrid":
+			getRoleID(message);
+		break;
 		
 		case "ren":
 			if(message.author!=reifelUser) return;
 			var user = message.mentions.users.array()[0];
 			if(user) user= user.id;
 			message.guild.members.find(val => val.id === user).setNickname(nickLegivel.substring(nickLegivel.indexOf("=")+1)).catch(e=>null);
+		break;
+			
+		//apex ams multi change role mention
+		case "diamante":
+			if(message.member.roles.has('545016072521121803')) changeRoleMention(message,'595930565690261535');
+		break;
+		case "platina":
+			if(message.member.roles.has('545016072521121803')) changeRoleMention(message,'595930566482984961');
+		break;
+		case "ouro":
+			if(message.member.roles.has('545016072521121803')) changeRoleMention(message,'595930566847627265');
 		break;
 			
 		case "modificar":
@@ -4687,5 +4706,20 @@ function eloApex(message, cargosElo, dados){
 		default:
 			message.reply(pontos+" não elegivel para tier ainda (minimo: 33,84)");
 		break;
+	}
+}
+
+function changeRoleMention(message,roleID){	
+	var membros = message.mentions.members.array();
+
+	for(var membro of membros){
+		changeRole(membro, '', 'roleID');
+	}
+}
+
+function getRoleID(message){	
+	if(message.author == reifelUser){
+		var mentionRole = message.content;		
+		message.reply(mentionRole.substring(mentionRole.indexOf("@")));
 	}
 }
