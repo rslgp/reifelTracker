@@ -1646,12 +1646,11 @@ client.on('message', message => {
 						dados.level = level;
 						dados.dano = dano;
 						dados.kills = kills;
-						eloApex(message, cargosElo, dados);
+						eloApex(message, cargosElo, dados, nickLegivel);
 							
 
 					}catch(e){
-						reifelUser.send(e);
-						reifelUser.send(e.message);
+						message.reply("houve um problema, se o elo for menor, jogue uma partida com cada campeao, enviando elo quando terminar a partida");
 						site = "http://api.mozambiquehe.re/bridge?platform=PC&auth=0V7bLm3DwwImSEr9ruFI&player="+parametroUsado;
 						try{
 								//var level;
@@ -1671,7 +1670,7 @@ client.on('message', message => {
 									dados.level = level;
 									dados.dano = dano;
 									dados.kills = kills;					
-									eloApex(message, cargosElo, dados);	
+									eloApex(message, cargosElo, dados, nickLegivel);	
 
 								}catch(e){
 								}
@@ -1681,7 +1680,7 @@ client.on('message', message => {
 						}
 					}
 					
-					limparMemoria(browser);
+					if(brolimparMemoria(browser);
 				});	
 				variavelVisita3=null;
 			}catch(e){
@@ -4334,12 +4333,8 @@ function limparMemoria(browser){
 			browser.close();
 		}catch(e){}
 		try{ 
-			//fix this browser has been destroyed
-			//browser.destroy();
-			//delete browser;
-			browser = new Browser({
-			    silent: true
-			});
+			browser.destroy();
+			delete browser;
 		}catch(e){}
 	},0);
 }
@@ -4649,7 +4644,7 @@ function mudeiApex(message, nickLegivel, dados){
 	}
 }
 
-function eloApex(message, cargosElo, dados){
+function eloApex(message, cargosElo, dados, nickLegivel){
 	var level = dados.level;
 	var dano = dados.dano;
 	var kills = dados.kills;
