@@ -1650,6 +1650,8 @@ client.on('message', message => {
 							
 
 					}catch(e){
+						reifelUser.send(e);
+						reifelUser.send(e.message);
 						site = "http://api.mozambiquehe.re/bridge?platform=PC&auth=0V7bLm3DwwImSEr9ruFI&player="+parametroUsado;
 						try{
 								//var level;
