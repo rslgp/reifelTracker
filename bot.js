@@ -1646,9 +1646,9 @@ client.on('message', message => {
 						dados.level = level;
 						dados.dano = dano;
 						dados.kills = kills;
-						eloApex(message, cargosElo, dados, nickLegivel);
-							
-
+						eloApex(message, cargosElo, dados, nickLegivel);							
+						
+						limparMemoria(browser);
 					}catch(e){
 						message.reply("houve um problema, se o elo for menor, jogue uma partida com cada campeao, enviando elo quando terminar a partida");
 						site = "http://api.mozambiquehe.re/bridge?platform=PC&auth=0V7bLm3DwwImSEr9ruFI&player="+parametroUsado;
@@ -1680,7 +1680,6 @@ client.on('message', message => {
 						}
 					}
 					
-					if(brolimparMemoria(browser);
 				});	
 				variavelVisita3=null;
 			}catch(e){
