@@ -4489,7 +4489,7 @@ function getDadosApex(message, parametroUsado, nickLegivel, callback, isCapUpdat
 				try{ //tentar atualizar usando outro site
 					var variavelVisita2 = Browser.visit(site, function (e, browser) {	
 						try{
-							text = browser.html(); //pega o id profile
+							/*text = browser.html(); //pega o id profile
 							var a = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}')+1));										
 							level = a.results[0].level;	
 							kills = a.results[0].kills;
@@ -4503,7 +4503,26 @@ function getDadosApex(message, parametroUsado, nickLegivel, callback, isCapUpdat
 							dados.dano = dano;
 							dados.kills = kills;								
 							callback(message, nickLegivel, dados);		
-					
+							*/
+							text = browser.html();
+							text = text.substring(text.indexOf('imp_Overview')+15);
+							text = text.substring(0,text.indexOf('};')+1);
+							text = JSON.parse(text);
+							dano = text.damage.value;
+							kills = text.kills.value;
+							level = text.level.value;
+
+							if(level=='0') throw false; //offline
+							text = null;
+
+							if(isCapUpdate && capUpdate(message, level)) return;
+
+							//level = [level, level];
+
+							dados.level = level;
+							dados.dano = dano;
+							dados.kills = kills;											
+							callback(message, nickLegivel, dados);
 						}catch(e){								
 							//print(message, "erro");
 							//site alternativo2
