@@ -4731,11 +4731,14 @@ function eloApex(message, cargosElo, dados, nickLegivel){
 }
 
 function changeRoleMention(message,roleID){	
-	var membros = message.mentions.members.array();
-
-	for(var membro of membros){
-		changeRole(membro, '', 'roleID');
-	}
+	var membro = message.mentions.members.array()[0];
+	
+	setTimeout(function(){ 
+		membro.addRole(roleID).catch(err => null);
+	}, 1700);
+	//for(var membro of membros){
+	//	changeRole(membro, '', 'roleID');
+	//}
 }
 
 function getRoleID(message){	
