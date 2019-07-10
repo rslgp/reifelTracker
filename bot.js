@@ -4242,7 +4242,7 @@ function DoubleLinkedListJSON(){
 	this.add = function(dado){
 		if(a[a[0].t].p > dado.p) return;
 		for(var k = a[0].t; k!=-1; k = a[k].prev){
-			if(a[k].n == dado.n && a[k].p != dado.p) {remover(a[k].p,k);break;}
+			if(a[k].n == dado.n && a[k].p != dado.p) {this.remover(a[k].p,k);break;}
 		}
 		var temp;
 		
