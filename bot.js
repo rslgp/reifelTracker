@@ -1629,7 +1629,6 @@ client.on('message', message => {
 						*/
 			site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
 			var dados = {"level":0, "dano": -1, "kills": -1};
-			var sucessoAT = false;
 			try{
 				var variavelVisita3 = Browser.visit(site, function (e, browser) {				
 					var kills=-1, dano=-1, level=0;	
@@ -1648,11 +1647,23 @@ client.on('message', message => {
 						dados.level = level;
 						dados.dano = dano;
 						dados.kills = kills;
-						eloApex(message, cargosElo, dados, nickLegivel);							
-						sucessoAT = true;
+						eloApex(message, cargosElo, dados, nickLegivel);
 						limparMemoria(browser);
 					}catch(e){
-						if(sucessoAT) return;
+						if(e.name){
+							switch(e.name){
+								case "SyntaxError":
+								break;
+								default:								
+									limparMemoria(browser);
+									return;
+								break;
+							}
+						}else{							
+							limparMemoria(browser);
+							return;						
+						}
+
 						if(e) debug.send(e);
 						if(e.message) debug.send(e.message.substring(0,2000));
 						message.reply("houve um problema, se o elo for menor, jogue uma partida com cada campeao, enviando elo quando terminar a partida");
