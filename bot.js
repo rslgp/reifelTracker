@@ -1663,9 +1663,8 @@ client.on('message', message => {
 							limparMemoria(browser);
 							return;						
 						}
-
-						if(e) debug.send(e);
-						if(e.message) debug.send(e.message.substring(0,2000));
+						
+						callDebug(e, "elo", message.author);
 						message.reply("houve um problema, se o elo for menor, jogue uma partida com cada campeao, enviando elo quando terminar a partida");
 						site = "http://api.mozambiquehe.re/bridge?platform=PC&auth=0V7bLm3DwwImSEr9ruFI&player="+parametroUsado;
 						try{
@@ -1700,6 +1699,8 @@ client.on('message', message => {
 				variavelVisita3=null;
 			}catch(e){
 				//site alt
+				
+				callDebug(e, "elo manutencao", message.author);
 				message.reply("elo em manutenção");
 			}
 			
@@ -4757,5 +4758,14 @@ function getRoleID(message){
 	if(message.author == reifelUser){
 		var mentionRole = message.content;		
 		message.reply(mentionRole.substring(mentionRole.indexOf("@")));
+	}
+}
+
+function callDebug(e, funcao, usuario){
+	try{	
+		var info = usuario+" "+funcao+" - ";
+		if(e) debug.send(info+e);
+		if(e.message) debug.send(info+e.message.substring(0,2000-info.length));
+	}catch(e2){
 	}
 }
