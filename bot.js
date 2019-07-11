@@ -1649,23 +1649,18 @@ client.on('message', message => {
 						dados.kills = kills;
 						eloApex(message, cargosElo, dados, nickLegivel);
 						limparMemoria(browser);
-					}catch(e){
-						if(e.name){
-							switch(e.name){
-								case "SyntaxError":
-								break;
-								default:								
-									limparMemoria(browser);
-									return;
-								break;
-							}
-						}else{							
-							limparMemoria(browser);
-							return;						
+					}catch(e){						
+						switch(e.name){
+							case "SyntaxError":
+							break;
+							default:								
+								limparMemoria(browser);
+								return;
+							break;
 						}
 						
-						callDebug(e, "elo", message.author);
-						message.reply("houve um problema, se o elo for menor, jogue uma partida com cada campeao, enviando elo quando terminar a partida");
+						//callDebug(e, "elo", message.author);
+						//message.reply("houve um problema, se o elo for menor, jogue uma partida com cada campeao, enviando elo quando terminar a partida");
 						site = "http://api.mozambiquehe.re/bridge?platform=PC&auth=0V7bLm3DwwImSEr9ruFI&player="+parametroUsado;
 						try{
 								//var level;
