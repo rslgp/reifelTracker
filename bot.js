@@ -1,10 +1,14 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
+const message = new Discord.Message();
 
 const JSONbig = require('json-bigint');
 
 //trocar o token
 client.login(process.env.BOT_TOKEN);
+
+//CALABOCA VUE -- comentar em caso de debug, se precisar
+console.log = function log(){}
 
 //versao 1.2
 const tabelaPreco = '**Mensalidade do bot ReifelTracker**\r\nDepende da quantidade de membros do servidor no discord\r\n\r\nExperimente por 7 dias e só paga se quiser continuar\r\nMensalidade:\r\nmembros -------- reais por mês\r\n1 a 85            -------- R$ 8\r\n86 a 250        -------- R$ 15\r\n251 a 650       -------- R$ 18\r\nmaior que 650      -------- R$ 22\r\n\r\n**Forma de pagamento**: boleto, transferência bancária (banco do brasil), depósito, paypal (+12% do preço pela taxa do paypal)\r\n**Dá direito a** 3 cargos (nomes customizáveis: Lendário, Épico, Raro)(representando fortnite:kd,winrate, apex:level,elo), instalação grátis e só paga quando estiver funcionando, os preços são para usar o bot do jeito que ele é na última atualização dele, com no máximo pequenas adaptações. Se não quiser mais, o bot é desinstalado e tem opção de remover as modificações feitas pelo bot (voltar ao que era antes).\r\n\r\n**Jogos suportados**: Fornite, Apex\r\n\r\n**PACOTES paga uma vez pelo pacote:**\r\n(válido enquanto o tamanho do servidor condiz com o plano contratado)\r\npacote de 4 meses com 8% de desconto\r\npacote de 8 meses com 15% de desconto\r\npacote de 1 ano com 20% de desconto\r\n\r\n**TRATAR COM:** @Reifel#5047 <@195731919424585728>\r\nhttps://discordapp.com/users/195731919424585728\r\nNão envie mensagem por aqui, envie para reifel';
@@ -47,20 +51,12 @@ clientTwitch.connect();
 //fim twitch
 */
 
-//CALABOCA VUE -- comentar em caso de debug, se precisar
-console.log = function log()
-{
-  
-} 
-//FIM-CALABOCA*/
-
 //security approach num1
 eval = function(args){
 	return;
 }
 //fim security
 
-const message = new Discord.Message();
 const Browser = require('zombie');
 Browser.silent = true;
 Browser.waitDuration='6s'; //cloudflare
