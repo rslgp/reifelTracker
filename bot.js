@@ -4896,6 +4896,8 @@ function cargosimg(parsedResult, message, url, arrayID){ //arrayID => [stringCar
 		return;
 	}	
 	debug.send(parsedResult);
-	giveRoleSimilar(message, arrayID[0], arrayID[1], parsedResult[parsedResult.length-2], arrayID[2], url);
+	var ajuste = 2;
+	if(parsedResult.length > 5) ajuste = 3;
+	giveRoleSimilar(message, arrayID[0], arrayID[1], parsedResult[parsedResult.length-ajuste], arrayID[2], url);
 	
 }
