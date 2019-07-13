@@ -626,7 +626,7 @@ client.on('message', message => {
 				var h = att[0].height, w=att[0].width;
 				var aspectRatio = Math.round((w/h)*100)/100;
 				var aRFactor = 0.55;
-				if(aspectRatio > 1.7){
+				if(aspectRatio > 1.4){
 					aRFactor = 0.58;
 				}else{					
 					aRFactor = 0.55;
