@@ -612,6 +612,23 @@ client.on('message', message => {
 	if(message.author.bot) return; //ignora poupar processamento bot
 	
 	var parametroUsado = "", nickLegivel="", site="";
+	
+	var arrayIDcargosRead=null;
+	switch(message.channel.id){
+		case '595937348127162379':
+			if(arrayIDcargosRead==null) arrayIDcargosRead=['OURO I', 'GOLD I', '595930566847627265'];
+		case '595937385771040778':
+			if(arrayIDcargosRead==null) arrayIDcargosRead=['PLATINA I', 'PLATINUM I', '595930566482984961'];
+		case '595937398613868544':
+			if(arrayIDcargosRead==null) arrayIDcargosRead=['DIAMANTE I', 'DIAMOND I', '595930565690261535'];
+			try{
+				var att = (message.attachments).array();
+				var h = att[0].height, w=att[0].width;
+				cropReadImg(message, att[0].url, w, h, [ 0.12*w , 0.08*h, 0.44*w, 0.55*h], cargosimg, arrayIDcargosRead); //c = [cropLeft, cropTop, cropRight, cropBottom] in px			
+			}catch(e){}
+		break;
+			
+	}
 	/*//leitura de imagem ams-scrim
 	if(message.channel.id==555030723527049237) {try{aprendizado(message);}catch(e){} return;}
 	if(message.channel.id==559100608666271754) if(typeof message.member.voiceChannel == 'undefined') {message.member.send("apenas quem está na scrim"); message.delete(); return;} //limitar streamers em scrim ams
@@ -4759,4 +4776,114 @@ function callDebug(e, funcao, usuario){
 		if(e.message) debug.send(info+e.message.substring(0,2000-info.length));
 	}catch(e2){
 	}
+}
+
+
+function cropReadImg(message, url,w,h,c, callback, arrayID){ //c = [cropLeft, cropTop, cropRight, cropBottom] in px
+			/*
+					___TOP___
+				left|	   <-|right
+					---bot---
+			*/
+	
+			if(h<720) {print(message, "erro: print de baixa qualidade, resoluções permitidas: 720p ou mais ( _ x 720)"); return;}
+						
+			var formato = url;
+			formato = formato.substring(formato.lastIndexOf(".")+1);
+			options.imageFormat = "image/"+formato;
+			
+			Jimp.read(url)
+				  .then(compressImg => {
+					var cropLeft = c[0], cropTop=c[1], cropWidthSize=c[2], cropHeightSize=c[3];
+					compressImg
+					  //.resize(1360, 768) // resize
+					  //.quality(40) // set JPEG quality
+					  .greyscale() // set greyscale
+					  .crop(cropLeft,cropTop,cropWidthSize,cropHeightSize)
+					  //.crop(360,70,700,70)
+					  //.write('teste.jpg'); // save
+					  ;
+					  compressImg.getBase64(Jimp.AUTO, (err, res) => {						
+						parseImageFromBase64(res, options)
+						  .then( function (parsedResult){				  
+								  callback(JSON.parse(parsedResult).ParsedResults[0].ParsedText.split("\r\n"), message, url, arrayID)
+								 }
+							).catch(err => {
+								e => null(err);
+							  }); 
+					  });
+
+
+					  
+				  })
+				  .catch(err => {
+					e => null(err);
+				  });
+}
+
+
+//similar words
+function editDistance(s1, s2) {
+  s1 = s1.toLowerCase();
+  s2 = s2.toLowerCase();
+
+  var costs = new Array();
+  for (var i = 0; i <= s1.length; i++) {
+    var lastValue = i;
+    for (var j = 0; j <= s2.length; j++) {
+      if (i == 0)
+        costs[j] = j;
+      else {
+        if (j > 0) {
+          var newValue = costs[j - 1];
+          if (s1.charAt(i - 1) != s2.charAt(j - 1))
+            newValue = Math.min(Math.min(newValue, lastValue),
+              costs[j]) + 1;
+          costs[j - 1] = lastValue;
+          lastValue = newValue;
+        }
+      }
+    }
+    if (i > 0)
+      costs[s2.length] = lastValue;
+  }
+  return costs[s2.length];
+}
+
+function similarity(s1, s2) {
+  var longer = s1;
+  var shorter = s2;
+  if (s1.length < s2.length) {
+    longer = s2;
+    shorter = s1;
+  }
+  var longerLength = longer.length;
+  if (longerLength == 0) {
+    return 1.0;
+  }
+  return (longerLength - editDistance(longer, shorter)) / parseFloat(longerLength);
+}
+
+//fim-similar words
+
+function giveRoleSimilar(message,cargoPT, cargoEN, read, role){	
+	var cargoSimilar = Math.max( similarity(cargoPT, read), similarity(cargoEN, read) );
+	if(cargoSimilar > 0.6) {
+		setTimeout(function(){ 
+			message.member.addRole(role).catch(err => null);
+		}, 1700);
+	}
+}
+
+function cargosimg(parsedResult, message, url, arrayID){ //arrayID => [stringCargoPT, stringCargoEN, role]
+	var nick = getNickConhecidoApexAMS(message);
+	var confirmacaoUsuario = similarity(nick, parsedResult[0]);
+	if(confirmacaoUsuario < 0.7){
+		print(message, message.author+" esse print "+url+"\r\nnão parece ser você ou está fora do padrão (você sozinho no lobby, com modo ranked selecionado)");
+		return;
+	}	
+	
+	giveRoleSimilar(message, arrayID[0], arrayID[1], parsedResult[3], arrayID[2]);
+	
+	try{message.react(reactEmoji).catch(e=>null);}catch(e){}
 }
