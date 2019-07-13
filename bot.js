@@ -616,11 +616,11 @@ client.on('message', message => {
 	var arrayIDcargosRead=null;
 	switch(message.channel.id){
 		case '595937348127162379':
-			if(arrayIDcargosRead==null) arrayIDcargosRead=['OURO I', 'GOLD I', '595930566847627265'];
+			if(arrayIDcargosRead==null) arrayIDcargosRead=['DIAMANTE I', 'DIAMOND I', '595930565690261535'];
 		case '595937385771040778':
 			if(arrayIDcargosRead==null) arrayIDcargosRead=['PLATINA I', 'PLATINUM I', '595930566482984961'];
 		case '595937398613868544':
-			if(arrayIDcargosRead==null) arrayIDcargosRead=['DIAMANTE I', 'DIAMOND I', '595930565690261535'];
+			if(arrayIDcargosRead==null) arrayIDcargosRead=['OURO I', 'GOLD I', '595930566847627265'];
 			try{
 				var att = (message.attachments).array();
 				var h = att[0].height, w=att[0].width;
@@ -4866,17 +4866,16 @@ function similarity(s1, s2) {
 
 //fim-similar words
 
-function giveRoleSimilar(message,cargoPT, cargoEN, read, role){	
+function giveRoleSimilar(message,cargoPT, cargoEN, read, role, url){	
 	var cargoSimilar = Math.max( similarity(cargoPT, read), similarity(cargoEN, read) );
-	debug.send(cargoSimilar+" "+ read +" "+cargoEN);
 	if(cargoSimilar > 0.6) {
 		setTimeout(function(){ 
 			message.member.addRole(role).catch(err => null);			
 			try{message.react(reactEmoji).catch(e=>null);}catch(e){}
 		}, 1700);
-	}else{		
-		try{message.react(reactEmojiX).catch(e=>null);}catch(e){}
-		
+	}else{
+		debug.send(url+"\r\n"+read+" "+cargoSimilar+" "+cargoEN+" "+cargoPT);
+		try{message.react(reactEmojiX).catch(e=>null);}catch(e){}		
 	}
 }
 
@@ -4888,6 +4887,6 @@ function cargosimg(parsedResult, message, url, arrayID){ //arrayID => [stringCar
 		return;
 	}	
 	
-	giveRoleSimilar(message, arrayID[0], arrayID[1], parsedResult[3], arrayID[2]);
+	giveRoleSimilar(message, arrayID[0], arrayID[1], parsedResult[3], arrayID[2], url);
 	
 }
