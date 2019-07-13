@@ -4868,7 +4868,7 @@ function similarity(s1, s2) {
 
 function giveRoleSimilar(message,cargoPT, cargoEN, read, role){	
 	var cargoSimilar = Math.max( similarity(cargoPT, read), similarity(cargoEN, read) );
-	debug.send(cargoSimilar+" "+ read);
+	debug.send(cargoSimilar+" "+ read +" "+cargoEN);
 	if(cargoSimilar > 0.6) {
 		setTimeout(function(){ 
 			message.member.addRole(role).catch(err => null);			
