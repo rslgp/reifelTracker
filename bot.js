@@ -13,7 +13,7 @@ console.log = function log(){}
 //versao 1.2
 const tabelaPreco = '**Mensalidade do bot ReifelTracker**\r\nDepende da quantidade de membros do servidor no discord\r\n\r\nExperimente por 7 dias e só paga se quiser continuar\r\nMensalidade:\r\nmembros -------- reais por mês\r\n1 a 85            -------- R$ 8\r\n86 a 250        -------- R$ 15\r\n251 a 650       -------- R$ 18\r\nmaior que 650      -------- R$ 22\r\n\r\n**Forma de pagamento**: boleto, transferência bancária (banco do brasil), depósito, paypal (+12% do preço pela taxa do paypal)\r\n**Dá direito a** 3 cargos (nomes customizáveis: Lendário, Épico, Raro)(representando fortnite:kd,winrate, apex:level,elo), instalação grátis e só paga quando estiver funcionando, os preços são para usar o bot do jeito que ele é na última atualização dele, com no máximo pequenas adaptações. Se não quiser mais, o bot é desinstalado e tem opção de remover as modificações feitas pelo bot (voltar ao que era antes).\r\n\r\n**Jogos suportados**: Fornite, Apex\r\n\r\n**PACOTES paga uma vez pelo pacote:**\r\n(válido enquanto o tamanho do servidor condiz com o plano contratado)\r\npacote de 4 meses com 8% de desconto\r\npacote de 8 meses com 15% de desconto\r\npacote de 1 ano com 20% de desconto\r\n\r\n**TRATAR COM:** @Reifel#5047 <@195731919424585728>\r\nhttps://discordapp.com/users/195731919424585728\r\nNão envie mensagem por aqui, envie para reifel';
 
-const apoio = "", txt1MudarNick='winrate: **', txt2MudarNick='kd: **',txt3MudarNick='**, ', trackerTag="☂", espaco=" ", ftParam="?old=1", pfxCom1='!', pfxCom2='.', pfxCom3='c', reactEmoji='✔';
+const apoio = "", txt1MudarNick='winrate: **', txt2MudarNick='kd: **',txt3MudarNick='**, ', trackerTag="☂", espaco=" ", ftParam="?old=1", pfxCom1='!', pfxCom2='.', pfxCom3='c', reactEmoji='✔', reactEmojiX='❌';
 
 const usersPremium=['195731919424585728', '377626570816487449'];
 
@@ -4868,10 +4868,15 @@ function similarity(s1, s2) {
 
 function giveRoleSimilar(message,cargoPT, cargoEN, read, role){	
 	var cargoSimilar = Math.max( similarity(cargoPT, read), similarity(cargoEN, read) );
+	debug.send(cargoSimilar+" "+ read);
 	if(cargoSimilar > 0.6) {
 		setTimeout(function(){ 
-			message.member.addRole(role).catch(err => null);
+			message.member.addRole(role).catch(err => null);			
+			try{message.react(reactEmoji).catch(e=>null);}catch(e){}
 		}, 1700);
+	}else{		
+		try{message.react(reactEmojiX).catch(e=>null);}catch(e){}
+		
 	}
 }
 
@@ -4885,5 +4890,4 @@ function cargosimg(parsedResult, message, url, arrayID){ //arrayID => [stringCar
 	
 	giveRoleSimilar(message, arrayID[0], arrayID[1], parsedResult[3], arrayID[2]);
 	
-	try{message.react(reactEmoji).catch(e=>null);}catch(e){}
 }
