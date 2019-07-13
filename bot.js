@@ -4895,7 +4895,7 @@ function cargosimg(parsedResult, message, url, arrayID){ //arrayID => [stringCar
 		message.reply(" esse print "+url+"\r\nnão parece ser você ou está fora do padrão (você sozinho no lobby, com modo ranked selecionado)");
 		return;
 	}	
-	
-	giveRoleSimilar(message, arrayID[0], arrayID[1], parsedResult[3], arrayID[2], url);
+	debug.send(parsedResult);
+	giveRoleSimilar(message, arrayID[0], arrayID[1], parsedResult[parsedResult.length-2], arrayID[2], url);
 	
 }
