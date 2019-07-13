@@ -624,7 +624,14 @@ client.on('message', message => {
 			try{
 				var att = (message.attachments).array();
 				var h = att[0].height, w=att[0].width;
-				cropReadImg(message, att[0].url, w, h, [ 0.12*w , 0.08*h, 0.44*w, 0.55*h], cargosimg, arrayIDcargosRead); //c = [cropLeft, cropTop, cropRight, cropBottom] in px			
+				var aspectRatio = Math.round((w/h)*100)/100;
+				var aRFactor = 0.55;
+				if(aspectRatio > 1.7){
+					aRFactor = 0.58;
+				}else{					
+					aRFactor = 0.55;
+				}
+				cropReadImg(message, att[0].url, w, h, [ 0.12*w , 0.08*h, 0.44*w, aRFactor*h], cargosimg, arrayIDcargosRead); //c = [cropLeft, cropTop, cropRight, cropBottom] in px			
 			}catch(e){}
 		break;
 			
