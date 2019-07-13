@@ -625,13 +625,15 @@ client.on('message', message => {
 				var att = (message.attachments).array();
 				var h = att[0].height, w=att[0].width;
 				var aspectRatio = Math.round((w/h)*100)/100;
-				var aRFactor = 0.55;
-				if(aspectRatio > 1.4){
-					aRFactor = 0.58;
-				}else{					
-					aRFactor = 0.55;
+				var aRFactor = 0, wideFactor = 0;
+				
+				if(aspectRatio > 2.3){
+					wideFactor= -0.02;
 				}
-				cropReadImg(message, att[0].url, w, h, [ 0.12*w , 0.08*h, 0.44*w, aRFactor*h], cargosimg, arrayIDcargosRead); //c = [cropLeft, cropTop, cropRight, cropBottom] in px			
+				if(aspectRatio > 1.4){
+					aRFactor = 0.03;
+				}
+				cropReadImg(message, att[0].url, w, h, [ (0.12+wideFactor)*w , 0.08*h, 0.44*w, (0.55+aRFactor)*h], cargosimg, arrayIDcargosRead); //c = [cropLeft, cropTop, cropRight, cropBottom] in px			
 			}catch(e){}
 		break;
 			
