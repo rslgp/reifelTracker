@@ -4892,10 +4892,10 @@ function cargosimg(parsedResult, message, url, arrayID){ //arrayID => [stringCar
 	var nick = getNickConhecidoApexAMS(message);
 	var confirmacaoUsuario = similarity(nick, parsedResult[0]);
 	if(confirmacaoUsuario < 0.6){
+		debug.send(parsedResult);
 		message.reply(" esse print "+url+"\r\nnão parece ser você ou está fora do padrão (você sozinho no lobby, com modo ranked selecionado)");
 		return;
 	}	
-	debug.send(parsedResult);
 	var ajuste = 2;
 	if(parsedResult.length > 5) ajuste = 3;
 	giveRoleSimilar(message, arrayID[0], arrayID[1], parsedResult[parsedResult.length-ajuste], arrayID[2], url);
