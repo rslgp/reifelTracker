@@ -625,7 +625,7 @@ client.on('message', message => {
 				var att = (message.attachments).array();
 				var h = att[0].height, w=att[0].width;
 				var aspectRatio = Math.round((w/h)*100)/100;
-				var aRFactor = 0, wideFactor = 0;
+				var aRFactor = 0, wideFactor = 0, smallwide=0;
 				
 				if(aspectRatio > 2.3){
 					wideFactor= -0.02;
@@ -633,7 +633,10 @@ client.on('message', message => {
 				if(aspectRatio > 1.4){
 					aRFactor = 0.03;
 				}
-				cropReadImg(message, att[0].url, w, h, [ (0.12+wideFactor)*w , 0.08*h, 0.44*w, (0.55+aRFactor)*h], cargosimg, arrayIDcargosRead); //c = [cropLeft, cropTop, cropRight, cropBottom] in px			
+				if(w < 1360){
+					smallwide = 0.02;
+				}
+				cropReadImg(message, att[0].url, w, h, [ (0.12+wideFactor)*w , 0.08*h, (0.44+smallwide)*w, (0.55+aRFactor)*h], cargosimg, arrayIDcargosRead); //c = [cropLeft, cropTop, cropRight, cropBottom] in px			
 			}catch(e){}
 		break;
 			
@@ -4891,9 +4894,10 @@ function giveRoleSimilar(message,cargoPT, cargoEN, read, role, url){
 function cargosimg(parsedResult, message, url, arrayID){ //arrayID => [stringCargoPT, stringCargoEN, role]
 	var nick = getNickConhecidoApexAMS(message);
 	var confirmacaoUsuario = similarity(nick, parsedResult[0]);
+	if(confirmacaoUsuario==0) {message.reply("erro na leitura, aguarde updates e melhorias, garanta que:\r\n(você sozinho no lobby, com modo ranked selecionado, mostrando 100% da tela: incluindo moedas, desafios, e amigos online)"); return;}
 	if(confirmacaoUsuario < 0.6){
 		debug.send(parsedResult);
-		message.reply(" esse print "+url+"\r\nnão parece ser você ou está fora do padrão (você sozinho no lobby, com modo ranked selecionado)");
+		message.reply(" esse print "+url+"\r\nnão parece ser você ou está fora do padrão (você sozinho no lobby, com modo ranked selecionado, mostrando 100% da tela: incluindo moedas, desafios, e amigos online)");
 		return;
 	}	
 	var ajuste = 2;
