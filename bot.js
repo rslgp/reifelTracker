@@ -638,7 +638,7 @@ client.on('message', message => {
 				}
 				
 				if(w>1900){ //big wide
-					cropReadImg(message, att[0].url, w, h, [ 0.05*w , 0.06*h, 0.33*w, 0.40*h], cargosimg, arrayIDcargosRead); //c = [cropLeft, cropTop, cropRight, cropBottom] in px			
+					cropReadImg(message, att[0].url, w, h, [ 0.08*w , 0.06*h, 0.33*w, 0.40*h], cargosimg, arrayIDcargosRead); //c = [cropLeft, cropTop, cropRight, cropBottom] in px			
 				}else{
 					cropReadImg(message, att[0].url, w, h, [ (0.12+wideFactor)*w , 0.08*h, (0.44+smallwide)*w, (0.55+aRFactor)*h], cargosimg, arrayIDcargosRead); //c = [cropLeft, cropTop, cropRight, cropBottom] in px			
 				}
