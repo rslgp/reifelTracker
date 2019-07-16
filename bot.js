@@ -4886,7 +4886,7 @@ function similarity(s1, s2) {
 
 function giveRoleSimilar(message,cargoPT, cargoEN, read, role, url){	
 	var cargoSimilar = Math.max( similarity(cargoPT, read), similarity(cargoEN, read) );
-	if(cargoSimilar > 0.6) {
+	if(cargoSimilar > 0.55) {
 		setTimeout(function(){ 
 			message.member.addRole(role).catch(err => null);			
 			try{message.react(reactEmoji).catch(e=>null);}catch(e){}
