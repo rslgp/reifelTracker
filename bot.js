@@ -638,8 +638,9 @@ client.on('message', message => {
 				}
 				
 				if(w>1900){ //big wide
-					smallwide = -0.04;
-					aRFactor = 0.05;
+					smallwide = 0.01;
+					wideFactor= -0.02;
+					//aRFactor = 0.05;
 				}
 				cropReadImg(message, att[0].url, w, h, [ (0.12+wideFactor)*w , 0.08*h, (0.44+smallwide)*w, (0.55+aRFactor)*h], cargosimg, arrayIDcargosRead); //c = [cropLeft, cropTop, cropRight, cropBottom] in px			
 				
