@@ -4893,7 +4893,7 @@ function giveRoleSimilar(message,cargoPT, cargoEN, read, role, url){
 			try{message.react(reactEmoji).catch(e=>null);}catch(e){}
 		}, 1700);
 	}else{
-		debug.send(url+"\r\n"+read+" "+cargoSimilar+" "+cargoEN+" "+cargoPT);
+		debug.send("CARGO NAO SIMILAR:\r\n"+url+"\r\n"+read+" "+cargoSimilar+" "+cargoEN+" "+cargoPT);
 		try{message.react(reactEmojiX).catch(e=>null);}catch(e){}		
 	}
 }
@@ -4903,7 +4903,7 @@ function cargosimg(parsedResult, message, url, arrayID){ //arrayID => [stringCar
 	var confirmacaoUsuario = similarity(nick, parsedResult[0]);
 	if(confirmacaoUsuario==0) {message.reply("erro na leitura, aguarde updates e melhorias, garanta que:\r\n(você sozinho no lobby, com modo ranked selecionado, mostrando 100% da tela: incluindo moedas, desafios, e amigos online)"); return;}
 	if(confirmacaoUsuario < 0.6){
-		debug.send(parsedResult);
+		debug.send("nao confirmou usuario:\r\n"+url+quebraLinha+parsedResult);
 		message.reply(" esse print "+url+"\r\nnão parece ser você ou está fora do padrão (você sozinho no lobby, com modo ranked selecionado, mostrando 100% da tela: incluindo moedas, desafios, e amigos online)");
 		return;
 	}	
