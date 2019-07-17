@@ -660,7 +660,7 @@ client.on('message', message => {
 		
 		try{
 		nickLegivel=parametroUsado = getNickConhecidoApexAMS(copia);
-				var variavelVisita = Browser.visit(attch[0].url, function (e, browser) {
+				Browser.visit(attch[0].url, function (e, browser) {
 					var text = browser.text();
 					text= text.substring(text.indexOf('localClientPlayerCachedLevel "')+30);
 					text= text.substring(0,text.indexOf('"'));
@@ -683,7 +683,6 @@ client.on('message', message => {
 					message.delete();
 				});
 			
-			variavelVisita=null;
 		}catch(e){message.delete();}
 		
 	}
@@ -883,7 +882,7 @@ client.on('message', message => {
 			site = siteFortniteTracker+parametroUsado+ftParam;
 			//crawler
 			try{
-				var variavelVisita = Browser.visit(site, function (e, browser) {				
+				Browser.visit(site, function (e, browser) {				
 					try{
 						var text = browser.html();
 						
@@ -960,7 +959,6 @@ client.on('message', message => {
 					
 					limparMemoria(browser);
 				});
-				variavelVisita=null;
 			}catch(e){}			
 		break;
 		
@@ -997,14 +995,14 @@ client.on('message', message => {
 			
 			site = siteFortniteTracker+parametroUsado+ftParam;
 			try{
-				var variavelVisita = Browser.visit(site, function (e, browser) {
+				Browser.visit(site, function (e, browser) {
 					try{					
 						var text = browser.html();
 						padraoAtualizarNome(message,nickLegivel,text,site);
 					}catch(e){
 						try{ //tentar atualizar usando outro site
 							var site = siteFortniteScout+parametroUsado;
-							var variavelVisita2 = Browser.visit(site, function (e, browser) {					
+							Browser.visit(site, function (e, browser) {					
 								var winP, selector;	
 								try{							
 									selector= "#performanceSquad > div.fillCard > div:nth-child(6) > div.statLineRightSide > span";
@@ -1020,7 +1018,6 @@ client.on('message', message => {
 								
 								limparMemoria(browser);
 							});
-							variavelVisita2=null;
 						}catch(e){
 							print(message, nickLegivel + errorFortnitetracker);						
 						}
@@ -1028,7 +1025,6 @@ client.on('message', message => {
 					
 					limparMemoria(browser);
 				});	
-				variavelVisita=null;
 			}catch(e){}
 		break;
 		
@@ -1060,7 +1056,7 @@ client.on('message', message => {
 			}
 			site = siteFortniteScout+parametroUsado;
 			try{
-				var variavelVisita = Browser.visit(site, function (e, browser) {				
+				Browser.visit(site, function (e, browser) {				
 					var wins,winP,kd,kills,selector;	
 					try{
 						selector = "#performanceSolo > div.fillCard > div.matchPlacementsLegends > div.matchPlacementLegend.matchPlacementWinsColor";
@@ -1084,7 +1080,6 @@ client.on('message', message => {
 					var resultado = formatarMsg(winP,kd,wins,kills,'--');
 					msgPadraoBot(message, resultado, site, nickLegivel, " (Solo)");
 				});	
-				variavelVisita=null;
 			}catch(e){}
 		break;
 			
@@ -1092,7 +1087,7 @@ client.on('message', message => {
 			var nick = message.member.nickname;
 			var winrate = nick.substring(0,nick.indexOf(trackerTag)-1);
 			site = siteFortniteTracker+parametroUsado+ftParam;
-			var variavelVisita = Browser.visit(site, function (e, browser){
+			Browser.visit(site, function (e, browser){
 				try{					
 					var text = browser.html();
 					var jsonSquad;
@@ -1127,7 +1122,6 @@ client.on('message', message => {
 					limparMemoria(browser);
 				}catch(e){}
 			});
-			variavelVisita=null;
 		break;
 			
 		case "getrid":
@@ -1158,7 +1152,7 @@ client.on('message', message => {
 		var nick = parametroUsado.substring(parametroUsado.indexOf("=")+1);
 		site = siteFortniteTracker+nick+ftParam;
 			try{
-				var variavelVisita = Browser.visit(site, function (e, browser) {				
+				Browser.visit(site, function (e, browser) {				
 					var text = browser.html();
 						
 					var jsonSquad;
@@ -1181,8 +1175,7 @@ client.on('message', message => {
 					var user = message.mentions.users.array()[0];
 					if(user) user= user.id;
 					message.guild.members.find(val => val.id === user).setNickname(winrkd[indiceEscolhido]+" ☂ "+nickLegivel.substring(nickLegivel.indexOf("=")+1)).catch(e=>{});
-				});	
-				variavelVisita=null;
+				});
 			}catch(e){}
 		
 		break;
@@ -1196,7 +1189,7 @@ client.on('message', message => {
 		site = siteFortniteTracker+players[1]+ftParam;
 		
 		try{
-			var variavelVisita = Browser.visit(site, function (e, browser) {				
+			Browser.visit(site, function (e, browser) {				
 						try{
 							var text1 = browser.html();
 							
@@ -1207,7 +1200,7 @@ client.on('message', message => {
 								
 								site = siteFortniteTracker+players[0]+ftParam;
 								try{
-									var variavelVisita2 = Browser.visit(site, function (e, browser2) {				
+									Browser.visit(site, function (e, browser2) {				
 												try{
 													var text2 = browser2.html();
 													
@@ -1228,7 +1221,6 @@ client.on('message', message => {
 																								
 												limparMemoria(browser2);
 									});
-									variavelVisita2=null;
 								}catch(e){}
 							}catch(e){		
 								//console.log("error search");
@@ -1241,7 +1233,6 @@ client.on('message', message => {
 												
 						limparMemoria(browser);
 			});
-			variavelVisita=null;
 		}catch(e){}
 			
 		break;
@@ -1282,7 +1273,7 @@ client.on('message', message => {
 		case "alt3":
 			site = siteStormShield+parametroUsado;
 			try{
-				var variavelVisita = Browser.visit(site, function (e, browser) {				
+				Browser.visit(site, function (e, browser) {				
 					var wins,winP,kd,kills;	
 					try{				
 						kills = padraoAlt(browser,5);				
@@ -1303,15 +1294,14 @@ client.on('message', message => {
 					//var resultado = ">> "+nickLegivel+" Squad <<\r\nWins: "+ wins +separador+"Win %: "+ winP +separador+"Kills: "+ kills +separador+ "K/d: "+kd;
 					var resultado = formatarMsg(winP,kd,wins,kills,'--');
 					msgPadraoBot(message, resultado, site, nickLegivel);
-				});	
-				variavelVisita=null;
+				});
 			}catch(e){}
 		break;
 		
 		case "alt2":
 			site = siteFortniteStatsCOM+parametroUsado;
 			try{
-				var variavelVisita = Browser.visit(site, function (e, browser) {				
+				Browser.visit(site, function (e, browser) {				
 					var wins,winP,kd,kills;	
 					try{				
 						kills = padraoAlt(browser,1, 2);				
@@ -1331,15 +1321,14 @@ client.on('message', message => {
 					//var resultado = ">> "+nickLegivel+" Squad <<\r\nWins: "+ wins +separador+"Win %: "+ winP +separador+"Kills: "+ kills +separador+ "K/d: "+kd;
 					var resultado = formatarMsg(winP,kd,wins,kills,'--');
 					msgPadraoBot(message, resultado, site, nickLegivel);
-				});	
-				variavelVisita=null;
+				});
 			}catch(e){}
 		break;
 		
 		case "alt":
 			site = siteFortniteScout+parametroUsado;
 			try{
-				var variavelVisita = Browser.visit(site, function (e, browser) {				
+				Browser.visit(site, function (e, browser) {				
 					var wins,winP,kd,kills,selector;	
 					try{
 						selector = "#performanceSquad > div.fillCard > div.matchPlacementsLegends > div.matchPlacementLegend.matchPlacementWinsColor";
@@ -1362,8 +1351,7 @@ client.on('message', message => {
 					}
 					var resultado = formatarMsg(winP,kd,wins,kills,'--');
 					msgPadraoBot(message, resultado, site, nickLegivel);
-				});	
-				variavelVisita=null;
+				});
 			}catch(e){}
 		break;
 			
@@ -1398,7 +1386,7 @@ client.on('message', message => {
 			}
 			site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
 			try{
-				var variavelVisita = Browser.visit(site, function (e, browser) {				
+				Browser.visit(site, function (e, browser) {				
 					var level;	
 					try{
 						var text = browser.html();
@@ -1428,8 +1416,7 @@ client.on('message', message => {
 					}
 					//var resultado = formatarMsg(winP,kd,wins,kills,'--');
 					//msgPadraoBot(message, resultado, site, nickLegivel);
-				});	
-				variavelVisita=null;
+				});
 			}catch(e){}
 		break;
 			
@@ -1461,7 +1448,7 @@ client.on('message', message => {
 			if(message.author!=reifelUser) return;
 		site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
 			try{
-				var variavelVisita3 = Browser.visit(site, function (e, browser) {				
+				Browser.visit(site, function (e, browser) {				
 					var kills=-1, dano=-1, level=0;	
 					try{
 						var text = browser.html();
@@ -1487,8 +1474,7 @@ client.on('message', message => {
 					}
 					
 					limparMemoria(browser);
-				});	
-				variavelVisita3=null;
+				});
 			}catch(e){}
 		break;
 			
@@ -1644,7 +1630,7 @@ client.on('message', message => {
 		/*	
 		site = "https://www.apexlegendsapi.com/api/v1/player?platform=pc&name="+parametroUsado;
 			try{
-				var variavelVisita3 = Browser.visit(site, function (e, browser) {	
+				Browser.visit(site, function (e, browser) {	
 					try{
 						var text = browser.html();
 						var data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
@@ -1663,7 +1649,7 @@ client.on('message', message => {
 			site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
 			var dados = {"level":0, "dano": -1, "kills": -1};
 			try{
-				var variavelVisita3 = Browser.visit(site, function (e, browser) {				
+				Browser.visit(site, function (e, browser) {				
 					var kills=-1, dano=-1, level=0;	
 					try{
 						var text = browser.html();
@@ -1723,8 +1709,7 @@ client.on('message', message => {
 						}
 					}
 					
-				});	
-				variavelVisita3=null;
+				});
 			}catch(e){
 				//site alt
 				
@@ -1774,14 +1759,13 @@ client.on('message', message => {
 					
 					limparMemoria(browser);
 				});	
-				variavelVisita3=null;
 			}catch(e){}	*/
 		break;
 			
 		case "dk":
 			site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
 			try{
-				var variavelVisita3 = Browser.visit(site, function (e, browser) {				
+				Browser.visit(site, function (e, browser) {				
 					var kills=-1, dano=-1;	
 					try{
 						var text = browser.html();
@@ -1800,8 +1784,7 @@ client.on('message', message => {
 					}
 					
 					limparMemoria(browser);
-				});	
-				variavelVisita3=null;
+				});
 			}catch(e){}	
 		break;
 		
@@ -1898,7 +1881,7 @@ client.on('message', message => {
 			try{ //tentar atualizar usando outro site
 				var selector, temp;
 				site = "https://public-api.tracker.gg/apex/v1/standard/profile/5/"+parametroUsado;	
-				var variavelVisita2 = Browser.visit(site, function (e, browser) {
+				Browser.visit(site, function (e, browser) {
 					try{
 						var a = JSON.parse(browser.text('body'));
 						var ar = [];
@@ -1932,7 +1915,6 @@ client.on('message', message => {
 						return;
 					}
 				});
-				variavelVisita2=null;
 			}catch(e){
 						//print(message, e.message);
 				//print(message, nickLegivel + " lendas");						
@@ -1968,7 +1950,7 @@ client.on('message', message => {
 			
 		site = siteFortniteTracker+parametroUsado+ftParam;
 		try{
-			var variavelVisita = Browser.visit(site, function (e, browser){
+			Browser.visit(site, function (e, browser){
 				try{					
 					var text = browser.html();
 					var jsonSquad;
@@ -2241,8 +2223,7 @@ client.on('message', message => {
 				}catch(e){					
 					//console.log("error rank2");
 				}
-			});	
-			variavelVisita=null;
+			});
 		}catch(e){}
 		break;
 		
@@ -2304,7 +2285,7 @@ client.on('message', message => {
 			site = siteFortniteTracker+parametroUsado+ftParam;
 			//crawler
 			try{
-				var variavelVisita = Browser.visit(site, function (e, browser) {				
+				Browser.visit(site, function (e, browser) {				
 					try{
 						var text = browser.html();
 
@@ -2358,7 +2339,6 @@ client.on('message', message => {
 					
 					limparMemoria(browser);
 				});
-				variavelVisita=null;
 			}catch(e){}
 		break;
 		
@@ -2413,14 +2393,13 @@ client.on('message', message => {
 			var Attachment = (message.attachments).array();
 			console.log(Attachment[0].url); //outputs array
 				try{
-						var variavelVisita = Browser.visit(Attachment[0].url, function (e, browser) {
+						Browser.visit(Attachment[0].url, function (e, browser) {
 							var text = browser.text();
 							text= text.substring(text.indexOf('localClientPlayerCachedLevel "')+30);
 							text= text.substring(0,text.indexOf('"'));
 							console.log(text);
 						});
 					
-					variavelVisita=null;
 				}catch(e){}
 		break;
 		
@@ -2876,7 +2855,7 @@ client.on('message', message => {
 			try{ //tentar atualizar usando outro site
 				var selector;
 				var site = "https://fortnitetracker.com/profile/pc/"+parametroUsado+"/bests";
-				var variavelVisita2 = Browser.visit(site, function (e, browser) {					
+				Browser.visit(site, function (e, browser) {					
 					var resultado, selector;	
 					try{							
 						selector= "body > div.trn-site__container > script:nth-child(4)"; //account id
@@ -2892,7 +2871,6 @@ client.on('message', message => {
 					
 					limparMemoria(browser);
 				});
-				variavelVisita2=null;
 			}catch(e){
 				print(message, nickLegivel + " recorde");						
 			}
@@ -3424,7 +3402,7 @@ function atualizarWinRateNick(message, winRate, i){
 
 function setWinRateNick(message, site, i){
 	try{
-		var variavelVisita = Browser.visit(site, function (e, browser) {
+		Browser.visit(site, function (e, browser) {
 			var text = browser.html();	
 			try{
 				var jsonSquad;
@@ -3442,8 +3420,6 @@ function setWinRateNick(message, site, i){
 				refreshAuto = refreshAuto.splice(i, 1);//nick errado remove do array
 			}		
 		});
-		
-		variavelVisita=null;
 	}catch(e){}
 }
 
@@ -4500,7 +4476,7 @@ function getDadosApex(message, parametroUsado, nickLegivel, callback, isCapUpdat
 	var text, data;
 	site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
 	try{
-		var variavelVisita = Browser.visit(site, function (e, browser) {				
+		Browser.visit(site, function (e, browser) {				
 			//var level,wins,winP,kd,kills,selector;	
 			try{
 				text = browser.html();
@@ -4528,7 +4504,7 @@ function getDadosApex(message, parametroUsado, nickLegivel, callback, isCapUpdat
 				//site = "https://apextab.com/api/search.php?platform=pc&search="+parametroUsado; //com defeito
 				site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
 				try{ //tentar atualizar usando outro site
-					var variavelVisita2 = Browser.visit(site, function (e, browser) {	
+					Browser.visit(site, function (e, browser) {	
 						try{
 							/*text = browser.html(); //pega o id profile
 							var a = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}')+1));										
@@ -4569,7 +4545,7 @@ function getDadosApex(message, parametroUsado, nickLegivel, callback, isCapUpdat
 							//site alternativo2
 							site = "https://www.apexlegendsapi.com/api/v2/player?platform=pc&name="+parametroUsado;
 							try{
-								var variavelVisita3 = Browser.visit(site, function (e, browser) {				
+								Browser.visit(site, function (e, browser) {				
 									//var level;	
 									try{
 										text = browser.html();
@@ -4589,7 +4565,7 @@ function getDadosApex(message, parametroUsado, nickLegivel, callback, isCapUpdat
 											//site alternativo
 											site = "https://www.apexlegendshut.com/free-api?platform=PC&title="+parametroUsado;
 											try{ //tentar atualizar usando outro site
-												var variavelVisita4 = Browser.visit(site, function (e, browser) {					
+												Browser.visit(site, function (e, browser) {					
 														
 													try{
 														text = browser.html(); //pega o id profile
@@ -4641,15 +4617,13 @@ function getDadosApex(message, parametroUsado, nickLegivel, callback, isCapUpdat
 
 													limparMemoria(browser);
 												});
-												variavelVisita4=null;
 											}catch(e){
 
 											}
 									}
 									
 									limparMemoria(browser);
-								});	
-								variavelVisita3=null;
+								});
 							}catch(e){
 							
 							}	
@@ -4657,7 +4631,6 @@ function getDadosApex(message, parametroUsado, nickLegivel, callback, isCapUpdat
 				
 						limparMemoria(browser);
 				});
-				variavelVisita2=null;
 			}catch(e){					
 				
 			}
@@ -4671,8 +4644,7 @@ function getDadosApex(message, parametroUsado, nickLegivel, callback, isCapUpdat
 			//msgPadraoBot(message, resultado, site, nickLegivel);
 			
 			limparMemoria(browser);
-		});	
-		variavelVisita=null;
+		});
 	}catch(e){}
 }
 
