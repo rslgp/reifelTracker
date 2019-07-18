@@ -611,7 +611,6 @@ client.on('error', err => {
 client.on('message', message => {
 	if(message.author.bot) return; //ignora poupar processamento bot
 	
-	var parametroUsado = "", nickLegivel="", site="";
 	/* //temporario rank por imagem
 	var arrayIDcargosRead=null;
 	switch(message.channel.id){
@@ -854,6 +853,9 @@ client.on('message', message => {
 	//if(ativarsuspender){
 	//	if(suspensos.includes(idGuild)) {suspenso(message);return;}
 	//}
+	
+	
+	var parametroUsado, nickLegivel, site;
 	
 	//se tiver espaco no nick
 	if(args.length>2){ 
