@@ -768,6 +768,7 @@ client.on('message', message => {
 		case "lvl2":
 		case "lendas":
 		case "ce":
+		case "ranked":
 		case "elo":
 		//no memory
 		case "elotops":
@@ -1597,7 +1598,64 @@ client.on('message', message => {
 				  .catch(e => null);
 			//topEloDesatualizado[indiceTop] = true;
 		break;
-			
+		
+		case "ranked":			
+			try{
+				switch(message.guild.id){								
+						case '550108927698927626':
+							nickLegivel=parametroUsado = getNickConhecidoApexAMS(message);
+						break;
+
+						case '542501242916700181':
+							nickLegivel=parametroUsado = getNickConhecidoApexAMS(message);
+						break;
+						default:								
+							nickLegivel=parametroUsado = getNickConhecidoApex(message);
+						break;
+				}
+			}catch(e){/*nick nao conhecido*/
+				message.reply("Nick não registrado, envie o seu nick da origin no comando lvl (exemplo: .lvl nick)");
+				return;
+			}
+
+			var rolesRank;
+			switch(message.guild.id){
+				default:
+					rolesRank = ['595930565690261535','595930566482984961', '595930566847627265'];
+				break;
+			}
+		
+			site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
+			Browser.visit(site, function (e, browser) {		
+				//var level,wins,winP,kd,kills,selector;	
+				try{
+					text = browser.html();
+					text = text.substring(text.indexOf('imp_Overview')+15);
+					text = text.substring(0,text.indexOf('};')+1);
+					text = JSON.parse(text);
+					var rp = text.rankScore.value;
+					var role = null;
+					if(rp > 719){
+						//diamante
+						role = rolesRank[0];
+					}else if(rp > 479){							
+						//platina
+						role = rolesRank[1];
+					}else if(rp > 289){					
+						//gold
+						role = rolesRank[2];					
+					}
+
+					if(role != null){
+						setTimeout(function(){ 
+							message.member.addRole(role).catch(err => null);			
+							try{message.react(reactEmoji).catch(e=>null);}catch(e){}
+						}, 1700);		
+					}
+
+				}catch(e){}
+			});
+		break;
 			
 		case "elo":
 		try{
