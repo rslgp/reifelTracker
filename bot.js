@@ -612,7 +612,7 @@ client.on('message', message => {
 	if(message.author.bot) return; //ignora poupar processamento bot
 	
 	var parametroUsado = "", nickLegivel="", site="";
-	
+	/* //temporario rank por imagem
 	var arrayIDcargosRead=null;
 	switch(message.channel.id){
 		case '595937348127162379':
@@ -650,6 +650,7 @@ client.on('message', message => {
 		break;
 			
 	}
+	*/
 	/*//leitura de imagem ams-scrim
 	if(message.channel.id==555030723527049237) {try{aprendizado(message);}catch(e){} return;}
 	if(message.channel.id==559100608666271754) if(typeof message.member.voiceChannel == 'undefined') {message.member.send("apenas quem está na scrim"); message.delete(); return;} //limitar streamers em scrim ams
