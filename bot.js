@@ -1654,7 +1654,11 @@ client.on('message', message => {
 							message.member.addRole(role).catch(err => null);			
 							try{message.react(reactEmoji).catch(e=>null);}catch(e){}
 						}, 1700);		
+					}else{
+						message.reply("apenas diamante, platina ou ouro");
 					}
+					
+						limparMemoria(browser);
 
 				}catch(e){}
 			});
