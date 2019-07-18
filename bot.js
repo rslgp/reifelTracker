@@ -1644,7 +1644,7 @@ client.on('message', message => {
 					}else if(rp > 479){							
 						//platina
 						role = rolesRank[1];
-					}else if(rp > 289){					
+					}else if(rp > 279){					
 						//gold
 						role = rolesRank[2];					
 					}
