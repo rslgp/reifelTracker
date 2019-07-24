@@ -1914,8 +1914,7 @@ client.on('message', message => {
 			  });*/
 		break;
 		
-		case "lvl":
-			
+		case "lvl":			
 			try{
 				switch(message.guild.id){								
 					case '550108927698927626':
@@ -4508,7 +4507,7 @@ function padraoLvlApex(message, nickLegivel, dados){
 			}
 			//if(posicaoGuardaChuva!==-1)return;
 			mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
-			elomerged(message, level, kills, dano, ['562423267894231072', '562423268292689920', '562423268511055892', '581226705612701700']);
+			//elomerged(message, level, kills, dano, ['562423267894231072', '562423268292689920', '562423268511055892', '581226705612701700']);
 		break;
 			
 		case '292028288178847744': //mago academy
@@ -4746,6 +4745,8 @@ function mudeiApex(message, nickLegivel, dados){
 }
 
 function eloApex(message, cargosElo, dados, nickLegivel){
+	callAsync(padraoLvlApex(message,nickLegivel, dados));
+	
 	var level = dados.level;
 	var dano = dados.dano;
 	var kills = dados.kills;
