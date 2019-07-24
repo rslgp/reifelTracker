@@ -4745,7 +4745,7 @@ function mudeiApex(message, nickLegivel, dados){
 }
 
 function eloApex(message, cargosElo, dados, nickLegivel){
-	padraoLvlApex(message,nickLegivel, dados);
+	setTimeout(padraoLvlApex(message,nickLegivel, dados), 0); //async
 	
 	var level = dados.level;
 	var dano = dados.dano;
