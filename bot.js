@@ -1972,7 +1972,7 @@ client.on('message', message => {
 						print(message, rn.join(' > ')+"\r\nkills: ( "+rk.join(', ')+" )");
 
 						//ad
-						message.channel.send(randomADS()).catch(e => null);
+						sendAD(message);
 
 						limparMemoria(browser);					
 					}catch(e){						
@@ -3514,7 +3514,7 @@ function runAutoUpdateWinRate(message){
 }
 
 function mudarNick(message, novoNick, extra=""){
-	message.member.setNickname( novoNick ).then(user => message.reply(extra+`atualizei` + randomADS())).catch(err => message.reply(`Não consegui atualizar, mas seria: `+novoNick));
+	message.member.setNickname( novoNick ).then(user => message.reply(extra+`atualizei`)).catch(err => message.reply(`Não consegui atualizar, mas seria: `+novoNick));
 }
 
 function mudarNickSilencioso(message, novoNick, extra=""){
@@ -4201,7 +4201,7 @@ function getEloKL(level,kills=0,matches=0,dano=0){
 	var kl = (((2.6*kills)+(dano/175))/(0.938*level));
 	//var kpm=0;
 	//if(matches!=0) kpm = (kills/matches);	
-	var msgComplemento = " kill+KillDano/lvl" + randomADS();
+	var msgComplemento = " kill+KillDano/lvl";
 	if(kl >= 19*ratio){
 		//if(kpm > 4.8) return ["S+",kl,kl+" "+kpm];
 		return ["S",kl+"",kl.toFixed(2)+msgComplemento];
@@ -4530,7 +4530,9 @@ function padraoLvlApex(message, nickLegivel, dados){
 			mudarNick(message, padraoNickApex(level[0],nickLegivel));
 		break;
 		
-	}	
+	}
+	
+	sendAD(message);
 }
 
 
@@ -4951,4 +4953,8 @@ function cargosimg(parsedResult, message, url, arrayID){ //arrayID => [stringCar
 	if(parsedResult.length > 5) ajuste = 3;
 	giveRoleSimilar(message, arrayID[0], arrayID[1], parsedResult[parsedResult.length-ajuste], arrayID[2], url);
 	
+}
+
+function sendAD(message){	
+	message.channel.send(randomADS()).catch(e => null);
 }
