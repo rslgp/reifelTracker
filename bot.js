@@ -3514,11 +3514,11 @@ function runAutoUpdateWinRate(message){
 }
 
 function mudarNick(message, novoNick, extra=""){
-	message.member.setNickname( novoNick ).then(user => message.reply(extra+`atualizei`)).catch(err => message.reply(`Não consegui atualizar, mas seria: `+novoNick));
+	message.member.setNickname( novoNick ).then(user => message.reply(extra+`atualizei o nick`)).catch(err => message.reply(`Não consegui atualizar, mas seria: `+novoNick));
 }
 
 function mudarNickSilencioso(message, novoNick, extra=""){
-	message.member.setNickname( novoNick ).then(user => tryPM(message.member, extra+`atualizei`)).catch(err => message.reply(`Não consegui atualizar, mas seria: `+novoNick));
+	message.member.setNickname( novoNick ).then(user => tryPM(message.member, extra+`atualizei o nick`)).catch(err => message.reply(`Não consegui atualizar, mas seria: `+novoNick));
 }
 
 //"☂ "
