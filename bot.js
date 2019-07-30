@@ -4506,7 +4506,7 @@ function padraoLvlApex(message, nickLegivel, dados){
 
 			}
 			//if(posicaoGuardaChuva!==-1)return;
-			mudarNick(message, padraoNickApexAMS(level[0],nickLegivel));
+			mudarNickSilencioso(message, padraoNickApexAMS(level[0],nickLegivel));
 			//elomerged(message, level, kills, dano, ['562423267894231072', '562423268292689920', '562423268511055892', '581226705612701700']);
 		break;
 			
@@ -4792,7 +4792,7 @@ function eloApex(message, cargosElo, dados, nickLegivel){
 				}, 1700);	
 			}else{
 				changeRole(message.member, cargosElo[2], cargosElo[1]);
-				message.reply(pontos+", tierA");
+				message.reply(pontos+", tierA - atualizei o nick");
 			}
 
 			//(top10ELO[1]).add({"n":nickLegivel,"p":Number(eloPontos[1]).toFixedNumber(2)});
@@ -4800,14 +4800,14 @@ function eloApex(message, cargosElo, dados, nickLegivel){
 		break;
 		case "B":
 			changeRole(message.member, cargosElo[1], cargosElo[2]);
-			message.reply(pontos+", tierB");
+			message.reply(pontos+", tierB - atualizei o nick");
 		break;
 		case "C":
 			changeRole(message.member, cargosElo[2], cargosElo[3]);
-			message.reply(pontos+", tierC");
+			message.reply(pontos+", tierC - atualizei o nick");
 		break;
 		default:
-			message.reply(pontos+" não elegivel para tier ainda (minimo: 33,84)");
+			message.reply(pontos+" não elegivel para tier ainda (minimo: 33,84) - atualizei o nick");
 		break;
 	}
 }
