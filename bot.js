@@ -2579,7 +2579,7 @@ client.on('message', message => {
 				}else{
 					preco = "R$ 22 - ";
 				}			
-				retorno+=(preco+a.name+quebraLinha+a.id+quebraLinha+"<@"+a.ownerID+"> "+quebraLinha+client.users.get(a.ownerID).username+" "+quebraLinha+quebraLinha);
+				retorno+=(preco+a.name+quebraLinha+a.memberCount+quebraLinha+a.id+quebraLinha+"<@"+a.ownerID+"> "+quebraLinha+client.users.get(a.ownerID).username+" "+quebraLinha+quebraLinha);
 			}
 			print(message,retorno);
 		break;
