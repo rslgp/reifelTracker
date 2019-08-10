@@ -4562,7 +4562,7 @@ function getDadosApex(message, parametroUsado, nickLegivel, callback, isCapUpdat
 				if(level=='0') throw false; //offline
 				text = null;
 				
-				if(isCapUpdate && capUpdate(message, level)) return;
+				if(isCapUpdate && capUpdate(message, level)) {limparMemoria(browser); return;}
 				
 				//level = [level, level];
 				
@@ -4604,7 +4604,7 @@ function getDadosApex(message, parametroUsado, nickLegivel, callback, isCapUpdat
 							if(level=='0') throw false; //offline
 							text = null;
 
-							if(isCapUpdate && capUpdate(message, level)) return;
+							if(isCapUpdate && capUpdate(message, level)) {limparMemoria(browser); return;}
 
 							//level = [level, level];
 
@@ -4625,7 +4625,7 @@ function getDadosApex(message, parametroUsado, nickLegivel, callback, isCapUpdat
 										data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
 										level = data["level"];
 										
-										if(isCapUpdate && capUpdate(message, level)) return;
+										if(isCapUpdate && capUpdate(message, level)) {limparMemoria(browser); return;}
 										
 										//level = [level,level]; //gambiarra												
 																						
@@ -4645,7 +4645,7 @@ function getDadosApex(message, parametroUsado, nickLegivel, callback, isCapUpdat
 														level = data.results[0].level;	
 														data = null;
 
-														if(isCapUpdate && capUpdate(message, level)) return;
+														if(isCapUpdate && capUpdate(message, level)) {limparMemoria(browser); return;}
 
 														//level = [level, level];																
 														
@@ -4671,7 +4671,7 @@ function getDadosApex(message, parametroUsado, nickLegivel, callback, isCapUpdat
 																	dano = data.total.damage;
 																	text = data = null;																	
 																	
-																	if(isCapUpdate && capUpdate(message, level)) return;
+																	if(isCapUpdate && capUpdate(message, level)) {limparMemoria(browser); return;}
 
 																	//level = [level, level];	
 																											
