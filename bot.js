@@ -3521,6 +3521,11 @@ function mudarNickSilencioso(message, novoNick, extra=""){
 	message.member.setNickname( novoNick ).then(user => tryPM(message.member, extra+`atualizei o nick`)).catch(err => message.reply(`Não consegui atualizar, mas seria: `+novoNick));
 }
 
+
+function mudarNickCalado(message, novoNick, extra=""){
+	message.member.setNickname( novoNick ).catch(err => message.reply(`Não consegui atualizar, mas seria: `+novoNick));
+}
+
 //"☂ "
 function padraoNick(winrate, nick){
 	return winrate+"% ☂"+TAG+espaco+nick;
@@ -4506,7 +4511,7 @@ function padraoLvlApex(message, nickLegivel, dados){
 
 			}
 			//if(posicaoGuardaChuva!==-1)return;
-			mudarNickSilencioso(message, padraoNickApexAMS(level[0],nickLegivel));
+			mudarNickCalado(message, padraoNickApexAMS(level[0],nickLegivel));
 			//elomerged(message, level, kills, dano, ['562423267894231072', '562423268292689920', '562423268511055892', '581226705612701700']);
 		break;
 			
@@ -4527,7 +4532,7 @@ function padraoLvlApex(message, nickLegivel, dados){
 			
 		case '566666902748004363': //FNT-
 			//padraoRankWinApex(message, message.member, nickLegivel, level, ['0', '0', '0'],[150,100,60], "Continua onde está, os niveis atuais são: 150+, 100+, 60+");
-			mudarNick(message, padraoNickApex(level[0],nickLegivel));
+			mudarNickCalado(message, padraoNickApex(level[0],nickLegivel));
 		break;
 		
 	}
@@ -4792,7 +4797,7 @@ function eloApex(message, cargosElo, dados, nickLegivel){
 				}, 1700);	
 			}else{
 				changeRole(message.member, cargosElo[2], cargosElo[1]);
-				message.reply(pontos+", tierA - atualizei o nick");
+				message.reply(pontos+", tierA | e atualizei o nick");
 			}
 
 			//(top10ELO[1]).add({"n":nickLegivel,"p":Number(eloPontos[1]).toFixedNumber(2)});
