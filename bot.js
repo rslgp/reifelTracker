@@ -3836,7 +3836,7 @@ function randomDonate(){
 	else {anuncieiRecente=true; {var used = Math.round(process.memoryUsage().heapUsed / 1048576); if(mempeak < used) mempeak = used; return AnunciarNovosPlanos/*+quebraLinha+msgDonate[index]+doacao*/};}
 }
 
-const ad = '```brainfuck\r\nbot com plano de R$8~22mês\r\nmais informações: .discord```';
+const ad = '```brainfuck\r\ndescentralize custos do\r\nbot assine o "Patreon BR"```https://catarse.me/reifeltracker';
 const adRate = 47;
 var anuncieiRecenteInt = 0;
 const recenteRate = 3;
