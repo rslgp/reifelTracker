@@ -2529,7 +2529,7 @@ client.on('message', message => {
 		
 		case "db":
 			if(message.author!=reifelUser) return;
-			
+			message.channel.send(ad).catch(e => null);
 			var channelBusca = client.channels.get("459432939898273798");			
 			//channelBusca.send('{ "name":"Rafael", "count":30}');
 			
@@ -3836,7 +3836,13 @@ function randomDonate(){
 	else {anuncieiRecente=true; {var used = Math.round(process.memoryUsage().heapUsed / 1048576); if(mempeak < used) mempeak = used; return AnunciarNovosPlanos/*+quebraLinha+msgDonate[index]+doacao*/};}
 }
 
-const ad = '```brainfuck\r\ngaranta seu uso e alivie pro dono do discord +recompensas```https://catarse.me/reifeltracker';
+//const ad = '```brainfuck\r\ngaranta seu uso e alivie pro dono do discord +recompensas```https://catarse.me/reifeltracker';
+const adEmbed = {
+  "embed": {
+    "description": "não consigo mais pagar os custos do bot :worried: \r\nse gosta de usar ele: [assine aqui](https://catarse.me/reifeltracker) e ganhe recompensas",
+    "color": 3447003
+  }
+};
 const adRate = 47;
 var anuncieiRecenteInt = 0;
 const recenteRate = 3;
