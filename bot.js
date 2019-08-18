@@ -277,11 +277,11 @@ client.on('ready', () => {
 	salaAposta = client.channels.get("416769967690743819");
 	reifelUser = client.users.get('195731919424585728');
 	//client.user.setActivity("interessados: https://u.nu/reifelcontato |Reifel#5047 |.queroessebot", { type: 'WATCHING', url:'https://www.twitch.tv/reifel'});
-	
+	//dono:Reifel#5047 desde:2017 jogos:fortnite,apex +info em assistir >>
 	client.user.setPresence({
 			game: {
 				//name: "com "+client.guilds.array().length +"|dono:Reifel#5047"
-				name: "dono:Reifel#5047 desde:2017 jogos:fortnite,apex +info em assistir >>",
+				name: "garanta o seu uso: https://www.catarse.me/reifeltracker",
 				url: "https://www.twitch.tv/reifel",
 				type: "STREAMING"
 			}
