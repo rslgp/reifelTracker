@@ -2531,7 +2531,14 @@ client.on('message', message => {
 		
 		case "db":
 			if(message.author!=reifelUser) return;
-			message.channel.send(ad).catch(e => null);
+			var msgTeste = {
+			  "embed": {
+			    "description": nickLegivel,
+			    "color": 3447003
+			  }
+			};
+			message.channel.send(msgTeste).catch(e => null);
+			return;
 			var channelBusca = client.channels.get("459432939898273798");			
 			//channelBusca.send('{ "name":"Rafael", "count":30}');
 			
@@ -3841,7 +3848,7 @@ function randomDonate(){
 //const ad = '```brainfuck\r\ngaranta seu uso e alivie pro dono do discord +recompensas```https://catarse.me/reifeltracker';
 const ad = {
   "embed": {
-    "description": "sem :money_with_wings: para continuar, em breve:\r\nReifelTracker ficará ativo APENAS para assinantes\r\nOU para todos (se tiver o mínimo de assina. no mês)\r\n [assine aqui](https://catarse.me/reifeltracker) e ganhe recompensas",
+    "description": "sem :money_with_wings: para continuar, em breve: ReifelTracker ficará ativo APENAS para assinantes\r\nOU para todos (se tiver o mínimo de assina. no mês)\r\n [assine aqui](https://catarse.me/reifeltracker) e ganhe recompensas",
     "color": 3447003
   }
 };
