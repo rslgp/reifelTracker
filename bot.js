@@ -3848,7 +3848,7 @@ function randomDonate(){
 //const ad = '```brainfuck\r\ngaranta seu uso e alivie pro dono do discord +recompensas```https://catarse.me/reifeltracker';
 const ad = {
   "embed": {
-    "description": "sem :money_with_wings: para continuar, em breve: ReifelTracker ficará ativo APENAS para assinantes\r\nOU para todos (se tiver o mínimo de assina. no mês)\r\n [assine aqui](https://catarse.me/reifeltracker) e ganhe recompensas",
+    "description": "sem :money_with_wings: para continuar, em breve: ReifelTracker ficará ativo APENAS para assinantes\r\nOU para todos (se tiver o mínimo de assinantes no mês)\r\n [assine aqui](https://catarse.me/reifeltracker) e ganhe recompensas",
     "color": 3447003
   }
 };
