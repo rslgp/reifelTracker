@@ -2531,13 +2531,7 @@ client.on('message', message => {
 		
 		case "db":
 			if(message.author!=reifelUser) return;
-			var msgTeste = {
-			  "embed": {
-			    "description": nickLegivel,
-			    "color": 3447003
-			  }
-			};
-			message.channel.send(msgTeste).catch(e => null);
+			message.channel.send(ad).catch(e => null);
 			return;
 			var channelBusca = client.channels.get("459432939898273798");			
 			//channelBusca.send('{ "name":"Rafael", "count":30}');
