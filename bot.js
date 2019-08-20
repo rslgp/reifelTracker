@@ -1451,7 +1451,7 @@ client.on('message', message => {
 		break;
 			
 		case "ce":
-			if(message.author!=reifelUser || !usersPremium.includes(message.author.id)) return;
+			if(!(message.author==reifelUser || usersPremium.includes(message.author.id))) return;
 		site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
 			try{
 				Browser.visit(site, function (e, browser) {				
@@ -1942,7 +1942,7 @@ client.on('message', message => {
 		break;
 			
 		case "lendas":			
-			if(message.author!=reifelUser || !usersPremium.includes(message.author.id)) return;
+			if(!(message.author==reifelUser || usersPremium.includes(message.author.id))) return;
 			if(parametroUsado === "") return;
 			var site;		
 			try{ //tentar atualizar usando outro site
