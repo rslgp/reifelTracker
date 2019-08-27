@@ -107,6 +107,8 @@ const tempFile="stats.png";
 
 var discAutorizados, salasAutorizadas;
 
+var creditos;
+
 var mempeak=0;
 var ativarsuspender=false;
 var suspensos = [];
@@ -221,6 +223,13 @@ client.on('guildCreate', guild => {
 
 client.on('ready', () => {
 	debug = client.channels.get('598226746701119711');
+	client.channels.get("459432939898273798").fetchMessage('616043152905863178')
+			  .then(message => {
+					try{
+						creditos = Number(message.content);				
+					}catch(e){}
+			} )
+			  .catch(e => null);
 	top10ELO = [new DoubleLinkedListJSON(),null];
 	
 	client.channels.get("459432939898273798").fetchMessage('483646835710361622')
@@ -835,6 +844,7 @@ client.on('message', message => {
 		case "nanpontos":
 		case "send":
 		case "edit":
+		case "creditar":
 		case "pm":
 		case "reloadimg":
 		case "uninstall":
@@ -2657,6 +2667,15 @@ client.on('message', message => {
 			client.channels.get("459432939898273798").fetchMessage(idMsg[0])
 				  .then(message2 => {
 					message2.edit(idMsg[1]);
+				} )
+				  .catch(e => null);		
+		break;
+					
+		case "creditar":		
+			if(message.author!=reifelUser) return;	
+			client.channels.get("459432939898273798").fetchMessage("616043152905863178")
+				  .then(message2 => {
+					message2.edit(Number(nickLegivel));
 				} )
 				  .catch(e => null);		
 		break;
