@@ -15,7 +15,7 @@ const tabelaPreco = '**Mensalidade do bot ReifelTracker**\r\nDepende da quantida
 
 const apoio = "", txt1MudarNick='winrate: **', txt2MudarNick='kd: **',txt3MudarNick='**, ', trackerTag="☂", espaco=" ", ftParam="?old=1", pfxCom1='!', pfxCom2='.', pfxCom3='c', reactEmoji='✔', reactEmojiX='❌';
 
-const usersPremium=['195731919424585728', '377626570816487449', '350258148730208276'];
+const usersPremium=['195731919424585728', '377626570816487449', '350258148730208276', '263403511197204480'];
 //taygera350258148730208276
 
 //var voiceChannel;
