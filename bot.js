@@ -280,21 +280,6 @@ client.on('ready', () => {
 	
 	try{
 		//client.user.setUsername("ReifelTracker");
-		
-		
-		if(credito>8160){		
-			client.user.setUsername("ReifelTracker [|||||] credito");
-		}else if(credito>6120){
-			client.user.setUsername("ReifelTracker [||||-] credito");
-		} else if(credito>4080){
-			client.user.setUsername("ReifelTracker [|||--] credito");
-		} else if(credito>2040){
-			client.user.setUsername("ReifelTracker [||---] credito");	
-		} else if(credito>850){
-			client.user.setUsername("ReifelTracker [|----] credito");
-		} else{
-			client.user.setUsername("ReifelTracker [-----] credito");
-		}
 	}catch(e){}
 	salaRank = client.channels.get("368505848667832321");	
 	salaVotem = client.channels.get("413597195846156299");	
