@@ -81,6 +81,8 @@ const comandoErrado = "comando inválido";
 //const AnunciarNovosPlanos="\r\n```fix\r\n\r\n!semana grátis do bot\r\n```";
 const AnunciarNovosPlanos="\r\n**[Convite](https://discordapp.com/oauth2/authorize?client_id=373443049818161153&scope=bot&permissions=469830656)** pro bot(val:2019)";
 
+const atividade = "se chegar a [-----] credito para de funcionar, mais detalhes e credite em: https://catarse.me/reifeltracker";
+
 var refreshAuto = [];
 var refreshTamanho = 0;
 var refreshRealizados=0;
@@ -226,6 +228,7 @@ client.on('ready', () => {
 	client.channels.get("459432939898273798").fetchMessage('616043152905863178')
 			  .then(message => {
 					try{
+						credito = message.content;
 						credito = Number(message.content);				
 					}catch(e){}
 			} )
@@ -290,7 +293,7 @@ client.on('ready', () => {
 	client.user.setPresence({
 			game: {
 				//name: "com "+client.guilds.array().length +"|dono:Reifel#5047"
-				name: "se chegar a [-----] credito para de funcionar, mais detalhes e credite em: https://catarse.me/reifeltracker",
+				name: atividade,
 				url: "https://www.twitch.tv/reifel",
 				type: "STREAMING"
 			}
@@ -896,16 +899,22 @@ client.on('message', message => {
 	//60 reais 10200 --- 5 rs 850
 	if(credito>8160){		
 		client.user.setUsername("ReifelTracker [|||||] credito");
+		setActivity("[|||||] creditado "+atividade);
 	}else if(credito>6120){
 		client.user.setUsername("ReifelTracker [||||-] credito");
+		setActivity("[||||-] creditado "+atividade);
 	} else if(credito>4080){
 		client.user.setUsername("ReifelTracker [|||--] credito");
+		setActivity("[|||--] creditado "+atividade);
 	} else if(credito>2040){
-		client.user.setUsername("ReifelTracker [||---] credito");	
+		client.user.setUsername("ReifelTracker [||---] credito");
+		setActivity("[||---] creditado "+atividade);	
 	} else if(credito>850){
 		client.user.setUsername("ReifelTracker [|----] credito");
+		setActivity("[|----] creditado "+atividade);
 	} else{
 		client.user.setUsername("ReifelTracker [-----] credito");
+		setActivity("[-----] creditado "+atividade);
 	}
 		
 	switch(comando){
@@ -5017,4 +5026,15 @@ function cargosimg(parsedResult, message, url, arrayID){ //arrayID => [stringCar
 
 function sendAD(message){	
 	message.channel.send(randomADS()).catch(e => null);
+}
+
+function setActivity(txt){
+	client.user.setPresence({
+		game: {
+			//name: "com "+client.guilds.array().length +"|dono:Reifel#5047"
+			name: txt,
+			url: "https://www.twitch.tv/reifel",
+			type: "STREAMING"
+		}
+	});
 }
