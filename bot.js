@@ -893,8 +893,10 @@ client.on('message', message => {
 	}
 	
 	if(credito < 0){
-		print("Acabaram os créditos, para continuar usando compre mais em https://catarse.me/reifeltracker (boleto, cartão)\r\n(R$5 viram 850 créditos | R$10 são 850*2 | R$20 são 850*2*2) e aguarde a conversão");
-		return;
+		if(!usersPremium.includes(message.author.id)){
+			print("Acabaram os créditos, para continuar usando compre mais em https://catarse.me/reifeltracker (boleto, cartão)\r\n(R$5 viram 850 créditos | R$10 são 850*2 | R$20 são 850*2*2) e aguarde a conversão");
+			return;		
+		}
 	}
 	//60 reais 10200 --- 5 rs 850
 	if(credito>8160){
