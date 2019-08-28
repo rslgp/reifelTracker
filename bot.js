@@ -291,7 +291,7 @@ client.on('ready', () => {
 	client.user.setPresence({
 			game: {
 				//name: "com "+client.guilds.array().length +"|dono:Reifel#5047"
-				name: ",ganhe recompensas e apoie o projeto: https://catarse.me/reifeltracker",
+				name: "se chegar a [-----] credito para de funcionar, mais detalhes e credite em: https://catarse.me/reifeltracker",
 				url: "https://www.twitch.tv/reifel",
 				type: "STREAMING"
 			}
