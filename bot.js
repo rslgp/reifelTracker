@@ -898,36 +898,8 @@ client.on('message', message => {
 			return;		
 		}
 	}
-	//60 reais 10200 --- 5 rs 850
-	if(credito>8160){
-		if((client.user.username).indexOf("[|||||]")==-1){
-			client.user.setUsername("ReifelTracker [|||||] credito");
-			setActivity("[|||||] creditado "+atividade);
-		}		
-	}else if(credito>6120){		
-		if((client.user.username).indexOf("[||||-]")==-1){
-			client.user.setUsername("ReifelTracker [||||-] credito");
-			setActivity("[||||-] creditado "+atividade);
-		}
-	} else if(credito>4080){		
-		if((client.user.username).indexOf("[|||--]")==-1){
-			client.user.setUsername("ReifelTracker [|||--] credito");
-			setActivity("[|||--] creditado "+atividade);
-		}
-	} else if(credito>2040){
-		if((client.user.username).indexOf("[||---]")==-1){
-			client.user.setUsername("ReifelTracker [||---] credito");
-			setActivity("[||---] creditado "+atividade);
-		}
-	} else if(credito>850){		
-		if((client.user.username).indexOf("[|----]")==-1){
-			client.user.setUsername("ReifelTracker [|----] credito");
-			setActivity("[|----] creditado "+atividade);
-		}
-	} else{
-		client.user.setUsername("ReifelTracker [-----] credito");
-		setActivity("[-----] creditado "+atividade);
-	}
+	//60 reais 10200 --- 5 rs 850 --- 12 2040
+	atualizarVisualCredito();
 		
 	switch(comando){
 		case "t":
@@ -2719,11 +2691,15 @@ client.on('message', message => {
 				  .catch(e => null);		
 		break;
 					
-		case "creditar":		
+		case "creditar": //insere em reais e eh convertido em credito	
 			if(message.author!=reifelUser) return;	
 			client.channels.get("459432939898273798").fetchMessage("616043152905863178")
 				  .then(message2 => {
-					message2.edit(Number(nickLegivel));
+					var adicional = (2040*Number(nickLegivel))/12;
+					message2.edit(Number(message.content)+adicional);
+				
+					credito+=adicional;
+					atualizarVisualCredito();
 				} )
 				  .catch(e => null);		
 		break;
@@ -5049,4 +5025,36 @@ function setActivity(txt){
 			type: "STREAMING"
 		}
 	});
+}
+
+function atualizarVisualCredito(){
+	if(credito>8160){
+		if((client.user.username).indexOf("[|||||]")==-1){
+			client.user.setUsername("ReifelTracker [|||||] credito");
+			setActivity("[|||||] creditado "+atividade);
+		}		
+	}else if(credito>6120){		
+		if((client.user.username).indexOf("[||||-]")==-1){
+			client.user.setUsername("ReifelTracker [||||-] credito");
+			setActivity("[||||-] creditado "+atividade);
+		}
+	} else if(credito>4080){		
+		if((client.user.username).indexOf("[|||--]")==-1){
+			client.user.setUsername("ReifelTracker [|||--] credito");
+			setActivity("[|||--] creditado "+atividade);
+		}
+	} else if(credito>2040){
+		if((client.user.username).indexOf("[||---]")==-1){
+			client.user.setUsername("ReifelTracker [||---] credito");
+			setActivity("[||---] creditado "+atividade);
+		}
+	} else if(credito>850){		
+		if((client.user.username).indexOf("[|----]")==-1){
+			client.user.setUsername("ReifelTracker [|----] credito");
+			setActivity("[|----] creditado "+atividade);
+		}
+	} else{
+		client.user.setUsername("ReifelTracker [-----] credito");
+		setActivity("[-----] creditado "+atividade);
+	}
 }
