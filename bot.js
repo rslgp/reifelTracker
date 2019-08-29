@@ -109,7 +109,9 @@ const tempFile="stats.png";
 
 var discAutorizados, salasAutorizadas;
 
-var credito, indiceCredAtt=0;
+
+const cred12 = 1428;
+var credito, indiceCredAtt=0, credBase;
 
 var mempeak=0;
 var ativarsuspender=false;
@@ -225,6 +227,7 @@ client.on('guildCreate', guild => {
 
 client.on('ready', () => {
 	debug = client.channels.get('598226746701119711');
+	
 	client.channels.get("459432939898273798").fetchMessage('616043152905863178')
 			  .then(message => {
 					try{
@@ -233,6 +236,13 @@ client.on('ready', () => {
 					}catch(e){}
 			} )
 			  .catch(e => null);
+	
+	credBase = [];
+	credBase[0] = 850;
+	for(var i=1; i<5; i++){
+		credBase[i]= cred12*i;
+	}
+	
 	top10ELO = [new DoubleLinkedListJSON(),null];
 	
 	client.channels.get("459432939898273798").fetchMessage('483646835710361622')
@@ -847,6 +857,7 @@ client.on('message', message => {
 		case "send":
 		case "edit":
 		case "creditar":
+		case "editcreditar":
 		case "pm":
 		case "reloadimg":
 		case "uninstall":
@@ -2695,10 +2706,25 @@ client.on('message', message => {
 			if(message.author!=reifelUser) return;	
 			client.channels.get("459432939898273798").fetchMessage("616043152905863178")
 				  .then(message2 => {
-					var adicional = (2040*Number(nickLegivel))/12;
+					var adicional = (cred12*Number(nickLegivel))/12;
 					message2.edit(Number(message.content)+adicional);
 				
 					credito+=adicional;
+					atualizarVisualCredito();
+				} )
+				  .catch(e => null);		
+		break;
+		
+			
+					
+		case "editcreditar": //insere em reais e eh convertido em credito	
+			if(message.author!=reifelUser) return;	
+			client.channels.get("459432939898273798").fetchMessage("616043152905863178")
+				  .then(message2 => {
+					
+					message2.edit(Number(nickLegivel));
+				
+					credito=Number(nickLegivel);
 					atualizarVisualCredito();
 				} )
 				  .catch(e => null);		
@@ -5038,27 +5064,27 @@ function setActivity(txt){
 }
 
 function atualizarVisualCredito(){
-	if(credito>8160){
+	if(credito>credBase[4]){
 		if((client.user.username).indexOf("[|||||]")==-1){
 			client.user.setUsername("ReifelTracker [|||||] credito");
 			setActivity("[|||||] creditado "+atividade);
 		}		
-	}else if(credito>6120){		
+	}else if(credito>credBase[3]){		
 		if((client.user.username).indexOf("[||||-]")==-1){
 			client.user.setUsername("ReifelTracker [||||-] credito");
 			setActivity("[||||-] creditado "+atividade);
 		}
-	} else if(credito>4080){		
+	} else if(credito>credBase[2]){		
 		if((client.user.username).indexOf("[|||--]")==-1){
 			client.user.setUsername("ReifelTracker [|||--] credito");
 			setActivity("[|||--] creditado "+atividade);
 		}
-	} else if(credito>2040){
+	} else if(credito>credBase[1]){
 		if((client.user.username).indexOf("[||---]")==-1){
 			client.user.setUsername("ReifelTracker [||---] credito");
 			setActivity("[||---] creditado "+atividade);
 		}
-	} else if(credito>850){		
+	} else if(credito>credBase[0]){		
 		if((client.user.username).indexOf("[|----]")==-1){
 			client.user.setUsername("ReifelTracker [|----] credito");
 			setActivity("[|----] creditado "+atividade);
