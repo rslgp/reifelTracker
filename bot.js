@@ -1722,12 +1722,14 @@ client.on('message', message => {
 		
 		case "ondevou":
 			var lugar = Math.floor(Math.random() * (100))%lugaresApex.length;
-			
-			lugaresEmbed = new Discord.RichEmbed()
+			const attachment = new Discord.Attachment(lugaresApex[0][1]);
+			// Send the attachment in the message channel with a content
+			/*lugaresEmbed = new Discord.RichEmbed()
 			    .setDescription(lugaresApex[0][0])
 			    .setImage(lugaresApex[0][1])
-			    .setColor(3447003)
-			message.channel.send(lugaresEmbed).catch(e => null);
+			    .setColor(3447003);
+			*/
+			message.channel.send(lugaresApex[0][0], attachment).catch(e => null);
 		break;
 			
 		case "elo":
