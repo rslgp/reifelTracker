@@ -120,7 +120,9 @@ var suspensos = [];
 var todosDias, diaHoje, liberarDiaExtra, barraApoio;
 
 const lugaresApex = [["Skulltown (Caveira)","https://i.imgur.com/rifvCok.gif"], ["Thunder (Cúpula do Trovão)","https://i.imgur.com/x1U6nau.gif"], ["Mercado","https://i.imgur.com/oHHJspW.gif"], ["Base aérea", "https://i.imgur.com/9Z9b9Ms.gif"], ["Bunker", "https://i.imgur.com/jHBJnfb.gif"], ["Artilharia","https://i.imgur.com/p8oZU8k.gif"], ["Repulsor","https://i.imgur.com/eQ7kUIr.gif"], ["Nave", "https://i.imgur.com/lAxCCeg.gif"], ["Cascatas","https://i.imgur.com/OTgxhft.gif"]];
-const lugaresEmbed = {
+var lugaresEmbed;
+
+/*= {
   "embed": {
     "description": lugaresApex[0][0],
     "image": {
@@ -128,6 +130,7 @@ const lugaresEmbed = {
     }
   }
 };
+*/
 //var primeiroDia, fimDoDia, diaAtual, liberarDiaExtra, horaAtual;
 //var 3dias = [primeiroDia+86400, primeiroDia+345600, primeiroDia+604800]; //domingo, quarta, sabado (insere posicao 0 - 1535241600, e as outras sao [0]+3*86400 e [0]+6*86400
 
@@ -1719,8 +1722,11 @@ client.on('message', message => {
 		
 		case "ondevou":
 			var lugar = Math.floor(Math.random() * (100))%lugaresApex.length;
-			lugaresEmbed.embed.description = lugaresApex[lugar][0];
-			lugaresEmbed.embed.image.url = lugaresApex[lugar][1];
+			
+			lugaresEmbed = new Discord.RichEmbed()
+			    .setDescription(lugaresApex[lugar][0])
+			    .setImage(lugaresApex[lugar][1])
+			    .setColor(3447003)
 			message.channel.send(lugaresEmbed).catch(e => null);
 		break;
 			
