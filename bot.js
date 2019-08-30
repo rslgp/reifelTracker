@@ -1722,29 +1722,24 @@ client.on('message', message => {
 		
 		case "ondevou":
 			var lugar = Math.floor(Math.random() * (100))%lugaresApex.length;
-			//const attachment = new Discord.Attachment(lugaresApex[0][1]);
+			const attachment = new Discord.Attachment(lugaresApex[0][1]);
 			
 			lugaresEmbed = new Discord.RichEmbed()
 			    .setImage(lugaresApex[0][1])
 			    .setColor(3447003);
 			
-			const exampleEmbed = new Discord.RichEmbed()
-				.setColor(3447003)
-				.setTitle('Some title')
-				.setURL('https://discord.js.org/')
-				.setAuthor('Some name', 'https://i.imgur.com/wSTFkRM.png', 'https://discord.js.org')
-				.setDescription('Some description here')
-				.setThumbnail('https://i.imgur.com/wSTFkRM.png')
-				.addField('Regular field title', 'Some value here')
-				.addBlankField()
-				.addField('Inline field title', 'Some value here', true)
-				.addField('Inline field title', 'Some value here', true)
-				.addField('Inline field title', 'Some value here', true)
-				.setImage(lugaresApex[0][1])
-				.setTimestamp()
-				.setFooter('Some footer text here', 'https://i.imgur.com/wSTFkRM.png');
-			
-			message.channel.send(exampleEmbed).catch(e => null);
+			lugaresEmbed = {
+			  "embed": {
+			    "description": lugaresApex[0][0],
+			    "image": {
+			      "url": lugaresApex[0][1]
+			    }
+			  }
+			};
+			message.channel.send(lugaresEmbed).catch(e => null);
+			message.channel.send("teste",lugaresEmbed).catch(e => null);
+			message.channel.send("teste3").catch(e => null);
+			message.channel.send(lugaresEmbed,attachment).catch(e => null);
 		break;
 			
 		case "elo":
