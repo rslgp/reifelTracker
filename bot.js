@@ -3909,7 +3909,7 @@ function randomDonate(){
 }
 
 //const ad = '```brainfuck\r\ngaranta seu uso e alivie pro dono do discord +recompensas```https://catarse.me/reifeltracker';
-const adsContent = ["com menos clientes (donos de discords) apoiando:\r\no bot pode ser desativado, p/ manter o projeto ativo: [clique aqui](https://catarse.me/reifeltracker) e receba prêmios ao ajudar", "evite a barra [-----] credito, pois indica sem recurso e para de funcionar, p/ +detalhes ou creditar [clique aqui](https://catarse.me/reifeltracker)"];
+const adsContent = ["com menos clientes (donos de discords) apoiando: o bot pode ser desativado,\r\npara manter o projeto ativo: [clique aqui](https://catarse.me/reifeltracker) (inclui prêmios)", "evite a barra [-----] credito, pois indica sem recurso e para de funcionar,\r\npara +detalhes ou creditar [clique aqui](https://catarse.me/reifeltracker)"];
 
 const ad = {
   "embed": {
@@ -3928,7 +3928,7 @@ function randomADS(){
 	}else{
 		anuncieiRecenteInt=0;
 		
-		if(Math.floor(Math.random() * (10)) > 7){ //0 a 9 (8, 9) sao 20 por cento
+		if(Math.floor(Math.random() * (10)) > 6){ //0 a 9 (8, 9) sao 30 por cento
 			ad.embed.description = adsContent[1];
 		}else{
 			ad.embed.description = adsContent[0];
