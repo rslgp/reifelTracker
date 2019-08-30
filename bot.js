@@ -1721,25 +1721,12 @@ client.on('message', message => {
 		
 		
 		case "ondevou":
+			//nao foi possivel colocar gif no embed.image e nem no setImage do richembed
+			//so pegou usando attachment
 			var lugar = Math.floor(Math.random() * (100))%lugaresApex.length;
-			const attachment = new Discord.Attachment(lugaresApex[0][1]);
+			const attachment = new Discord.Attachment(lugaresApex[lugar][1]);
 			
-			lugaresEmbed = new Discord.RichEmbed()
-			    .setImage(lugaresApex[0][1])
-			    .setColor(3447003);
-			
-			lugaresEmbed = {
-			  "embed": {
-			    "description": lugaresApex[0][0],
-			    "image": {
-			      "url": lugaresApex[0][1]
-			    }
-			  }
-			};
-			message.channel.send(lugaresEmbed).catch(e => null);
-			message.channel.send("teste",lugaresEmbed).catch(e => null);
-			message.channel.send("teste3").catch(e => null);
-			message.channel.send(lugaresEmbed,attachment).catch(e => null);
+			message.channel.send(lugaresApex[lugar][0], attachment).catch(e => null);
 		break;
 			
 		case "elo":
