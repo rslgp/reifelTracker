@@ -1728,7 +1728,23 @@ client.on('message', message => {
 			    .setImage(lugaresApex[0][1])
 			    .setColor(3447003);
 			
-			message.channel.send(lugaresApex[0][1], lugaresEmbed).catch(e => null);
+			const exampleEmbed = new Discord.RichEmbed()
+				.setColor(3447003)
+				.setTitle('Some title')
+				.setURL('https://discord.js.org/')
+				.setAuthor('Some name', 'https://i.imgur.com/wSTFkRM.png', 'https://discord.js.org')
+				.setDescription('Some description here')
+				.setThumbnail('https://i.imgur.com/wSTFkRM.png')
+				.addField('Regular field title', 'Some value here')
+				.addBlankField()
+				.addField('Inline field title', 'Some value here', true)
+				.addField('Inline field title', 'Some value here', true)
+				.addField('Inline field title', 'Some value here', true)
+				.setImage(lugaresApex[0][1])
+				.setTimestamp()
+				.setFooter('Some footer text here', 'https://i.imgur.com/wSTFkRM.png');
+			
+			message.channel.send(exampleEmbed).catch(e => null);
 		break;
 			
 		case "elo":
