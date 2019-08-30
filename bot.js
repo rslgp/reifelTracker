@@ -119,7 +119,7 @@ var suspensos = [];
 
 var todosDias, diaHoje, liberarDiaExtra, barraApoio;
 
-const lugaresApex = [["Skulltown (Caveira)","https://media1.tenor.com/images/2d70a920034b943aba042ef7eff4ce9b/tenor.gif"], ["Thunder (Cúpula do Trovão)","https://i.imgur.com/x1U6nau.gif"], ["Mercado","https://i.imgur.com/oHHJspW.gif"], ["Base aérea", "https://i.imgur.com/9Z9b9Ms.gif"], ["Bunker", "https://i.imgur.com/jHBJnfb.gif"], ["Artilharia","https://i.imgur.com/p8oZU8k.gif"], ["Repulsor","https://i.imgur.com/eQ7kUIr.gif"], ["Nave", "https://i.imgur.com/lAxCCeg.gif"], ["Cascatas","https://i.imgur.com/OTgxhft.gif"]];
+const lugaresApex = [["Skulltown (Caveira)","https://i.imgur.com/rifvCok.gif"], ["Thunder (Cúpula do Trovão)","https://i.imgur.com/x1U6nau.gif"], ["Mercado","https://i.imgur.com/oHHJspW.gif"], ["Base aérea", "https://i.imgur.com/9Z9b9Ms.gif"], ["Bunker", "https://i.imgur.com/jHBJnfb.gif"], ["Artilharia","https://i.imgur.com/p8oZU8k.gif"], ["Repulsor","https://i.imgur.com/eQ7kUIr.gif"], ["Nave", "https://i.imgur.com/lAxCCeg.gif"], ["Cascatas","https://i.imgur.com/OTgxhft.gif"]];
 var lugaresEmbed;
 
 /*= {
@@ -1722,14 +1722,14 @@ client.on('message', message => {
 		
 		case "ondevou":
 			var lugar = Math.floor(Math.random() * (100))%lugaresApex.length;
-			const attachment = new Discord.Attachment(lugaresApex[0][1]);
-			// Send the attachment in the message channel with a content
-			/*lugaresEmbed = new Discord.RichEmbed()
+			//const attachment = new Discord.Attachment(lugaresApex[0][1]);
+			
+			lugaresEmbed = new Discord.RichEmbed()
 			    .setDescription(lugaresApex[0][0])
 			    .setImage(lugaresApex[0][1])
 			    .setColor(3447003);
-			*/
-			message.channel.send(lugaresApex[0][0], attachment).catch(e => null);
+			
+			message.channel.send("", lugaresEmbed).catch(e => null);
 		break;
 			
 		case "elo":
