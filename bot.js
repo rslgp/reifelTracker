@@ -1725,11 +1725,10 @@ client.on('message', message => {
 			//const attachment = new Discord.Attachment(lugaresApex[0][1]);
 			
 			lugaresEmbed = new Discord.RichEmbed()
-			    .setDescription(lugaresApex[0][0])
 			    .setImage(lugaresApex[0][1])
 			    .setColor(3447003);
 			
-			message.channel.send("", lugaresEmbed).catch(e => null);
+			message.channel.send(lugaresApex[0][1], lugaresEmbed).catch(e => null);
 		break;
 			
 		case "elo":
