@@ -1726,7 +1726,7 @@ client.on('message', message => {
 			var lugar = Math.floor(Math.random() * (100))%lugaresApex.length;
 			const attachment = new Discord.Attachment(lugaresApex[lugar][1]);
 			
-			message.channel.send("te DESAFIO a ir aqui: :point_down: "+lugaresApex[lugar][0]+" ```", attachment).catch(e => null);
+			message.channel.send("te DESAFIO a ir aqui: :point_down: "+lugaresApex[lugar][0], attachment).catch(e => null);
 		break;
 			
 		case "elo":
