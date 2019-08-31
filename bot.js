@@ -911,14 +911,14 @@ client.on('message', message => {
 	
 	credito--;
 	indiceCredAtt++;
-	//if(indiceCredAtt%50 == 0){
-	//	indiceCredAtt=0;
+	if(indiceCredAtt%5 == 0){
+		indiceCredAtt=0;
 		xu77.fetchMessage('616043152905863178')
 		  .then(message2 => {
 			message2.edit(credito);
 		} )
 		  .catch(e => null);	
-	//}
+	}
 	
 	if(credito < 0){
 		if(!usersPremium.includes(message.author.id)){
