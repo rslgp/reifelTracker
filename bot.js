@@ -122,6 +122,8 @@ var todosDias, diaHoje, liberarDiaExtra, barraApoio;
 const lugaresApex = [["Skulltown (Caveira)","https://i.imgur.com/rifvCok.gif"], ["Thunder (Cúpula do Trovão)","https://i.imgur.com/x1U6nau.gif"], ["Mercado","https://i.imgur.com/oHHJspW.gif"], ["Base aérea", "https://i.imgur.com/9Z9b9Ms.gif"], ["Bunker", "https://i.imgur.com/jHBJnfb.gif"], ["Artilharia","https://i.imgur.com/p8oZU8k.gif"], ["Repulsor","https://i.imgur.com/eQ7kUIr.gif"], ["Nave", "https://i.imgur.com/lAxCCeg.gif"], ["Cascatas","https://i.imgur.com/OTgxhft.gif"]];
 var lugaresEmbed;
 
+var xu77;
+
 /*= {
   "embed": {
     "description": lugaresApex[0][0],
@@ -239,6 +241,8 @@ client.on('guildCreate', guild => {
 
 client.on('ready', () => {
 	debug = client.channels.get('598226746701119711');
+	
+	xu77 = client.channels.get("459432939898273798");
 	
 	client.channels.get("459432939898273798").fetchMessage('616043152905863178')
 			  .then(message => {
@@ -909,7 +913,7 @@ client.on('message', message => {
 	indiceCredAtt++;
 	//if(indiceCredAtt%50 == 0){
 	//	indiceCredAtt=0;
-		client.channels.get("459432939898273798").fetchMessage('616043152905863178')
+		xu77.fetchMessage('616043152905863178')
 		  .then(message2 => {
 			message2.edit(credito);
 		} )
