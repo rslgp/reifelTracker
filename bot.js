@@ -119,7 +119,7 @@ var suspensos = [];
 
 var todosDias, diaHoje, liberarDiaExtra, barraApoio;
 
-const lugaresApex = [["Skulltown (Caveira)","https://i.imgur.com/rifvCok.gif"], ["Thunder (Cúpula do Trovão)","https://i.imgur.com/x1U6nau.gif"], ["Mercado","https://i.imgur.com/oHHJspW.gif"], ["Base aérea", "https://i.imgur.com/9Z9b9Ms.gif"], ["Bunker", "https://i.imgur.com/jHBJnfb.gif"], ["Artilharia","https://i.imgur.com/p8oZU8k.gif"], ["Repulsor","https://i.imgur.com/eQ7kUIr.gif"], ["Nave", "https://i.imgur.com/lAxCCeg.gif"], ["Cascatas","https://i.imgur.com/OTgxhft.gif"]];
+const lugaresApex = [["Skulltown (Caveira)","https://i.imgur.com/rifvCok.gif"], ["Thunder (Cúpula do Trovão)","https://i.imgur.com/x1U6nau.gif"], ["Mercado","https://i.imgur.com/oHHJspW.gif"], ["Base aérea", "https://i.imgur.com/9Z9b9Ms.gif"], ["Artilharia","https://i.imgur.com/p8oZU8k.gif"], ["Repulsor","https://i.imgur.com/eQ7kUIr.gif"], ["Nave", "https://i.imgur.com/lAxCCeg.gif"], ["Cascatas","https://i.imgur.com/OTgxhft.gif"]];
 var lugaresEmbed;
 
 var xu77;
