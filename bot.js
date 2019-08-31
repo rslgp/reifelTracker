@@ -907,14 +907,14 @@ client.on('message', message => {
 	
 	credito--;
 	indiceCredAtt++;
-	if(indiceCredAtt%50 == 0){
-		indiceCredAtt=0;
+	//if(indiceCredAtt%50 == 0){
+	//	indiceCredAtt=0;
 		client.channels.get("459432939898273798").fetchMessage('616043152905863178')
 		  .then(message2 => {
 			message2.edit(credito);
 		} )
 		  .catch(e => null);	
-	}
+	//}
 	
 	if(credito < 0){
 		if(!usersPremium.includes(message.author.id)){
@@ -4841,7 +4841,7 @@ function mudeiApex(message, nickLegivel, dados){
 		levelatual = nome.substring(nome.lastIndexOf(' ',nome.length-3)+1,nome.length-2);
 	else
 		levelatual = nome.substring(0,nome.indexOf(' '));
-	if( (parseInt(levelatual) + 20) >= parseInt(level) ) { 
+	if( (parseInt(levelatual) + 60) >= parseInt(level) ) { 
 		switch(message.guild.id){
 
 			case '550108927698927626':
