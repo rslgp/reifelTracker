@@ -123,6 +123,7 @@ const lugaresApex = [["Skulltown (Caveira)","https://i.imgur.com/rifvCok.gif"], 
 var lugaresEmbed;
 
 var xu77=null;
+var statsv2 = null;
 
 /*= {
   "embed": {
@@ -246,7 +247,14 @@ client.on('ready', () => {
 		  .then(message2 => {
 			xu77 = message2;
 		} )
-		  .catch(e => null);;
+		  .catch(e => null);
+	
+	client.channels.get("459432939898273798").fetchMessage('617664454896648203')
+		  .then(message2 => {
+			statsv2 = message2;
+		} )
+		  .catch(e => null);
+	
 	
 	client.channels.get("459432939898273798").fetchMessage('616043152905863178')
 			  .then(message => {
@@ -794,6 +802,13 @@ client.on('message', message => {
 				  .catch(e => null);	
 	//fim-stats
 	*/
+	//stats v2
+	var obj = JSONbig.parse(statsv2.content);
+	//var obj = {};
+	if(obj[message.guild.id+""])  {obj[message.guild.id+""].qtd += 1;}
+	else {obj[message.guild.id+""] = {"qtd":1, "nome":message.guild.name}; }
+	statsv2.edit(JSON.stringify(obj));	
+	//fim-stats
 		
 	//dividindo cada palavra da mensagem em um array de palavras
 	var args = message.content.slice(1).trim().split(/ +/g);
