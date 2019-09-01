@@ -803,11 +803,13 @@ client.on('message', message => {
 	//fim-stats
 	*/
 	//stats v2
-	var obj = JSONbig.parse(statsv2.content);
-	//var obj = {};
-	if(obj[message.guild.id+""])  {obj[message.guild.id+""].qtd += 1;}
-	else {obj[message.guild.id+""] = {"qtd":1, "nome":message.guild.name}; }
-	statsv2.edit(JSON.stringify(obj));	
+	if(statsv2 !=null){		
+		var obj = JSONbig.parse(statsv2.content);
+		//var obj = {};
+		if(obj[message.guild.id+""])  {obj[message.guild.id+""].qtd += 1;}
+		else {obj[message.guild.id+""] = {"qtd":1, "nome":message.guild.name}; }
+		statsv2.edit(JSON.stringify(obj));
+	}	
 	//fim-stats
 		
 	//dividindo cada palavra da mensagem em um array de palavras
