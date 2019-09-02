@@ -4357,7 +4357,7 @@ function getEloKL(level,kills=0,matches=0,dano=0){
 	var kl = (((2.6*kills)+(dano/175))/(0.938*level));
 	//var kpm=0;
 	//if(matches!=0) kpm = (kills/matches);	
-	var msgComplemento = " kill+KillDano/lvl";
+	var msgComplemento = " kill+KillDano/lvl, K/l:"+(kills/level).toFixed(2);
 	if(kl >= 19*ratio){
 		//if(kpm > 4.8) return ["S+",kl,kl+" "+kpm];
 		return ["S",kl+"",kl.toFixed(2)+msgComplemento];
