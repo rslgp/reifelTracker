@@ -245,7 +245,7 @@ client.on('ready', () => {
 	
 	//reacao
 	client.channels.get("617882572743245863").fetchMessage('617884991531122688').then(message2 => {		
-		//message2.edit("reaja com :tickets: para entrar na fila ranked para diamante, platina ou predador");
+		//message2.edit("reaja com :tickets: para entrar na fila ranked para ouro, platina, diamante ou predador\r\n:recycle: para ficar entrando automaticamente na fila\r\n:x: para parar de entrar automaticamente");
 		
 		//message2.clearReactions();
 		setTimeout(aguardarReacao(message2),0);
@@ -5165,14 +5165,26 @@ var currentReactionsRanked, autofilaReactions, autoFilaUsers, countInterest = 0;
 function aguardarReacao(msgReacted){
 	msgReacted.react(ticketRankedEmoji).catch(e=>null);
 	msgReacted.react(autoFila).catch(e=>null);
+	msgReacted.react(reactEmojiX).catch(e=>null);
+	
 	const filter = (reaction, user) => user.id != '373443049818161153' && reaction.emoji.name === ticketRankedEmoji;
 	msgReacted.awaitReactions(filter, { maxUsers: 60, time: 900000 })
 	  .then(collected => {
 				currentReactionsRanked = msgReacted.reactions.get(ticketRankedEmoji);
 				autofilaReactions = msgReacted.reactions.get(autoFila);
+				var removeAutoFila = msgReacted.reactions.get(reactEmojiX);
+				if(removeAutoFila!=null){					
+					for(var i of removeAutoFila.users){
+						var index = autoFilaUsers.indexOf(i);			
+						if (index !== -1) {
+							autoFilaUsers.splice(index, 1);
+						}
+					}
+				}
 		
 				countInterest = 0;
 				if(currentReactionsRanked!=null) countInterest += currentReactionsRanked.count;
+		
 				if(autofilaReactions!=null) {
 					for(var i of autofilaReactions.users){
 						if(!autoFilaUsers.includes(i)) autoFilaUsers.push(i);
