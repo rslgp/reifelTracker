@@ -243,6 +243,16 @@ client.on('guildCreate', guild => {
 client.on('ready', () => {
 	debug = client.channels.get('598226746701119711');
 	
+	//reacao
+	client.channels.get("617882572743245863").fetchMessage('617884991531122688').then(message2 => {		
+		message2.edit("reaja com :tickets: para entrar na fila ranked para diamante, platina ou predador");
+		
+		message2.clearReactions();
+		setTimeout(aguardarReacao(message2),0);
+	} )
+	  .catch(e => null);
+	//fim-reacao
+	
 	client.channels.get("459432939898273798").fetchMessage('616043152905863178')
 		  .then(message2 => {
 			xu77 = message2;
@@ -370,6 +380,15 @@ client.on('ready', () => {
 		console.log(a.name+quebraLinha+a.id+quebraLinha+"<@"+a.ownerID+">"+quebraLinha+"https://cdn.discordapp.com/icons/"+a.id+"/"+a.icon+".png"+quebraLinha);
 	}
 	*/
+	
+	//ranked 
+	// Create a reaction collector
+	const filter = (reaction, user) => reaction.emoji.name === '🎟';
+	message.awaitReactions(filter, { maxUsers: 60, time: 15000 })
+	  .then(collected => console.log(`Collected ${collected.size} reactions`))
+	  .catch(console.error);
+	
+	
 });
 
 /*
@@ -5137,4 +5156,37 @@ function atualizarVisualCredito(){
 		client.user.setUsername("ReifelTracker [-----] credito");
 		setActivity("[-----] creditado "+atividade);
 	}
+}
+
+
+const ticketRankedEmoji='🎟';
+var currentReactionsRanked;
+function aguardarReacao(msgReacted){
+	msgReacted.react(ticketRankedEmoji).catch(e=>null);
+	const filter = (reaction, user) => user.id != '373443049818161153' && reaction.emoji.name === ticketRankedEmoji;
+	msgReacted.awaitReactions(filter, { maxUsers: 60, time: 5000 })
+	  .then(collected => {
+				currentReactionsRanked = msgReacted.reactions.get(ticketRankedEmoji);
+				if(currentReactionsRanked!=null) currentReactionsRanked = currentReactionsRanked.count;
+				else currentReactionsRanked = 1;
+				if(currentReactionsRanked > 2 || collected.size > 2){
+					var msgUsersMention="";
+					var u = collected.get(ticketRankedEmoji).users;
+					msgReacted.clearReactions();
+					for(var i of u){
+					  if(i[1].bot === false) msgUsersMention+=i[1];
+					  
+					}
+					if(msgUsersMention!="") {
+						msgReacted.channel.send(msgUsersMention).then(mentionMsg => mentionMsg.delete(10000)).catch(e => null);
+					}
+					
+				}else{
+					if(collected.size!=0) msgReacted.clearReactions();
+				}
+				
+				aguardarReacao(msgReacted);
+			}
+		)
+	  .catch(e=>null);
 }
