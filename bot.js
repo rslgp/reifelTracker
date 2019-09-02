@@ -5160,24 +5160,34 @@ function atualizarVisualCredito(){
 }
 
 
-const ticketRankedEmoji='🎟';
-var currentReactionsRanked;
+const ticketRankedEmoji='🎟', autoFila='♻';
+var currentReactionsRanked, autofilaReactions, autoFilaUsers, countInterest = 0;
 function aguardarReacao(msgReacted){
 	msgReacted.react(ticketRankedEmoji).catch(e=>null);
+	msgReacted.react(autoFila).catch(e=>null);
 	const filter = (reaction, user) => user.id != '373443049818161153' && reaction.emoji.name === ticketRankedEmoji;
 	msgReacted.awaitReactions(filter, { maxUsers: 60, time: 900000 })
 	  .then(collected => {
 				currentReactionsRanked = msgReacted.reactions.get(ticketRankedEmoji);
-				if(currentReactionsRanked!=null) currentReactionsRanked = currentReactionsRanked.count;
-				else currentReactionsRanked = 1;
-				if(currentReactionsRanked > 2 || collected.size > 2){
+				autofilaReactions = msgReacted.reactions.get(autoFila);
+		
+				countInterest = 0;
+				if(currentReactionsRanked!=null) countInterest += currentReactionsRanked.count;
+				if(autofilaReactions!=null) {
+					for(var i of autofilaReactions.users){
+						if(!autoFilaUsers.includes(i)) autoFilaUsers.push(i);
+					}
+					countInterest += autoFilaUsers.length;
+				}
+		
+				if(collected.size > 50 || countInterest > 50){
 					var msgUsersMention="";
 					var u = collected.get(ticketRankedEmoji).users;
 					msgReacted.clearReactions();
 					for(var i of u){
-					  if(i[1].bot === false) msgUsersMention+=i[1];
-					  
+					  if(i[1].bot === false) msgUsersMention+=i[1];					  
 					}
+					
 					if(msgUsersMention!="") {
 						msgReacted.channel.send(msgUsersMention).then(mentionMsg => mentionMsg.delete(10000)).catch(e => null);
 					}
