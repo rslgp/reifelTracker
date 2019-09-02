@@ -4623,7 +4623,7 @@ function elomerged(message, level, kills, dano, cargosElo){
 			//message.reply(pontos+", tierB");
 			break;
 		case "C":
-			changeRole(message.member, cargosElo[2], cargosElo[3]);
+			//changeRole(message.member, cargosElo[2], cargosElo[3]);
 			//message.reply(pontos+", tierC");
 			break;
 		default:
