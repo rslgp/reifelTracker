@@ -4902,6 +4902,7 @@ function mudeiApex(message, nickLegivel, dados){
 	}
 }
 
+const msgAttlvl = ", e atualizei lvl do nick";
 function eloApex(message, cargosElo, dados, nickLegivel){
 	padraoLvlApex(message,nickLegivel, dados);
 	
@@ -4925,7 +4926,7 @@ function eloApex(message, cargosElo, dados, nickLegivel){
 		break;
 		case "S":
 			changeRole(message.member, cargosElo[1], cargosElo[0]);
-			message.reply(pontos+", tierS");
+			message.reply(pontos+", tierS"+msgAttlvl);
 			(top10ELO[0]).add({"n":nickLegivel,"p":Number(eloPontos[1]).toFixedNumber(2)});
 			topEloDesatualizado[0] = true;
 			break;
@@ -4941,14 +4942,14 @@ function eloApex(message, cargosElo, dados, nickLegivel){
 					message.member.removeRole(cargosElo[0]).catch(err => console.log(err)).then( () => 
 						{												
 							changeRole(message.member, cargosElo[0], cargosElo[1]);
-							message.reply(pontos+", tierA");
+							message.reply(pontos+", tierA"+msgAttlvl);
 
 						}
 					);
 				}, 1700);	
 			}else{
 				changeRole(message.member, cargosElo[2], cargosElo[1]);
-				message.reply(pontos+", tierA | e atualizei o nick");
+				message.reply(pontos+", tierA"+msgAttlvl);
 			}
 
 			//(top10ELO[1]).add({"n":nickLegivel,"p":Number(eloPontos[1]).toFixedNumber(2)});
@@ -4956,11 +4957,11 @@ function eloApex(message, cargosElo, dados, nickLegivel){
 		break;
 		case "B":
 			changeRole(message.member, cargosElo[1], cargosElo[2]);
-			message.reply(pontos+", tierB - atualizei o nick");
+			message.reply(pontos+", tierB"+msgAttlvl);
 		break;
 		case "C":
 			changeRole(message.member, cargosElo[2], cargosElo[3]);
-			message.reply(pontos+", tierC - atualizei o nick");
+			message.reply(pontos+", tierC"+msgAttlvl);
 		break;
 		default:
 			message.reply(pontos+" não elegivel para tier ainda (minimo: 33,84) - atualizei o nick");
