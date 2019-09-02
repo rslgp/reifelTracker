@@ -4654,7 +4654,9 @@ function padraoLvlApex(message, nickLegivel, dados){
 		
 		case '542501242916700181': //ams
 			//padraoRankWinApex(message, message.member, nickLegivel, level, ["550153057653227541", "550153058030583820", "550153058613723156","550153494045261837"], [150,100,60,30], "Continua onde está, os niveis atuais são: 150+, 100+, 60+, 30+");
-			
+			if(dados.level > 190){
+				changeRole(message.member, "550153058030583820", "550153057653227541");
+			}
 			var posicaoGuardaChuva = -1;
 			try{
 				posicaoGuardaChuva = message.member.nickname.indexOf("★").catch(e => null);		
