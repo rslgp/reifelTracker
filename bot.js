@@ -245,9 +245,9 @@ client.on('ready', () => {
 	
 	//reacao
 	client.channels.get("617882572743245863").fetchMessage('617884991531122688').then(message2 => {		
-		message2.edit("reaja com :tickets: para entrar na fila ranked para diamante, platina ou predador");
+		//message2.edit("reaja com :tickets: para entrar na fila ranked para diamante, platina ou predador");
 		
-		message2.clearReactions();
+		//message2.clearReactions();
 		setTimeout(aguardarReacao(message2),0);
 	} )
 	  .catch(e => null);
@@ -5164,7 +5164,7 @@ var currentReactionsRanked;
 function aguardarReacao(msgReacted){
 	msgReacted.react(ticketRankedEmoji).catch(e=>null);
 	const filter = (reaction, user) => user.id != '373443049818161153' && reaction.emoji.name === ticketRankedEmoji;
-	msgReacted.awaitReactions(filter, { maxUsers: 60, time: 5000 })
+	msgReacted.awaitReactions(filter, { maxUsers: 60, time: 900000 })
 	  .then(collected => {
 				currentReactionsRanked = msgReacted.reactions.get(ticketRankedEmoji);
 				if(currentReactionsRanked!=null) currentReactionsRanked = currentReactionsRanked.count;
