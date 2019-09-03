@@ -294,7 +294,7 @@ client.on('messageReactionAdd', (reaction, user) => {
 				maxTempo = new Date();
 				maxTempo = maxTempo.addMinutes15();
 				//900 segundos eh 15 min
-				reaction.message.channel.send('Fila ranked iniciada, aguardando jogadores...\r\naguardando '+ticketRankedEmoji+' 50 até no máximo as: '+maxTempo.getHours()-3+":"+maxTempo.getMinutes())
+				reaction.message.channel.send('Fila ranked iniciada, aguardando jogadores...\r\naguardando '+ticketRankedEmoji+' 50 até no máximo as: '+(maxTempo.getHours()-3)+":"+maxTempo.getMinutes())
 				  .then(msgContagem => 
 						setTimeout(function(){							
 							zerarFilaRankedBot();
