@@ -294,7 +294,7 @@ client.on('messageReactionAdd', (reaction, user) => {
 				maxTempo = new Date();
 				maxTempo = maxTempo.addMinutes15();
 				//900 segundos eh 15 min
-				reaction.message.channel.send('Fila ranked iniciada, aguardando jogadores...\r\nesta fila será encerrada quando tiver 50 jogadores OU as: '+maxTempo.getHours()+":"+maxTempo.getMinutes())
+				reaction.message.channel.send('Fila ranked iniciada, aguardando jogadores...\r\nserá encerrada com ['+ticketRankedEmoji+' 50] OU as: '+maxTempo.getHours()+":"+maxTempo.getMinutes())
 				  .then(msgContagem => 
 						setTimeout(function(){							
 							zerarFilaRankedBot();
@@ -311,17 +311,16 @@ client.on('messageReactionAdd', (reaction, user) => {
 client.on('ready', () => {
 	debug = client.channels.get('598226746701119711');
 	
-	/*
 	//reacao
 	client.channels.get("617882572743245863").fetchMessage('617884991531122688').then(message2 => {		
 		//message2.edit("reaja com :tickets: para entrar na fila ranked para ouro, platina, diamante ou predador\r\n:recycle: para ficar entrando automaticamente na fila\r\n:x: para parar de entrar automaticamente");
 		
 		//message2.clearReactions();
-		setTimeout(aguardarReacao(message2),0);
+		//setTimeout(aguardarReacao(message2),0);
+		message2.react(ticketRankedEmoji).catch(e=>null);
 	} )
 	  .catch(e => null);
 	//fim-reacao
-	*/
 	
 	client.channels.get("459432939898273798").fetchMessage('616043152905863178')
 		  .then(message2 => {
