@@ -4973,7 +4973,7 @@ function mudeiApex(message, nickLegivel, dados){
 	}
 }
 
-const msgAttlvl = ", e atualizei lvl do nick";
+const msgAttlvl = ", fiz o .lvl";
 function eloApex(message, cargosElo, dados, nickLegivel){
 	padraoLvlApex(message,nickLegivel, dados);
 	
