@@ -110,7 +110,7 @@ const tempFile="stats.png";
 var discAutorizados, salasAutorizadas;
 
 
-const cred12 = 1428;
+const cred12 = 880;
 var credito, indiceCredAtt=0, credBase;
 
 var mempeak=0;
