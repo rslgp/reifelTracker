@@ -873,7 +873,7 @@ client.on('message', message => {
 			if (index !== -1) {
 				cooldownUser.splice(index, 1);
 			}
-		}, 30000);
+		}, 25000);
 	}
 	//fim anti
 	
