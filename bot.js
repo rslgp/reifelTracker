@@ -1864,7 +1864,7 @@ client.on('message', message => {
 				break;
 					
 				default:
-					cargosElo = ['562423267894231072', '562423268292689920', '562423268511055892', '581226705612701700']
+					cargosElo = ['562423267894231072', '622443382538502144', '562423268511055892', '581226705612701700']
 				break;
 			}
 		/*	
@@ -4430,11 +4430,11 @@ function getEloKL(level,kills=0,matches=0,dano=0){
 	if(kl >= 19*ratio){
 		//if(kpm > 4.8) return ["S+",kl,kl+" "+kpm];
 		return ["S",kl+"",kl.toFixed(2)+msgComplemento];
-	}else if(kl >= 11.8*ratio) {
+	}else if(kl >= 15*ratio) {
 		//if(kpm > 2) return ["A+",kl,kl+" "+kpm];
 		return ["A",kl+"",kl.toFixed(2)+msgComplemento];
 	}
-	else if(kl >= 9.4*ratio){
+	else if(kl >= 10*ratio){
 		return ["B",kl+"",kl.toFixed(2)+msgComplemento];
 	}else if(kl >= 15){
 		return ["C",kl+"",kl.toFixed(2)+msgComplemento];
@@ -4490,7 +4490,7 @@ function getElo(level, kills=0, dano){
 	var r = a+b+c;
 	if(kills==0||dano==0) r *= 0.43;
 	
-	var tierS = 55, tierA = 37, tierB = 10, tierAtual = r/10; 
+	var tierS = 68, tierA = 63, tierB = 33, tierAtual = r/10; 
 	if(tierAtual >= tierS){
 		return ["S",r+""];
 	}else if(tierAtual >= tierA){
