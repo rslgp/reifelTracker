@@ -280,7 +280,7 @@ client.on('messageReactionAdd', (reaction, user) => {
 					//reaction.remove(client.user);
 					for(var i of u){
 					  if(i[1].presence.status == 'offline') {
-						  reaction.remove(i[1]);
+						  //reaction.remove(i[1]);
 						  offlineUsers++;
 					  }else{
 						msgUsersMention+=i[1];
