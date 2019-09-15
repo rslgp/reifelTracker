@@ -269,38 +269,33 @@ client.on('messageReactionAdd', (reaction, user) => {
 	if(user.bot) return;
 	switch(reaction.message.id){
 		case "617884991531122688": //msg de tickets do bot
-		
+			var offlineUsers=0;
 			qtdTickets = reaction.message.reactions.get(ticketRankedEmoji);
-			if(qtdTickets!=null){
-				if(msgFila==null) msgFila = reaction.message;
-				
+			if(qtdTickets!=null){			
 				//se atingiu a qtd necessaria pra ranked
-				if(qtdTickets.count > 50){
+				if(qtdTickets.count > 45){
 					var msgUsersMention="";
 					var u = qtdTickets.users;
-					zerarFilaRankedBot();
+					//zerarFilaRankedBot();
+					//reaction.remove(client.user);
 					for(var i of u){
-					  if(i[1].bot === false) msgUsersMention+=i[1];					  
+					  if(i[1].presence.status == 'offline') {
+						  reaction.remove(i[1]);
+						  offlineUsers++;
+					  }else{
+						msgUsersMention+=i[1];
+					  }
+					  //if(i[1].bot === false) msgUsersMention+=i[1];					  
 					}
-					if(msgUsersMention!="") {
+					
+					if((qtdTickets.count - offlineUsers) > 45) {
+						//zerarFilaRankedBot();						
+						reaction.clearReactions().then( 
+							setTimeout(function(){reaction.react(ticketRankedEmoji).catch(e=>null);},1000) 
+						);  
 						reaction.message.channel.send(msgUsersMention).then(mentionMsg => mentionMsg.delete(10000)).catch(e => null);
 					}
 				}
-			}
-			
-			//se foi o primeiro q reagiu criar a fila e preparar para resetar dps de 15 min
-			if(primeiroReagiu==false){
-				primeiroReagiu=true;
-				maxTempo = new Date();
-				maxTempo = maxTempo.addMinutes15();
-				//900 segundos eh 15 min
-				reaction.message.channel.send('Fila ranked iniciada, aguardando jogadores...\r\naguardando '+ticketRankedEmoji+' 50 até no máximo quando der o minuto: XX:'+maxTempo.getMinutes())
-				  .then(msgContagem => 
-						setTimeout(function(){							
-							zerarFilaRankedBot();
-							msgContagem.delete();
-						}, 900000) )
-				  .catch(e => null);
 			}
 		break;
 	}
