@@ -1027,7 +1027,7 @@ client.on('message', message => {
 		}
 	}
 	//60 reais 10200 --- 5 rs 850 --- 12 2040
-	atualizarVisualCredito();
+	message.guild.me.setNickname(atualizarVisualCredito());
 		
 	switch(comando){
 		case "t":
@@ -2837,7 +2837,7 @@ client.on('message', message => {
 					message2.edit(Number(message.content)+adicional);
 				
 					credito+=adicional;
-					atualizarVisualCredito();
+					message.guild.me.setNickname(atualizarVisualCredito());
 				} )
 				  .catch(e => null);		
 		break;
@@ -2852,7 +2852,7 @@ client.on('message', message => {
 					message2.edit(Number(nickLegivel));
 				
 					credito=Number(nickLegivel);
-					atualizarVisualCredito();
+					message.guild.me.setNickname(atualizarVisualCredito());
 				} )
 				  .catch(e => null);		
 		break;
@@ -5200,31 +5200,32 @@ const ativBarra55 = barra55+"creditado "+atividade, ativBarra45= barra45+" credi
 function atualizarVisualCredito(){
 	if(credito>credBase[4]){
 		if((client.user.username).indexOf(barra55)==-1){
-			client.user.setUsername(userBarra55);
+			//client.user.setUsername(userBarra55);
+			return (userBarra55);
 			setActivity(ativBarra55);
 		}		
 	}else if(credito>credBase[3]){		
 		if((client.user.username).indexOf(barra45)==-1){
-			client.user.setUsername(userBarra45);
+			return (userBarra45);
 			setActivity(ativBarra45);
 		}
 	} else if(credito>credBase[2]){		
 		if((client.user.username).indexOf(barra35)==-1){
-			client.user.setUsername(userBarra35);
+			return (userBarra35);
 			setActivity(ativBarra35);
 		}
 	} else if(credito>credBase[1]){
 		if((client.user.username).indexOf(barra25)==-1){
-			client.user.setUsername(userBarra25);
+			return (userBarra25);
 			setActivity(ativBarra25);
 		}
 	} else if(credito>credBase[0]){		
 		if((client.user.username).indexOf(barra15)==-1){
-			client.user.setUsername(userBarra15);
+			return (userBarra15);
 			setActivity(ativBarra15);
 		}
 	} else{
-		client.user.setUsername(userBarra05);
+		return (userBarra05);
 		setActivity(ativBarra05);
 	}
 }
