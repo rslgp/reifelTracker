@@ -444,14 +444,14 @@ client.on('ready', () => {
 		console.log(a.name+quebraLinha+a.id+quebraLinha+"<@"+a.ownerID+">"+quebraLinha+"https://cdn.discordapp.com/icons/"+a.id+"/"+a.icon+".png"+quebraLinha);
 	}
 	*/
-	
+	/* v3
 	//ranked 
 	// Create a reaction collector
 	const filter = (reaction, user) => reaction.emoji.name === '🎟';
 	message.awaitReactions(filter, { maxUsers: 60, time: 15000 })
 	  .then(collected => console.log(`Collected ${collected.size} reactions`))
 	  .catch(console.error);
-	
+	*/
 	
 });
 
