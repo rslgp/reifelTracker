@@ -5220,13 +5220,12 @@ function atualizarVisualCredito(){
 			return (userBarra25);
 			setActivity(ativBarra25);
 		}
-		/*
 	} else if(credito>credBase[0]){		
 		if((client.user.username).indexOf(barra15)==-1){
 			return (userBarra15);
 			setActivity(ativBarra15);
 		}
-	}*/ else{
+	} else{
 		return (userBarra05);
 		setActivity(ativBarra05);
 	}
