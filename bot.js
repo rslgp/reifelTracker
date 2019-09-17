@@ -81,7 +81,7 @@ const comandoErrado = "comando inválido";
 //const AnunciarNovosPlanos="\r\n```fix\r\n\r\n!semana grátis do bot\r\n```";
 const AnunciarNovosPlanos="\r\n**[Convite](https://discordapp.com/oauth2/authorize?client_id=373443049818161153&scope=bot&permissions=469830656)** pro bot(val:2019)";
 
-const atividade = "se chegar a [-----] credito para de funcionar, mais detalhes e credite em: https://catarse.me/reifeltracker";
+const atividade = "se explodir todas bombas para de funcionar, mais detalhes e credite em: https://catarse.me/reifeltracker";
 
 var refreshAuto = [];
 var refreshTamanho = 0;
