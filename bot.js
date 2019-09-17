@@ -5193,7 +5193,8 @@ function setActivity(txt){
 	});
 }
 
-const barra55="▃▃▃▃▃", barra45="▃▃▃▃▁", barra35="▃▃▃▁▁", barra25="▃▃▁▁▁", barra15="▃▁▁▁▁", barra05="▁▁▁▁▁";
+//const barra55="▃▃▃▃▃", barra45="▃▃▃▃▁", barra35="▃▃▃▁▁", barra25="▃▃▁▁▁", barra15="▃▁▁▁▁", barra05="▁▁▁▁▁";
+const barra55="💣💣💣💣💢", barra45="💣💣💣💢🔥", barra35="💣💣💢🔥🔥", barra25="💣💢🔥🔥🔥", barra15="💢🔥🔥🔥🔥", barra05="🔥🔥🔥🔥🔥";
 const userBarra55 = "ReifelTracker "+barra55+" credito", userBarra45 = "ReifelTracker "+barra45+" credito", userBarra35 = "ReifelTracker "+barra35+" credito", userBarra25 = "ReifelTracker "+barra25+" credito", userBarra15 = "ReifelTracker "+barra15+" credito", userBarra05 = "ReifelTracker "+barra05+" credito";
 const ativBarra55 = barra55+"creditado "+atividade, ativBarra45= barra45+" creditado "+atividade,ativBarra35= barra35+" creditado "+atividade, ativBarra25= barra25+" creditado "+atividade, ativBarra15= barra15+" creditado "+atividade, ativBarra05= barra05+" creditado "+atividade;
 function atualizarVisualCredito(){
