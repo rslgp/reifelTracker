@@ -5194,7 +5194,7 @@ function setActivity(txt){
 }
 
 //const barra55="▃▃▃▃▃", barra45="▃▃▃▃▁", barra35="▃▃▃▁▁", barra25="▃▃▁▁▁", barra15="▃▁▁▁▁", barra05="▁▁▁▁▁";
-const barra55="💣💣💣💢", barra45="💣💣💢🔥", barra35="💣💢🔥🔥", barra25="💢🔥🔥🔥", barra15="🔥🔥🔥🔥", barra05="🔥🔥🔥🔥";
+const barra55="💣💣💣💢", barra45="💣💣💢🔥", barra35="💣💢🔥🔥", barra25="💢🔥🔥🔥", barra15="💢🔥🔥🔥", barra05="🔥🔥🔥🔥";
 const rtcred="ReifelTracker, credito: ";
 const userBarra55 = rtcred+barra55, userBarra45 = rtcred+barra45, userBarra35 = rtcred+barra35, userBarra25 = rtcred+barra25, userBarra15 = rtcred+barra15, userBarra05 = rtcred+barra05;
 const ativBarra55 = barra55+"creditado "+atividade, ativBarra45= barra45+" creditado "+atividade,ativBarra35= barra35+" creditado "+atividade, ativBarra25= barra25+" creditado "+atividade, ativBarra15= barra15+" creditado "+atividade, ativBarra05= barra05+" creditado "+atividade;
