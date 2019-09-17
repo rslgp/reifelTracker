@@ -340,8 +340,8 @@ client.on('ready', () => {
 			  .catch(e => null);
 	
 	credBase = [];
-	credBase[0] = 850;
-	for(var i=1; i<5; i++){
+	//credBase[0] = 850;
+	for(var i=0; i<5; i++){
 		credBase[i]= cred12*i;
 	}
 	
@@ -5195,33 +5195,33 @@ function setActivity(txt){
 
 function atualizarVisualCredito(){
 	if(credito>credBase[4]){
-		if((client.user.username).indexOf("[|||||]")==-1){
+		if((client.user.username).indexOf("█████")==-1){
 			client.user.setUsername("ReifelTracker [|||||] credito");
 			setActivity("[|||||] creditado "+atividade);
 		}		
 	}else if(credito>credBase[3]){		
-		if((client.user.username).indexOf("[||||-]")==-1){
+		if((client.user.username).indexOf("████░")==-1){
 			client.user.setUsername("ReifelTracker [||||-] credito");
 			setActivity("[||||-] creditado "+atividade);
 		}
 	} else if(credito>credBase[2]){		
-		if((client.user.username).indexOf("[|||--]")==-1){
+		if((client.user.username).indexOf("███░░")==-1){
 			client.user.setUsername("ReifelTracker [|||--] credito");
 			setActivity("[|||--] creditado "+atividade);
 		}
 	} else if(credito>credBase[1]){
-		if((client.user.username).indexOf("[||---]")==-1){
+		if((client.user.username).indexOf("██░░░")==-1){
 			client.user.setUsername("ReifelTracker [||---] credito");
 			setActivity("[||---] creditado "+atividade);
 		}
 	} else if(credito>credBase[0]){		
-		if((client.user.username).indexOf("[|----]")==-1){
-			client.user.setUsername("ReifelTracker [|----] credito");
-			setActivity("[|----] creditado "+atividade);
+		if((client.user.username).indexOf("█░░░░")==-1){
+			client.user.setUsername("ReifelTracker █░░░░ credito");
+			setActivity("█░░░░ creditado "+atividade);
 		}
 	} else{
-		client.user.setUsername("ReifelTracker [-----] credito");
-		setActivity("[-----] creditado "+atividade);
+		client.user.setUsername("ReifelTracker ░░░░░ credito");
+		setActivity("░░░░░ creditado "+atividade);
 	}
 }
 
