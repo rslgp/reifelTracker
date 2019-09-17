@@ -1022,7 +1022,7 @@ client.on('message', message => {
 	
 	if(credito < 0){
 		if(!usersPremium.includes(message.author.id) && message.guild.id == '542501242916700181'){
-			print("Acabaram os créditos, para continuar usando compre mais em https://catarse.me/reifeltracker (boleto, cartão)\r\n(R$5 viram 850 créditos | R$10 são 850*2 | R$20 são 850*2*2) e aguarde a conversão");
+			print("Acabaram os créditos, para continuar usando compre mais em https://catarse.me/reifeltracker (boleto, cartão)\r\n(R$5 viram "+(5*cred12/12).toFixed(0)+" créditos | R$12 são "+cred12+" = uma barra cheia | R$20 são "+(20*cred12/12).toFixed(0)+") e aguarde a conversão");
 			return;		
 		}
 	}
