@@ -5199,34 +5199,35 @@ const rtcred="ReifelTracker, credito: ";
 const userBarra55 = rtcred+barra55, userBarra45 = rtcred+barra45, userBarra35 = rtcred+barra35, userBarra25 = rtcred+barra25, userBarra15 = rtcred+barra15, userBarra05 = rtcred+barra05;
 const ativBarra55 = barra55+"creditado "+atividade, ativBarra45= barra45+" creditado "+atividade,ativBarra35= barra35+" creditado "+atividade, ativBarra25= barra25+" creditado "+atividade, ativBarra15= barra15+" creditado "+atividade, ativBarra05= barra05+" creditado "+atividade;
 function atualizarVisualCredito(){
+	var porcentCred = (credito/44).toFixed(0)+"%";
 	if(credito>credBase[4]){
 		if((client.user.username).indexOf(barra55)==-1){
 			//client.user.setUsername(userBarra55);
-			return (userBarra55);
+			return (userBarra55+porcentCred);
 			setActivity(ativBarra55);
 		}		
 	}else if(credito>credBase[3]){		
 		if((client.user.username).indexOf(barra45)==-1){
-			return (userBarra45);
+			return (userBarra45+porcentCred);
 			setActivity(ativBarra45);
 		}
 	} else if(credito>credBase[2]){		
 		if((client.user.username).indexOf(barra35)==-1){
-			return (userBarra35);
+			return (userBarra35+porcentCred);
 			setActivity(ativBarra35);
 		}
 	} else if(credito>credBase[1]){
 		if((client.user.username).indexOf(barra25)==-1){
-			return (userBarra25);
+			return (userBarra25+porcentCred);
 			setActivity(ativBarra25);
 		}
 	} else if(credito>credBase[0]){		
 		if((client.user.username).indexOf(barra15)==-1){
-			return (userBarra15);
+			return (userBarra15+porcentCred);
 			setActivity(ativBarra15);
 		}
 	} else{
-		return (userBarra05);
+		return (userBarra05+porcentCred);
 		setActivity(ativBarra05);
 	}
 }
