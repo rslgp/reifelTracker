@@ -5193,35 +5193,38 @@ function setActivity(txt){
 	});
 }
 
+const barra55="▃▃▃▃▃", barra45="▃▃▃▃▁", barra35="▃▃▃▁▁", barra25="▃▃▁▁▁", barra15="▃▁▁▁▁", barra05="▁▁▁▁▁";
+const userBarra55 = "ReifelTracker "+barra55+" credito", userBarra45 = "ReifelTracker "+barra45+" credito", userBarra35 = "ReifelTracker "+barra35+" credito", userBarra25 = "ReifelTracker "+barra25+" credito", userBarra15 = "ReifelTracker "+barra15+" credito", userBarra05 = "ReifelTracker "+barra05+" credito";
+const ativBarra55 = barra55+"creditado "+atividade, ativBarra45= barra45+" creditado "+atividade,ativBarra35= barra35+" creditado "+atividade, ativBarra25= barra25+" creditado "+atividade, ativBarra15= barra15+" creditado "+atividade, ativBarra05= barra05+" creditado "+atividade;
 function atualizarVisualCredito(){
 	if(credito>credBase[4]){
-		if((client.user.username).indexOf("█████")==-1){
-			client.user.setUsername("ReifelTracker [|||||] credito");
-			setActivity("[|||||] creditado "+atividade);
+		if((client.user.username).indexOf(barra55)==-1){
+			client.user.setUsername(userBarra55);
+			setActivity(ativBarra55);
 		}		
 	}else if(credito>credBase[3]){		
-		if((client.user.username).indexOf("████░")==-1){
-			client.user.setUsername("ReifelTracker [||||-] credito");
-			setActivity("[||||-] creditado "+atividade);
+		if((client.user.username).indexOf(barra45)==-1){
+			client.user.setUsername(userBarra45);
+			setActivity(ativBarra45);
 		}
 	} else if(credito>credBase[2]){		
-		if((client.user.username).indexOf("███░░")==-1){
-			client.user.setUsername("ReifelTracker [|||--] credito");
-			setActivity("[|||--] creditado "+atividade);
+		if((client.user.username).indexOf(barra35)==-1){
+			client.user.setUsername(userBarra35);
+			setActivity(ativBarra35);
 		}
 	} else if(credito>credBase[1]){
-		if((client.user.username).indexOf("██░░░")==-1){
-			client.user.setUsername("ReifelTracker [||---] credito");
-			setActivity("[||---] creditado "+atividade);
+		if((client.user.username).indexOf(barra25)==-1){
+			client.user.setUsername(userBarra25);
+			setActivity(ativBarra25);
 		}
 	} else if(credito>credBase[0]){		
-		if((client.user.username).indexOf("█░░░░")==-1){
-			client.user.setUsername("ReifelTracker █░░░░ credito");
-			setActivity("█░░░░ creditado "+atividade);
+		if((client.user.username).indexOf(barra15)==-1){
+			client.user.setUsername(userBarra15);
+			setActivity(ativBarra15);
 		}
 	} else{
-		client.user.setUsername("ReifelTracker ░░░░░ credito");
-		setActivity("░░░░░ creditado "+atividade);
+		client.user.setUsername(userBarra05);
+		setActivity(ativBarra05);
 	}
 }
 
