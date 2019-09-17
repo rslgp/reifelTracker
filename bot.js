@@ -110,7 +110,7 @@ const tempFile="stats.png";
 var discAutorizados, salasAutorizadas;
 
 
-const cred12 = 880;
+const cred12 = 1100;
 var credito, indiceCredAtt=0, credBase;
 
 var mempeak=0;
@@ -5194,7 +5194,7 @@ function setActivity(txt){
 }
 
 //const barra55="▃▃▃▃▃", barra45="▃▃▃▃▁", barra35="▃▃▃▁▁", barra25="▃▃▁▁▁", barra15="▃▁▁▁▁", barra05="▁▁▁▁▁";
-const barra55="💣💣💣💣💢", barra45="💣💣💣💢🔥", barra35="💣💣💢🔥🔥", barra25="💣💢🔥🔥🔥", barra15="💢🔥🔥🔥🔥", barra05="🔥🔥🔥🔥🔥";
+const barra55="💣💣💣💢", barra45="💣💣💢🔥", barra35="💣💢🔥🔥", barra25="💢🔥🔥🔥", barra15="🔥🔥🔥🔥", barra05="🔥🔥🔥🔥";
 const rtcred="ReifelTracker, credito: ";
 const userBarra55 = rtcred+barra55, userBarra45 = rtcred+barra45, userBarra35 = rtcred+barra35, userBarra25 = rtcred+barra25, userBarra15 = rtcred+barra15, userBarra05 = rtcred+barra05;
 const ativBarra55 = barra55+"creditado "+atividade, ativBarra45= barra45+" creditado "+atividade,ativBarra35= barra35+" creditado "+atividade, ativBarra25= barra25+" creditado "+atividade, ativBarra15= barra15+" creditado "+atividade, ativBarra05= barra05+" creditado "+atividade;
@@ -5220,12 +5220,13 @@ function atualizarVisualCredito(){
 			return (userBarra25);
 			setActivity(ativBarra25);
 		}
+		/*
 	} else if(credito>credBase[0]){		
 		if((client.user.username).indexOf(barra15)==-1){
 			return (userBarra15);
 			setActivity(ativBarra15);
 		}
-	} else{
+	}*/ else{
 		return (userBarra05);
 		setActivity(ativBarra05);
 	}
