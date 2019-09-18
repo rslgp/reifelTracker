@@ -5196,38 +5196,39 @@ function setActivity(txt){
 //const barra55="▃▃▃▃▃", barra45="▃▃▃▃▁", barra35="▃▃▃▁▁", barra25="▃▃▁▁▁", barra15="▃▁▁▁▁", barra05="▁▁▁▁▁";
 const barra55="💣💣💣💢", barra45="💣💣💢🔥", barra35="💣💢🔥🔥", barra25="💢🔥🔥🔥", barra15="💢🔥🔥🔥", barra05="🔥🔥🔥🔥";
 const rtcred="ReifelTracker, carga ";
-const userBarra55 = rtcred+barra55, userBarra45 = rtcred+barra45, userBarra35 = rtcred+barra35, userBarra25 = rtcred+barra25, userBarra15 = rtcred+barra15, userBarra05 = rtcred+barra05;
+//const userBarra55 = rtcred+barra55, userBarra45 = rtcred+barra45, userBarra35 = rtcred+barra35, userBarra25 = rtcred+barra25, userBarra15 = rtcred+barra15, userBarra05 = rtcred+barra05;
+const userBarraArray = [barra05, barra15, barra25, barra35, barra45, barra55];
 const ativBarra55 = barra55+"creditado "+atividade, ativBarra45= barra45+" creditado "+atividade,ativBarra35= barra35+" creditado "+atividade, ativBarra25= barra25+" creditado "+atividade, ativBarra15= barra15+" creditado "+atividade, ativBarra05= barra05+" creditado "+atividade;
 function atualizarVisualCredito(){
 	var porcentCred = (credito/44).toFixed(0)+"%";
 	if(credito>credBase[4]){
 		if((client.user.username).indexOf(barra55)==-1){
 			//client.user.setUsername(userBarra55);
-			return (porcentCred+userBarra55);
+			return (rtcred+porcentCred+userBarraArray[5]);
 			setActivity(ativBarra55);
 		}		
 	}else if(credito>credBase[3]){		
 		if((client.user.username).indexOf(barra45)==-1){
-			return (porcentCred+userBarra45);
+			return (rtcred+porcentCred+userBarraArray[4]);
 			setActivity(ativBarra45);
 		}
 	} else if(credito>credBase[2]){		
 		if((client.user.username).indexOf(barra35)==-1){
-			return (porcentCred+userBarra35);
+			return (rtcred+porcentCred+userBarraArray[3]);
 			setActivity(ativBarra35);
 		}
 	} else if(credito>credBase[1]){
 		if((client.user.username).indexOf(barra25)==-1){
-			return (porcentCred+userBarra25);
+			return (rtcred+porcentCred+userBarraArray[2]);
 			setActivity(ativBarra25);
 		}
 	} else if(credito>credBase[0]){		
 		if((client.user.username).indexOf(barra15)==-1){
-			return (porcentCred+userBarra15);
+			return (rtcred+porcentCred+userBarraArray[1]);
 			setActivity(ativBarra15);
 		}
 	} else{
-		return (porcentCred+userBarra05);
+		return (rtcred+porcentCred+userBarraArray[0]);
 		setActivity(ativBarra05);
 	}
 }
