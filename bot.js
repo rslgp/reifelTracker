@@ -4036,8 +4036,8 @@ function randomDonate(){
 }
 
 //const ad = '```brainfuck\r\ngaranta seu uso e alivie pro dono do discord +recompensas```https://catarse.me/reifeltracker';
-const adsContent = ["com menos clientes (donos de discords) apoiando: o bot pode ser desativado,\r\npara manter o projeto ativo: [clique aqui](https://catarse.me/reifeltracker) (inclui prêmios)", "evite a barra [-----] credito, pois indica sem recurso e para de funcionar,\r\npara +detalhes ou creditar [clique aqui](https://catarse.me/reifeltracker)"];
-
+//const adsContent = ["com menos clientes (donos de discords) apoiando: o bot pode ser desativado,\r\npara manter o projeto ativo: [clique aqui](https://catarse.me/reifeltracker) (inclui prêmios)", "evite a barra [-----] credito, pois indica sem recurso e para de funcionar,\r\npara +detalhes ou creditar [clique aqui](https://catarse.me/reifeltracker)"];
+const adsContent = ["para o bot não ser desativado, ele agora usa créditos/recargas para funcionar,\r\npara manter o projeto ativo: [credite aqui](https://catarse.me/reifeltracker) (inclui prêmios)", "evite a barra [-----] credito, pois indica sem recurso e para de funcionar,\r\npara +detalhes ou creditar [clique aqui](https://catarse.me/reifeltracker)"];
 const ad = {
   "embed": {
     "description": adsContent[0],
