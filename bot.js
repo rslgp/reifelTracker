@@ -5195,7 +5195,7 @@ function setActivity(txt){
 
 //const barra55="▃▃▃▃▃", barra45="▃▃▃▃▁", barra35="▃▃▃▁▁", barra25="▃▃▁▁▁", barra15="▃▁▁▁▁", barra05="▁▁▁▁▁";
 const barra55="💣💣💣💢", barra45="💣💣💢🔥", barra35="💣💢🔥🔥", barra25="💢🔥🔥🔥", barra15="💢🔥🔥🔥", barra05="🔥🔥🔥🔥";
-const rtcred="ReifelTracker, credito: ";
+const rtcred="ReifelTracker, carga ";
 const userBarra55 = rtcred+barra55, userBarra45 = rtcred+barra45, userBarra35 = rtcred+barra35, userBarra25 = rtcred+barra25, userBarra15 = rtcred+barra15, userBarra05 = rtcred+barra05;
 const ativBarra55 = barra55+"creditado "+atividade, ativBarra45= barra45+" creditado "+atividade,ativBarra35= barra35+" creditado "+atividade, ativBarra25= barra25+" creditado "+atividade, ativBarra15= barra15+" creditado "+atividade, ativBarra05= barra05+" creditado "+atividade;
 function atualizarVisualCredito(){
@@ -5203,31 +5203,31 @@ function atualizarVisualCredito(){
 	if(credito>credBase[4]){
 		if((client.user.username).indexOf(barra55)==-1){
 			//client.user.setUsername(userBarra55);
-			return (userBarra55+porcentCred);
+			return (porcentCred+userBarra55);
 			setActivity(ativBarra55);
 		}		
 	}else if(credito>credBase[3]){		
 		if((client.user.username).indexOf(barra45)==-1){
-			return (userBarra45+porcentCred);
+			return (porcentCred+userBarra45);
 			setActivity(ativBarra45);
 		}
 	} else if(credito>credBase[2]){		
 		if((client.user.username).indexOf(barra35)==-1){
-			return (userBarra35+porcentCred);
+			return (porcentCred+userBarra35);
 			setActivity(ativBarra35);
 		}
 	} else if(credito>credBase[1]){
 		if((client.user.username).indexOf(barra25)==-1){
-			return (userBarra25+porcentCred);
+			return (porcentCred+userBarra25);
 			setActivity(ativBarra25);
 		}
 	} else if(credito>credBase[0]){		
 		if((client.user.username).indexOf(barra15)==-1){
-			return (userBarra15+porcentCred);
+			return (porcentCred+userBarra15);
 			setActivity(ativBarra15);
 		}
 	} else{
-		return (userBarra05+porcentCred);
+		return (porcentCred+userBarra05);
 		setActivity(ativBarra05);
 	}
 }
