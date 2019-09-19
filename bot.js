@@ -289,10 +289,12 @@ client.on('messageReactionAdd', (reaction, user) => {
 					}
 					
 					if((qtdTickets.count - offlineUsers) > 45) {
-						//zerarFilaRankedBot();						
+						//zerarFilaRankedBot();	
+						/*
 						reaction.clearReactions().then( 
 							setTimeout(function(){reaction.react(ticketRankedEmoji).catch(e=>null);},1000) 
 						);  
+						*/
 						reaction.message.channel.send(msgUsersMention).then(mentionMsg => mentionMsg.delete(10000)).catch(e => null);
 					}
 				}
