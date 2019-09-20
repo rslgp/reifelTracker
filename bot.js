@@ -300,6 +300,19 @@ client.on('messageReactionAdd', (reaction, user) => {
 				}
 			}
 		break;
+			
+		case "624424320919404544":
+			reaction.clearReactions().then( 
+				setTimeout(function(){reaction.react("♻").catch(e=>null);},1000) 
+			);
+			
+			var timeStampAtual = new Date().getTime();
+			//se passaram 5 min da ultima checagem
+			if(timeStampAtual - reaction.message.editedTimestamp > 300){
+				atualizarCargosRanksOnline(reaction.message.guild);
+			}
+			console.log(reaction.message.editedTimestamp);
+		break;
 	}
 	
 });
@@ -454,6 +467,13 @@ client.on('ready', () => {
 	  .then(collected => console.log(`Collected ${collected.size} reactions`))
 	  .catch(console.error);
 	*/
+	
+	//msg rank online
+	client.channels.get("617882572743245863").fetchMessage('624424320919404544')
+	  .then(message2 => {
+		  message2.edit("<<quantidade ONLINE NO MOMENTO>>\nreaja ♻ para atualizar");
+	} )
+	  .catch(e => null);
 	
 });
 
@@ -5288,4 +5308,20 @@ function aguardarReacao(msgReacted){
 			}
 		)
 	  .catch(e=>null);
+}
+
+
+const cargosRanksOnline = ['595930566847627265','595930566482984961', '595930565690261535'];
+function atualizarCargosRanksOnline(guildEscolhida){
+	var onlinesCargosRanks = [];
+	for(var i =0; i<3; i++){
+		onlinesCargosRanks[i] = guildEscolhida.members.filter(member => member.presence.status != 'offline' && member.roles.has(cargosRanksOnline[i]));
+	}
+	var msgOnlines = "<<quantidade ONLINE NO MOMENTO>>\ndiamante: "+onlinesCargosRanks[2].size+"\nplatina: "+onlinesCargosRanks[1].size+"\nouro: "+onlinesCargosRanks[0].size+"\ndaria para "+((onlinesCargosRanks[0].size+onlinesCargosRanks[1].size+onlinesCargosRanks[2].size)/60).toFixed(0)+" lobbys brasileiros";
+		
+	client.channels.get("617882572743245863").fetchMessage('624424320919404544')
+	  .then(message2 => {
+		  message2.edit(msgOnlines);
+	} )
+	  .catch(e => null);
 }
