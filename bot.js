@@ -303,7 +303,7 @@ client.on('messageReactionAdd', (reaction, user) => {
 			
 		case "624424320919404544":
 			reaction.message.clearReactions().then( 
-				setTimeout(function(){reaction.react("♻").catch(e=>null);},1000) 
+				setTimeout(function(){reaction.message.react("♻").catch(e=>null);},1000) 
 			);
 			
 			var timeStampAtual = new Date().getTime();
