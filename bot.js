@@ -4987,6 +4987,7 @@ function mudeiApex(message, nickLegivel, dados){
 		}
 	}else{
 		//reifelUser.send(nickLegivel+"win%: "+parseFloat(winrKD[0])- (parseFloat(winrate) + 2.4) );
+		debug.send("mudei: "+similarity(nome, nickLegivel));
 		print(message, "não posso trocar seu nick, pois demorou muito tempo com nick desatualizado, peça a algum moderador");
 	}
 }
