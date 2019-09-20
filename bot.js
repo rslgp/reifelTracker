@@ -303,7 +303,9 @@ client.on('messageReactionAdd', (reaction, user) => {
 			
 		case "624424320919404544":
 			//se passaram 5 min da ultima checagem
-			debug.send(""+ ((new Date().getTime()) - reaction.message.editedTimestamp));
+			debug.send(((new Date().getTime()) - reaction.message.editedTimestamp));
+			debug.send(new Date().getTime());
+			debug.send(reaction.message.editedTimestamp);
 			if( ((new Date().getTime()) - reaction.message.editedTimestamp) > 600){
 				reaction.message.clearReactions().then( 
 					setTimeout(function(){reaction.message.react("♻").catch(e=>null);},1000) 
