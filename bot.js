@@ -303,12 +303,11 @@ client.on('messageReactionAdd', (reaction, user) => {
 			
 		case "624424320919404544":
 			//se passaram 5 min da ultima checagem
-			if(timeStampAtual - reaction.message.editedTimestamp > 600){
+			if( (new Date().getTime()) - reaction.message.editedTimestamp > 600){
 				reaction.message.clearReactions().then( 
 					setTimeout(function(){reaction.message.react("♻").catch(e=>null);},1000) 
 				);
 
-				var timeStampAtual = new Date().getTime();
 				atualizarCargosRanksOnline(reaction.message.guild);
 			}
 		break;
