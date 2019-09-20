@@ -4970,7 +4970,7 @@ function mudeiApex(message, nickLegivel, dados){
 		levelatual = nome.substring(nome.lastIndexOf(' ',nome.length-3)+1,nome.length-2);
 	else
 		levelatual = nome.substring(0,nome.indexOf(' '));
-	if( (parseInt(levelatual) + 60) >= parseInt(level) ) { 
+	if( (parseInt(levelatual) + 60) >= parseInt(level) || similarity(nome.replace(levelatual,"").replace(" ★",""), nickLegivel+" ") > 0.5) { 
 		switch(message.guild.id){
 
 			case '550108927698927626':
@@ -4987,7 +4987,7 @@ function mudeiApex(message, nickLegivel, dados){
 		}
 	}else{
 		//reifelUser.send(nickLegivel+"win%: "+parseFloat(winrKD[0])- (parseFloat(winrate) + 2.4) );
-		debug.send("mudei: "+similarity(nome.replace(levelatual,"").replace(" ★",""), nickLegivel));
+		//debug.send("mudei: "+similarity(nome.replace(levelatual,"").replace(" ★",""), nickLegivel+" "));		
 		print(message, "não posso trocar seu nick, pois demorou muito tempo com nick desatualizado, peça a algum moderador");
 	}
 }
