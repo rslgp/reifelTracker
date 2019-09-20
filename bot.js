@@ -5316,7 +5316,7 @@ function atualizarCargosRanksOnline(guildEscolhida){
 	for(var i =0; i<3; i++){
 		onlinesCargosRanks[i] = guildEscolhida.members.filter(member => member.presence.status != 'offline' && member.roles.has(cargosRanksOnline[i]));
 	}
-	var msgOnlines = "<<quantidade ONLINE NO MOMENTO>>\ndiamante: "+onlinesCargosRanks[2].size+"\nplatina: "+onlinesCargosRanks[1].size+"\nouro: "+onlinesCargosRanks[0].size+"\ndaria para "+((onlinesCargosRanks[0].size+onlinesCargosRanks[1].size+onlinesCargosRanks[2].size)/60).toFixed(0)+" partidas full de brasileiros";
+	var msgOnlines = "<<quantidade ONLINE NO MOMENTO>>\nreaja :recycle: para atualizar a cada 10 min\ndiamante: "+onlinesCargosRanks[2].size+"\nplatina: "+onlinesCargosRanks[1].size+"\nouro: "+onlinesCargosRanks[0].size+"\ndaria para "+((onlinesCargosRanks[0].size+onlinesCargosRanks[1].size+onlinesCargosRanks[2].size)/60).toFixed(0)+" partidas full de brasileiros";
 		
 	client.channels.get("617882572743245863").fetchMessage('624424320919404544')
 	  .then(message2 => {
