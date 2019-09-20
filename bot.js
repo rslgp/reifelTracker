@@ -302,6 +302,7 @@ client.on('messageReactionAdd', (reaction, user) => {
 		break;
 			
 		case "624424320919404544":
+			reaction.remove(user);
 			//se passaram 5 min da ultima checagem
 			if( ( new Date().getTime() - reaction.message.editedTimestamp ) > 600000){
 				/*
@@ -309,7 +310,6 @@ client.on('messageReactionAdd', (reaction, user) => {
 					setTimeout(function(){reaction.message.react("♻").catch(e=>null);},1000) 
 				);
 				*/
-				reaction.remove(user);
 
 				atualizarCargosRanksOnline(reaction.message.guild);
 			}
