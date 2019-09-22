@@ -5327,3 +5327,38 @@ function atualizarCargosRanksOnline(guildEscolhida){
 	} )
 	  .catch(e => null);
 }
+
+/*
+//evitar memory leak ao editar varios usuarios, fazer then apos editar e chamar pra editar o proximo
+function removerSlow(iterator, index, tipo){
+	var proximo = iterator.next();
+	if(proximo == undefined) return;
+	switch(tipo){
+		case 0:
+		try{
+			(proximo.value[1]).removeRoles([cargosRanksOnline[1], cargosRanksOnline[0]]).then(removerSlow(iterator, index+1, tipo));
+			console.log("removi");
+		}catch(e){
+			console.log(e);
+		}
+		break;
+		case 1:
+		try{
+			(proximo.value[1]).removeRole(cargosRanksOnline[0]).then(removerSlow(iterator, index+1, tipo));
+		}catch(e){
+			console.log(e);
+		}
+		break;
+	}
+}
+function removerCargosExcedentes(guildEscolhida){
+	var onlinesCargosRanks = [];
+	for(var i =0; i<3; i++){
+		onlinesCargosRanks[i] = guildEscolhida.members.filter(member => member.roles.has(cargosRanksOnline[i]));
+	}
+	removerSlow(onlinesCargosRanks[2].entries(), 0, 0);
+	
+	
+	removerSlow(onlinesCargosRanks[1].entries(), 0, 1);]
+}
+*/
