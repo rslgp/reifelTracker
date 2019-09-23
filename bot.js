@@ -113,6 +113,8 @@ var discAutorizados, salasAutorizadas;
 const cred12 = 1100;
 var credito, indiceCredAtt=0, credBase;
 
+var boletoanonimo;
+
 var mempeak=0;
 var ativarsuspender=false;
 var suspensos = [];
@@ -332,6 +334,13 @@ client.on('ready', () => {
 	} )
 	  .catch(e => null);
 	//fim-reacao
+	
+	//boleto anonimo
+	client.channels.get("625721376308723713").fetchMessage('625721462526836746').then(message2 => {		
+		boletoanonimo = JSON.parse(message2.content);
+	} )
+	  .catch(e => null);
+	//fim-boleto
 	
 	client.channels.get("459432939898273798").fetchMessage('616043152905863178')
 		  .then(message2 => {
@@ -1045,7 +1054,8 @@ client.on('message', message => {
 	
 	if(credito < 0){
 		if(!usersPremium.includes(message.author.id) && message.guild.id == '542501242916700181'){
-			print(message, "Acabaram os créditos, para continuar usando compre mais em https://catarse.me/reifeltracker (boleto, cartão)\r\n(R$5 viram "+(5*cred12/12).toFixed(0)+" créditos | R$12 são "+cred12+" = uma barra cheia | R$20 são "+(20*cred12/12).toFixed(0)+") e aguarde a conversão");
+			var msgBoletoAnonimo = "boleto anonimo (vencimento: "+boletoanonimo.boleto5.venc+") pdf: \t\t [R$ 5]("+boletoanonimo.boleto5.link+") \t|\t [R$ 20]("+boletoanonimo.boleto20.link+")";
+			print(message, "Acabaram os créditos, para continuar usando compre mais em https://catarse.me/reifeltracker (boleto, cartão)\r\n(R$5 viram "+(5*cred12/12).toFixed(0)+" créditos | R$12 são "+cred12+" = uma barra cheia | R$20 são "+(20*cred12/12).toFixed(0)+") e aguarde a conversão\nopcional: "+msgBoletoAnonimo);
 			return;		
 		}
 	}
