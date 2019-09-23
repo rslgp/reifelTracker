@@ -5362,3 +5362,29 @@ function removerCargosExcedentes(guildEscolhida){
 	removerSlow(onlinesCargosRanks[1].entries(), 0, 1);]
 }
 */
+
+/*
+//preparando para creditar automatico
+site = "https://www.catarse.me/reifeltracker";
+try{
+	request(site, function (error, response, body) {
+		try{
+			var text = body;
+			if(text == undefined) throw false; //crash logs
+			//console.log(text);
+			text = text.substring(text.indexOf("data-stats"));
+			text = text.replace(/&quot;/gm,"");
+			const token = "pledged:";
+			text = text.substring(text.indexOf(token)+token.length);
+			text = text.substring(0,text.indexOf(","));
+			text = Number(text);
+			console.log(text);
+
+
+
+		}catch(e){return;}
+	});
+}catch(e){
+			//print(message,e);
+}
+*/
