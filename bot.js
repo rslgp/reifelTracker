@@ -5398,3 +5398,24 @@ try{
 			//print(message,e);
 }
 */
+
+/*
+//preparando para menu de comando com botoes (reacoes)
+//messageReactionAdd
+if(reaction.message.author == client.user){		
+		//reaction.remove(user);
+		var conteudo = reaction.message.content, numero;
+		if(conteudo.contains("comandos") == false) return;
+		switch(reaction.emoji.name){
+			case "➡":
+				numero = Number(conteudo.substring(0,1));
+				reaction.message.edit((numero+1)%3 + conteudo.substring(1));
+			break;
+			case "⬅":
+				numero = Number(conteudo.substring(0,1));
+				reaction.message.edit( (numero-1)%3 + conteudo.substring(1));
+			break;
+			
+		}
+	}
+*/
