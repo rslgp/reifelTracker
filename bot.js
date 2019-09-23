@@ -5234,7 +5234,7 @@ const rtcred="ReifelTracker, carga ";
 const userBarraArray = [barra05, barra15, barra25, barra35, barra45, barra55];
 const ativBarra55 = barra55+"creditado "+atividade, ativBarra45= barra45+" creditado "+atividade,ativBarra35= barra35+" creditado "+atividade, ativBarra25= barra25+" creditado "+atividade, ativBarra15= barra15+" creditado "+atividade, ativBarra05= barra05+" creditado "+atividade;
 function atualizarVisualCredito(){
-	var porcentCred = (credito/44).toFixed(0)+"%";
+	var porcentCred = (credito > 0) ? (credito/44).toFixed(0)+"%" : "0%";
 	if(credito>credBase[4]){
 		if((client.user.username).indexOf(barra55)==-1){
 			//client.user.setUsername(userBarra55);
