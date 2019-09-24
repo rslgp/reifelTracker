@@ -5419,3 +5419,24 @@ if(reaction.message.author == client.user){
 		}
 	}
 */
+
+/*
+//preparar para mencionar ranked online
+function mencionarRankedOnline(guildEscolhida){
+	var onlinesCargosRanks = [];
+	for(var i =0; i<3; i++){
+		onlinesCargosRanks[i] = guildEscolhida.members.filter(member => member.presence.status != 'offline' && member.roles.has(cargosRanksOnline[i]) && (member.roles.has("562423267894231072") || member.roles.has("622443382538502144")));
+	}
+	var n="diamante\n";
+	for(var k of onlinesCargosRanks[2]){
+		n += k[1].toString()+"\n";
+	}
+	
+	n+=">>>platina\n";
+	for(var k of onlinesCargosRanks[1]){		
+		n += k[1].toString()+"\n";
+	}
+	console.log(n);
+}
+
+*/
