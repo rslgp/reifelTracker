@@ -1055,7 +1055,7 @@ client.on('message', message => {
 	if(credito < 0){
 		if(!usersPremium.includes(message.author.id) && message.guild.id == '542501242916700181'){
 			var msgBoletoAnonimo = "boleto avulso (vencimento: "+boletoanonimo.boleto5.venc+") pdf: [R$ 5]("+boletoanonimo.boleto5.link+") \t|\t [R$ 20]("+boletoanonimo.boleto20.link+")";
-			print(message, "Acabaram os créditos, para o bot não ser desativado e continuar usando credite em https://catarse.me/reifeltracker (boleto, cartão)\r\n(R$5 viram "+(5*cred12/12).toFixed(0)+" créditos | R$12 são "+cred12+" = uma barra cheia | R$20 são "+(20*cred12/12).toFixed(0)+") e aguarde a conversão\nopcional: "+msgBoletoAnonimo);
+			print(message, "Acabaram os créditos, para o bot não ser desativado e continuar usando credite em https://catarse.me/reifeltracker (boleto, cartão) e receba prêmios\r\n(R$5 viram "+(5*cred12/12).toFixed(0)+" créditos | R$12 são "+cred12+" = uma barra cheia | R$20 são "+(20*cred12/12).toFixed(0)+") e aguarde a conversão\nopcional: "+msgBoletoAnonimo);
 			return;		
 		}
 	}
