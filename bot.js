@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const message = new Discord.Message();
-\
+
 const JSONbig = require('json-bigint');
 
 //trocar o token
