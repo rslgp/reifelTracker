@@ -37,6 +37,8 @@ var aprendizadoPausado=true;
 var top10ELO, topEloDesatualizado=[true,true];
 var debug;
 
+const menuComandos =["1 de 2 Apex Legends\n\n.lvl nick - registra e atualiza o lvl\n.elo - atualiza o tier\n.ranked - atualiza o rank\n.mudei nick - atualiza para novo nick\n.dk nick - checa kills e dano por foto\n.ondevou - mostra onde cair\n\n>> [Premium](https://catarse.me/reifeltracker)\n.lendas nick - lista por ordem de kill as lendas\n.ce nick - confere o tier", "2 de 2 Admin e Fortnite\n\nAdmin:\ncriar varias salas\nrenomear membro\ncargo Bloqueado\n\nFortnite:\n.t - para kd ou lvl\n.up - atualizar\n.solo\n.troquei"];
+
 /*
 //setting up twitch
 const twitch = require("tmi.js");
