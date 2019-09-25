@@ -313,7 +313,7 @@ client.on('messageReactionAdd', (reaction, user) => {
 				);
 				*/
 
-				atualizarCargosRanksOnline(reaction.message.guild);
+				atualizarCargosRanksOnline(reaction.message.guild, reaction);
 			}
 		break;
 	}
@@ -5324,7 +5324,7 @@ function aguardarReacao(msgReacted){
 
 
 const cargosRanksOnline = ['595930566847627265','595930566482984961', '595930565690261535'];
-function atualizarCargosRanksOnline(guildEscolhida){
+function atualizarCargosRanksOnline(guildEscolhida, reaction){
 	var onlinesCargosRanks = [];
 	for(var i =0; i<3; i++){
 		onlinesCargosRanks[i] = guildEscolhida.members.filter(member => member.presence.status != 'offline' && member.roles.has(cargosRanksOnline[i]) && (member.roles.has("626231397312364555") == false) );
