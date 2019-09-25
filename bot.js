@@ -323,7 +323,7 @@ client.on('messageReactionAdd', (reaction, user) => {
 	if(reaction.message.author == client.user){
 		reaction.remove(user);
 		var conteudo = reaction.message.embeds[0].description, numero;
-		if(conteudo.contains("Comandos") == false) return;
+		if(conteudo.indexOf("Comandos") == -1) return;
 		var oldEmbed = reaction.message.embeds[0];
 		var newEmbed = {embed: 
 				{
