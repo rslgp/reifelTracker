@@ -318,6 +318,35 @@ client.on('messageReactionAdd', (reaction, user) => {
 		break;
 	}
 	
+	if(reaction.message.author == client.user){
+		reaction.remove(user);
+		var conteudo = reaction.message.embeds[0].description, numero;
+		var oldEmbed = reaction.message.embeds[0];
+		var newEmbed = {embed: 
+				{
+					color: oldEmbed.color,
+					description: "",
+					footer: {text:oldEmbed.footer.text}
+				}
+			};
+		
+		switch(reaction.emoji.name){
+			case "➡":
+				numero = Number(conteudo.substring(0,1));
+				numero -= 1;
+				newEmbed.embed.description = menuComandos[(numero+1)%menuComandos.length];
+				reaction.message.edit(newEmbed);
+			break;
+			case "⬅":
+				numero = Number(conteudo.substring(0,1));
+				numero -= 1;
+				newEmbed.embed.description = menuComandos[(numero-1)%menuComandos.length];
+				reaction.message.edit(newEmbed);
+			break;
+			
+		}
+	}
+	
 });
 //fim react
 
@@ -3073,6 +3102,14 @@ client.on('message', message => {
 		case "help":
 		case "comandos":
 			//print(message, helpMessage);
+			
+
+			message.channel.send({embed: {
+					color: 3447003,
+					description: menuComandos[0],
+					footer: {text:"desde 2017, dono: Reifel#5047, catarse.me/reifeltracker"}
+				}
+			}).then(msg => msg.react("⬅").then(() => msg.react("➡")));	
 		break;
 		
 		case "prefab":
@@ -5420,46 +5457,4 @@ try{
 }catch(e){
 			//print(message,e);
 }
-*/
-
-/*
-//preparando para menu de comando com botoes (reacoes)
-//messageReactionAdd
-if(reaction.message.author == client.user){		
-		//reaction.remove(user);
-		var conteudo = reaction.message.content, numero;
-		if(conteudo.contains("comandos") == false) return;
-		switch(reaction.emoji.name){
-			case "➡":
-				numero = Number(conteudo.substring(0,1));
-				reaction.message.edit((numero+1)%3 + conteudo.substring(1));
-			break;
-			case "⬅":
-				numero = Number(conteudo.substring(0,1));
-				reaction.message.edit( (numero-1)%3 + conteudo.substring(1));
-			break;
-			
-		}
-	}
-*/
-
-/*
-//preparar para mencionar ranked online
-function mencionarRankedOnline(guildEscolhida){
-	var onlinesCargosRanks = [];
-	for(var i =0; i<3; i++){
-		onlinesCargosRanks[i] = guildEscolhida.members.filter(member => member.presence.status != 'offline' && member.roles.has(cargosRanksOnline[i]) && (member.roles.has("562423267894231072") || member.roles.has("622443382538502144")));
-	}
-	var n="diamante\n";
-	for(var k of onlinesCargosRanks[2]){
-		n += k[1].toString()+"\n";
-	}
-	
-	n+=">>>platina\n";
-	for(var k of onlinesCargosRanks[1]){		
-		n += k[1].toString()+"\n";
-	}
-	console.log(n);
-}
-
 */
