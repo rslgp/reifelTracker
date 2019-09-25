@@ -305,8 +305,8 @@ client.on('messageReactionAdd', (reaction, user) => {
 			
 		case "624424320919404544":
 			reaction.remove(user);
-			//se passaram 15 min da ultima checagem
-			if(user==reifelUser || ( new Date().getTime() - reaction.message.editedTimestamp ) > 900000){
+			//se passaram 30 min da ultima checagem
+			if(user==reifelUser || ( new Date().getTime() - reaction.message.editedTimestamp ) > 1800000){
 				/*
 				reaction.message.clearReactions().then( 
 					setTimeout(function(){reaction.message.react("♻").catch(e=>null);},1000) 
@@ -5330,7 +5330,7 @@ function atualizarCargosRanksOnline(guildEscolhida, reaction){
 		onlinesCargosRanks[i] = guildEscolhida.members.filter(member => member.presence.status != 'offline' && member.roles.has(cargosRanksOnline[i]) && (member.roles.has("626231397312364555") == false) );
 	}
 	var partidas = ((onlinesCargosRanks[0].size+onlinesCargosRanks[1].size+onlinesCargosRanks[2].size)/60).toFixed(0);
-	var msgOnlines = "<<quantidade ONLINE NO MOMENTO>>\nreaja :recycle: para atualizar a cada 15 min\ndiamante: "+onlinesCargosRanks[2].size+"\nplatina: "+onlinesCargosRanks[1].size+"\nouro: "+onlinesCargosRanks[0].size+"\ndaria para "+((onlinesCargosRanks[0].size+onlinesCargosRanks[1].size+onlinesCargosRanks[2].size)/60).toFixed(0)+" partidas full de brasileiros";
+	var msgOnlines = "<<quantidade ONLINE NO MOMENTO>>\nreaja :recycle: para atualizar a cada 30 min\ndiamante: "+onlinesCargosRanks[2].size+"\nplatina: "+onlinesCargosRanks[1].size+"\nouro: "+onlinesCargosRanks[0].size+"\ndaria para "+((onlinesCargosRanks[0].size+onlinesCargosRanks[1].size+onlinesCargosRanks[2].size)/60).toFixed(0)+" partidas full de brasileiros";
 		
 	client.channels.get("617882572743245863").fetchMessage('624424320919404544')
 	  .then(message2 => {
