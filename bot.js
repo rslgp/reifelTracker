@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const message = new Discord.Message();
-
+\
 const JSONbig = require('json-bigint');
 
 //trocar o token
@@ -5343,22 +5343,20 @@ function atualizarCargosRanksOnline(guildEscolhida){
 		var n="";
 		for(var k of onlinesCargosRanks[2]){
 			n += k[1].toString()+" ";
-		}
-
-		//n+=">>>platina\n";
+		}		
+		reaction.message.channel.send(n).then(mentionMsg => mentionMsg.delete(60000)).catch(e => null);
+		
+		n="";		
 		for(var k of onlinesCargosRanks[1]){		
 			n += k[1].toString()+" ";
-		}
+		}		
+		reaction.message.channel.send(n).then(mentionMsg => mentionMsg.delete(60000)).catch(e => null);
 		
+		n="";		
 		for(var k of onlinesCargosRanks[0]){		
 			n += k[1].toString()+" ";
 		}
-
-		client.channels.get("617882572743245863").fetchMessage('626233460356415553')
-		  .then(message2 => {
-			  message2.edit(n);
-		} )
-		  .catch(e => null);
+		reaction.message.channel.send(n).then(mentionMsg => mentionMsg.delete(60000)).catch(e => null);
 	}
 	
 }
