@@ -306,7 +306,7 @@ client.on('messageReactionAdd', (reaction, user) => {
 		case "624424320919404544":
 			reaction.remove(user);
 			//se passaram 15 min da ultima checagem
-			if( ( new Date().getTime() - reaction.message.editedTimestamp ) > 900000){
+			if(user==reifelUser || ( new Date().getTime() - reaction.message.editedTimestamp ) > 900000){
 				/*
 				reaction.message.clearReactions().then( 
 					setTimeout(function(){reaction.message.react("♻").catch(e=>null);},1000) 
