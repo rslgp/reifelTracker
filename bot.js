@@ -321,7 +321,7 @@ client.on('messageReactionAdd', (reaction, user) => {
 	}
 	
 	if(reaction.message.author == client.user){
-		try{reaction.remove(user);}catch(e){}
+		reaction.remove(user).catch(e=>null);
 		var conteudo, numero;
 		try{
 			conteudo = reaction.message.embeds[0].description;
