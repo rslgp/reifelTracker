@@ -5389,19 +5389,19 @@ function atualizarCargosRanksOnline(guildEscolhida, reaction){
 		for(var k of onlinesCargosRanks[2]){
 			n += k[1].toString()+" ";
 		}		
-		reaction.message.channel.send(n).then(mentionMsg => mentionMsg.delete(60000)).catch(e => null);
+		reaction.message.channel.send(n).then(mentionMsg => mentionMsg.delete(30000)).catch(e => null);
 		
 		n="";		
 		for(var k of onlinesCargosRanks[1]){		
 			n += k[1].toString()+" ";
 		}		
-		reaction.message.channel.send(n).then(mentionMsg => mentionMsg.delete(60000)).catch(e => null);
+		reaction.message.channel.send(n).then(mentionMsg => mentionMsg.delete(30000)).catch(e => null);
 		
 		n="";		
 		for(var k of onlinesCargosRanks[0]){		
 			n += k[1].toString()+" ";
 		}
-		reaction.message.channel.send(n).then(mentionMsg => mentionMsg.delete(60000)).catch(e => null);
+		reaction.message.channel.send(n).then(mentionMsg => mentionMsg.delete(30000)).catch(e => null);
 	}
 	
 }
