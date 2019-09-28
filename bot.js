@@ -2904,7 +2904,9 @@ client.on('message', message => {
 			client.channels.get("459432939898273798").fetchMessage("616043152905863178")
 				  .then(message2 => {
 					var adicional = (cred12*Number(nickLegivel))/12;
-					message2.edit(Number(message.content)+adicional);
+					adicional= adicional.toFixed(0);
+					adicional = Number(message.content)+adicional;
+					message2.edit(adicional);
 				
 					credito+=adicional;
 					message.guild.me.setNickname(atualizarVisualCredito());
