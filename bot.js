@@ -2905,8 +2905,8 @@ client.on('message', message => {
 				  .then(message2 => {
 					var adicional = (cred12*Number(nickLegivel))/12;
 					adicional= adicional.toFixed(0);
-					adicional = Number(message2.content)+adicional;
-					message2.edit(adicional);
+					var atual = Number(message2.content);
+					message2.edit(atual+adicional);
 				
 					credito+=adicional;
 					message.guild.me.setNickname(atualizarVisualCredito());
