@@ -342,13 +342,15 @@ client.on('messageReactionAdd', (reaction, user) => {
 			case "➡":
 				numero = Number(conteudo.substring(0,1));
 				numero -= 1;
-				newEmbed.embed.description = menuComandos[(numero+1)%menuComandos.length];
+				numero = numero < menuComandos.length-1 ? i+1 : 0;
+				newEmbed.embed.description = menuComandos[numero];
 				reaction.message.edit(newEmbed);
 			break;
 			case "⬅":
 				numero = Number(conteudo.substring(0,1));
-				numero -= 1;
-				newEmbed.embed.description = menuComandos[(numero-1)%menuComandos.length];
+				numero -= 1;				
+				numero = i > 0 ? i-1 : menuComandos.length-1;
+				newEmbed.embed.description = menuComandos[numero];
 				reaction.message.edit(newEmbed);
 			break;
 			
