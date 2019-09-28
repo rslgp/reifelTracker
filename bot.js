@@ -2906,6 +2906,7 @@ client.on('message', message => {
 					var adicional = (cred12*Number(nickLegivel))/12;
 					adicional= adicional.toFixed(0);
 					var atual = Number(message2.content);
+					adicional = Number(adicional);
 					message2.edit(atual+adicional);
 				
 					credito+=adicional;
