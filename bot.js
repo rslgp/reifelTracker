@@ -5044,7 +5044,7 @@ function mudeiApex(message, nickLegivel, dados){
 		levelatual = nome.substring(nome.lastIndexOf(' ',nome.length-3)+1,nome.length-2);
 	else
 		levelatual = nome.substring(0,nome.indexOf(' '));
-	if( (parseInt(levelatual) + 60) >= parseInt(level) || similarity(nome.replace(levelatual,"").replace(" ★",""), nickLegivel+" ") > 0.5) { 
+	if( (parseInt(levelatual) + 60) >= parseInt(level) || similar_text(nome.replace(levelatual,"").replace(" ★",""), nickLegivel+" ") > 3) { 
 		switch(message.guild.id){
 
 			case '550108927698927626':
@@ -5530,3 +5530,49 @@ return;
 			}
 		});
 	*/
+function similar_text (first, second) {
+    // Calculates the similarity between two strings  
+    // discuss at: http://phpjs.org/functions/similar_text
+
+    if (first === null || second === null || typeof first === 'undefined' || typeof second === 'undefined') {
+        return 0;
+    }
+
+    first += '';
+    second += '';
+
+    var pos1 = 0,
+        pos2 = 0,
+        max = 0,
+        firstLength = first.length,
+        secondLength = second.length,
+        p, q, l, sum;
+
+    max = 0;
+
+    for (p = 0; p < firstLength; p++) {
+        for (q = 0; q < secondLength; q++) {
+            for (l = 0;
+            (p + l < firstLength) && (q + l < secondLength) && (first.charAt(p + l) === second.charAt(q + l)); l++);
+            if (l > max) {
+                max = l;
+                pos1 = p;
+                pos2 = q;
+            }
+        }
+    }
+
+    sum = max;
+
+    if (sum) {
+        if (pos1 && pos2) {
+            sum += this.similar_text(first.substr(0, pos2), second.substr(0, pos2));
+        }
+
+        if ((pos1 + max < firstLength) && (pos2 + max < secondLength)) {
+            sum += this.similar_text(first.substr(pos1 + max, firstLength - pos1 - max), second.substr(pos2 + max, secondLength - pos2 - max));
+        }
+    }
+
+    return sum;
+}
