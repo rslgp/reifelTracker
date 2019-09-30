@@ -2068,7 +2068,7 @@ client.on('message', message => {
 		break;
 			
 		case "dk":			
-			if(args[1] !== undefined) print(message,"faltou colocar o nick desejado depois de dk (.dk nick)");
+			if(args[1] === undefined) print(message,"faltou colocar o nick desejado depois de dk (.dk nick)");
 			
 			site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
 			try{
