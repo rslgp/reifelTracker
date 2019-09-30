@@ -1703,7 +1703,7 @@ client.on('message', message => {
 							//if(kills===undefined) kills = 0;
 							var eloPontos = getEloKL(level,kills,0,dano);
 							var pontos = eloPontos[2];
-							message.reply("esse nick possui: "+pontos);
+							message.reply("esse nick possui: "+pontos+"tier "+eloPontos[0]);
 
 					}catch(e){
 						//console.log(e);
