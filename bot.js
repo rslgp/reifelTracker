@@ -1702,7 +1702,7 @@ client.on('message', message => {
 							if(level < 85) {print(message,"level insuficiente, minimo 85"); throw false;}
 							//if(kills===undefined) kills = 0;
 							var eloPontos = getEloKL(level,kills,0,dano);
-							var pontos = eloPontos[0];
+							var pontos = eloPontos[2];
 							message.reply(pontos+": "+eloPontos[1]);
 
 					}catch(e){
