@@ -1681,7 +1681,7 @@ client.on('message', message => {
 		break;
 			
 		case "ce":
-			if(!(message.author==reifelUser || usersPremium.includes(message.author.id))) return;
+			if(!(message.author==reifelUser || usersPremium.includes(message.author.id))) {print(message,"comando exclusivo [Premium](https://catarse.me/reifeltracker)");return;}
 		site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
 			try{
 				Browser.visit(site, function (e, browser) {				
@@ -2068,7 +2068,7 @@ client.on('message', message => {
 		break;
 			
 		case "dk":			
-			if(args[1] === undefined) print(message,"faltou colocar o nick desejado depois de dk (.dk nick)");
+			if(args[1] === undefined) {print(message,"faltou colocar o nick desejado depois de dk (.dk nick)");return;}
 			
 			site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
 			try{
@@ -2182,7 +2182,7 @@ client.on('message', message => {
 		break;
 			
 		case "lendas":			
-			if(!(message.author==reifelUser || usersPremium.includes(message.author.id))) return;
+			if(!(message.author==reifelUser || usersPremium.includes(message.author.id))) {print(message,"comando exclusivo [Premium](https://catarse.me/reifeltracker)");return;}
 			if(parametroUsado === "") return;
 			var site;		
 			try{ //tentar atualizar usando outro site
