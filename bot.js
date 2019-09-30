@@ -5485,3 +5485,48 @@ try{
 			//print(message,e);
 }
 */
+
+
+//coletar todos tier
+/*var tierSA = message.guild.members.filter(member => member.roles.has("562423267894231072") || member.roles.has("622443382538502144"));
+var k ="";
+for(var i of tierSA) k+=i[1].nickname+"\n";
+console.log(k);
+return;
+*/
+
+//batch check array nicks
+	/*
+		site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
+		request(site, function (error, response, body) {
+			try{
+				var text = body;
+
+				text = text.substring(text.indexOf('imp_Overview')+15);
+				text = text.substring(0,text.indexOf('};')+1);
+				text = JSON.parse(text);
+
+				dano = text.damage.value;
+				kills = text.kills.value;
+				level = text.level.value;
+
+
+				if(level < 85) {console.log(parametroUsado+" level insuficiente, minimo 85"); throw false;}
+				//if(kills===undefined) kills = 0;
+				var eloPontos = getEloKL(level,kills,0,dano);
+				var pontos = eloPontos[0];
+				switch(pontos){
+					case "S":
+					case "A":
+						console.log("OK - "+parametroUsado+" "+pontos+" "+eloPontos[2]);
+					break;
+
+					default:
+						console.log(parametroUsado+" "+pontos+": "+eloPontos[1]);
+						break;
+				}
+
+			}catch(e){
+			}
+		});
+	*/
