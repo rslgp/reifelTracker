@@ -1975,13 +1975,10 @@ client.on('message', message => {
 						dados.kills = kills;
 						eloApex(message, cargosElo, dados, nickLegivel);
 						limparMemoria(browser);
-					}catch(e){						
+					}catch(e){											
+						limparMemoria(browser);
 						switch(e.name){
 							case "SyntaxError":
-							break;
-							default:								
-								limparMemoria(browser);
-								return;
 							break;
 						}
 						
@@ -1996,11 +1993,12 @@ client.on('message', message => {
 									if(text == undefined) throw false; //crash logs
 									var data;
 									data = JSON.parse(text.substring(text.indexOf("{"), text.lastIndexOf("}")+1));
+									text = body = null;
 									if(data.global == undefined) {message.reply("tente novamente mais tarde");return;}
 									level = data.global.level;
 									kills = data.total.kills;
 									dano = data.total.damage;
-									text = data = null;
+									data = null;
 									
 
 									dados.level = level;
