@@ -4136,11 +4136,25 @@ function randomADS(){
 	}else{
 		anuncieiRecenteInt=0;
 		
+		var diaAtual = new Date();
+		var dataBrutoVenc = boletoanonimo.boleto5.venc;
+		dataBrutoVenc = dataBrutoVenc.split("/");
+		var diaVencimento = new Date(dataBrutoVenc[1]+"/"+dataBrutoVenc[0]+"/"+diaAtual.getFullYear());
+		
+		var msgBoletoAnonimo;
+		if(diaVencimento > diaAtual){
+			msgBoletoAnonimo = "contribua no [projeto](https://www.catarse.me/reifeltracker) pelo boleto em pdf: [R$ 5]("+boletoanonimo.boleto5.link+") | [R$ 12]("+boletoanonimo.boleto20.link+")  vencimento: "+boletoanonimo.boleto5.venc;
+		}else{
+			msgBoletoAnonimo = "contribua no [projeto](https://www.catarse.me/reifeltracker)";			
+		}
+		ad.embed.description = msgBoletoAnonimo;
+		/*
 		if(Math.floor(Math.random() * (10)) > 6){ //0 a 9 (8, 9) sao 30 por cento
 			ad.embed.description = adsContent[1];
 		}else{
 			ad.embed.description = adsContent[0];
 		}
+		*/
 		
 		return ad;
 	}
