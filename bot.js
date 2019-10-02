@@ -5066,7 +5066,7 @@ function mudeiApex(message, nickLegivel, dados){
 	}
 }
 
-const msgAttlvl = " (nao precisa enviar .lvl, fiz junto com o elo)";
+const msgAttlvl = "";
 function eloApex(message, cargosElo, dados, nickLegivel){
 	padraoLvlApex(message,nickLegivel, dados);
 	
