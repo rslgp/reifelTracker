@@ -1833,6 +1833,7 @@ client.on('message', message => {
 			//topEloDesatualizado[indiceTop] = true;
 		break;
 		
+		case "rank":	
 		case "ranked":			
 			try{
 				switch(message.guild.id){								
@@ -2245,7 +2246,7 @@ client.on('message', message => {
 			reifelUser.send(message.author+" ta usando free");
 		break;
 		
-		case "rank":
+		case "rankFort":
 			
 			try{
 				nickLegivel=parametroUsado = getNickConhecido(message);
