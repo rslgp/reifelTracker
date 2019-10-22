@@ -1090,12 +1090,19 @@ client.on('message', message => {
 		indiceCredAtt=0;
 		if(xu77!=null) xu77.edit(credito);	
 	}
-	
-	if(comando.indexOf("lvl")==-1 && credito < 0){
-		if(!usersPremium.includes(message.author.id) && message.guild.id == '542501242916700181'){
-			var msgBoletoAnonimo = "boleto avulso (vencimento: "+boletoanonimo.boleto5.venc+") pdf: [R$ 5]("+boletoanonimo.boleto5.link+") \t|\t [R$ 12]("+boletoanonimo.boleto20.link+")";
-			print(message, "Acabaram os créditos,\nao invés do dono do discord sozinho custear o funcionamento do bot,\nagora são as contribuições dos usuários que garantem, através do https://catarse.me/reifeltracker (boleto, cartão) com prêmios inclusos\r\n(R$5 viram "+(5*cred12/12).toFixed(0)+" créditos | R$12 são "+cred12+" = uma barra cheia) e após contribuir aguarde a conversão\nopcional: "+msgBoletoAnonimo);
-			return;		
+	//se for conta nova e esta usando level
+	if( credito < 0) {
+		//estou sem credito
+		
+		//se for conta nova funcione para comando lvl
+		if( (comando.indexOf("lvl")!=-1 && message.member.nickname.indexOf("★")==-1) ){
+		 //deixe passar
+		}else{		
+			if(!usersPremium.includes(message.author.id) && message.guild.id == '542501242916700181'){
+				var msgBoletoAnonimo = "boleto avulso (vencimento: "+boletoanonimo.boleto5.venc+") pdf: [R$ 5]("+boletoanonimo.boleto5.link+") \t|\t [R$ 12]("+boletoanonimo.boleto20.link+")";
+				print(message, "Acabaram os créditos,\nao invés do dono do discord sozinho custear o funcionamento do bot,\nagora são as contribuições dos usuários que garantem, através do https://catarse.me/reifeltracker (boleto, cartão) com prêmios inclusos\r\n(R$5 viram "+(5*cred12/12).toFixed(0)+" créditos | R$12 são "+cred12+" = uma barra cheia) e após contribuir aguarde a conversão\nopcional: "+msgBoletoAnonimo);
+				return;		
+			}
 		}
 	}
 	//60 reais 10200 --- 5 rs 850 --- 12 2040
