@@ -1067,7 +1067,7 @@ client.on('message', message => {
 	}
 	//31/out
 	if(ativarsuspender){
-		if(suspensos.includes(message.guild.id)) {suspenso(message);return;}
+		if(suspensos.includes(message.guild.id.substring(0,15))) {suspenso(message);return;}
 	}
 	
 	
