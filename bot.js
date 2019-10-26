@@ -1066,9 +1066,9 @@ client.on('message', message => {
 		break;
 	}
 	//31/out
-	//if(ativarsuspender){
-	//	if(suspensos.includes(idGuild)) {suspenso(message);return;}
-	//}
+	if(ativarsuspender){
+		if(suspensos.includes(idGuild)) {suspenso(message);return;}
+	}
 	
 	
 	var parametroUsado, nickLegivel, site;
