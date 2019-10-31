@@ -4159,7 +4159,7 @@ function randomADS(){
 		if(diaVencimento > diaAtual){
 			msgBoletoAnonimo = "contribua no [projeto](https://www.catarse.me/reifeltracker) do bot pelo boleto em pdf: [R$ 5]("+boletoanonimo.boleto5.link+") | [R$ 12]("+boletoanonimo.boleto20.link+")  vencimento: "+boletoanonimo.boleto5.venc;
 		}else{
-			msgBoletoAnonimo = "contribua no [projeto](https://www.catarse.me/reifeltracker) do bot (novos preços! todos baixaram dia 06/10) e .discord para pagar sozinho";			
+			msgBoletoAnonimo = "contribua no [projeto](https://www.catarse.me/reifeltracker) do bot e .discord para usar em outro discord";			
 		}
 		ad.embed.description = msgBoletoAnonimo;
 		/*
