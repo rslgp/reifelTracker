@@ -1106,8 +1106,12 @@ client.on('message', message => {
 		}
 	}
 	//60 reais 10200 --- 5 rs 850 --- 12 2040
-	message.guild.me.setNickname(atualizarVisualCredito());
-		
+	switch(message.guild.id){
+		case '542501242916700181':
+			message.guild.me.setNickname(atualizarVisualCredito());
+		break;
+	}
+	
 	switch(comando){
 		case "t":
 		var proprionick=false;
