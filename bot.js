@@ -939,7 +939,7 @@ client.on('message', message => {
 			if (index !== -1) {
 				cooldownUser.splice(index, 1);
 			}
-		}, 18000);
+		}, 13000);
 	}
 	//fim anti
 	
