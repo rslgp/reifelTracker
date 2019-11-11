@@ -997,6 +997,7 @@ client.on('message', message => {
 		case "carregartabelaeloa":
 		*/
 		case "vitoria":
+		case "attboleto":
 		case "ci":
 		case "dk":
 		case "empartida":
@@ -2107,6 +2108,16 @@ client.on('message', message => {
 			}catch(e){}	
 		break;
 		
+		case "attboleto":
+			if(message.author!=reifelUser) return;
+			//boleto anonimo
+			client.channels.get("625721376308723713").fetchMessage('625721462526836746').then(message2 => {		
+				boletoanonimo = JSON.parse(message2.content);
+			} )
+			  .catch(e => null);
+			//fim-boleto
+		break;
+			
 		case "vitoria":
 			var att = (message.attachments).array();
 			//if(att[0].filesize > 1000000) {message.author.send("**limite ultrapassado (>1MB)**,\r\n use um desses sites para reduzir o tamanho e envie a imagem gerada no site:\r\n http://tinypng.com (.PNG) | http://tinyjpg.com (.JPG) | png2jpg.com"); return;};
