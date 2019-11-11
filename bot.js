@@ -1100,7 +1100,7 @@ client.on('message', message => {
 		 //deixe passar
 		}else{		
 			if(!usersPremium.includes(message.author.id) && message.guild.id == '542501242916700181'){
-				var msgBoletoAnonimo = "boleto avulso (vencimento: "+boletoanonimo.boleto5.venc+") pdf: [R$ 5]("+boletoanonimo.boleto5.link+") \t|\t [R$ 12]("+boletoanonimo.boleto20.link+")";
+				var msgBoletoAnonimo = "boleto avulso (vencimento: "+boletoanonimo.boleto5.venc+") pdf: [R$ 5]("+boletoanonimo.boleto5.link+") \t|\t [R$ 12]("+boletoanonimo.boleto20.link+")\r\nPara mais opções de vencimentos acesse o [Boletos ReifelTracker](https://cdn.discordapp.com/attachments/625721376308723713/643494075894464543/Boletos_ReifelTracker.pdf)";
 				print(message, "Acabaram os créditos, contribua no catarse para TODOS continuarem usando\n[explicação: ]ao invés do dono do discord sozinho custear o funcionamento do bot,\nagora são as contribuições dos usuários que garantem, através do https://catarse.me/reifeltracker (boleto, cartão) com prêmios inclusos\r\n(R$5 viram "+(5*cred12/12).toFixed(0)+" créditos | R$12 são "+cred12+" = uma barra cheia) e após contribuir aguarde a conversão\nopcional: "+msgBoletoAnonimo);
 				return;		
 			}
