@@ -1101,7 +1101,7 @@ client.on('message', message => {
 		}else{		
 			if(!usersPremium.includes(message.author.id) && message.guild.id == '542501242916700181'){
 				var msgBoletoAnonimo = "boleto sem cadastrar (vencimento: "+boletoanonimo.boleto5.venc+") pdf: [R$ 5]("+boletoanonimo.boleto5.link+") \t|\t [R$ 12]("+boletoanonimo.boleto20.link+")\r\nPara mais pdf de boletos prontos acesse o [Boletos ReifelTracker](https://cdn.discordapp.com/attachments/625721376308723713/643494075894464543/Boletos_ReifelTracker.pdf)";
-				print(message, "Desculpe no momento esse comando não funciona,\r\npara voltar a funcionar eu preciso pagar os serviços e o dinheiro vem de doações feitas no: https://catarse.me/reifeltracker (boleto, cartão) os doadores serão premiados\r\na doação é convertida em tempo de funcionamento\numa forma fácil de doar é: "+msgBoletoAnonimo);
+				print(message, "Desculpe, no momento esse comando não funciona,\r\npara voltar a funcionar é preciso pagar os serviços com o dinheiro das doações feitas no: https://catarse.me/reifeltracker (boleto, cartão)\r\n os doadores serão premiados e os valores irão carregar a 'carga 0%💢🔥🔥🔥' de funcionamento\r\n**você poderia contribuir para o projeto?**\numa forma fácil de doar é:\r\n"+msgBoletoAnonimo);
 				return;		
 			}
 		}
