@@ -37,6 +37,8 @@ var aprendizadoPausado=true;
 var top10ELO, topEloDesatualizado=[true,true];
 var debug;
 
+var msgCatarseEnviada = false;
+
 const menuComandos =["1 de 2 Apex Legends - Comandos\n\n.lvl nick - registra e atualiza o lvl\n.elo - atualiza o tier\n.ranked - atualiza o rank\n.mudei nick - atualiza para novo nick\n.dk nick - checa kills e dano por foto\n.ondevou - mostra onde cair\n\n>> [Premium](https://catarse.me/reifeltracker)\n.lendas nick - lista por ordem de kill as lendas\n.ce nick - confere o tier de outra pessoa", "2 de 2 Admin e Fortnite - Comandos\n\nAdmin:\ncriar varias salas, renomear membro, ler de imagem,\ncargo Bloqueado, gerenciar cargos, scrims\n\n\nFortnite:\n.t - para kd ou lvl\n.up - atualizar\n.solo\n.troquei"];
 
 /*
@@ -1101,7 +1103,8 @@ client.on('message', message => {
 		}else{		
 			if(!usersPremium.includes(message.author.id) && message.guild.id == '542501242916700181'){
 				var msgBoletoAnonimo = "boleto sem cadastrar (vencimento: "+boletoanonimo.boleto5.venc+") pdf: [R$ 5]("+boletoanonimo.boleto5.link+") \t|\t [R$ 12]("+boletoanonimo.boleto20.link+")\r\nPara mais pdf de boletos prontos acesse o [Boletos ReifelTracker](https://cdn.discordapp.com/attachments/625721376308723713/643494075894464543/Boletos_ReifelTracker.pdf)";
-				print(message, "Desculpe, no momento esse comando não funciona,\r\npara voltar a funcionar é preciso pagar os serviços com o dinheiro das doações feitas no: https://catarse.me/reifeltracker (boleto, cartão)\r\n os doadores serão premiados e os valores irão carregar a 'carga 0%💢🔥🔥🔥' de funcionamento\r\n**você poderia contribuir para o projeto?**\numa forma fácil de doar é:\r\n"+msgBoletoAnonimo);
+				if(msgCatarseEnviada==false) print(message, "Desculpe, no momento esse comando não funciona,\r\npara voltar a funcionar é preciso pagar os serviços com o dinheiro da vaquinha feita no: https://catarse.me/reifeltracker (boleto, cartão)\r\n os contribuintes serão premiados e os valores irão carregar a 'carga 0%💢🔥🔥🔥' de funcionamento\r\n**você poderia contribuir para o projeto?**\numa forma fácil de contribuir é:\r\n"+msgBoletoAnonimo);
+				msgCatarseEnviada=true;
 				return;		
 			}
 		}
