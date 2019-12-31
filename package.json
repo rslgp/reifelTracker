@@ -1,6 +1,6 @@
 {
   "name": "reifelTracker",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "main": "bot.js",
   "dependencies": {
     "discord.js": "^11.2.1",
