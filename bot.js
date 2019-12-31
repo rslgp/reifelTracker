@@ -131,6 +131,8 @@ var lugaresEmbed;
 var xu77=null;
 var statsv2 = null;
 
+var channelBuscaDM = null;
+
 /*= {
   "embed": {
     "description": lugaresApex[0][0],
@@ -364,6 +366,8 @@ client.on('messageReactionAdd', (reaction, user) => {
 
 client.on('ready', () => {
 	debug = client.channels.get('598226746701119711');
+	
+	channelBuscaDM = client.channels.get("661294470980960257");
 	
 	//reacao
 	client.channels.get("617882572743245863").fetchMessage('617884991531122688').then(message2 => {		
