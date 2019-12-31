@@ -4063,7 +4063,7 @@ function getNickConhecidoDM(executarComandos, message, comando, args, isDM){
 			executarComandos(message, comando, args, isDM, json.nickConhecido); //executar agr com o nick conhecido
 		}
 	)
-  .catch(e => message.reply("usuario nao cadastrado"));
+  .catch(e => {console.log(e.message); message.reply("usuario nao cadastrado")});
 }
 
 function getNickConhecido(message){
