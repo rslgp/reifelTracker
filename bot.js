@@ -815,7 +815,15 @@ client.on('error', err => {
 }); //handle client errors
 
 client.on('message', message => {
-	if(message.author.bot) return; //ignora poupar processamento bot
+	if(message.author.bot) return; //ignora poupar processamento bot	
+	
+	if(message.channel.type === "dm"){		
+			var args = message.content.slice(1).trim().split(/ +/g);
+			try{
+			executarComandos(message, args[0].toLowerCase(),args, true);
+			}catch(e){console.log(e.message)}
+		return;
+	}
 	
 	/* //temporario rank por imagem
 	var arrayIDcargosRead=null;
@@ -973,6 +981,14 @@ client.on('message', message => {
 	//console.log(args);
 	var comando = args[0];
 	comando = comando.toLowerCase();
+	try{
+		executarComandos(message, comando, args, false);
+	}catch(e){
+		console.log(e.message);
+	}
+});
+
+function executarComandos(message, comando, args, isDM, nickConhecido){
 	switch(comando){ //so responder a nossos comandos, poupar cpu
 		case "t":
 		case "ti":
@@ -1087,33 +1103,35 @@ client.on('message', message => {
 		nickLegivel=parametroUsado = args[1];	
 	}
 	
-	credito--;
-	indiceCredAtt++;
-	if(indiceCredAtt%5 == 0){
-		indiceCredAtt=0;
-		if(xu77!=null) xu77.edit(credito);	
-	}
-	//se for conta nova e esta usando level
-	if( credito < 0) {
-		//estou sem credito
-		
-		//se for conta nova funcione para comando lvl
-		if( (comando.indexOf("lvl")!=-1 && message.member.nickname.indexOf("★")==-1) ){
-		 //deixe passar
-		}else{		
-			if(!usersPremium.includes(message.author.id) && message.guild.id == '542501242916700181'){
-				var msgBoletoAnonimo = "boleto sem cadastrar (vencimento: "+boletoanonimo.boleto5.venc+") pdf: [R$ 5]("+boletoanonimo.boleto5.link+") \t|\t [R$ 12]("+boletoanonimo.boleto20.link+")\r\nPara mais pdf de boletos prontos acesse o [Boletos ReifelTracker](https://cdn.discordapp.com/attachments/625721376308723713/643494075894464543/Boletos_ReifelTracker.pdf)";
-				if(msgCatarseEnviada==false) print(message, "Desculpe, no momento esse comando não funciona,\r\npara voltar a funcionar é preciso pagar os serviços com o dinheiro da vaquinha feita no: https://catarse.me/reifeltracker (boleto, cartão)\r\n os contribuintes serão premiados e os valores irão carregar a 'carga 0%💢🔥🔥🔥' de funcionamento\r\n**você poderia contribuir para o projeto?**\numa forma fácil de contribuir é:\r\n"+msgBoletoAnonimo);
-				msgCatarseEnviada=true;
-				return;		
+	if(isDM==false){
+		credito--;
+		indiceCredAtt++;
+		if(indiceCredAtt%5 == 0){
+			indiceCredAtt=0;
+			if(xu77!=null) xu77.edit(credito);	
+		}
+		//se for conta nova e esta usando level
+		if( credito < 0) {
+			//estou sem credito
+			
+			//se for conta nova funcione para comando lvl
+			if( (comando.indexOf("lvl")!=-1 && message.member.nickname.indexOf("★")==-1) ){
+			 //deixe passar
+			}else{		
+				if(!usersPremium.includes(message.author.id) && message.guild.id == '542501242916700181'){
+					var msgBoletoAnonimo = "boleto sem cadastrar (vencimento: "+boletoanonimo.boleto5.venc+") pdf: [R$ 5]("+boletoanonimo.boleto5.link+") \t|\t [R$ 12]("+boletoanonimo.boleto20.link+")\r\nPara mais pdf de boletos prontos acesse o [Boletos ReifelTracker](https://cdn.discordapp.com/attachments/625721376308723713/643494075894464543/Boletos_ReifelTracker.pdf)";
+					if(msgCatarseEnviada==false) print(message, "Desculpe, no momento esse comando não funciona,\r\npara voltar a funcionar é preciso pagar os serviços com o dinheiro da vaquinha feita no: https://catarse.me/reifeltracker (boleto, cartão)\r\n os contribuintes serão premiados e os valores irão carregar a 'carga 0%💢🔥🔥🔥' de funcionamento\r\n**você poderia contribuir para o projeto?**\numa forma fácil de contribuir é:\r\n"+msgBoletoAnonimo);
+					msgCatarseEnviada=true;
+					return;		
+				}
 			}
 		}
-	}
-	//60 reais 10200 --- 5 rs 850 --- 12 2040
-	switch(message.guild.id){
-		case '542501242916700181':
-			message.guild.me.setNickname(atualizarVisualCredito());
-		break;
+		//60 reais 10200 --- 5 rs 850 --- 12 2040
+		switch(message.guild.id){
+			case '542501242916700181':
+				message.guild.me.setNickname(atualizarVisualCredito());
+			break;
+		}
 	}
 	
 	switch(comando){
@@ -1696,6 +1714,16 @@ client.on('message', message => {
 		break;
 			
 		case "ce":
+		
+		if(isDM) {
+			if(nickConhecido){
+				nickLegivel=parametroUsado= nickConhecido;
+			}else{
+				if(parametroUsado==undefined) getNickConhecidoDM(executarComandos, message, comando, args, isDM);
+			}
+			
+		}
+		
 			if(!(message.author==reifelUser || usersPremium.includes(message.author.id))) {print(message,"comando exclusivo [Premium](https://catarse.me/reifeltracker)");return;}
 		site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
 			try{
@@ -3283,8 +3311,10 @@ client.on('message', message => {
 		default:
 			print( message, comandoErrado);
 		break;
-	}
-});
+	}	
+}
+
+
 const topPartidas = 6;
 function contagemPartidas(dict){
 	// Create items array
@@ -4010,6 +4040,23 @@ function getInnerHtml(browser, selector){
 	}catch(e){/*retorno="";*/throw false;}
 	
 	return retorno.replace(/(\r\n|\n|\r)/gm,"");
+}
+
+
+//pode ter uma forma melhor de fazer, do q repetir a chamada da funcao adicionando novo paramentro
+function getNickConhecidoDM(executarComandos, message, comando, args, isDM){
+	//eu posso fetchar uma vez apenas, e caso nao esteja, fetcha dnvo e ve se foi adicionado, se nao foi adiciona
+	channelBuscaDM.fetchMessages()
+	.then(messages => {
+			var idUser= message.author.id;
+			var elemento = messages.filter(m => m.mentions.users.has(idUser))
+			elemento = elemento.first();
+			//console.log(elemento.content);
+			var json = JSON.parse(elemento.content);
+			executarComandos(message, comando, args, isDM, json.nickConhecido); //executar agr com o nick conhecido
+		}
+	)
+  .catch(e => message.reply("usuario nao cadastrado"));
 }
 
 function getNickConhecido(message){
