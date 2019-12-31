@@ -1084,10 +1084,6 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 			return;
 		break;
 	}
-	//31/out
-	if(ativarsuspender){
-		if(suspensos.includes(message.guild.id.substring(0,15))) {suspenso(message);return;}
-	}
 	
 	
 	var parametroUsado, nickLegivel, site;
@@ -1103,7 +1099,14 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 		nickLegivel=parametroUsado = args[1];	
 	}
 	
-	if(isDM==false){
+	if(isDM==false){		
+		//31/out
+		//sistema de suspender pra guild
+		if(ativarsuspender){
+			if(suspensos.includes(message.guild.id.substring(0,15))) {suspenso(message);return;}
+		}
+		
+		//sistema de credito das guilds
 		credito--;
 		indiceCredAtt++;
 		if(indiceCredAtt%5 == 0){
