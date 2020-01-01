@@ -4056,7 +4056,7 @@ function getNickConhecidoDM(executarComandos, message, comando, args, isDM){
 	channelBuscaDM.fetchMessages()
 	.then(messages => {
 			var idUser= message.author.id;
-			var elemento = messages.filter(m => m.content.indexOf(idUser,13) !== -1);
+			var elemento = messages.filter(m => m.content.lastIndexOf(idUser,14) !== -1);
 			elemento = elemento.first();
 			//console.log(elemento.content);
 			var json = JSON.parse(elemento.content);
