@@ -15,8 +15,7 @@ const tabelaPreco = '**Mensalidade do bot ReifelTracker**\r\nDepende da quantida
 
 const apoio = "", txt1MudarNick='winrate: **', txt2MudarNick='kd: **',txt3MudarNick='**, ', trackerTag="☂", espaco=" ", ftParam="?old=1", pfxCom1='!', pfxCom2='.', pfxCom3='c', reactEmoji='✔', reactEmojiX='❌';
 
-const usersPremium=['195731919424585728', '331099190321217539'];
-//taygera350258148730208276
+var usersPremium;
 
 //var voiceChannel;
 //var ytdl = require('ytdl-core');
@@ -387,20 +386,21 @@ client.on('ready', () => {
 	  .catch(e => null);
 	//fim-boleto
 	
-	client.channels.get("459432939898273798").fetchMessage('616043152905863178')
+	var dt = client.channels.get("459432939898273798");
+	dt.fetchMessage('616043152905863178')
 		  .then(message2 => {
 			xu77 = message2;
 		} )
 		  .catch(e => null);
 	
-	client.channels.get("459432939898273798").fetchMessage('617664454896648203')
+	dt.fetchMessage('617664454896648203')
 		  .then(message2 => {
 			statsv2 = message2;
 		} )
 		  .catch(e => null);
 	
 	
-	client.channels.get("459432939898273798").fetchMessage('616043152905863178')
+	dt.fetchMessage('616043152905863178')
 			  .then(message => {
 					try{
 						credito = message.content;
@@ -408,6 +408,15 @@ client.on('ready', () => {
 					}catch(e){}
 			} )
 			  .catch(e => null);
+
+
+	dt.fetchMessage('661901181840523274')
+		  .then(message2 => {
+			usersPremium = message2.split(',');
+		} )
+		  .catch(e => null);
+	
+	
 	
 	credBase = [];
 	//credBase[0] = 850;
