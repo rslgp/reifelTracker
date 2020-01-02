@@ -2251,7 +2251,17 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 			
 		break;
 			
-		case "lendas":			
+		case "lendas":
+			
+			if(isDM) {
+				if(nickConhecido){
+					nickLegivel=parametroUsado= nickConhecido;
+				}else{
+					if(parametroUsado==undefined) getNickConhecidoDM(executarComandos, message, comando, args, isDM);
+				}
+
+			}
+			
 			if(!(message.author==reifelUser || usersPremium.includes(message.author.id))) {print(message,"comando exclusivo [Premium](https://catarse.me/reifeltracker)");return;}
 			if(parametroUsado === "") return;
 			var site;		
