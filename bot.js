@@ -1761,6 +1761,7 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 						if(dados.nick) parametroUsado = dados.nick;
 						else dados.nick=parametroUsado;
 						
+						/*
 						var boolIniciar = parametroUsado=="iniciar";
 						if(boolIniciar){
 							dados.ti = currTime;										
@@ -1768,6 +1769,7 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 							try{message.react(reactEmoji).catch(e=>null);}catch(e){}
 							return;
 						}
+						*/
 						
 						var callbackConsultaCalculoKM = function (dadosOnline){
 							
