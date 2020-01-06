@@ -1759,7 +1759,11 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 						var dados = JSON.parse(elemento.content);
 						
 						if(dados.nick) parametroUsado = dados.nick;
-						else dados.nick=parametroUsado;						
+						else dados.nick=parametroUsado;
+						
+						if(parametroUsado=="iniciar"){
+							dados.ti = currTime;
+						}
 						
 						var callbackConsultaCalculoKM = function (dadosOnline){
 							
