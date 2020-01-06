@@ -5758,10 +5758,10 @@ function caculoKM(mensagemDado, dados, dadosOnline, currTime){
 	
 	if(dados.sem){
 		dif = (currTime - dados.sem);
-		dif = dif/60;
+		dif = dif/60; //fica em minutos reais
 		
 		//se ja passou uma semana
-		if(dif > 10080){
+		if(dif > 10080){ //10080 minutos, (24*60 * 7)
 			//reseta a performace
 			dados.sem = currTime;	
 			dados.ti = currTime;
@@ -5777,7 +5777,7 @@ function caculoKM(mensagemDado, dados, dadosOnline, currTime){
 		dif = (currTime - dados.ti);
 		dif = dif/60; //converter de segundos para minutos
 		
-		if(dif < 600){ //nao se passaram 10 min
+		if(dif < 10){ //nao se passaram 10 min
 			throw false;
 		}else{
 			dados.ti = currTime;
