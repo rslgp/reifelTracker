@@ -8,7 +8,7 @@ const JSONbig = require('json-bigint');
 client.login(process.env.BOT_TOKEN);
 
 //CALABOCA VUE -- comentar em caso de debug, se precisar
-//console.log = function log(){}
+console.log = function log(){}
 
 //versao 1.2
 const tabelaPreco = '**Mensalidade do bot ReifelTracker**\r\nDepende da quantidade de membros do servidor no discord\r\n\r\nExperimente por 7 dias e só paga se quiser continuar\r\nMensalidade:\r\nmembros -------- reais por mês\r\n1 a 85            -------- R$ 8\r\n86 a 250        -------- R$ 15\r\n251 a 650       -------- R$ 18\r\nmaior que 650      -------- R$ 22\r\n\r\n**Forma de pagamento**: boleto, transferência bancária (banco do brasil), depósito, paypal (+12% do preço pela taxa do paypal)\r\n**Dá direito a** 3 cargos (nomes customizáveis: Lendário, Épico, Raro)(representando fortnite:kd,winrate, apex:level,elo), instalação grátis e só paga quando estiver funcionando, os preços são para usar o bot do jeito que ele é na última atualização dele, com no máximo pequenas adaptações. Se não quiser mais, o bot é desinstalado e tem opção de remover as modificações feitas pelo bot (voltar ao que era antes).\r\n\r\n**Jogos suportados**: Fornite, Apex\r\n\r\n**PACOTES paga uma vez pelo pacote:**\r\n(válido enquanto o tamanho do servidor condiz com o plano contratado)\r\n(parcelado em até 3 vezes)\r\npacote de 4 meses com 8% de desconto\r\npacote de 8 meses com 20% de desconto\r\npacote de 1 ano com 30% de desconto\r\n\r\nexemplos 4|8|12 meses:\r\nmenor que 85: 30 | 50 | 65\r\nmaior que 650: 80 | 140 | 185\r\nesses valores podem ser parcelados em até 3 vezes sem juros\r\n\r\n**TRATAR COM:** @Reifel#5047 <@195731919424585728>\r\nhttps://discordapp.com/users/195731919424585728\r\nNão envie mensagem por aqui, envie para reifel';
@@ -5777,7 +5777,6 @@ function caculoKM(mensagemDado, dados, dadosOnline, currTime){
 		dif = (currTime - dados.ti);
 		dif = dif/60; //converter de segundos para minutos
 		
-		debug.send(dif);
 		if(dif < 600){ //nao se passaram 10 min
 			throw false;
 		}else{
