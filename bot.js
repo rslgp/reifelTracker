@@ -1775,7 +1775,13 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 							}catch(e){
 								//nao se passou 10 min
 								callDebug(e, "km", message.author);
-								if(!boolIniciar) message.reply("aguarde pelo menos 10min");
+								if(boolIniciar) {									
+									mensagemDado.edit(JSON.stringify(dados));
+									try{message.react(reactEmoji).catch(e=>null);}catch(e){}
+								}else{
+									message.reply("aguarde pelo menos 10min");
+								}
+									
 							}
 						}
 						
