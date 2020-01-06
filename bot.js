@@ -1761,7 +1761,8 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 						if(dados.nick) parametroUsado = dados.nick;
 						else dados.nick=parametroUsado;
 						
-						if(parametroUsado=="iniciar"){
+						var boolIniciar = parametroUsado=="iniciar";
+						if(boolIniciar){
 							dados.ti = currTime;
 						}
 						
@@ -1774,7 +1775,7 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 							}catch(e){
 								//nao se passou 10 min
 								callDebug(e, "km", message.author);
-								message.reply("aguarde pelo menos 10min");
+								if(!boolIniciar) message.reply("aguarde pelo menos 10min");
 							}
 						}
 						
