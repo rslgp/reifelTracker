@@ -1765,7 +1765,7 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 							
 							try{
 								caculoKM(elemento, dados, dadosOnline, currTime);
-								message.reply("computei km");
+								try{message.react(reactEmoji).catch(e=>null);}catch(e){}
 							}catch(e){
 								//nao se passou 10 min
 								callDebug(e, "km", message.author);
