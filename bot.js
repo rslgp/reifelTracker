@@ -1774,7 +1774,7 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 						var callbackConsultaCalculoKM = function (dadosOnline){
 							
 							try{
-								var km = caculoKM(elemento, dados, dadosOnline, currTime);
+								var km = calculoKM(elemento, dados, dadosOnline, currTime);
 								try{message.react(reactEmoji).catch(e=>null);}catch(e){}
 								if(km) message.reply(km.toFixed(2));
 							}catch(e){
@@ -5749,7 +5749,7 @@ function similar_text (first, second) {
 
 
 
-function caculoKM(mensagemDado, dados, dadosOnline, currTime){
+function calculoKM(mensagemDado, dados, dadosOnline, currTime){
 	var kd = ((2.6*dadosOnline.kills)+(dadosOnline.dano/175));
 	//console.log(dadosOnline);
 	//console.log(kd);
