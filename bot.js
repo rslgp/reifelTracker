@@ -5777,6 +5777,7 @@ function caculoKM(mensagemDado, dados, dadosOnline, currTime){
 		dif = (currTime - dados.ti);
 		dif = dif/60; //converter de segundos para minutos
 		
+		debug.send(dif);
 		if(dif < 600){ //nao se passaram 10 min
 			throw false;
 		}else{
