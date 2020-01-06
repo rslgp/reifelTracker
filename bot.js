@@ -5741,6 +5741,13 @@ function caculoKM(mensagemDado, dados, dadosOnline, currTime){
 	//console.log(dadosOnline);
 	//console.log(kd);
 	
+	var deltaKD = kd;
+	if(dados.kd) {
+		deltaKD = (kd-dados.kd);
+		if(deltaKD < 10) return; //se nao teve mudanca expressiva nao faz nada
+	}
+	
+	
 	var dif;
 	
 	if(dados.sem){
@@ -5777,7 +5784,7 @@ function caculoKM(mensagemDado, dados, dadosOnline, currTime){
 			dados.kd = kd;
 			
 		}else{
-			var novoKDmin = ((kd-dados.kd)/dif);
+			var novoKDmin = (deltaKD/dif);
 			if(dados.km){
 				dados.km = ((dados.km + novoKDmin) /2);
 			}else{
