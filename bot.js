@@ -5744,7 +5744,11 @@ function caculoKM(mensagemDado, dados, dadosOnline, currTime){
 	var deltaKD = kd;
 	if(dados.kd) {
 		deltaKD = (kd-dados.kd);
-		if(deltaKD < 10) return; //se nao teve mudanca expressiva nao faz nada
+		if(deltaKD < 10) {
+			dados.ti = currTime;
+			mensagemDado.edit(JSON.stringify(dados)); //atualiza o tempo pro atual
+			return; //se nao teve mudanca expressiva nao faz nada
+		}
 	}
 	
 	
