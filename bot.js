@@ -1768,6 +1768,7 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 								message.reply("computei km");
 							}catch(e){
 								//nao se passou 10 min
+								callDebug(e, "km", message.author);
 								message.reply("aguarde pelo menos 10min");
 							}
 						}
