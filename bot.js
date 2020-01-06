@@ -1012,6 +1012,7 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 		case "lvl2":
 		case "lendas":
 		case "ce":
+		case "km":
 		case "ranked":
 		case "elo":
 		case "ondevou":
@@ -1728,7 +1729,62 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 			}
 			*/
 		break;
+		
+		
+		case "km":
+			// ~~ /100000 decartar segundos e milisegundos
+			//console.log(message.createdTimestamp);
+			//864000 24hrs
+			var currTime = (~~((message.createdTimestamp%10000000000) /10000));
+			currTime = currTime*10; //ficar em segundos
+			//console.log(currTime);			
 			
+			
+			channelBuscaDM.fetchMessages()
+			.then(messages => {
+					
+					try{
+						var idUser= message.author.id;
+						var elemento = messages.filter(m => m.content.lastIndexOf(idUser,14) !== -1);
+						elemento = elemento.first();
+						
+						if(elemento == undefined){ //nao cadastrado					
+							channelBuscaDM.send('{\n"id":"'+message.author.id+'"\n}');
+							executarComandos(message, comando, args, isDM, nickConhecido);
+							return;
+						}
+						
+						var dados = JSON.parse(elemento.content);
+						
+						if(dados.nick) parametroUsado = dados.nick;
+						else dados.nick=parametroUsado;						
+						
+						var callbackConsultaCalculoKM = function (dadosOnline){
+							
+							try{
+								caculoKM(elemento, dados, dadosOnline, currTime);
+							}catch(e){
+								//nao se passou 16 min
+								message.reply("aguarde pelo menos 16min");
+							}
+						}
+						
+						padraoConsultaDadosOnline( callbackConsultaCalculoKM, parametroUsado );
+					}catch(e){
+						switch(e.message){
+							case "parametroUsado is not defined":
+								message.reply("nao cadastrado, envie o comando com o nick para cadastrar");
+							break;
+						}
+					}
+					
+				}
+			)
+			.catch(e => null);		
+		
+		break;
+	
+		
 		case "ce":
 		
 		if(isDM) {
@@ -5675,3 +5731,101 @@ function similar_text (first, second) {
 
     return sum;
 }
+
+
+
+function caculoKM(mensagemDado, dados, dadosOnline, currTime){
+	var kd = ((2.6*dadosOnline.kills)+(dadosOnline.dano/175));
+	//console.log(dadosOnline);
+	//console.log(kd);
+	
+	var dif;
+	
+	if(dados.sem){
+		dif = (currTime - dados.sem);
+		dif = dif/60;
+		
+		//se ja passou uma semana
+		if(dif > 10080){
+			//reseta a performace
+			dados.sem = currTime;	
+			dados.ti = currTime;
+			dados.kd = kd;
+			dados.km = false;
+		}
+	}else{
+		dados.sem = currTime;
+	}
+	
+	if(dados.ti){
+		//se ja tem um tempo inicial
+		dif = (currTime - dados.ti);
+		dif = dif/60; //converter de segundos para minutos
+		
+		if(dif < 960){ //nao se passaram 16 min
+			throw false;
+		}else{
+			dados.ti = currTime;
+		}
+		
+		//se ja passou 6 hrs
+		if( dif > 360) {
+			//reseta o ponto inicial
+			dados.ti = currTime;
+			dados.kd = kd;
+			
+		}else{
+			var novoKDmin = ((kd-dados.kd)/dif);
+			if(dados.km){
+				dados.km = ((dados.km + novoKDmin) /2);
+			}else{
+				dados.km = novoKDmin;
+			}
+			
+			//console.log(dados.km);
+			//km = (km + (kills/dif)) /2
+			
+		}
+		
+	}else{
+		dados.ti = currTime;
+		dados.kd = kd;
+	}
+	
+	
+	mensagemDado.edit(JSON.stringify(dados));
+}
+
+function padraoConsultaDadosOnline(callback, parametroUsado){
+		var site = "https://apex.tracker.gg/profile/pc/"+parametroUsado;
+		request(site, function (error, response, body) {
+			try{
+				var text = body;
+							
+				text = text.substring(text.indexOf('imp_Overview')+15);
+				text = text.substring(0,text.indexOf('};')+1);
+				text = JSON.parse(text);
+				
+				dano = text.damage.value;
+				kills = text.kills.value;
+				level = text.level.value;
+				
+
+				//if(level < 85) {console.log(parametroUsado+" level insuficiente, minimo 85"); throw false;}
+				
+				var dados={};
+				dados.kills = kills;
+				dados.dano = dano;
+				callback(dados);
+
+			}catch(e){
+			}
+		});
+}
+
+//timestamp
+/*
+function convertMinEpoch(min){
+	return (86400*min)/1440;
+}
+*/
