@@ -1767,8 +1767,8 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 								caculoKM(elemento, dados, dadosOnline, currTime);
 								try{message.react(reactEmoji).catch(e=>null);}catch(e){}
 							}catch(e){
-								//nao se passou 16 min
-								message.reply("aguarde pelo menos 16min");
+								//nao se passou 10 min
+								message.reply("aguarde pelo menos 10min");
 							}
 						}
 						
@@ -5776,7 +5776,7 @@ function caculoKM(mensagemDado, dados, dadosOnline, currTime){
 		dif = (currTime - dados.ti);
 		dif = dif/60; //converter de segundos para minutos
 		
-		if(dif < 960){ //nao se passaram 16 min
+		if(dif < 600){ //nao se passaram 10 min
 			throw false;
 		}else{
 			dados.ti = currTime;
