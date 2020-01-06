@@ -1763,7 +1763,10 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 						
 						var boolIniciar = parametroUsado=="iniciar";
 						if(boolIniciar){
-							dados.ti = currTime;
+							dados.ti = currTime;										
+							mensagemDado.edit(JSON.stringify(dados));
+							try{message.react(reactEmoji).catch(e=>null);}catch(e){}
+							return;
 						}
 						
 						var callbackConsultaCalculoKM = function (dadosOnline){
@@ -1775,13 +1778,7 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 							}catch(e){
 								//nao se passou 10 min
 								callDebug(e, "km", message.author);
-								if(boolIniciar) {									
-									mensagemDado.edit(JSON.stringify(dados));
-									try{message.react(reactEmoji).catch(e=>null);}catch(e){}
-								}else{
-									message.reply("aguarde pelo menos 10min");
-								}
-									
+								message.reply("aguarde pelo menos 10min");									
 							}
 						}
 						
