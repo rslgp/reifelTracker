@@ -1120,7 +1120,6 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 		if(ativarsuspender){
 			if(suspensos.includes(message.guild.id.substring(0,15))) {suspenso(message);return;}
 		}
-		*/
 		
 		//sistema de credito das guilds
 		credito--;
@@ -1151,6 +1150,7 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 				message.guild.me.setNickname(atualizarVisualCredito());
 			break;
 		}
+		*/
 	}
 	
 	switch(comando){
