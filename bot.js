@@ -1765,6 +1765,7 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 							
 							try{
 								caculoKM(elemento, dados, dadosOnline, currTime);
+								try{message.react(reactEmoji).catch(e=>null);}catch(e){}
 							}catch(e){
 								//nao se passou 16 min
 								message.reply("aguarde pelo menos 16min");
