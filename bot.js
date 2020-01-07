@@ -325,6 +325,7 @@ client.on('messageReactionAdd', (reaction, user) => {
 		
 		case "664193900835110955":			
 			reaction.remove(user).catch(e=>null);
+			reaction.message.channel.reply("km executado").then(m => m.delete(3000)).catch(e => null);
 			
 			var reactionTimestamp = Math.round((new Date()).getTime() / 1000);
 			reactionTimestamp *= 1000;
