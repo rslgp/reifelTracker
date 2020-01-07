@@ -393,8 +393,7 @@ client.on('ready', () => {
 	//fim-reacao
 	
 	//menu km
-	client.channels.get("663841496125931541").fetchMessage('663841496562270208').then(message2 => {
-		menukm = message2;
+	client.channels.get("663841496562270208").fetchMessage('664193900835110955').then(message2 => {		
 		message2.edit("Menu KM\n:radio_button: -> contabilizar kills\n\n:hourglass_flowing_sand: -> antes de começar a jogar");
 		message2.react("🔘").then(message2.react("⏳")).catch(e=>null);		
 	} )
