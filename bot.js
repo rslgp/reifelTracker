@@ -268,12 +268,15 @@ function zerarFilaRankedBot(){ //qnd atingir jogadores necessarios ou acabar o t
 
 client.on('messageReactionAdd', (reaction, user) => {
 	//so funciona com mensagens criadas/editadas apos iniciar o client
+	//para deletar msg tem q ter msg manager
+	//https://discordapp.com/developers/docs/resources/channel
 	/*
 	console.log(reaction);
 	console.log("\r\n####################\r\n");
 	console.log(user);
 	*/
 	if(user.bot) return;
+	if(!reaction.message.author.bot) return;
 	switch(reaction.message.id){
 		case "617884991531122688": //msg de tickets do bot
 			var offlineUsers=0;
