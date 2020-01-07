@@ -395,7 +395,8 @@ client.on('ready', () => {
 	//menu km
 	client.channels.get("663841496562270208").fetchMessage('664193900835110955').then(message2 => {		
 		message2.edit("Menu KM\n:radio_button: -> contabilizar kills\n\n:hourglass_flowing_sand: -> antes de começar a jogar");
-		message2.react("🔘").then(message2.react("⏳")).catch(e=>null);		
+		message2.react("🔘").catch(e=>null);
+		message2.react("⏳").catch(e=>null);
 	} )
 	  .catch(e => null);
 	
