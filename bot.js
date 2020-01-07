@@ -309,7 +309,7 @@ client.on('messageReactionAdd', (reaction, user) => {
 		break;
 			
 		case "624424320919404544":
-			reaction.remove(user);
+			reaction.remove(user).catch(e=>null);
 			//se passaram 30 min da ultima checagem
 			if(user==reifelUser || ( new Date().getTime() - reaction.message.editedTimestamp ) > 1800000){
 				/*
@@ -320,6 +320,19 @@ client.on('messageReactionAdd', (reaction, user) => {
 
 				atualizarCargosRanksOnline(reaction.message.guild, reaction);
 			}
+		break;
+			
+		
+		case "664193900835110955":			
+			reaction.remove(user).catch(e=>null);
+			
+			var reactionTimestamp = Math.round((new Date()).getTime() / 1000);
+			reactionTimestamp *= 1000;
+			//864000 24hrs
+			var currTime = (~~((reactionTimestamp%10000000000) /10000));
+			currTime = currTime*10; //ficar em segundos	
+
+			executarComandoKM(currTime, user.id);
 		break;
 	}
 	
@@ -378,6 +391,14 @@ client.on('ready', () => {
 	} )
 	  .catch(e => null);
 	//fim-reacao
+	
+	//menu km
+	client.channels.get("663841496125931541").fetchMessage('663841496562270208').then(message2 => {
+		menukm = message2;
+		message2.edit("Menu KM\n:radio_button: -> contabilizar kills\n\n:hourglass_flowing_sand: -> antes de começar a jogar");
+		message2.react("🔘").then(message2.react("⏳")).catch(e=>null);		
+	} )
+	  .catch(e => null);
 	
 	//boleto anonimo
 	client.channels.get("625721376308723713").fetchMessage('625721462526836746').then(message2 => {		
@@ -1741,62 +1762,7 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 			currTime = currTime*10; //ficar em segundos
 			//console.log(currTime);			
 			
-			
-			channelBuscaDM.fetchMessages()
-			.then(messages => {
-					
-					try{
-						var idUser= message.author.id;
-						var elemento = messages.filter(m => m.content.lastIndexOf(idUser,14) !== -1);
-						elemento = elemento.first();
-						
-						if(elemento == undefined){ //nao cadastrado					
-							channelBuscaDM.send('{\n"id":"'+message.author.id+'"\n}');
-							executarComandos(message, comando, args, isDM, nickConhecido);
-							return;
-						}
-						
-						var dados = JSON.parse(elemento.content);
-						
-						if(dados.nick) parametroUsado = dados.nick;
-						else dados.nick=parametroUsado;
-						
-						/*
-						var boolIniciar = parametroUsado=="iniciar";
-						if(boolIniciar){
-							dados.ti = currTime;										
-							mensagemDado.edit(JSON.stringify(dados));
-							try{message.react(reactEmoji).catch(e=>null);}catch(e){}
-							return;
-						}
-						*/
-						
-						var callbackConsultaCalculoKM = function (dadosOnline){
-							
-							try{
-								var km = calculoKM(elemento, dados, dadosOnline, currTime);
-								try{message.react(reactEmoji).catch(e=>null);}catch(e){}
-								if(km) message.reply(km.toFixed(2));
-							}catch(e){
-								//nao se passou 10 min
-								callDebug(e, "km", message.author);
-								message.reply("aguarde pelo menos 10min");									
-							}
-						}
-						
-						padraoConsultaDadosOnline( callbackConsultaCalculoKM, parametroUsado );
-					}catch(e){
-						switch(e.message){
-							case "parametroUsado is not defined":
-								message.reply("nao cadastrado, envie o comando com o nick para cadastrar");
-							break;
-						}
-					}
-					
-				}
-			)
-			.catch(e => null);		
-		
+			executarComandoKM(currTime, message.author.id);
 		break;
 	
 		
@@ -5856,3 +5822,49 @@ function convertMinEpoch(min){
 	return (86400*min)/1440;
 }
 */
+
+function executarComandoKM(currTime, userId){
+	channelBuscaDM.fetchMessages()
+	.then(messages => {
+
+		try{
+			var elemento = messages.filter(m => m.content.lastIndexOf(userId,14) !== -1);
+			elemento = elemento.first();
+
+			if(elemento == undefined){ //nao cadastrado					
+				channelBuscaDM.send('{\n"id":"'+userId+'"\n}');
+				executarComandos(message, comando, args, isDM, nickConhecido);
+				return;
+			}
+
+			var dados = JSON.parse(elemento.content);
+
+			if(dados.nick) parametroUsado = dados.nick;
+			else dados.nick=parametroUsado;
+
+			var callbackConsultaCalculoKM = function (dadosOnline){
+
+				try{
+					var km = calculoKM(elemento, dados, dadosOnline, currTime);
+					try{message.react(reactEmoji).catch(e=>null);}catch(e){}
+					if(km) message.reply(km.toFixed(2));
+				}catch(e){
+					//nao se passou 10 min
+					//callDebug(e, "km", message.author);
+					message.reply("aguarde pelo menos 10min");									
+				}
+			}
+
+			padraoConsultaDadosOnline( callbackConsultaCalculoKM, parametroUsado );
+		}catch(e){
+			switch(e.message){
+				case "parametroUsado is not defined":
+					message.reply("nao cadastrado, envie o comando com o nick para cadastrar");
+				break;
+			}
+		}
+
+		}
+	)
+	.catch(e => null);
+}
