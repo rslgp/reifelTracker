@@ -5776,16 +5776,19 @@ function calculoKM(mensagemDado, dados, dadosOnline, currTime){
 			dados.kd = kd;
 			
 		}else{
+			//dados.km [maximo, minimo]
 			var novoKDmin = (deltaKD/dif);
 			if(dados.km){
-				dados.km = ((dados.km + novoKDmin) /2);
+				if(dados.km[0] < novoKDmin) dados.km[0] = novoKDmin;
+				if(dados.km[1] > novoKDmin) dados.km[1] = novoKDmin;
+				//dados.km = ((dados.km + novoKDmin) /2);
 			}else{
-				dados.km = novoKDmin;
+				dados.km = [novoKDmin,novoKDmin];
 			}
 			
 			
-			//tratar os casos de mal uso do km
-			if(dados.km < 1.0) dados.km = false;
+			////tratar os casos de mal uso do km
+			//if(dados.km < 1.0) dados.km = false;
 			
 			//console.log(dados.km);
 			//km = (km + (kills/dif)) /2
@@ -5799,7 +5802,7 @@ function calculoKM(mensagemDado, dados, dadosOnline, currTime){
 	
 	
 	mensagemDado.edit(JSON.stringify(dados));
-	return dados.km;
+	return dados.km[0];
 }
 
 function padraoConsultaDadosOnline(callback, parametroUsado){
