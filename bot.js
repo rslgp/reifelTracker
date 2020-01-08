@@ -5764,8 +5764,8 @@ function calculoKM(mensagemDado, dados, dadosOnline, currTime){
 			dados.ti = currTime;
 		}
 		
-		//se ja passou 6 hrs
-		if( dif > 360) {
+		//se ja passou 4 hrs
+		if( dif > 240) {
 			//reseta o ponto inicial
 			dados.ti = currTime;
 			dados.kd = kd;
