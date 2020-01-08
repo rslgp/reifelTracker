@@ -3085,6 +3085,9 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 		case "uninstall":
 			if(message.author!=reifelUser) return;
 			
+			//tem q usar forEach nas collections
+			//https://gist.github.com/y21/a599ef74c8746341dbcbd32093a69eb8
+			
 			//removendo o apelido de todos
 			for(var membros of message.guild.members){
 				try{
