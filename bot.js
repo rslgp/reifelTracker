@@ -5778,6 +5778,10 @@ function calculoKM(mensagemDado, dados, dadosOnline, currTime){
 				dados.km = novoKDmin;
 			}
 			
+			
+			//tratar os casos de mal uso do km
+			if(dados.km < 1.0) dados.km = false;
+			
 			//console.log(dados.km);
 			//km = (km + (kills/dif)) /2
 			
