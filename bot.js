@@ -1766,7 +1766,12 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 			currTime = currTime*10; //ficar em segundos
 			//console.log(currTime);			
 			
-			executarComandoKM(currTime, message.author.id, parametroUsado);
+			try{
+				executarComandoKM(currTime, message.author.id, parametroUsado);}
+			catch(e){
+				
+				//executarComandos(message, comando, args, isDM, nickConhecido);
+			}
 		break;
 	
 		
@@ -5841,8 +5846,9 @@ function executarComandoKM(currTime, userId, parametroUsado=undefined){
 
 			if(elemento == undefined){ //nao cadastrado					
 				channelBuscaDM.send('{\n"id":"'+userId+'"\n}');
-				executarComandos(message, comando, args, isDM, nickConhecido);
-				return;
+				//executarComandos(message, comando, args, isDM, nickConhecido);
+				//return;
+				throw false;
 			}
 
 			var dados = JSON.parse(elemento.content);
@@ -5854,12 +5860,12 @@ function executarComandoKM(currTime, userId, parametroUsado=undefined){
 
 				try{
 					var km = calculoKM(elemento, dados, dadosOnline, currTime);
-					try{message.react(reactEmoji).catch(e=>null);}catch(e){}
-					if(km) message.reply(km.toFixed(2));
+					//try{message.react(reactEmoji).catch(e=>null);}catch(e){}
+					//if(km) message.reply(km.toFixed(2));
 				}catch(e){
 					//nao se passou 10 min
 					//callDebug(e, "km", message.author);
-					message.reply("aguarde pelo menos 10min");									
+					//message.reply("aguarde pelo menos 10min");									
 				}
 			}
 
