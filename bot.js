@@ -336,7 +336,7 @@ client.on('messageReactionAdd', (reaction, user) => {
 			var currTime = (~~((reactionTimestamp%10000000000) /10000));
 			currTime = currTime*10; //ficar em segundos	
 
-			executarComandoKM(currTime, user.id);
+			executarComandoKM(currTime, user.id, reaction.message, undefined);
 		break;
 	}
 	
@@ -1767,7 +1767,7 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 			//console.log(currTime);			
 			
 			try{
-				executarComandoKM(currTime, message.author.id, parametroUsado);}
+				executarComandoKM(currTime, message.author.id, message, parametroUsado);}
 			catch(e){
 				
 				//executarComandos(message, comando, args, isDM, nickConhecido);
@@ -5836,7 +5836,7 @@ function convertMinEpoch(min){
 }
 */
 
-function executarComandoKM(currTime, userId, parametroUsado=undefined){
+function executarComandoKM(currTime, userId, message, parametroUsado=undefined){
 	channelBuscaDM.fetchMessages()
 	.then(messages => {
 
@@ -5846,9 +5846,9 @@ function executarComandoKM(currTime, userId, parametroUsado=undefined){
 
 			if(elemento == undefined){ //nao cadastrado					
 				channelBuscaDM.send('{\n"id":"'+userId+'"\n}');
-				//executarComandos(message, comando, args, isDM, nickConhecido);
-				//return;
-				throw false;
+				executarComandos(message, comando, args, isDM, nickConhecido);
+				return;
+				//throw false;
 			}
 
 			var dados = JSON.parse(elemento.content);
@@ -5861,11 +5861,11 @@ function executarComandoKM(currTime, userId, parametroUsado=undefined){
 				try{
 					var km = calculoKM(elemento, dados, dadosOnline, currTime);
 					//try{message.react(reactEmoji).catch(e=>null);}catch(e){}
-					//if(km) message.reply(km.toFixed(2));
+					if(km) message.send(km.toFixed(2)).then(m => m.delete(3000));
 				}catch(e){
 					//nao se passou 10 min
 					//callDebug(e, "km", message.author);
-					//message.reply("aguarde pelo menos 10min");									
+					message.send("aguarde pelo menos 10min").then(m => m.delete(3000));								
 				}
 			}
 
