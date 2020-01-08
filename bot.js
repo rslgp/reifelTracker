@@ -1766,7 +1766,7 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 			currTime = currTime*10; //ficar em segundos
 			//console.log(currTime);			
 			
-			executarComandoKM(currTime, message.author.id);
+			executarComandoKM(currTime, message.author.id, parametroUsado);
 		break;
 	
 		
@@ -5831,7 +5831,7 @@ function convertMinEpoch(min){
 }
 */
 
-function executarComandoKM(currTime, userId){
+function executarComandoKM(currTime, userId, parametroUsado=undefined){
 	channelBuscaDM.fetchMessages()
 	.then(messages => {
 
