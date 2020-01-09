@@ -4889,6 +4889,7 @@ function limparMemoria(browser){
 	},0);
 }
 
+//aproximadamente thread (porem em single thread) (execucao assincrona com 1 cpu)
 function callAsync(func) {
     setTimeout(func, 0);
 }
