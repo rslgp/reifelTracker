@@ -1808,7 +1808,7 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 							//if(kills===undefined) kills = 0;
 							var eloPontos = getEloKL(level,kills,0,dano);
 							var pontos = eloPontos[2];
-							message.reply("esse nick é tier "+eloPontos[0]+" e possui: "+pontos);
+							message.reply(nickLegivel+": é tier "+eloPontos[0]+" e possui: "+pontos);
 
 					}catch(e){
 						//console.log(e);
