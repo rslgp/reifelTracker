@@ -1140,7 +1140,6 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 	} )
 	  .catch(e => null);
 	
-	*/
 	
 	var parametroUsado, nickLegivel, site;
 	
