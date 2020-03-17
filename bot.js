@@ -1125,7 +1125,19 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 	}
 	
 	//stats de uso
-	debug.send(new Date(message.createdTimestamp).getHours());
+	//debug.send(new Date(message.createdTimestamp).getHours()-3);
+
+	/*
+	client.channels.get("617882572743245863").fetchMessage('624424320919404544')
+	  .then(message2 => {
+		var jsonHoras = JSON.parse(message2.content);
+		jsonHoras[new Date(message.createdTimestamp).getHours()-3]+=1
+					
+		message2.edit(JSON.stringify(jsonHoras));
+	} )
+	  .catch(e => null);
+	
+	*/
 	
 	var parametroUsado, nickLegivel, site;
 	
