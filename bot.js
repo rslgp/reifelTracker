@@ -1125,7 +1125,7 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 	}
 	
 	//stats de uso
-	debug.send(message.createdTimestamp);
+	debug.send(new Date(message.createdTimestamp).getHours);
 	
 	var parametroUsado, nickLegivel, site;
 	
