@@ -1130,7 +1130,7 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 	
 	client.channels.get("598226746701119711").fetchMessage('689465869365149780')
 	  .then(message2 => {
-	  	message2.edit('"0":0, "1":0, "2":0, "3":0, "4":0, "5":0, "6":0, "7":0, "8":0, "9":0, "10":0, "11":0, "12":0, "13":0, "14":0, "15":0, "16":0, "17":0, "18":0, "19":0, "20":0, "21":0, "22":0, "23":0');
+	  	message2.edit('{"0":0, "1":0, "2":0, "3":0, "4":0, "5":0, "6":0, "7":0, "8":0, "9":0, "10":0, "11":0, "12":0, "13":0, "14":0, "15":0, "16":0, "17":0, "18":0, "19":0, "20":0, "21":0, "22":0, "23":0}');
 	  /*
 		var jsonHoras = JSON.parse(message2.content);
 		jsonHoras[new Date(message.createdTimestamp).getHours()-3]+=1
