@@ -1130,7 +1130,9 @@ function executarComandos(message, comando, args, isDM, nickConhecido){
 	  .then(message2 => {
 	  
 		var jsonHoras = JSON.parse(message2.content);
-		jsonHoras[new Date(message.createdTimestamp).getHours()-3]+=1
+		jsonHoras[new Date(message.createdTimestamp).getHours()]+=1;
+		
+		//lembrete que esse horario eh 3 horas adiantado
 					
 		message2.edit(JSON.stringify(jsonHoras));
 		
